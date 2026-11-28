@@ -1,0 +1,11 @@
+group,crashed,role,a_g,round1_formula,owner_cuts_ref,cuts_alpha,cuts_alpha_separating
+ngapid,AMF,owner,2,360,3436,12224,640
+ngapid,gNB,holder,2,0,,934,168
+guti,AMF,owner,2,360,3274,11456,4136
+guti,gNB,holder,2,0,,838,270
+smf_pool,SMF,owner,3,880,4476,12568,3800
+smf_pool,AMF,holder,3,0,,31448,5828
+smf_pool,UPF,holder,3,0,,1912,240
+upf_pool,UPF,owner,2,72,124,496,138
+upf_pool,SMF,holder,2,0,,4774,1430
+upf_pool,gNB,holder,2,0,,894,270

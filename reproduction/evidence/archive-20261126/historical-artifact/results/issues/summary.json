@@ -1,0 +1,165 @@
+{
+ "date": "2026-11-05",
+ "n_queries": 126,
+ "n_queries_primary": 81,
+ "n_raw_hits": 1721,
+ "n_raw_hits_primary_terms": 1435,
+ "n_candidates": 1086,
+ "n_bodies_read": 146,
+ "n_included": 38,
+ "n_maybe": 16,
+ "n_excluded_after_body": 92,
+ "per_core_included": {
+  "Open5GS": 23,
+  "free5GC": 9,
+  "OAI CN5G": 4,
+  "SD-Core/OMEC": 2
+ },
+ "per_repo_included": {
+  "open5gs/open5gs": 23,
+  "free5gc/free5gc": 9,
+  "omec-project/smf": 2,
+  "openairinterface/oai-cn5g-amf": 2,
+  "openairinterface/oai-cn5g-smf": 1,
+  "openairinterface/oai-cn5g-upf": 1
+ },
+ "core_gen": {
+  "5GC": 33,
+  "EPC": 5
+ },
+ "root_cause": {
+  "lost-allocation-state": 2,
+  "identifier-reuse-aliasing": 1,
+  "missing-cleanup-on-peer-failure": 19,
+  "stale-restoration": 1,
+  "unadvanced-recovery-timestamp": 0,
+  "association-handling": 3,
+  "other": 12
+ },
+ "other_root_cause_detail": {
+  "restart-unaware peer handling": 3,
+  "crash in peer-failure cleanup path": 3,
+  "connection reuse after peer failure": 2,
+  "crashed worker never restarted": 1,
+  "crash on unreachable peer": 1,
+  "undetermined TEID inconsistency": 1,
+  "concurrent recovery procedures": 1
+ },
+ "symptom": {
+  "orphan": 6,
+  "dangling": 7,
+  "alias": 1,
+  "leak-exhaustion": 5,
+  "black-hole": 3,
+  "non-convergence": 9,
+  "crash": 7
+ },
+ "root_cause_x_symptom": {
+  "lost-allocation-state": {
+   "orphan": 0,
+   "dangling": 0,
+   "alias": 0,
+   "leak-exhaustion": 0,
+   "black-hole": 1,
+   "non-convergence": 0,
+   "crash": 1
+  },
+  "identifier-reuse-aliasing": {
+   "orphan": 0,
+   "dangling": 0,
+   "alias": 1,
+   "leak-exhaustion": 0,
+   "black-hole": 0,
+   "non-convergence": 0,
+   "crash": 0
+  },
+  "missing-cleanup-on-peer-failure": {
+   "orphan": 5,
+   "dangling": 7,
+   "alias": 0,
+   "leak-exhaustion": 5,
+   "black-hole": 0,
+   "non-convergence": 2,
+   "crash": 0
+  },
+  "stale-restoration": {
+   "orphan": 0,
+   "dangling": 0,
+   "alias": 0,
+   "leak-exhaustion": 0,
+   "black-hole": 1,
+   "non-convergence": 0,
+   "crash": 0
+  },
+  "unadvanced-recovery-timestamp": {
+   "orphan": 0,
+   "dangling": 0,
+   "alias": 0,
+   "leak-exhaustion": 0,
+   "black-hole": 0,
+   "non-convergence": 0,
+   "crash": 0
+  },
+  "association-handling": {
+   "orphan": 1,
+   "dangling": 0,
+   "alias": 0,
+   "leak-exhaustion": 0,
+   "black-hole": 0,
+   "non-convergence": 2,
+   "crash": 0
+  },
+  "other": {
+   "orphan": 0,
+   "dangling": 0,
+   "alias": 0,
+   "leak-exhaustion": 0,
+   "black-hole": 1,
+   "non-convergence": 5,
+   "crash": 6
+  }
+ },
+ "n_silent": 22,
+ "n_crash_only_detects": 7,
+ "n_crash_only_misses": 31,
+ "n_crash_with_secondary_silent": 1,
+ "nf_restarted_family": {
+  "UPF": 11,
+  "gNB": 7,
+  "SMF": 7,
+  "AMF": 4,
+  "NRF": 2,
+  "peer": 2,
+  "SGW": 1,
+  "VLR": 1,
+  "UDR": 1,
+  "UDM": 1,
+  "MME": 1
+ },
+ "interface": {
+  "N4/PFCP": 14,
+  "SBI": 10,
+  "N2/NGAP": 9,
+  "GTP-U": 2,
+  "DB": 1,
+  "S11/GTPv2-C": 1,
+  "SGs": 1
+ },
+ "state": {
+  "closed": 28,
+  "open": 10
+ },
+ "closed_completed": 28,
+ "year": {
+  "2019": 1,
+  "2020": 2,
+  "2021": 4,
+  "2022": 3,
+  "2023": 3,
+  "2024": 1,
+  "2025": 3,
+  "2026": 21
+ },
+ "n_created_2026": 21,
+ "single_labeler": true
+}

@@ -1,0 +1,45 @@
+{
+  "started_utc": "2026-11-25T22:51:38.194004+00:00",
+  "automated_elapsed_s": 5.363267083012033,
+  "human_effort_measured": false,
+  "events": [
+    {
+      "stage": "commit.json",
+      "url": "https://api.github.com/repos/open5gs/open5gs/commits/5378c06",
+      "elapsed_s": 0.59293429099489,
+      "status": "ok",
+      "sha256": "30fdbb93e21ca069f69c4605dbab69b00c185fd7bd3fefdc48689e4de23629d3"
+    },
+    {
+      "stage": "open5gs.tar.gz",
+      "url": "https://codeload.github.com/open5gs/open5gs/tar.gz/5378c0698c604bd16e0287eadab069bc51e7fb5f",
+      "elapsed_s": 3.402823374955915,
+      "status": "ok",
+      "sha256": "86c0dfb96aa7a3792a3d51d0cb132a314e2b9de8e2480ea3a160322803522106"
+    },
+    {
+      "stage": "changes.json",
+      "url": "https://api.github.com/repos/open5gs/open5gs/compare/e85748ef3d798fa0b4435c80438e81c41bbe5e13...5378c0698c604bd16e0287eadab069bc51e7fb5f",
+      "elapsed_s": 1.3576795000117272,
+      "status": "ok",
+      "sha256": "b7f1be89f3277a9c464e8bd3014953668ed807381e3f166578bcb3e0024c001c"
+    }
+  ],
+  "next_stage": "build and runtime compatibility checks in the dedicated context after experiments release resources",
+  "adaptations": [
+    {
+      "change": "Removed unsupported metrics_impl Meson option before build",
+      "evidence": "Pinned 5378c06 meson_options.txt only exposes fuzzing and lib_fuzzing_engine",
+      "type": "automated source inspection, not human effort"
+    },
+    {
+      "change": "Reuse pinned builder-image dependency checkouts for offline build",
+      "evidence": "New tarball contains wrap manifests but no freeDiameter or prometheus-client-c checkout. Their requested wraps match the pinned base.",
+      "dependency_commits": {
+        "freeDiameter": "539ca5f2ded19413b756544ef8538755e9792877",
+        "prometheus-client-c": "a58ba25bf87a9b1b7c6be4e6f4c62047d620f402"
+      },
+      "duration": "Preflight source inspection not instrumented. Build stages are timed separately."
+    }
+  ]
+}

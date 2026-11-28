@@ -1,0 +1,213 @@
+{
+ "delta_core_s": 26.0,
+ "downtime": {
+  "schedules": 15,
+  "harness_errors": 0,
+  "fault_fired": 15,
+  "R_violations_persistent": 6,
+  "unique_violation_keys": [
+   [
+    "R1-dangling;R1-dangling-UE;R4-blackhole",
+    "smf",
+    "crash"
+   ],
+   [
+    "R2-orphan-SMF;R5-amf-lost-ue",
+    "amf",
+    "crash"
+   ]
+  ],
+  "n_unique": 2,
+  "schedules_to_first_violation": 3,
+  "crash_oracle_detects": 0,
+  "liveness_oracle_detects": 3,
+  "R_and_not_crash": 6,
+  "R_and_not_liveness": 3,
+  "late_convergence_after_delta": 0,
+  "lazy_repair": 0,
+  "transient_then_converged": 1,
+  "t_conv_s": {
+   "n": 1,
+   "median": 6.86,
+   "max": 6.86
+  },
+  "converged_by_s_all_nonpersistent": {
+   "n": 9,
+   "median": 2.02,
+   "max": 19.79
+  },
+  "restart_ready_s_by_nf": {
+   "upf": {
+    "n": 3,
+    "median": 7.14,
+    "max": 17.78
+   },
+   "smf": {
+    "n": 3,
+    "median": 0.14,
+    "max": 0.14
+   },
+   "amf": {
+    "n": 3,
+    "median": 0.01,
+    "max": 0.01
+   },
+   "nrf": {
+    "n": 3,
+    "median": 0.01,
+    "max": 0.02
+   },
+   "gnb": {
+    "n": 3,
+    "median": 0.01,
+    "max": 0.01
+   }
+  },
+  "wall_s_median": 79.7
+ },
+ "boundary": {
+  "schedules": 27,
+  "harness_errors": 0,
+  "fault_fired": 27,
+  "R_violations_persistent": 8,
+  "unique_violation_keys": [
+   [
+    "R1-dangling",
+    "smf",
+    "dereg.amf_rx"
+   ],
+   [
+    "R1-dangling",
+    "smf",
+    "dereg.smf_sess_removed"
+   ],
+   [
+    "R1-dangling",
+    "smf",
+    "pdu.ip_allocated"
+   ],
+   [
+    "R1-dangling",
+    "smf",
+    "pdu.upf_sess_added"
+   ],
+   [
+    "R1-dangling",
+    "smf",
+    "rel.smf_sess_removed"
+   ],
+   [
+    "R2-orphan-SMF;R3-missing-UPF;R4-blackhole",
+    "amf",
+    "rel.upf_sess_removed"
+   ],
+   [
+    "R5-amf-lost-ue",
+    "amf",
+    "reg.complete"
+   ],
+   [
+    "R5-amf-lost-ue",
+    "amf",
+    "rel.amf_sess_removed"
+   ]
+  ],
+  "n_unique": 8,
+  "schedules_to_first_violation": 4,
+  "crash_oracle_detects": 0,
+  "liveness_oracle_detects": 5,
+  "R_and_not_crash": 8,
+  "R_and_not_liveness": 3,
+  "late_convergence_after_delta": 1,
+  "lazy_repair": 6,
+  "transient_then_converged": 9,
+  "t_conv_s": {
+   "n": 9,
+   "median": 11.45,
+   "max": 37.76
+  },
+  "converged_by_s_all_nonpersistent": {
+   "n": 17,
+   "median": 7.55,
+   "max": 37.76
+  },
+  "restart_ready_s_by_nf": {
+   "upf": {
+    "n": 12,
+    "median": 14.47,
+    "max": 17.94
+   },
+   "smf": {
+    "n": 7,
+    "median": 0.49,
+    "max": 0.56
+   },
+   "amf": {
+    "n": 8,
+    "median": 0.89,
+    "max": 0.92
+   }
+  },
+  "wall_s_median": 133.6
+ },
+ "podkill": {
+  "schedules": 12,
+  "harness_errors": 0,
+  "fault_fired": 12,
+  "R_violations_persistent": 4,
+  "unique_violation_keys": [
+   [
+    "R1-dangling",
+    "smf",
+    "crash"
+   ],
+   [
+    "R1-dangling;R1-dangling-UE;R4-blackhole",
+    "smf",
+    "crash"
+   ],
+   [
+    "R2-orphan-SMF;R2-orphan-SMF-vs-UE;R3-missing-UPF;R5-amf-lost-ue",
+    "amf",
+    "crash"
+   ]
+  ],
+  "n_unique": 3,
+  "schedules_to_first_violation": 1,
+  "crash_oracle_detects": 0,
+  "liveness_oracle_detects": 2,
+  "R_and_not_crash": 4,
+  "R_and_not_liveness": 2,
+  "late_convergence_after_delta": 1,
+  "lazy_repair": 4,
+  "transient_then_converged": 5,
+  "t_conv_s": {
+   "n": 5,
+   "median": 21.3,
+   "max": 32.29
+  },
+  "converged_by_s_all_nonpersistent": {
+   "n": 7,
+   "median": 21.16,
+   "max": 32.29
+  },
+  "restart_ready_s_by_nf": {
+   "smf": {
+    "n": 5,
+    "median": 0.47,
+    "max": 0.59
+   },
+   "upf": {
+    "n": 4,
+    "median": 10.06,
+    "max": 15.03
+   },
+   "amf": {
+    "n": 3,
+    "median": 0.89,
+    "max": 0.9
+   }
+  },
+  "wall_s_median": 99.95
+ }
+}

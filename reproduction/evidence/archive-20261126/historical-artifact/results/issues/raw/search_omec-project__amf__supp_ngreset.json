@@ -1,0 +1,83 @@
+{
+ "query": "repo:omec-project/amf is:issue \"NG Reset\" OR \"SCTP reconnect\" OR \"SCTP association\"",
+ "date": "2026-11-05",
+ "total_count": 1,
+ "items": [
+  {
+   "url": "https://api.github.com/repos/omec-project/amf/issues/678",
+   "repository_url": "https://api.github.com/repos/omec-project/amf",
+   "labels_url": "https://api.github.com/repos/omec-project/amf/issues/678/labels{/name}",
+   "comments_url": "https://api.github.com/repos/omec-project/amf/issues/678/comments",
+   "events_url": "https://api.github.com/repos/omec-project/amf/issues/678/events",
+   "html_url": "https://github.com/omec-project/amf/issues/678",
+   "id": 4317291113,
+   "node_id": "I_kwDOFPEWQs8AAAABAVSiaQ",
+   "number": 678,
+   "title": "AMF crashes handling malformed NGReset packet",
+   "user": {
+    "login": "shovon0203",
+    "id": 1752062,
+    "node_id": "MDQ6VXNlcjE3NTIwNjI=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/1752062?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/shovon0203",
+    "html_url": "https://github.com/shovon0203",
+    "followers_url": "https://api.github.com/users/shovon0203/followers",
+    "following_url": "https://api.github.com/users/shovon0203/following{/other_user}",
+    "gists_url": "https://api.github.com/users/shovon0203/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/shovon0203/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/shovon0203/subscriptions",
+    "organizations_url": "https://api.github.com/users/shovon0203/orgs",
+    "repos_url": "https://api.github.com/users/shovon0203/repos",
+    "events_url": "https://api.github.com/users/shovon0203/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/shovon0203/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+   },
+   "labels": [],
+   "state": "closed",
+   "locked": false,
+   "assignees": [],
+   "milestone": null,
+   "comments": 1,
+   "created_at": "2026-04-23T16:05:35Z",
+   "updated_at": "2026-04-23T22:14:37Z",
+   "closed_at": "2026-04-23T22:14:37Z",
+   "assignee": null,
+   "author_association": "NONE",
+   "issue_field_values": [],
+   "type": null,
+   "active_lock_reason": null,
+   "sub_issues_summary": {
+    "total": 0,
+    "completed": 0,
+    "percent_completed": 0
+   },
+   "issue_dependencies_summary": {
+    "blocked_by": 0,
+    "total_blocked_by": 0,
+    "blocking": 0,
+    "total_blocking": 0
+   },
+   "body": "A malformed NGReset message crashes AMF\n\n**AMF Version:** v2.0.2\n\n**Reproduction Step:**\n\nSend either of the following NGAP message\n00 14 00 30 00 00 01 00 1B 00 05 00 0F 11 00 00 00 52 20 05 81 00 52 41 4E 00 65 00 0D 00 80 00 00 07 00 03 C4 40 00 00 00 08 00 15 20 01 A0 FF FF 20 01 00\nor\n00 14 00 09 00 00 01 00 0F 40 02 00 C0\n\n\n**AMF Log:**\n\n```\n2026-02-10T00:48:25.092Z\tINFO\tngap/handler.go:774\thandle NG Reset\t{\"component\": \"AMF\", \"category\": \"NGAP\", \"ran_addr\": \"127.0.0.1:40055\"}\npanic: runtime error: invalid memory address or nil pointer dereference\n[signal SIGSEGV: segmentation violation code=0x1 addr=0x0 pc=0x1388d42]\ngoroutine 1217 gp=0xc00045d880 m=12 mp=0xc000681808 [running]:\npanic({0x1624140?, 0x26d9d20?})\n\t/usr/local/go/src/runtime/panic.go:802 +0x168 fp=0xc000ab5908 sp=0xc000ab5858 pc=0x481128\nruntime.panicmem(...)\n\t/usr/local/go/src/runtime/panic.go:262\nruntime.sigpanic()\n\t/usr/local/go/src/runtime/signal_unix.go:925 +0x359 fp=0xc000ab5968 sp=0xc000ab5908 pc=0x483ab9\ngithub.com/omec-project/amf/ngap.printAndGetCause(0xc00039a080?, 0x0)\n\t/go/src/amf/ngap/handler.go:4706 +0x22 fp=0xc000ab5a60 sp=0xc000ab5968 pc=0x1388d42\ngithub.com/omec-project/amf/ngap.HandleNGReset(0xc0002cca00, 0x0?)\n\t/go/src/amf/ngap/handler.go:795 +0x44a fp=0xc000ab5ca0 sp=0xc000ab5a60 pc=0x136ae8a\ngithub.com/omec-project/amf/ngap.DispatchNgapMsg({0x1b369a0, 0x2734720}, 0xc0002cca00, 0xc001114340, 0x0)\n\t/go/src/amf/ngap/dispatcher.go:239 +0xaaf fp=0xc000ab5fa8 sp=0xc000ab5ca0 pc=0x13640cf\ngithub.com/omec-project/amf/ngap.Dispatch.gowrap1()\n\t/go/src/amf/ngap/dispatcher.go:169 +0x2e fp=0xc000ab5fe0 sp=0xc000ab5fa8 pc=0x136356e\nruntime.goexit({})\n\t/usr/local/go/src/runtime/asm_amd64.s:1693 +0x1 fp=0xc000ab5fe8 sp=0xc000ab5fe0 pc=0x489ca1\ncreated by github.com/omec-project/amf/ngap.Dispatch in goroutine 1157\n\t/go/src/amf/ngap/dispatcher.go:169 +0x5c6\n```\n",
+   "reactions": {
+    "url": "https://api.github.com/repos/omec-project/amf/issues/678/reactions",
+    "total_count": 0,
+    "+1": 0,
+    "-1": 0,
+    "laugh": 0,
+    "hooray": 0,
+    "confused": 0,
+    "heart": 0,
+    "rocket": 0,
+    "eyes": 0
+   },
+   "timeline_url": "https://api.github.com/repos/omec-project/amf/issues/678/timeline",
+   "performed_via_github_app": null,
+   "state_reason": "completed",
+   "pinned_comment": null,
+   "score": 1.0
+  }
+ ]
+}

@@ -1,0 +1,94 @@
+{
+ "seed": 20261105,
+ "nfs": 6,
+ "workload": "Reg+Est+Dereg",
+ "workload_messages": 65,
+ "workload_events": 123,
+ "workload_ref_events": 29,
+ "workload_por_crash_points": 167,
+ "workload_pooled_events": 9,
+ "group_accesses": {
+  "ngapid": 2,
+  "guti": 2,
+  "smf_pool": 3,
+  "upf_pool": 2
+ },
+ "workload_naive_crash_points": 744,
+ "workload_thm1_crash_points": 73,
+ "workload_thm1_reduction": 10.19,
+ "per_nf_boundaries": {
+  "AMF": 30,
+  "SMF": 22,
+  "UPF": 6,
+  "PCF": 5,
+  "UDM": 7,
+  "AUSF": 3
+ },
+ "thm2_validation_cases": 18,
+ "thm2_validation_matches": 18,
+ "k_rows": {
+  "1": {
+   "k": 1,
+   "log10_none": 2.87,
+   "log10_thm1": 1.86,
+   "log10_thm2": 2.87,
+   "log10_thm12": 1.86,
+   "thm2": 744,
+   "thm12": 73
+  },
+  "2": {
+   "k": 2,
+   "log10_none": 75.93,
+   "log10_thm1": 74.91,
+   "log10_thm2": 4.04,
+   "log10_thm12": 3.26,
+   "thm2": 10912,
+   "thm12": 1818
+  },
+  "4": {
+   "k": 4,
+   "log10_none": 295.65,
+   "log10_thm1": 294.62,
+   "log10_thm2": 4.77,
+   "log10_thm12": 4.01,
+   "thm2": 59520,
+   "thm12": 10324
+  },
+  "8": {
+   "k": 8,
+   "log10_none": 882.75,
+   "log10_thm1": 881.72,
+   "log10_thm2": 5.43,
+   "log10_thm12": 4.68,
+   "thm2": 269824,
+   "thm12": 47400
+  },
+  "16": {
+   "k": 16,
+   "log10_none": 2352.72,
+   "log10_thm1": 2351.68,
+   "log10_thm2": 6.06,
+   "log10_thm12": 5.3,
+   "thm2": 1142784,
+   "thm12": 201808
+  },
+  "32": {
+   "k": 32,
+   "log10_none": 5884.62,
+   "log10_thm1": 5883.58,
+   "log10_thm2": 6.67,
+   "log10_thm12": 5.92,
+   "thm2": 4698112,
+   "thm12": 831648
+  },
+  "64": {
+   "k": 64,
+   "log10_none": 14132.83,
+   "log10_thm1": 14131.79,
+   "log10_thm2": 7.28,
+   "log10_thm12": 6.53,
+   "thm2": 19046400,
+   "thm12": 3375424
+  }
+ }
+}

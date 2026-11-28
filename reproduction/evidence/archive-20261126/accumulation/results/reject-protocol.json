@@ -1,0 +1,16 @@
+{
+  "frozen_at": "2026-11-25T08:54:04.762285+00:00",
+  "script_sha256": "bb386f285a83a47b39160e0fb73d0a383852cbf5caff495387aa1409a1965815",
+  "source": "issue 5064 and restored F13 capture/configs, original runner absent",
+  "arms": {
+    "none": {},
+    "targeted": {
+      "pcf": 150,
+      "udm": 150
+    },
+    "global": "150 ms every NF"
+  },
+  "runs_per_arm": 5,
+  "criterion": "same SUPI/PSI release-during-reject signature plus AMF residue, packet review required before mechanism confirmation",
+  "exclusions": "none, errors retained without replacements"
+}

@@ -1,0 +1,50 @@
+[
+ {
+  "name": "F13",
+  "url": "https://github.com/user-attachments/files/35004028/F13.zip",
+  "sha256": "09b126467d5ec033c7b65920500da426345ad0da517d2a179cfa6566ea9c3824",
+  "files": [
+   "F13/testbed/docker-compose.yml",
+   "F13/main-5378c06/B2-pdu-pdu.ip_allocated-upf-k2-s0-a1-cdd4950f86.log.gz",
+   "F13/main-5378c06/B2-pdu-pdu.ip_allocated-upf-k2-s0-a1-cdd4950f86.pcap.gz",
+   "F13/testbed/config/ueransim/gnb.yaml",
+   "F13/testbed/config/ueransim/ue.yaml",
+   "F13/testbed/config/open5gs/bsf.yaml",
+   "F13/testbed/config/open5gs/udm.yaml",
+   "F13/testbed/config/open5gs/ausf.yaml",
+   "F13/testbed/config/open5gs/nrf.yaml",
+   "F13/testbed/config/open5gs/udr.yaml",
+   "F13/testbed/config/open5gs/scp.yaml",
+   "F13/testbed/config/open5gs/smf.yaml",
+   "F13/testbed/config/open5gs/nssf.yaml",
+   "F13/testbed/config/open5gs/amf.yaml",
+   "F13/testbed/config/open5gs/pcf.yaml",
+   "F13/testbed/config/open5gs/upf.yaml"
+  ]
+ },
+ {
+  "name": "C1",
+  "url": "https://github.com/user-attachments/files/35009428/C1.zip",
+  "sha256": "1b27cd5bb385f64991ed3ff55b64abf756588ed902f14f9a2323a75e790ecd9f",
+  "files": [
+   "C1/testbed/docker-compose.yml",
+   "C1/e85748e_pcf_pause_12s/PCFP-d20-s0-r0-dose12-a1-8a618b1520.log.gz",
+   "C1/e85748e_pcf_pause_12s/PCFP-d20-s0-r0-dose12-a1-8a618b1520.pcap.gz",
+   "C1/e85748e_pcf_pause_20s/PCFP-d20-s0-r0-a1-c2076f0a91.pcap.gz",
+   "C1/e85748e_pcf_pause_20s/PCFP-d20-s0-r0-a1-c2076f0a91.log.gz",
+   "C1/testbed/config/ueransim/gnb.yaml",
+   "C1/testbed/config/ueransim/ue.yaml",
+   "C1/testbed/config/open5gs/bsf.yaml",
+   "C1/testbed/config/open5gs/udm.yaml",
+   "C1/testbed/config/open5gs/ausf.yaml",
+   "C1/testbed/config/open5gs/nrf.yaml",
+   "C1/testbed/config/open5gs/udr.yaml",
+   "C1/testbed/config/open5gs/scp.yaml",
+   "C1/testbed/config/open5gs/smf.yaml",
+   "C1/testbed/config/open5gs/nssf.yaml",
+   "C1/testbed/config/open5gs/amf.yaml",
+   "C1/testbed/config/open5gs/pcf.yaml",
+   "C1/testbed/config/open5gs/upf.yaml"
+  ]
+ }
+]

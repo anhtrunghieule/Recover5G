@@ -1,0 +1,83 @@
+{
+"url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf/-/issues/27/discussions.json",
+"fetched": "2026-11-05T18:26:12Z",
+"items": [
+{
+"id": "f08a6932e3dd964e144e397ccbc9eb047ca4c20a",
+"reply_id": "f08a6932e3dd964e144e397ccbc9eb047ca4c20a",
+"project_id": 5331,
+"commit_id": null,
+"confidential": false,
+"diff_discussion": false,
+"expanded": true,
+"for_commit": false,
+"individual_note": true,
+"resolvable": false,
+"discussion_path": null,
+"resolved": false,
+"resolved_by_push": false,
+"resolved_by": null,
+"resolved_at": null,
+"resolve_path": "/oai/cn5g/oai-cn5g-upf/-/issues/27/discussions/f08a6932e3dd964e144e397ccbc9eb047ca4c20a/resolve",
+"notes": [
+{
+"id": "232431",
+"type": null,
+"author": {
+"id": 10607,
+"username": "jenkinsbot",
+"public_email": "",
+"name": "OAI CI JenkinsBot",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/10607/avatar.png?v=1793841916",
+"status_tooltip_html": "<span class=\"user-status-emoji has-tooltip\" title=\"I am a bot &lt;gl-emoji title=&quot;robot face&quot; data-name=&quot;robot&quot; data-unicode-version=&quot;8.0&quot;&gt;\ud83e\udd16&lt;/gl-emoji&gt; reporting about the outcome of CI jobs in Jenkins.\" data-html=\"true\" data-placement=\"top\"><gl-emoji title=\"speech balloon\" data-name=\"speech_balloon\" data-unicode-version=\"6.0\">\ud83d\udcac</gl-emoji></span>",
+"show_status": true,
+"availability": "not_set",
+"path": "/jenkinsbot",
+"bot": false,
+"user_type": "human"
+},
+"created_at": "2026-09-29T21:13:15.860Z",
+"updated_at": "2026-09-29T21:13:15.863Z",
+"system": true,
+"noteable_id": 5324,
+"noteable_type": "Issue",
+"project_id": 5331,
+"resolvable": false,
+"confidential": false,
+"internal": false,
+"imported": false,
+"imported_from": "none",
+"noteable_iid": 27,
+"commands_changes": {},
+"external_author": null,
+"note": "mentioned in commit 95d07a746efeb49f0d84d2ba248798d2e16ad559",
+"note_html": "<p data-sourcepos=\"1:1-1:60\" dir=\"auto\">mentioned in commit <a href=\"/oai/cn5g/oai-cn5g-upf/-/commit/95d07a746efeb49f0d84d2ba248798d2e16ad559\" title=\"Merge pull request #27 from openairinterface/fix/13-create-pdr-existing-far\" class=\"gfm gfm-commit has-tooltip\" data-original=\"95d07a746efeb49f0d84d2ba248798d2e16ad559\" data-link=\"false\" data-link-reference=\"false\" data-commit=\"95d07a746efeb49f0d84d2ba248798d2e16ad559\" data-project=\"5331\" data-project-path=\"oai/cn5g/oai-cn5g-upf\" data-container=\"body\" data-placement=\"top\" data-reference-type=\"commit\">95d07a74</a></p>",
+"body_first_line_html": "<p>mentioned in commit 95d07a74</p>",
+"current_user": {
+"can_edit": false,
+"can_award_emoji": false,
+"can_resolve": false,
+"can_resolve_discussion": false
+},
+"suggestions": [],
+"resolved": false,
+"resolved_by": null,
+"resolved_by_push": false,
+"system_note_icon_name": "comment-dots",
+"is_noteable_author": false,
+"discussion_id": "f08a6932e3dd964e144e397ccbc9eb047ca4c20a",
+"emoji_awardable": false,
+"report_abuse_path": "/-/abuse_reports/add_category",
+"noteable_note_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf/-/work_items/27#note_232431",
+"cached_markdown_version": 2228224,
+"human_access": "Maintainer",
+"is_contributor": false,
+"project_name": "oai-cn5g-upf",
+"path": "/oai/cn5g/oai-cn5g-upf/notes/232431"
+}
+]
+}
+]
+}

@@ -1,0 +1,65 @@
+{
+ "n_issues": 38,
+ "n_accounts": 28,
+ "counts_per_account": {
+  "ae878": 4,
+  "zhangerfei-dp": 3,
+  "jihoon-seo": 3,
+  "Sabreu": 2,
+  "acetcom": 2,
+  "pespin": 2,
+  "mariakagi": 1,
+  "matsumu-y": 1,
+  "LaumiH": 1,
+  "Sugarless-tchen": 1,
+  "hackeryounow": 1,
+  "ComFuzz": 1,
+  "donivtech": 1,
+  "midwell": 1,
+  "lezixiao": 1,
+  "nickvsnetworking": 1,
+  "fatihozer90": 1,
+  "Spectranis": 1,
+  "mcatalancid": 1,
+  "spencersevilla": 1,
+  "infinitydon": 1,
+  "mateuszmichalskiacc": 1,
+  "gstaa": 1,
+  "ximatest": 1,
+  "therikb31": 1,
+  "ashokhs77": 1,
+  "npm-sdr": 1,
+  "se-prok": 1
+ },
+ "top1_share": 0.1053,
+ "top3_share": 0.2632,
+ "top5_share": 0.3684,
+ "n_single_issue_accounts": 22,
+ "n_filed_2026_10_to_11": 10,
+ "share_filed_2026_10_to_11": 0.2632,
+ "n_filed_2026": 21,
+ "core_gen": {
+  "5GC": 33,
+  "EPC": 5
+ },
+ "state": {
+  "closed": 28,
+  "open": 10
+ },
+ "closed_state_reason": {
+  "completed": 28
+ },
+ "closed_fix_evidence": {
+  "none": 11,
+  "merged_pr": 9,
+  "referenced_commit": 7,
+  "closed_by_commit": 1
+ },
+ "closed_with_any_fix_link": 17,
+ "closed_with_fix_link_in_project_org": 17,
+ "open_fix_evidence": {
+  "none": 7,
+  "merged_pr": 3
+ },
+ "note": "Fix links are timeline-derived candidates (closing commit, merged cross-referenced PR, or commit mentioning the issue); not verified by reading diffs. Closed issues without a timeline link may still have been fixed (maintainers often commit without referencing the issue)."
+}

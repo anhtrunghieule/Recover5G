@@ -1,0 +1,44 @@
+{
+ "B_ref": {
+  "AMF": 30,
+  "AUSF": 3,
+  "PCF": 5,
+  "RAN": 7,
+  "SMF": 22,
+  "UDM": 7,
+  "UPF": 6
+ },
+ "B_alpha": {
+  "AMF": 56,
+  "AUSF": 7,
+  "PCF": 13,
+  "RAN": 15,
+  "SMF": 37,
+  "UDM": 21,
+  "UPF": 12
+ },
+ "alpha_points_nfs": 146,
+ "alpha_points_with_gnb": 161,
+ "D_classes": 3,
+ "owner_cuts": {
+  "ngapid": 3436,
+  "guti": 3274,
+  "smf_pool": 4476,
+  "upf_pool": 124
+ },
+ "pair_cut_total": 77544,
+ "pair_sep_total": 16920,
+ "one_ue": 483,
+ "sym_pair": 50760,
+ "symmetric_total": 51243,
+ "nrf_sensitivity": {
+  "messages": 79,
+  "events": 151,
+  "alpha_points": 167,
+  "alpha_points_with_gnb_nrf": 204,
+  "ref_points": 87,
+  "naive": 912
+ },
+ "alpha_points_request_legs_only": 132,
+ "independence_points": 167
+}

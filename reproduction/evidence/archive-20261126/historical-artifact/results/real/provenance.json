@@ -1,0 +1,46 @@
+{
+ "r5g/open5gs:e85748e": {
+  "desc": "open5gs e85748ef3d798fa0b4435c80438e81c41bbe5e13 (pinned HEAD 2026-11-05)",
+  "image_id": "sha256:ec98f67a891bea64d8162fc9590f5df62727d92b2c8b03ed6a9ce5d638febbd4",
+  "repo_digests": "[\"r5g/open5gs@sha256:ec98f67a891bea64d8162fc9590f5df62727d92b2c8b03ed6a9ce5d638febbd4\"]",
+  "COMMIT_file": "e85748ef3d798fa0b4435c80438e81c41bbe5e13"
+ },
+ "r5g/open5gs:48c0cc0": {
+  "desc": "open5gs 48c0cc03740f1c36e5d868c94d21774a86bd8512 (parent of #4892 fix fc26daab9b)",
+  "image_id": "sha256:33ca85c09fc16056486f3fbc0edd2d99ad6ec609f281b953d00b66eecc2f51c8",
+  "repo_digests": "[\"r5g/open5gs@sha256:33ca85c09fc16056486f3fbc0edd2d99ad6ec609f281b953d00b66eecc2f51c8\"]",
+  "COMMIT_file": "48c0cc03740f1c36e5d868c94d21774a86bd8512"
+ },
+ "r5g/open5gs:pre4877": {
+  "desc": "open5gs d915126147c0ae77d4ce3c651de2c6aa74a9f559 (parent of #4877 fix 9265502032f2)",
+  "image_id": "sha256:55e758075b6efcbfe150c6eb9f6122aac01d53188b93c48ca0ee9bf45f93f65c",
+  "repo_digests": "[\"r5g/open5gs@sha256:55e758075b6efcbfe150c6eb9f6122aac01d53188b93c48ca0ee9bf45f93f65c\"]",
+  "COMMIT_file": "d915126147c0ae77d4ce3c651de2c6aa74a9f559"
+ },
+ "r5g/ueransim:4f45e18-p1": {
+  "desc": "UERANSIM 4f45e18f80b0684f7d6e29f1fea0f579e9243d68 + UAC-wait patch (100->2000 ms)",
+  "image_id": "sha256:a986970af9d49f1e567162f4641d8d8a967845a9a98181c6db79785d266e2e71",
+  "repo_digests": "[\"r5g/ueransim@sha256:a986970af9d49f1e567162f4641d8d8a967845a9a98181c6db79785d266e2e71\"]",
+  "COMMIT_file": "4f45e18f80b0684f7d6e29f1fea0f579e9243d68\nuac-wait-2000ms"
+ },
+ "r5g/ueransim:4f45e18": {
+  "desc": "UERANSIM 4f45e18 unpatched (used only for the first smoke test)",
+  "image_id": "sha256:ef7665310723692630f5812d2f0474b11144482d53bb958b6e10e1e778ace104",
+  "repo_digests": "[\"r5g/ueransim@sha256:ef7665310723692630f5812d2f0474b11144482d53bb958b6e10e1e778ace104\"]",
+  "COMMIT_file": "4f45e18f80b0684f7d6e29f1fea0f579e9243d68"
+ },
+ "mongo:7.0": {
+  "desc": "Docker Hub",
+  "image_id": "sha256:8bb4442761a63a8dda452744082cdac9644b429807eb977b42324a63cef59ca4",
+  "repo_digests": "[\"mongo@sha256:8bb4442761a63a8dda452744082cdac9644b429807eb977b42324a63cef59ca4\"]"
+ },
+ "colima": {
+  "profile": "recover5g",
+  "arch": "aarch64",
+  "vmType": "vz",
+  "cpu": 8,
+  "memory_GiB": 16,
+  "kernel": "6.8.0-117-generic"
+ },
+ "docker_server": "29.5.2"
+}

@@ -1,0 +1,1033 @@
+{
+"url": "https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-common-src/issues?state=all",
+"fetched": "2026-11-05T18:22:05Z",
+"items": [
+{
+"id": 5432,
+"iid": 12,
+"project_id": 5030,
+"title": "CN NFs out of sync with `oai-cn5g-common-src` `develop` branch",
+"description": "Not all Network Functions (NFs) are currently synchronized with the latest `develop` branch of `oai-cn5g-common-src`.\n\nAttempting to sync individual NFs with the latest `common-src/develop` and adapting the code results in multiple build failures across NFs.\n\nThis issue impacts several active merge requests that depend on common-src, including:\n\n- https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf/-/merge_requests/408\n- https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/merge_requests/89\n- https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/merge_requests/128\n\nAdditionally, adding Ubuntu 24.04 support for CN requires changes in `common-src`. However, these changes cannot be introduced until `common-src` is stabilized and aligned with all dependent NFs.",
+"state": "closed",
+"created_at": "2026-01-27T14:57:28.734Z",
+"updated_at": "2026-08-05T12:43:15.872Z",
+"closed_at": "2026-08-05T12:43:15.652Z",
+"closed_by": {
+"id": 11885,
+"username": "shubhika.garg",
+"public_email": "shubhika.garg@openairinterface.org",
+"name": "Shubhika Garg",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/11885/avatar.png?v=1793891949",
+"web_url": "https://gitlab.eurecom.fr/shubhika.garg"
+},
+"labels": [],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 11885,
+"username": "shubhika.garg",
+"public_email": "shubhika.garg@openairinterface.org",
+"name": "Shubhika Garg",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/11885/avatar.png?v=1793891949",
+"web_url": "https://gitlab.eurecom.fr/shubhika.garg"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/work_items/12",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/12",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/12/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/12/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/5030",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#12",
+"relative": "#12",
+"full": "oai/cn5g/oai-cn5g-common-src#12"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 5384,
+"iid": 11,
+"project_id": 5030,
+"title": "Common-src develop branch missing required CMake files for UPF build",
+"description": "Building `oai-cn5g-upf` fails with `include could not find requested file: /openair-upf/src/common-src/model/nrf/nrf_model.cmake`. The UPF repository expects these CMake modules to be present in the `cn5g-common-src` submodule, but the current `develop` head of `cn5g-common-src` no longer contains them. This breaks the default submodule sync and prevents the UPF from building without manually rolling back or patching the common repository.\n\n**To Reproduce**\n1. Fetch the latest `develop` branch of `oai-cn5g-upf` and initialize submodules (which pulls `cn5g-common-src@develop`).\n2. Run the standard Docker build (e.g. `docker build --target oai-upf --tag oai-upf:test --file Dockerfile.upf.ubuntu .`).\n3. Observe CMake configure errors: `/openair-upf/src/common-src/model/nrf/nrf_model.cmake` (and `common_model.cmake`) cannot be found.\n\n**Expected behavior**\nUPF build completes, with the submodule providing all CMake includes expected by `oai-cn5g-upf`.\n\n**Additional context**\nThe build log also shows a long list of `cp: cannot create symbolic link \u2026 File exists` warnings during environment setup, but the fatal failure is the missing CMake files.",
+"state": "opened",
+"created_at": "2025-12-05T15:22:11.560Z",
+"updated_at": "2026-01-16T13:36:36.599Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [
+"Bug"
+],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 11375,
+"username": "tariro",
+"public_email": null,
+"name": "Tariro Mukute",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/4d4c179e770bb10a6e94096c0269475523ce1c5d0a7392a9d3d2d0198af78585?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tariro"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/work_items/11",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/11",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/11/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/11/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/5030",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#11",
+"relative": "#11",
+"full": "oai/cn5g/oai-cn5g-common-src#11"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4718,
+"iid": 10,
+"project_id": 5030,
+"title": "Unknown file itti_async_shell_cmd.hpp",
+"description": "in oai-cn5g-common-src/utils/async_shell_cmd.cpp:L42 :\n\n`\n#include \"itti.hpp\"\n\n#include \"async_shell_cmd.hpp\"\n\n**#include \"itti_async_shell_cmd.hpp\"**\n\n#include \"logger_base.hpp\"\n\n#include \"common_defs.h\"\n\n`\nThe file itti_async_shell_cmd.hpp seems not located in this common repo",
+"state": "closed",
+"created_at": "2024-09-03T12:18:00.905Z",
+"updated_at": "2024-09-10T12:32:49.352Z",
+"closed_at": "2024-09-10T12:32:49.343Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 191,
+"username": "lionel.gauthier",
+"public_email": "",
+"name": "gauthier",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/191/index.jpeg?v=1790853607",
+"web_url": "https://gitlab.eurecom.fr/lionel.gauthier"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/work_items/10",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/10",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/10/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/10/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/5030",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#10",
+"relative": "#10",
+"full": "oai/cn5g/oai-cn5g-common-src#10"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4685,
+"iid": 9,
+"project_id": 5030,
+"title": "Cannot decode ServiceType ie in ServiceRequest decode()",
+"description": "Seems that value_ in: int Type1NasIe::Decode(const uint8_t* const buf, int len, bool high_pos, bool is_iei) is set.\nBut cannot be retrieved by:\n    oai::nas::ServiceRequest nas_obj = {};\n    int decode_result = nas_obj.Decode(packet_bytes, sizeof(packet_bytes));\n    uint8_t service_type;\n    **nas_obj.GetServiceType(service_type)**;\n\n\nBecause void ServiceType::GetValue(uint8_t& value) const {\n  value = service_type_value_;\n}\nDoes not read value_\n\nmoreover \nvoid ServiceType::GetValue()  {\n  service_type_value_ = value_ & 0x0f;\n}\nis private.",
+"state": "opened",
+"created_at": "2024-07-22T14:57:45.157Z",
+"updated_at": "2024-07-22T14:57:45.157Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 191,
+"username": "lionel.gauthier",
+"public_email": "",
+"name": "gauthier",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/191/index.jpeg?v=1790853607",
+"web_url": "https://gitlab.eurecom.fr/lionel.gauthier"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/work_items/9",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/9",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/9/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/9/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/5030",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#9",
+"relative": "#9",
+"full": "oai/cn5g/oai-cn5g-common-src#9"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4681,
+"iid": 8,
+"project_id": 5030,
+"title": "Unknown INT24_TO_BIT_STRING in oai-cn5g-common-src",
+"description": "When compiling ngap library:\n[ 10%] Building CXX object ngap/CMakeFiles/NGAP.dir/ngap_ies/PduSessionResourceFailedToSetupItemSURes.cpp.o\n[ 10%] Building CXX object ngap/CMakeFiles/NGAP.dir/ngap_ies/PduSessionResourceFailedToSetupListCxtFail.cpp.o\n[ 10%] Building CXX object ngap/CMakeFiles/NGAP.dir/ngap_ies/PduSessionResourceFailedToSetupListCxtRes.cpp.o\n[ 10%] Building CXX object ngap/CMakeFiles/NGAP.dir/ngap_ies/PduSessionResourceFailedToSetupListHoAck.cpp.o\n/home/ubuntu/EURECOM/CODE/OAI-GITLAB/oai-cn5g-common-src/ngap/ngap_ies/NgEnbId.cpp: In member function \u2018bool oai::ngap::NgEnbId::encode(Ngap_NgENB_ID_t&) const\u2019:\n/home/ubuntu/EURECOM/CODE/OAI-GITLAB/oai-cn5g-common-src/ngap/ngap_ies/NgEnbId.cpp:107:7: error: \u2018INT24_TO_BIT_STRING\u2019 was not declared in this scope; did you mean \u2018asn_OP_BIT_STRING\u2019?\n  107 |       INT24_TO_BIT_STRING(\n      |       ^~~~~~~~~~~~~~~~~~~\n      |       asn_OP_BIT_STRING\n/home/ubuntu/EURECOM/CODE/OAI-GITLAB/oai-cn5g-common-src/ngap/ngap_ies/NgEnbId.cpp:114:7: error: \u2018INT24_TO_BIT_STRING\u2019 was not declared in this scope; did you mean \u2018asn_OP_BIT_STRING\u2019?\n  114 |       INT24_TO_BIT_STRING(\n      |       ^~~~~~~~~~~~~~~~~~~\n      |       asn_OP_BIT_STRING\n/home/ubuntu/EURECOM/CODE/OAI-GITLAB/oai-cn5g-common-src/ngap/ngap_ies/NgEnbId.cpp:121:7: error: \u2018INT24_TO_BIT_STRING\u2019 was not declared in this scope; did you mean \u2018asn_OP_BIT_STRING\u2019?\n  121 |       INT24_TO_BIT_STRING(\n      |       ^~~~~~~~~~~~~~~~~~~\n      |       asn_OP_BIT_STRING\n/home/ubuntu/EURECOM/CODE/OAI-GITLAB/oai-cn5g-common-src/ngap/ngap_ies/NgEnbId.cpp: In member function \u2018bool oai::ngap::NgEnbId::decode(const Ngap_NgENB_ID_t&)\u2019:\n/home/ubuntu/EURECOM/CODE/OAI-GITLAB/oai-cn5g-common-src/ngap/ngap_ies/NgEnbId.cpp:142:7: error: \u2018BIT_STRING_TO_INT24\u2019 was not declared in this scope; did you mean \u2018BIT_STRING_print\u2019?\n  142 |       BIT_STRING_TO_INT24(&ng_enb_id.choice.macroNgENB_ID, m_Id.macro_ngenb_id);",
+"state": "closed",
+"created_at": "2024-07-17T15:00:45.893Z",
+"updated_at": "2024-09-10T12:37:44.273Z",
+"closed_at": "2024-09-10T12:37:44.267Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 191,
+"username": "lionel.gauthier",
+"public_email": "",
+"name": "gauthier",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/191/index.jpeg?v=1790853607",
+"web_url": "https://gitlab.eurecom.fr/lionel.gauthier"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/work_items/8",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/8",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/8/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/8/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/5030",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#8",
+"relative": "#8",
+"full": "oai/cn5g/oai-cn5g-common-src#8"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4680,
+"iid": 7,
+"project_id": 5030,
+"title": "NAS IE UeSecurityCapability encoding issue",
+"description": "The encoding function does not encode all IE len bytes, if IE length is 10 bytes, only 6 bytes are encoded:\nhttps://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/blame/develop/nas/ies/UeSecurityCapability.cpp#L198\nThe remaining bytes should almost be written with zeros.",
+"state": "opened",
+"created_at": "2024-07-16T16:03:06.608Z",
+"updated_at": "2024-07-16T16:03:06.608Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 191,
+"username": "lionel.gauthier",
+"public_email": "",
+"name": "gauthier",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/191/index.jpeg?v=1790853607",
+"web_url": "https://gitlab.eurecom.fr/lionel.gauthier"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/work_items/7",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/7",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/7/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/7/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/5030",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#7",
+"relative": "#7",
+"full": "oai/cn5g/oai-cn5g-common-src#7"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4677,
+"iid": 6,
+"project_id": 5030,
+"title": "Decoding NAS msg may lead to access oob memory",
+"description": "For example in https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/blame/develop/nas/5gmm-msgs/RegistrationRequest.cpp#L953\n\nYou want to access next IE after decoding one IE but may be there could be no more IE and you could access memory outside the allocated buffer, then you can get a segv or a wrong IE identifier.",
+"state": "closed",
+"created_at": "2024-07-15T13:02:48.241Z",
+"updated_at": "2024-07-17T07:38:21.164Z",
+"closed_at": "2024-07-17T07:38:21.154Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 191,
+"username": "lionel.gauthier",
+"public_email": "",
+"name": "gauthier",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/191/index.jpeg?v=1790853607",
+"web_url": "https://gitlab.eurecom.fr/lionel.gauthier"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/work_items/6",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/6",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/6/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/6/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/5030",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#6",
+"relative": "#6",
+"full": "oai/cn5g/oai-cn5g-common-src#6"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4218,
+"iid": 4,
+"project_id": 5030,
+"title": "Common NRF Client",
+"description": "# Feature\n* We should have one common NRF client that supports all the NRF interactions that current NFs support\n* We should use the OpenAPI models to unlock many different fields",
+"state": "closed",
+"created_at": "2023-09-15T12:07:55.135Z",
+"updated_at": "2024-09-10T12:39:19.449Z",
+"closed_at": "2024-09-10T12:39:19.434Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"Feature",
+"Refactor"
+],
+"milestone": {
+"id": 203,
+"iid": 3,
+"group_id": 9696,
+"title": "v2.1.0 Release",
+"description": "# Roadmap\r\n* Support of Location Service\r\n* Support of stateless NF for UDM/AUSF\r\n* Release of UDSF\r\n* QoS Support Control plane",
+"state": "closed",
+"created_at": "2023-09-15T12:00:47.574Z",
+"updated_at": "2026-05-06T09:03:03.088Z",
+"due_date": "2024-03-29",
+"start_date": "2023-12-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/3"
+},
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/work_items/4",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/4",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/4/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/4/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/5030",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#4",
+"relative": "#4",
+"full": "oai/cn5g/oai-cn5g-common-src#4"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4217,
+"iid": 3,
+"project_id": 5030,
+"title": "Refactor HTTP Client",
+"description": "# Feature\n* Create a CURL-based HTTP client that can be used by all NFs (use [libcpr](https://github.com/libcpr/cpr))\n* Remove all the CURL-specific implementations for each NF\n* Should work:\n   * Multi-threaded\n   * single-threaded with ITTI",
+"state": "closed",
+"created_at": "2023-09-15T12:06:38.013Z",
+"updated_at": "2024-07-17T07:38:41.170Z",
+"closed_at": "2024-07-17T07:38:41.154Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"Feature",
+"Refactor"
+],
+"milestone": {
+"id": 203,
+"iid": 3,
+"group_id": 9696,
+"title": "v2.1.0 Release",
+"description": "# Roadmap\r\n* Support of Location Service\r\n* Support of stateless NF for UDM/AUSF\r\n* Release of UDSF\r\n* QoS Support Control plane",
+"state": "closed",
+"created_at": "2023-09-15T12:00:47.574Z",
+"updated_at": "2026-05-06T09:03:03.088Z",
+"due_date": "2024-03-29",
+"start_date": "2023-12-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/3"
+},
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/work_items/3",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/3",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/3/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/3/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/5030",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#3",
+"relative": "#3",
+"full": "oai/cn5g/oai-cn5g-common-src#3"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4183,
+"iid": 2,
+"project_id": 5030,
+"title": "DRY: Move all 3GPP common models to common-src",
+"description": "# Issue\nWe have 3GPP models from TS 29.571 in all NFs with different versions.\n\n# Solution\nWe should all models which are reused over multiple NFs in common-src",
+"state": "closed",
+"created_at": "2023-08-22T09:19:38.661Z",
+"updated_at": "2023-08-29T11:46:39.845Z",
+"closed_at": "2023-08-29T11:46:39.454Z",
+"closed_by": {
+"id": 2228,
+"username": "defosseu",
+"public_email": "",
+"name": "Raphael Defosseux",
+"state": "blocked",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/2228/avatar.png?v=1768811361",
+"web_url": "https://gitlab.eurecom.fr/defosseu"
+},
+"labels": [
+"Refactor"
+],
+"milestone": {
+"id": 201,
+"iid": 2,
+"group_id": 9696,
+"title": "v2.0.0 Release",
+"description": "Team, I put the end of September as a target date for this release.\r\n\r\nMain features to be added:\r\n\r\n* new UPF repository to be published w/ eBPF support\r\n* YAML configuration scheme as advertised in the July webinar\r\n* Support Location services\r\n* new NWDAF repository\r\n* Ubuntu-22 published images\r\n* and of course a bunch of bug fixes\r\n\r\n",
+"state": "closed",
+"created_at": "2023-08-17T09:09:11.996Z",
+"updated_at": "2026-05-06T09:02:54.606Z",
+"due_date": "2023-12-15",
+"start_date": "2023-06-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/2"
+},
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 0,
+"merge_requests_count": 1,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/work_items/2",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/2",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/2/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/2/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/5030",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#2",
+"relative": "#2",
+"full": "oai/cn5g/oai-cn5g-common-src#2"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4105,
+"iid": 1,
+"project_id": 5030,
+"title": "Reference to 'PDU_SESSION_TYPE_E_IPV4' in pdu_session_type.hpp is ambiguous",
+"description": "When integrating this common src within UDM, i got this error `error: reference to 'PDU_SESSION_TYPE_E_IPV4' is ambiguous`. The issue comes from the fact that the enum PDU_SESSION_TYPE_E_IPV4 is already existed in a API model which is generated automatically by OpenAPItools in UDM.\n(src/api_server/model/PduSessionTypes.h).\nIn this case, could you please e.g., use scoped/class enum in this common src in stead of unscoped enum to avoid this issue.",
+"state": "closed",
+"created_at": "2023-06-08T19:32:28.956Z",
+"updated_at": "2024-09-10T12:57:33.764Z",
+"closed_at": "2024-09-10T12:57:33.757Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 3,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/work_items/1",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/1",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/1/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/1/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/5030",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#1",
+"relative": "#1",
+"full": "oai/cn5g/oai-cn5g-common-src#1"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+}
+]
+}

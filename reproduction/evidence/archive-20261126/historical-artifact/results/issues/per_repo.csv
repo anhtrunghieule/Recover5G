@@ -1,0 +1,7 @@
+repo,core,included,silent,crash_only_detects,open
+free5gc/free5gc,free5GC,9,5,0,2
+omec-project/smf,SD-Core/OMEC,2,1,0,1
+open5gs/open5gs,Open5GS,23,12,7,4
+openairinterface/oai-cn5g-amf,OAI CN5G,2,2,0,1
+openairinterface/oai-cn5g-smf,OAI CN5G,1,1,0,1
+openairinterface/oai-cn5g-upf,OAI CN5G,1,1,0,1

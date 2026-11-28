@@ -1,0 +1,78 @@
+Kairos (arXiv 2605.30985v1) -- reproduced existing issues
+==========================================================
+SOURCE NOTE: The paper itself does NOT enumerate the 34 reproduced issues (only Table 2 = 20 new
+failures C1-C18, P1-P2, and counts: 24 interleaving / 3 incomplete reproduced, nested implied 7).
+The list below comes from the paper's own artifact, linked from the paper (Sec. 1 and
+artifact appendix): https://anonymous.4open.science/r/Kairos-FC84/  file all_bugs.txt
+(fetched 2026-11-06 via https://anonymous.4open.science/api/repo/Kairos-FC84/file/all_bugs.txt).
+Titles/state/opened-date fetched from the GitHub API on 2026-11-06.
+CAVEAT: all_bugs.txt header says "reproduced:24" for Interleaving but lists 25 URLs, so the file
+totals 35 (25+7+3) vs. the paper's 34. All reproduced issues are in open5gs except free5gc/nrf#47.
+
+Oracle wording (Sec. 5.5 "Failure Observer", verbatim):
+ "We consider two classes of failures. First, core network crashes, where a network function
+  process terminates unexpectedly or becomes unreachable at its service interface. Second,
+  persistent service unavailability, where specification-defined UE requests repeatedly fail over
+  a sustained period, preventing essential procedures such as registration or session
+  establishment from completing successfully."
+ "The Failure Observer is conservative by design ... It does not attempt to detect silent bugs,
+  transient inconsistencies, or internal state corruption that does not immediately affect
+  service behavior."
+ Table 2 note: "C: Network Function Crash, P: Network Function Persistently Unavailable".
+
+--- Kairos' own NEW failures (artifact "ours", open5gs; paper Table 2 C1-C11) ---
+open5gs/open5gs/issues/3707 | [Bug]: During the UE's handover between two gNBs, an abnormal state transition in the AMF's handling of UDM subscriber data management may result in an AMF crash. | closed | 2025-02-05|CVE-2025-1893
+open5gs/open5gs/issues/3711 | [AMF] Fix crash on duplicate PDU session requests due to NULL SUPI (#3710) | closed | 2025-02-06|CVE-2025-1925
+open5gs/open5gs/issues/3671 | [Bug]: The UE's handover between two gNBs may lead to the AMF crashing if a registration request sent at a specific time is handled incorrectly due to an error in the GMM state machine. | closed | 2025-01-15|CVE-2025-25774
+open5gs/open5gs/issues/3862 | [Bug]: The AMF encountered a fatal error caused by a failed assertion (amf_ue), which resulted in a process crash. | closed | 2025-04-19|CVE-2025-52288
+open5gs/open5gs/issues/3979 | [Bug]: AMF crashes when receiving late ue-context-in-smf-data response from nudm-sdm | closed | 2025-07-07|CVE-2025-8799
+open5gs/open5gs/issues/3977 | [Bug]: AMF crashes when receiving late smf-select-data response from nudm-sdm | closed | 2025-07-07|CVE-2025-8801
+open5gs/open5gs/issues/3978 | [Bug]: SMF crashes when handling closed stream during UE deregistration with memory constraints | closed | 2025-07-07|CVE-2025-8802
+open5gs/open5gs/issues/3948 | [Bug]: AMF Crash During PCF Response Payload Processing | closed | 2025-06-26|CVE-2025-8803
+open5gs/open5gs/issues/3950 | [Bug]: AMF crashes when SM Context creation fails  during initial context setup | closed | 2025-06-27|CVE-2025-8804
+open5gs/open5gs/issues/4000 | [Bug]: SMF Crash because of  an invalid API namf-comm | closed | 2025-07-15|CVE-2025-8805
+open5gs/open5gs/issues/3947 | [Bug]:AMF crashes when receiving late SBI response from nudm-uecm | closed | 2025-06-26|CVE-2025-9450
+
+--- REPRODUCED: Interleaving (header says 24; 25 URLs listed) ---
+open5gs/open5gs/issues/4274 | [Bug]: AMF Crash - Assertion 'ran_ue->deactivation.group' failed in amf_nsmf_pdusession_handle_update_sm_context | closed | 2026-01-09
+open5gs/open5gs/issues/4268 | [Bug]: SGW-C crash: `sgwc_s5c_handle_bearer_resource_failure_indication` asserts on missing/stale `s11_xact` when BearerResourceFailureIndication arrives after S11 transaction timeout (`s5c-handler.c:992`) | closed | 2026-01-09
+open5gs/open5gs/issues/4236 | [Bug]: MME crash due to late ESM NAS message after eNB-UE context release | closed | 2026-01-02
+open5gs/open5gs/issues/4226 | [Bug]: SGW-C crashes on S5-C CreateSessionResponse when associated S11 transaction is missing (ogs_assert(s11_xact) in sgwc_s5c_handle_create_session_response) | closed | 2025-12-30
+open5gs/open5gs/issues/4225 | [Bug]: SGW-C crash on CreateBearerResponse (S11) - sgwc_s11_handle_create_bearer_response asserts sgwc_ue | closed | 2025-12-30
+open5gs/open5gs/issues/4174 | [Bug]: AMF crash caused by concurrent SMContextUpdate after UEContextReleaseRequest during second Registration | closed | 2025-11-23
+open5gs/open5gs/issues/4172 | [Bug]: MME Crash on ESM Information Response – “There should only be one SESSION” | closed | 2025-11-21
+open5gs/open5gs/issues/4149 | [Bug]: SGWU Crash | closed | 2025-11-13
+open5gs/open5gs/issues/4131 | [Bug]: Fatal crash in s1ap_build_handover_request() when inactive bearer exists | closed | 2025-11-02
+open5gs/open5gs/issues/4086 | MME crash when detach occurs during attach procedure | closed | 2025-09-22
+open5gs/open5gs/issues/4082 | [Bug]: AMF Crashes during Deregistation due to invalid state | closed | 2025-09-17
+open5gs/open5gs/issues/4075 | AMF Crash during update sm context | closed | 2025-09-12
+open5gs/open5gs/issues/4074 | [Bug]: AMF crash during stress test with multiple UE/RAN instances. | closed | 2025-09-12
+open5gs/open5gs/issues/4073 | SGWC crash when trying S1 HO in 4G mode using docker_open5gs | closed | 2025-09-12
+open5gs/open5gs/issues/4012 | [Bug]: AMF assertion failure when processing SM context release in security mode | closed | 2025-07-22
+open5gs/open5gs/issues/3971 | [Bug]: AMF crash due to unreachable assertion in gmm_state_exception() after rejecting Registration. | closed | 2025-07-03
+open5gs/open5gs/issues/3969 | [Bug]: Assertion failure in ogs_pco_parse() causes SMF service disruption. | closed | 2025-07-03
+open5gs/open5gs/issues/3959 | [SMF] Building new SM contexts destroys active PDU sessions and leads to the DoS of targeted subscribers | closed | 2025-06-28
+open5gs/open5gs/issues/3938 | [Bug]: State machine vulnerability in AMF during initialization phase - assertion failure on SIGTERM | closed | 2025-06-17
+open5gs/open5gs/issues/3912 | [Bug]: [amf] FATAL: amf_nsmf_pdusession_build_update_sm_context: Assertion `sess->sm_context_ref' failed. | closed | 2025-05-23
+open5gs/open5gs/issues/3851 | amf_nsmf_pdusession_handle_update_sm_context  : Assertion 'ran_ue' failed | closed | 2025-04-14
+open5gs/open5gs/issues/3789 | [Bug]: MME segfaults during/after "S1 handover cancel" | closed | 2025-03-19
+open5gs/open5gs/issues/3774 | During the UE's handover between two gNBs, AMF crash | closed | 2025-03-11
+open5gs/open5gs/issues/3612 | [Bug]: InitialUEMessage, Registration request sent at a specific time can crash AMF due to incorrect error handling in the gmm state security mode | closed | 2024-12-03
+open5gs/open5gs/issues/3608 | [Bug]: InitialUEMessage, Registration request sent at a specific time can crash AMF due to incorrect error handling in the gmm state Exception  | closed | 2024-12-01
+
+--- REPRODUCED: Nested (7) ---
+open5gs/open5gs/issues/4230 | [Bug]: SGW-C crashes on delayed S11 Downlink Data Notification Ack after session teardown (ogs_assert(bearer) in sgwc_s11_handle_downlink_data_notification_ack) | closed | 2026-01-01
+open5gs/open5gs/issues/4229 | [Bug]: SGW-C crashes on DeleteBearerResponse after DeleteSession removes bearer | closed | 2025-12-31
+open5gs/open5gs/issues/3910 | [Bug]: AMF crash in gmm_state_authentication due to stale ran_ue after handover required and premature re-registration. | closed | 2025-05-21
+open5gs/open5gs/issues/3909 | [Bug]: AMF crashed because PathSwitchRequest triggered ogs_assert_if_reached () during state processing. | closed | 2025-05-21
+open5gs/open5gs/issues/3874 | [Bug]: AMF crash in common_register_state due to stale ran_ue_id after Handoverrequired and duplicate IMSI registration | closed | 2025-04-23
+open5gs/open5gs/issues/3868 | [Bug]: AMF core dump on deregister | closed | 2025-04-21
+open5gs/open5gs/issues/3852 | [Bug]: AMF crash on PDUSessionResourceSetupResponse | closed | 2025-04-14
+
+--- REPRODUCED: Incomplete (3) ---
+open5gs/open5gs/issues/4267 | [Bug]: SGW-C crashes on`sgwc_s5c_handle_delete_session_response` asserts on missing/stale `s11_xact` when DeleteSessionResponse arrives after S11 transaction timeout (`s5c-handler.c:491`) | closed | 2026-01-09
+open5gs/open5gs/issues/4266 | [Bug]: SGW-C crashes on sgwc_s5c_handle_modify_bearer_response asserts on missing/stale s11_xact when ModifyBearerResponse arrives after S11 transaction timeout (s5c-handler.c:350) | closed | 2026-01-09
+free5gc/nrf/issues/47 | NRF Panic when receiving a PATCH on a DELETEd /nnrf-nfm/v1/nf-instances/{nfInstanceId} | closed | 2024-12-05
+
+Note: artifact lists CVE-2025-9450 for #3947 whereas paper Table 2 (C9) prints CVE-2025-9405; #3711 is a PR (the fix), not an issue.
+Note (judged from titles only): none of the reproduced issues is an NF-restart/PFCP-association-recovery bug; closest lifecycle item is #3938 (AMF assertion on SIGTERM during initialization).

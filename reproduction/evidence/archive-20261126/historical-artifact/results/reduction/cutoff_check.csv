@@ -1,0 +1,31 @@
+allocator,pool,k,mode,schedules,violating,rg_violating,h2_fail,h2p_fail,h2pp_fail
+lowest,5,3,"exhaustive, scripts AB",979020,63528,1456,2632,0,0
+lowest,6,4,"sampled 60000, scripts AB",60000,49616,8739,3847,0,0
+lowest,7,5,"sampled 60000, scripts AB",60000,52481,10868,5917,0,0
+lowest,5,3,"sampled 60000, scripts ABC",60000,45487,13542,2630,0,0
+lowest,6,4,"sampled 60000, scripts ABC",60000,50798,19728,6439,0,0
+lowest,7,5,"sampled 60000, scripts ABC",60000,53822,24708,9465,0,0
+counter,5,3,"exhaustive, scripts AB",979020,57628,652,880,0,0
+counter,6,4,"sampled 60000, scripts AB",60000,46340,3967,1313,0,0
+counter,7,5,"sampled 60000, scripts AB",60000,49644,4860,2067,0,0
+counter,5,3,"sampled 60000, scripts ABC",60000,39245,3351,1212,133,0
+counter,6,4,"sampled 60000, scripts ABC",60000,44019,4615,2502,119,0
+counter,7,5,"sampled 60000, scripts ABC",60000,46909,5818,3588,91,0
+restore,5,3,"exhaustive, scripts AB",979020,306660,732,1336,0,0
+restore,6,4,"sampled 60000, scripts AB",60000,38495,4430,2028,0,0
+restore,7,5,"sampled 60000, scripts AB",60000,41426,5372,2987,0,0
+restore,5,3,"sampled 60000, scripts ABC",60000,36822,6948,1288,0,0
+restore,6,4,"sampled 60000, scripts ABC",60000,41798,9944,3220,0,0
+restore,7,5,"sampled 60000, scripts ABC",60000,44727,12849,4927,0,0
+fifo,3,3,"exhaustive, scripts AB",979020,57628,652,880,0,0
+fifo,4,4,"sampled 60000, scripts AB",60000,46511,3930,1383,0,0
+fifo,5,5,"sampled 60000, scripts AB",60000,49669,4836,2056,0,0
+fifo,3,3,"sampled 60000, scripts ABC",60000,41281,5995,4720,864,0
+fifo,4,4,"sampled 60000, scripts ABC",60000,46266,8930,7913,956,0
+fifo,5,5,"sampled 60000, scripts ABC",60000,49686,11507,10601,990,0
+cursor,3,3,"exhaustive, scripts AB",979020,57628,652,880,0,0
+cursor,4,4,"sampled 60000, scripts AB",60000,46444,3984,1360,0,0
+cursor,5,5,"sampled 60000, scripts AB",60000,49553,4760,2105,0,0
+cursor,3,3,"sampled 60000, scripts ABC",60000,41339,6810,5746,1106,0
+cursor,4,4,"sampled 60000, scripts ABC",60000,46593,10099,9437,1289,0
+cursor,5,5,"sampled 60000, scripts ABC",60000,49978,13431,13080,1247,0

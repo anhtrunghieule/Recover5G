@@ -1,0 +1,1285 @@
+{
+"url": "https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-nrf/issues?state=all",
+"fetched": "2026-11-05T18:24:51Z",
+"items": [
+{
+"id": 5036,
+"iid": 14,
+"project_id": 3257,
+"title": "[HTTP1] NRF can't handle Patch with content type \"application/json-patch+json\"",
+"description": "",
+"state": "opened",
+"created_at": "2025-08-13T08:32:24.161Z",
+"updated_at": "2025-08-13T08:32:24.161Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/14",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/14",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/14/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/14/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#14",
+"relative": "#14",
+"full": "oai/cn5g/oai-cn5g-nrf#14"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4642,
+"iid": 13,
+"project_id": 3257,
+"title": "[Refactor] code cleanup/sync with common src",
+"description": "",
+"state": "closed",
+"created_at": "2024-06-05T21:20:15.587Z",
+"updated_at": "2024-06-20T22:13:11.912Z",
+"closed_at": "2024-06-20T22:13:11.896Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"Refactor",
+"v2.1"
+],
+"milestone": {
+"id": 203,
+"iid": 3,
+"group_id": 9696,
+"title": "v2.1.0 Release",
+"description": "# Roadmap\r\n* Support of Location Service\r\n* Support of stateless NF for UDM/AUSF\r\n* Release of UDSF\r\n* QoS Support Control plane",
+"state": "closed",
+"created_at": "2023-09-15T12:00:47.574Z",
+"updated_at": "2026-05-06T09:03:03.088Z",
+"due_date": "2024-03-29",
+"start_date": "2023-12-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/3"
+},
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/13",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/13",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/13/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/13/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#13",
+"relative": "#13",
+"full": "oai/cn5g/oai-cn5g-nrf#13"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4641,
+"iid": 12,
+"project_id": 3257,
+"title": "[Refactor] Move sbi model to common src",
+"description": "",
+"state": "closed",
+"created_at": "2024-06-05T21:19:35.682Z",
+"updated_at": "2024-07-05T12:28:06.107Z",
+"closed_at": "2024-07-05T12:28:06.095Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"Refactor"
+],
+"milestone": {
+"id": 203,
+"iid": 3,
+"group_id": 9696,
+"title": "v2.1.0 Release",
+"description": "# Roadmap\r\n* Support of Location Service\r\n* Support of stateless NF for UDM/AUSF\r\n* Release of UDSF\r\n* QoS Support Control plane",
+"state": "closed",
+"created_at": "2023-09-15T12:00:47.574Z",
+"updated_at": "2026-05-06T09:03:03.088Z",
+"due_date": "2024-03-29",
+"start_date": "2023-12-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/3"
+},
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/12",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/12",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/12/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/12/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#12",
+"relative": "#12",
+"full": "oai/cn5g/oai-cn5g-nrf#12"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4640,
+"iid": 11,
+"project_id": 3257,
+"title": "[Refactor] Use HTTP CPR lib",
+"description": "",
+"state": "closed",
+"created_at": "2024-06-05T21:18:11.966Z",
+"updated_at": "2024-07-05T12:28:51.212Z",
+"closed_at": "2024-07-05T12:28:51.196Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"Refactor"
+],
+"milestone": {
+"id": 203,
+"iid": 3,
+"group_id": 9696,
+"title": "v2.1.0 Release",
+"description": "# Roadmap\r\n* Support of Location Service\r\n* Support of stateless NF for UDM/AUSF\r\n* Release of UDSF\r\n* QoS Support Control plane",
+"state": "closed",
+"created_at": "2023-09-15T12:00:47.574Z",
+"updated_at": "2026-05-06T09:03:03.088Z",
+"due_date": "2024-03-29",
+"start_date": "2023-12-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/3"
+},
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/11",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/11",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/11/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/11/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#11",
+"relative": "#11",
+"full": "oai/cn5g/oai-cn5g-nrf#11"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4583,
+"iid": 10,
+"project_id": 3257,
+"title": "CD Pipeline: NRF Restarts Sometimes",
+"description": "NRF gets restart sometimes but there are not logs which explain the reason. \n\nCan we add some pointers in the logging or probably I run with asan enable to see. \n\n\n[nrf_restart.txt](/uploads/2a8e4047c93a48932064c6a296a9c4c8/nrf_restart.txt)",
+"state": "opened",
+"created_at": "2024-04-05T15:25:47.231Z",
+"updated_at": "2024-04-05T15:25:47.231Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [
+"Bug",
+"CD"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 1723,
+"username": "arora",
+"public_email": "sagar.arora@openairinterface.org",
+"name": "Sagar Arora",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/1723/avatar.png?v=1793891772",
+"web_url": "https://gitlab.eurecom.fr/arora"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/10",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/10",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/10/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/10/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#10",
+"relative": "#10",
+"full": "oai/cn5g/oai-cn5g-nrf#10"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4428,
+"iid": 9,
+"project_id": 3257,
+"title": "NRF crashes when received a PATCH request with op: INVALID_VALUE_OPENAPI_GENERATED",
+"description": "An example for requested message: [{\"op\":\"INVALID_VALUE_OPENAPI_GENERATED\",\"path\":\"/nfStatus\",\"value\":\"REGISTERED\"}]",
+"state": "closed",
+"created_at": "2023-12-11T22:30:12.403Z",
+"updated_at": "2024-04-11T08:25:16.172Z",
+"closed_at": "2024-04-11T08:25:16.164Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 11500,
+"username": "lakhang",
+"public_email": "",
+"name": "Lakhan Ghayade",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/30610fc2cc236707adb5db152c20f296dd677db0dbfb63df3677ca29c2b9d502?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/lakhang"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 11500,
+"username": "lakhang",
+"public_email": "",
+"name": "Lakhan Ghayade",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/30610fc2cc236707adb5db152c20f296dd677db0dbfb63df3677ca29c2b9d502?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/lakhang"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/9",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/9",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/9/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/9/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#9",
+"relative": "#9",
+"full": "oai/cn5g/oai-cn5g-nrf#9"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4201,
+"iid": 8,
+"project_id": 3257,
+"title": "NRF clients should honor the heartbeat returned by NF",
+"description": "# Issue\nFrom 3GPP 29.510 Chapter 5.2.2.3.2, release 17\n> The time interval at which the NRF shall be contacted is deployment-specific, and it is returned by the NRF to the NF Service Consumer as a result of a successful registration.\nWhen the NRF detects that a given NF has not updated its profile for a configurable amount of time (longer than the heart-beat interval), the NRF changes the status of the NF to SUSPENDED and considers that the NF and its services can no longer be discovered by other NFs via the NFDiscovery service. The NRF notifies NFs subscribed to receiving notifications of changes of the NF Profile that the NF status has been changed to SUSPENDED.\n\n# Solution\nWhen we refactor the NRF client for all NFs, we should implement this behavior accordingly.",
+"state": "opened",
+"created_at": "2023-08-30T14:53:47.322Z",
+"updated_at": "2023-08-30T14:58:01.111Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/8",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/8",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/8/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/8/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#8",
+"relative": "#8",
+"full": "oai/cn5g/oai-cn5g-nrf#8"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4199,
+"iid": 7,
+"project_id": 3257,
+"title": "Remove SUSPENDED NFs from NRF registry",
+"description": "Is it possible to create a timer to remove SUSPENDED NFs from NRF?\n\n```\nroot@oai-amf-7cfd8cf9c4-vczqj:/openair-amf# curl 'http://oai-nrf:80/nnrf-disc/v1/nf-instances?target-nf-type=UPF&requester-nf-type=SMF' --http2-prior-knowledge\n{\"nfInstances\":[{\"capacity\":100,\"heartBeatTimer\":10,\"ipv4Addresses\":[\"10.244.0.139\"],\"json_data\":null,\"nfInstanceId\":\"1d9c9759-67b2-462e-a47b-ddd896ff0f8d\",\"nfInstanceName\":\"OAI-UPF\",\"nfServices\":[],\"nfStatus\":\"SUSPENDED\",\"nfType\":\"UPF\",\"priority\":1,\"sNssais\":[{\"sd\":\"16777215\",\"sst\":1},{\"sd\":\"1\",\"sst\":1}],\"upfInfo\":{\"sNssaiUpfInfoList\":[{\"dnnUpfInfoList\":[{\"dnn\":\"oai\"}],\"sNssai\":{\"sd\":\"16777215\",\"sst\":1}},{\"dnnUpfInfoList\":[{\"dnn\":\"ims\"}],\"sNssai\":{\"sd\":\"1\",\"sst\":1}}]}},{\"capacity\":100,\"heartBeatTimer\":10,\"ipv4Addresses\":[\"10.244.0.156\"],\"json_data\":null,\"nfInstanceId\":\"94ad330b-1a58-4a28-8568-3777690cfaf1\",\"nfInstanceName\":\"OAI-UPF\",\"nfServices\":[],\"nfStatus\":\"SUSPENDED\",\"nfType\":\"UPF\",\"priority\":1,\"sNssais\":[{\"sd\":\"16777215\",\"sst\":1},{\"sd\":\"1\",\"sst\":1}],\"upfInfo\":{\"sNssaiUpfInfoList\":[{\"dnnUpfInfoList\":[{\"dnn\":\"oai\"}],\"sNssai\":{\"sd\":\"16777215\",\"sst\":1}},{\"dnnUpfInfoList\":[{\"dnn\":\"ims\"}],\"sNssai\":{\"sd\":\"1\",\"sst\":1}}]}}],\"searchId\":\"9\",\"validityPeriod\":100000}\n```",
+"state": "closed",
+"created_at": "2023-08-29T17:00:50.137Z",
+"updated_at": "2023-10-31T09:51:12.574Z",
+"closed_at": "2023-10-31T09:51:12.560Z",
+"closed_by": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"labels": [
+"Bug",
+"Feature"
+],
+"milestone": {
+"id": 201,
+"iid": 2,
+"group_id": 9696,
+"title": "v2.0.0 Release",
+"description": "Team, I put the end of September as a target date for this release.\r\n\r\nMain features to be added:\r\n\r\n* new UPF repository to be published w/ eBPF support\r\n* YAML configuration scheme as advertised in the July webinar\r\n* Support Location services\r\n* new NWDAF repository\r\n* Ubuntu-22 published images\r\n* and of course a bunch of bug fixes\r\n\r\n",
+"state": "closed",
+"created_at": "2023-08-17T09:09:11.996Z",
+"updated_at": "2026-05-06T09:02:54.606Z",
+"due_date": "2023-12-15",
+"start_date": "2023-06-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/2"
+},
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 1723,
+"username": "arora",
+"public_email": "sagar.arora@openairinterface.org",
+"name": "Sagar Arora",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/1723/avatar.png?v=1793891772",
+"web_url": "https://gitlab.eurecom.fr/arora"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/7",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/7",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/7/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/7/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#7",
+"relative": "#7",
+"full": "oai/cn5g/oai-cn5g-nrf#7"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4198,
+"iid": 6,
+"project_id": 3257,
+"title": "Race-Condition / Mutex issue",
+"description": "# Issue\n* See the following CI run: https://jenkins-oai.eurecom.fr/job/OAI-CN5G-NRF/188/\n* It seems we have a timer issue / race condition or issue with a mutex somewhere.\n\nTo be investigated how to\n1. reproduce\n2. fix it",
+"state": "closed",
+"created_at": "2023-08-29T15:25:41.889Z",
+"updated_at": "2026-03-17T11:16:59.942Z",
+"closed_at": "2026-03-17T11:16:59.865Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"Bug"
+],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/6",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/6",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/6/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/6/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#6",
+"relative": "#6",
+"full": "oai/cn5g/oai-cn5g-nrf#6"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4133,
+"iid": 5,
+"project_id": 3257,
+"title": "Pistache sends Connection: close in HTTP",
+"description": "# Issue\n* Pistache sends \"Connection: close\" in HTTP\n* This forces curl client to close the TCP connection, so we cannot reuse it\n* I suspect this is the case on all NFs, but not investigated yet\n\n# Consequence\n* Performance issue (we create a new TCP connection for each request)",
+"state": "closed",
+"created_at": "2023-07-20T09:21:14.631Z",
+"updated_at": "2026-02-10T14:01:01.675Z",
+"closed_at": "2026-02-10T14:01:01.484Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"Bug"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/5",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/5",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/5/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/5/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#5",
+"relative": "#5",
+"full": "oai/cn5g/oai-cn5g-nrf#5"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4110,
+"iid": 4,
+"project_id": 3257,
+"title": "NRF does not notify SMF of previously registered UPFs",
+"description": "# Scenario\nPlease see attached PCAP. It is from the slicing scenario.\nThe NRF is the NRF for slice 1 and 2.\n\nNRF Slice 1/2: 192.168.70.136  \nSMF Slice 1: 192.168.70.139  \nSMF Slice 2: 192.168.70.140  \nUPF Slice 1: 192.168.70.142  \nUPF Slice 2: 192.168.70.143  \n\n* Packet 55: UPF Slice 2 registers on NRF\n* Packet 104: SMF Slice 2 registers its UPF subscription on NRF\n* Packet 112: SMF Slice 2 registers on NRF\n* Packet 134: SMF Slice 1 registers its UPF subscription on NRF\n* Packet 147: NRF sends notification about UPF Slice 2 towards SMF Slice 1\n* Packet 211: UPF Slice 1 registers on NRF\n* Packet 224: NRF sends notification about UPF Slice 1 towards SMF Slice 2\n* Packet 228: NRF sends notification about UPF Slice 2 towards SMF Slice 1\n\nThe issue here now is that SMF Slice 1 has both UPFs in its graph and is able to select based on NSSAI. \n\nSMF Slice 2 however has only UPF Slice 1 and therefore, the PDU session establishment fails. \n\n# Fix\nA potential fix is to send all NFs which are already stored upon SMF subscription, so it would immediately become available. Currently, NRF only \"reacts\" to a UPF registration when the SMF subscription is already there. \n\nA quick fix for the slicing tutorial is to add `depends_on`, but we should get rid of these. \n\n# Issue\nThese scenarios are quite hard to debug and we should not introduce these dependencies between NFs. I only tested it using HTTP/2\n\n# Discussion\nI did not read the standard about this, but in my opinion the fix described here makes the most sense, but maybe there is another trigger we have to activate on SMF.\n@tien-thinh.nguyen @arora @defosseu @kharade Any opinions on this? Let us discuss this in our next meeting.\n\n[slicing-with-nssf.zip](/uploads/046bd1aa5cc6711397a8552c44eab870/slicing-with-nssf.zip)",
+"state": "closed",
+"created_at": "2023-06-16T09:51:13.877Z",
+"updated_at": "2024-01-17T19:53:43.341Z",
+"closed_at": "2024-01-17T19:53:43.336Z",
+"closed_by": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"labels": [
+"Bug",
+"v2.1"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/4",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/4",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/4/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/4/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#4",
+"relative": "#4",
+"full": "oai/cn5g/oai-cn5g-nrf#4"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4033,
+"iid": 3,
+"project_id": 3257,
+"title": "NRF crashes when doing an HTTP2 request when no instance is yet registered",
+"description": "Reported by Andreas Schultz on the mailing list\n\n```\ndocker-compose -f docker-compose-basic-nrf.yaml up -d oai-nrf\ndocker ps -a\nCONTAINER ID   IMAGE                                COMMAND                  CREATED         STATUS                    PORTS              NAMES\nbf1e0af8b7d2   oaisoftwarealliance/oai-nrf:v1.5.0   \"python3 /openair-nr\u2026\"   8 minutes ago   Up 18 seconds (healthy)   80/tcp, 9090/tcp   oai-nrf\ndocker logs -f oai-nrf\n[2023-03-09T13:51:26.368928] [nrf] [nrf_app] [info ] ==== OAI-CN5G NRF vBranch: HEAD Abrev. Hash: f66cc2f Date: Wed Jan 18 13:23:43 2023 +0000 ====\n[2023-03-09T13:51:26.368955] [nrf] [nrf_app] [info ] Configuration NRF:\n[2023-03-09T13:51:26.368960] [nrf] [nrf_app] [info ] - Instance ..............: 0\n\n[2023-03-09T13:51:26.368963] [nrf] [nrf_app] [info ] - PID dir ...............: /var/run\n\n[2023-03-09T13:51:26.368965] [nrf] [nrf_app] [info ] - SBI Interface:\n[2023-03-09T13:51:26.368967] [nrf] [nrf_app] [info ]     Interface name ......: eth0\n[2023-03-09T13:51:26.368971] [nrf] [nrf_app] [info ]     IPv4 Addr ...........: 192.168.70.130\n[2023-03-09T13:51:26.368973] [nrf] [nrf_app] [info ]     Port ................: 80\n[2023-03-09T13:51:26.368975] [nrf] [nrf_app] [info ]     HTTP2 port ..........: 8080\n[2023-03-09T13:51:26.368978] [nrf] [nrf_app] [info ]     API version..........: v1\n[2023-03-09T13:51:26.368984] [nrf] [nrf_app] [start] Starting...\n[2023-03-09T13:51:26.369129] [nrf] [nrf_app] [start] Started\n[2023-03-09T13:51:26.369939] [nrf] [sbi_srv] [info ] HTTP1 server started\n[2023-03-09T13:51:26.370098] [nrf] [nrf_app] [info ] HTTP2 server started\n\n# I first tried in HTTP1 --> OK\ncurl -s -X GET http://192.168.70.130/nnrf-nfm/v1/nf-instances?nf-type=\"UPF\"\n\n# Then I tried in HTTP2 --> NRF crashes as you described\ncurl --http2-prior-knowledge -s -X GET http://192.168.70.130:8080/nnrf-nfm/v1/nf-instances?nf-type=\"UPF\"\n```",
+"state": "closed",
+"created_at": "2023-03-09T12:56:12.628Z",
+"updated_at": "2023-03-09T15:16:47.845Z",
+"closed_at": "2023-03-09T15:16:47.834Z",
+"closed_by": {
+"id": 2228,
+"username": "defosseu",
+"public_email": "",
+"name": "Raphael Defosseux",
+"state": "blocked",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/2228/avatar.png?v=1768811361",
+"web_url": "https://gitlab.eurecom.fr/defosseu"
+},
+"labels": [
+"v1.5"
+],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 2228,
+"username": "defosseu",
+"public_email": "",
+"name": "Raphael Defosseux",
+"state": "blocked",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/2228/avatar.png?v=1768811361",
+"web_url": "https://gitlab.eurecom.fr/defosseu"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 3,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/3",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/3",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/3/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/3/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#3",
+"relative": "#3",
+"full": "oai/cn5g/oai-cn5g-nrf#3"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4024,
+"iid": 2,
+"project_id": 3257,
+"title": "NRF crashing something when host is too stressed",
+"description": "I've seen multiple times (especially if we have all NFs trying to register at once).\n\nHere is another example:\n\n`https://jenkins-oai.eurecom.fr/job/OAI-CN5G-Tutorials-Check/820/`\n\n```bash\n[2023-02-21T16:16:45.028227] [nrf] [nrf_app] [info ] Added/Updated NF Instance, NF info: {\"capacity\":100,\"fqdn\":\"ulcl.node.5gcn.mnc95.mcc208.3gppnetwork.org\",\"heartBeatTimer\":10,\"ipv4Addresses\":[\"192.168.70.201\"],\"json_data\":null,\"nfInstanceId\":\"c6575f83-21d7-4223-a224-f34a173f3873\",\"nfInstanceName\":\"ULCL\",\"nfServices\":[],\"nfStatus\":\"REGISTERED\",\"nfType\":\"UPF\",\"priority\":1,\"sNssais\":[{\"sd\":\"123\",\"sst\":222}],\"upfInfo\":{\"interfaceUpfInfoList\":[{\"endpointFqdn\":\"aupf2.node.5gcn.mnc95.mcc208.3gppnetwork.org\",\"interfaceType\":\"N9\",\"ipv4EndpointAddresses\":[\"192.168.74.201\"],\"networkInstance\":\"aupf2.node.5gcn.mnc95.mcc208.3gppnetwork.org\"},{\"endpointFqdn\":\"access.5gcn.mnc95.mcc208.3gppnetwork.org\",\"interfaceType\":\"N3\",\"ipv4EndpointAddresses\":[\"192.168.72.201\"],\"networkInstance\":\"access.5gcn.mnc95.mcc208.3gppnetwork.org\"},{\"endpointFqdn\":\"aupf1.node.5gcn.mnc95.mcc208.3gppnetwork.org\",\"interfaceType\":\"N9\",\"ipv4EndpointAddresses\":[\"192.168.73.201\"],\"networkInstance\":\"aupf1.node.5gcn.mnc95.mcc208.3gppnetwork.org\"}],\"sNssaiUpfInfoList\":[{\"dnnUpfInfoList\":[{\"dnaiList\":[\"aupf2\",\"access\",\"aupf1\"],\"dnaiNwInstanceList\":{\"access\":\"access.5gcn.mnc95.mcc208.3gppnetwork.org\",\"aupf1\":\"aupf1.node.5gcn.mnc95.mcc208.3gppnetwork.org\",\"aupf2\":\"aupf2.node.5gcn.mnc95.mcc208.3gppnetwork.org\"},\"dnn\":\"default\"}],\"sNssai\":{\"sd\":\"123\",\"sst\":222}}]}}\n[2023-02-21T16:16:46.786687] [nrf] [sbi_srv] [info ] \n[2023-02-21T16:16:46.786730] [nrf] [sbi_srv] [info ] Got a request to update an NF instance, Instance ID: 6536c817-cd71-46dd-9209-3c9f76ba4229\n[2023-02-21T16:16:46.786738] [nrf] [nrf_app] [info ] Handle Update NF Instance request (HTTP version 1)\n[2023-02-21T16:16:46.786748] [nrf] [nrf_app] [info ] NF Heart-Beat procedure!\n[2023-02-21T16:16:46.786754] [nrf] [nrf_app] [info ] Updated the NF profile (profile ID 6536c817-cd71-46dd-9209-3c9f76ba4229)\n[2023-02-21T16:16:48.624536] [nrf] [sbi_srv] [info ] Got a request to register an NF instance/Update an NF instance, Instance ID: 7f110cd5-e381-46dd-956c-b57dc6b2045d\n[2023-02-21T16:16:48.624567] [nrf] [nrf_app] [info ] Handle Register NF Instance/Update NF Instance (HTTP version 1)\n[2023-02-21T16:16:48.624611] [nrf] [nrf_app] [info ] Check if a profile with this ID 7f110cd5-e381-46dd-956c-b57dc6b2045d exist\n[2023-02-21T16:16:48.624619] [nrf] [nrf_app] [info ] NF profile (ID 7f110cd5-e381-46dd-956c-b57dc6b2045d) not found\n[2023-02-21T16:16:48.624624] [nrf] [nrf_app] [info ] Added/Updated NF Profile (ID 7f110cd5-e381-46dd-956c-b57dc6b2045d) to the DB\noai_nrf: /usr/include/boost/signals2/detail/signal_template.hpp:436: void boost::signals2::detail::signal_impl<R(Args ...), Combiner, Group, GroupCompare, SlotFunction, ExtendedSlotFunction, Mutex>::nolock_cleanup_connections_from(boost::signals2::detail::garbage_collecting_lock<Mutex>&, bool, const typename boost::signals2::detail::signal_impl<R(Args ...), Combiner, Group, GroupCompare, SlotFunction, ExtendedSlotFunction, Mutex>::connection_list_type::iterator&, unsigned int) const [with Combiner = boost::signals2::optional_last_value<void>; Group = int; GroupCompare = std::less<int>; SlotFunction = boost::function<void(long unsigned int)>; ExtendedSlotFunction = boost::function<void(const boost::signals2::connection&, long unsigned int)>; Mutex = boost::signals2::dummy_mutex; R = void; Args = {long unsigned int}; typename boost::signals2::detail::signal_impl<R(Args ...), Combiner, Group, GroupCompare, SlotFunction, ExtendedSlotFunction, Mutex>::connection_list_type::iterator = std::_List_iterator<boost::shared_ptr<boost::signals2::detail::connection_body<std::pair<boost::signals2::detail::slot_meta_group, boost::optional<int> >, boost::signals2::slot<void(long unsigned int), boost::function<void(long unsigned int)> >, boost::signals2::dummy_mutex> > >]: Assertion `_shared_state.unique()' failed.\n```",
+"state": "closed",
+"created_at": "2023-02-22T08:46:56.181Z",
+"updated_at": "2026-03-17T11:16:46.483Z",
+"closed_at": "2026-03-17T11:16:46.364Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"v2.0"
+],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 2228,
+"username": "defosseu",
+"public_email": "",
+"name": "Raphael Defosseux",
+"state": "blocked",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/2228/avatar.png?v=1768811361",
+"web_url": "https://gitlab.eurecom.fr/defosseu"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 3,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/2",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/2",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/2/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/2/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#2",
+"relative": "#2",
+"full": "oai/cn5g/oai-cn5g-nrf#2"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3174,
+"iid": 1,
+"project_id": 3257,
+"title": "Deployment using docker-compose broken",
+"description": "This issue mainly targets [oai-cn5g-fed](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed), I created it by mistake on oai-cn5g-nrf, but figured out that I can't create issues on the original project, so I'll just leave it open here (feel free to close it if it's off-topic).\n\nThere is a small bug (typo) in docker-compose files, on the `oai_spgwu` entry, the image name is spelled as `oai_sgpwu:1.0`, which I fixed [here](https://gitlab.eurecom.fr/niboucha/oai-cn5g-fed/-/commit/726073e50f06dc46b55c3e0f7d2e7834eb8b2e87).\n\nBesides that, I think docker-compose files should be using the same tags in the examples in [BUILD_IMAGES](https://gitlab.eurecom.fr/niboucha/oai-cn5g-fed/-/blob/fix_spgwu_typo_docker_compose/docs/BUILD_IMAGES.md), ideally, they would build images also with the build directive.\n\nAfter fixing these to reference the images I built, and using the docker-compose file without nrf, all of the container exit immediately when started, oai_spgwu, oai_amf and oai_smf.\n\nThe logs of each container:\n\n oai_spgwu:\n`/openair-spgwu-tiny/bin/entrypoint.sh: line 26: !NEW_VAR: unbound variable`\n\noai_amf:\n`Now setting these variables '@AMF_INTERFACE_NAME_FOR_N11@ @AMF_INTERFACE_NAME_FOR_NGAP@ @AMF_SET_ID@ @AUSF_API_VERSION@ @AUSF_IPV4_ADDRESS@ @AUSF_PORT@ @INSTANCE@ @MCC@ @MNC@ @MYSQL_DB@ @MYSQL_PASS@ @MYSQL_SERVER@ @MYSQL_USER@ @NF_REGISTRATION@ @NRF_API_VERSION@ @NRF_IPV4_ADDRESS@ @NRF_PORT@ @OPERATOR_KEY@ @PID_DIRECTORY@ @PLMN_SUPPORT_MCC@ @PLMN_SUPPORT_MNC@ @PLMN_SUPPORT_TAC@ @REGION_ID@ @SD_0@ @SD_1@ @SERVED_GUAMI_AMF_SET_ID_0@ @SERVED_GUAMI_AMF_SET_ID_1@ @SERVED_GUAMI_MCC_0@ @SERVED_GUAMI_MCC_1@ @SERVED_GUAMI_MNC_0@ @SERVED_GUAMI_MNC_1@ @SERVED_GUAMI_REGION_ID_0@ @SERVED_GUAMI_REGION_ID_1@ @SMF_HTTP_VERSION_0@ @SMF_HTTP_VERSION_1@ @SMF_INSTANCE_ID_0@ @SMF_INSTANCE_ID_1@ @SMF_IPV4_ADDR_0@ @SMF_IPV4_ADDR_1@ @SMF_SELECTION@ @SST_0@ @SST_1@'\nError: Environment variable 'NF_REGISTRATION' is not set. Config file 'amf.conf' requires all of @AMF_INTERFACE_NAME_FOR_N11@ @AMF_INTERFACE_NAME_FOR_NGAP@ @AMF_SET_ID@ @AUSF_API_VERSION@ @AUSF_IPV4_ADDRESS@ @AUSF_PORT@ @INSTANCE@ @MCC@ @MNC@ @MYSQL_DB@ @MYSQL_PASS@ @MYSQL_SERVER@ @MYSQL_USER@ @NF_REGISTRATION@ @NRF_API_VERSION@ @NRF_IPV4_ADDRESS@ @NRF_PORT@ @OPERATOR_KEY@ @PID_DIRECTORY@ @PLMN_SUPPORT_MCC@ @PLMN_SUPPORT_MNC@ @PLMN_SUPPORT_TAC@ @REGION_ID@ @SD_0@ @SD_1@ @SERVED_GUAMI_AMF_SET_ID_0@ @SERVED_GUAMI_AMF_SET_ID_1@ @SERVED_GUAMI_MCC_0@ @SERVED_GUAMI_MCC_1@ @SERVED_GUAMI_MNC_0@ @SERVED_GUAMI_MNC_1@ @SERVED_GUAMI_REGION_ID_0@ @SERVED_GUAMI_REGION_ID_1@ @SMF_HTTP_VERSION_0@ @SMF_HTTP_VERSION_1@ @SMF_INSTANCE_ID_0@ @SMF_INSTANCE_ID_1@ @SMF_IPV4_ADDR_0@ @SMF_IPV4_ADDR_1@ @SMF_SELECTION@ @SST_0@ @SST_1@.`\n\noai_smf:\n`Error: Environment variable 'DISCOVER_UPF' is not set. Config file 'smf.conf' requires all of @AMF_API_VERSION@ @AMF_IPV4_ADDRESS@ @AMF_PORT@ @DEFAULT_DNS_IPV4_ADDRESS@ @DEFAULT_DNS_SEC_IPV4_ADDRESS@ @DISCOVER_UPF@ @INSTANCE@ @NRF_API_VERSION@ @NRF_IPV4_ADDRESS@ @NRF_PORT@ @PID_DIRECTORY@ @REGISTER_NRF@ @SMF_API_VERSION@ @SMF_INTERFACE_HTTP2_PORT_FOR_SBI@ @SMF_INTERFACE_NAME_FOR_N4@ @SMF_INTERFACE_NAME_FOR_SBI@ @SMF_INTERFACE_PORT_FOR_SBI@ @UDM_API_VERSION@ @UDM_IPV4_ADDRESS@ @UDM_PORT@ @UPF_IPV4_ADDRESS@.`\n\nApologies if there is any misunderstanding of the project, this is my first issue here.",
+"state": "closed",
+"created_at": "2021-03-22T11:25:28.238Z",
+"updated_at": "2022-08-16T08:04:01.528Z",
+"closed_at": "2022-08-16T08:04:01.523Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 9933,
+"username": "niboucha",
+"public_email": "",
+"name": "Redouane Niboucha",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/7fa63b96951060b41c5eb6c4045e1bf1722713c2390286a7efb035a963686dfe?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/niboucha"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/work_items/1",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/1",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/1/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3257/issues/1/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3257",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#1",
+"relative": "#1",
+"full": "oai/cn5g/oai-cn5g-nrf#1"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+}
+]
+}

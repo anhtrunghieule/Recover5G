@@ -1,0 +1,54 @@
+{
+  "command": [
+    "docker",
+    "--context",
+    "colima-r5g-reproduction",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "r5g/open5gs-build:base",
+    "sha256sum",
+    "/src/open5gs/src/amf/ue-info.c",
+    "/src/open5gs/src/smf/pdu-info.c",
+    "/src/open5gs/lib/pfcp/xact.c",
+    "/src/open5gs/src/smf/pfcp-sm.c",
+    "/src/open5gs/lib/app/ogs-context.c"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "automated_elapsed_s": 0.39439104101620615,
+  "files": [
+    {
+      "file": "src/amf/ue-info.c",
+      "old_sha256": "dbb6bf2aefdf1ba2590d174a075b4fdb17e15d669158c9dda423f45501c0d673",
+      "new_sha256": "dbb6bf2aefdf1ba2590d174a075b4fdb17e15d669158c9dda423f45501c0d673",
+      "identical": true
+    },
+    {
+      "file": "src/smf/pdu-info.c",
+      "old_sha256": "ee1c31415b1b263aab9f1970503fd8ea6a5b8bca1a454229b7ef3de8265adb13",
+      "new_sha256": "ee1c31415b1b263aab9f1970503fd8ea6a5b8bca1a454229b7ef3de8265adb13",
+      "identical": true
+    },
+    {
+      "file": "lib/pfcp/xact.c",
+      "old_sha256": "0ed3d65e14f6e474fe695812cdb842e32274fe80a0434de26b0bf83db2b2b053",
+      "new_sha256": "0ed3d65e14f6e474fe695812cdb842e32274fe80a0434de26b0bf83db2b2b053",
+      "identical": true
+    },
+    {
+      "file": "src/smf/pfcp-sm.c",
+      "old_sha256": "078a1569b68880ea5f8fb405bb6f4832c3aaf33264f2b33a66c7c67387f38163",
+      "new_sha256": "025dbf26fe9073e1343b8f427c24662578f1e25694c3296a9f702a60de218f3f",
+      "identical": false
+    },
+    {
+      "file": "lib/app/ogs-context.c",
+      "old_sha256": "19b073529e4e65f8c2a6359c954e5670fc9bd675f731ef5c11a1b11fd36e76bc",
+      "new_sha256": "19b073529e4e65f8c2a6359c954e5670fc9bd675f731ef5c11a1b11fd36e76bc",
+      "identical": true
+    }
+  ],
+  "scope": "Source comparison only. No complete timer calibration or human maintenance effort estimate."
+}

@@ -1,0 +1,2226 @@
+[
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 10
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 9
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 13
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 10
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 35
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-common-src",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 11
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-lmf",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 4
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-pcf",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 15
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nef",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nssf",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 3
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nwdaf",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udr",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 14
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-udm",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 5
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 2
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-ausf",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 7
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 3
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-nrf",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 14
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-fed",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 38
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-upf-vpp",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 2
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 4
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 6
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-smf",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 66
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "restart",
+  "terms": [
+   "restart"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "recovery",
+  "terms": [
+   "recovery",
+   "restoration"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "heartbeat",
+  "terms": [
+   "heartbeat"
+  ],
+  "hits": 2
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "pfcp_assoc",
+  "terms": [
+   "PFCP association",
+   "association setup"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "crash_reconnect",
+  "terms": [
+   "crash reconnect",
+   "crash re-register"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "pool",
+  "terms": [
+   "pool exhausted",
+   "IP is used",
+   "already in use"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "stale",
+  "terms": [
+   "stale",
+   "orphan",
+   "leak"
+  ],
+  "hits": 1
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "recovery_ts",
+  "terms": [
+   "Recovery Time Stamp",
+   "recoveryTime"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "nf_restart",
+  "terms": [
+   "NF restart",
+   "UPF restart",
+   "SMF restart",
+   "AMF restart",
+   "gNB restart"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "supp_reboot",
+  "terms": [
+   "reboot",
+   "rebooted",
+   "killed"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "supp_down",
+  "terms": [
+   "goes down",
+   "went down",
+   "comes back",
+   "came back"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "supp_errind",
+  "terms": [
+   "Error Indication"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "supp_ngreset",
+  "terms": [
+   "NG Reset",
+   "SCTP reconnect",
+   "SCTP association"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "supp_failover",
+  "terms": [
+   "failover",
+   "redundancy",
+   "high availability"
+  ],
+  "hits": 0
+ },
+ {
+  "project": "oai/cn5g/oai-cn5g-amf",
+  "tag": "_all_issues",
+  "terms": [],
+  "hits": 76
+ }
+]

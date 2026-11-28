@@ -1,0 +1,332 @@
+{
+"url": "https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-lmf/issues?state=all",
+"fetched": "2026-11-05T18:24:30Z",
+"items": [
+{
+"id": 5434,
+"iid": 4,
+"project_id": 4911,
+"title": "mandatory IE TRPMeasurementQuantities is missing in MeasurementRequest",
+"description": "As per 3GPP 38.455 V16.7.1, the IE TRPMeasurementQuantities is mandatory in the NRPPA message MeasurementRequest",
+"state": "opened",
+"created_at": "2026-01-29T10:20:15.405Z",
+"updated_at": "2026-01-29T10:20:15.405Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 5654,
+"username": "rakesh",
+"public_email": "",
+"name": "rakesh mundlamuri",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/2d6f4ad68865b1b936eaeb3f8a8c75e5b1e3c5a8f3e0e9c924ce98cec6036c1a?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/rakesh"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-lmf/-/work_items/4",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4911/issues/4",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4911/issues/4/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4911/issues/4/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4911",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#4",
+"relative": "#4",
+"full": "oai/cn5g/oai-cn5g-lmf#4"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 5424,
+"iid": 3,
+"project_id": 4911,
+"title": "mandatory IE TRP Information Type List is missing in TRPInformationRequest",
+"description": "As per 3GPP 38.455 V16.7.1, the IE TRP Information Type List is mandatory in the NRPPA message TRPInformationRequest",
+"state": "opened",
+"created_at": "2026-01-21T13:54:27.538Z",
+"updated_at": "2026-01-29T10:20:37.217Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 5654,
+"username": "rakesh",
+"public_email": "",
+"name": "rakesh mundlamuri",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/2d6f4ad68865b1b936eaeb3f8a8c75e5b1e3c5a8f3e0e9c924ce98cec6036c1a?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/rakesh"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-lmf/-/work_items/3",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4911/issues/3",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4911/issues/3/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4911/issues/3/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4911",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#3",
+"relative": "#3",
+"full": "oai/cn5g/oai-cn5g-lmf#3"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4163,
+"iid": 2,
+"project_id": 4911,
+"title": "namf-comm/non-ue-n2-messages/transfer fails",
+"description": "POST /namf-comm/v1/non-ue-n2-messages/transfer at LMF startup fails with 404\n\n[lmf-amf-startup-fail.pcapng](/uploads/571539fbfc29d099b17ecceca8bc0d5d/lmf-amf-startup-fail.pcapng)",
+"state": "closed",
+"created_at": "2023-08-15T08:39:48.518Z",
+"updated_at": "2023-08-18T07:20:13.104Z",
+"closed_at": "2023-08-18T07:20:13.098Z",
+"closed_by": {
+"id": 11087,
+"username": "kwarnke",
+"public_email": null,
+"name": "Klaus Warnke",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/d8daa8f842377df0ea8063808c86b2cf993610311ea6a5a58e69b85b3cf42b96?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/kwarnke"
+},
+"labels": [
+"Bug"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 11087,
+"username": "kwarnke",
+"public_email": null,
+"name": "Klaus Warnke",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/d8daa8f842377df0ea8063808c86b2cf993610311ea6a5a58e69b85b3cf42b96?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/kwarnke"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-lmf/-/work_items/2",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4911/issues/2",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4911/issues/2/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4911/issues/2/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4911",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#2",
+"relative": "#2",
+"full": "oai/cn5g/oai-cn5g-lmf#2"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4160,
+"iid": 1,
+"project_id": 4911,
+"title": "NRF registration fails",
+"description": "The NRF responses with 400 and \"{\\\"cause\\\":\\\"MANDATORY_QUERY_PARAM_INCORRECT\\\"}\"\nNRF log:\n[2023-08-14 11:47:08.139] [nrf_sbi] [info] Got a request to register an NF instance/Update an NF instance, Instance ID: \n[2023-08-14 11:47:08.139] [nrf_app] [info] Handle Register NF Instance/Update NF Instance (HTTP version 2)\n[2023-08-14 11:47:08.139] [nrf_app] [info] Bad UUID format for NF Instance ID ()",
+"state": "closed",
+"created_at": "2023-08-14T10:05:40.062Z",
+"updated_at": "2023-08-16T21:01:19.912Z",
+"closed_at": "2023-08-16T21:01:19.905Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"Bug"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 11087,
+"username": "kwarnke",
+"public_email": null,
+"name": "Klaus Warnke",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/d8daa8f842377df0ea8063808c86b2cf993610311ea6a5a58e69b85b3cf42b96?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/kwarnke"
+}
+],
+"author": {
+"id": 11087,
+"username": "kwarnke",
+"public_email": null,
+"name": "Klaus Warnke",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/d8daa8f842377df0ea8063808c86b2cf993610311ea6a5a58e69b85b3cf42b96?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/kwarnke"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 11087,
+"username": "kwarnke",
+"public_email": null,
+"name": "Klaus Warnke",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/d8daa8f842377df0ea8063808c86b2cf993610311ea6a5a58e69b85b3cf42b96?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/kwarnke"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-lmf/-/work_items/1",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4911/issues/1",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4911/issues/1/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4911/issues/1/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4911",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#1",
+"relative": "#1",
+"full": "oai/cn5g/oai-cn5g-lmf#1"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+}
+]
+}

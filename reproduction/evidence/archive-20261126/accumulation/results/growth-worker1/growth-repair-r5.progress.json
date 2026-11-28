@@ -1,0 +1,2334 @@
+{
+ "id": "growth-repair-r5",
+ "chain": 5,
+ "arm": "repair",
+ "stack": 1,
+ "start": 1795597451.959779,
+ "cycles": [
+  {
+   "cycle": 1,
+   "start": 1795597489.226465,
+   "before": {
+    "t": 1795597490.512588,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC000041D",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 1
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC0000535",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 2
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.2",
+       "upf_teid": 18560,
+       "gnb_teid": 1,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.3",
+       "upf_teid": 11094,
+       "gnb_teid": 2,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.2"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.3"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3"
+    ],
+    "t0": 1795597489.226465,
+    "t1": 1795597490.512624,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22310912\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n36642816\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27828224\n"
+    }
+   },
+   "fault_at": 1795597490.6108558,
+   "registered": {
+    "1": 0.03821587562561035,
+    "2": 0.37865281105041504
+   },
+   "new_sessions": {
+    "1": [
+     12.156720876693726,
+     "10.45.0.4"
+    ],
+    "2": [
+     2.134429931640625,
+     "10.45.0.5"
+    ]
+   },
+   "new_at": 1795597515.5914161,
+   "after": {
+    "t": 1795597521.898294,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00007AD",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 3
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC0000159",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 4
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.4",
+       "upf_teid": 63669,
+       "gnb_teid": 3,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.5",
+       "upf_teid": 63360,
+       "gnb_teid": 4,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.4"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.5"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5"
+    ],
+    "t0": 1795597520.5927,
+    "t1": 1795597521.8983302,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22265856\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n36896768\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27746304\n"
+    }
+   },
+   "elapsed_s": 32.76067399978638
+  },
+  {
+   "cycle": 2,
+   "start": 1795597521.9875772,
+   "before": {
+    "t": 1795597523.2655602,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00007AD",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 3
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC0000159",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 4
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.4",
+       "upf_teid": 63669,
+       "gnb_teid": 3,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.5",
+       "upf_teid": 63360,
+       "gnb_teid": 4,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.4"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.5"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5"
+    ],
+    "t0": 1795597521.9875772,
+    "t1": 1795597523.265603,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22188032\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n36737024\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27336704\n"
+    }
+   },
+   "fault_at": 1795597523.357548,
+   "registered": {
+    "1": 0.04020404815673828,
+    "2": 0.3905000686645508
+   },
+   "new_sessions": {
+    "1": [
+     12.128602266311646,
+     "10.45.0.6"
+    ],
+    "2": [
+     2.1447250843048096,
+     "10.45.0.7"
+    ]
+   },
+   "new_at": 1795597548.33071,
+   "after": {
+    "t": 1795597554.641075,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC0000416",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 6
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00005EC",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 7
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.6",
+       "upf_teid": 15911,
+       "gnb_teid": 5,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.7",
+       "upf_teid": 6438,
+       "gnb_teid": 6,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.6"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.7"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7"
+    ],
+    "t0": 1795597553.333847,
+    "t1": 1795597554.641119,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22470656\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n36749312\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27484160\n"
+    }
+   },
+   "elapsed_s": 32.73755860328674
+  },
+  {
+   "cycle": 3,
+   "start": 1795597554.725587,
+   "before": {
+    "t": 1795597556.001398,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC0000416",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 6
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00005EC",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 7
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.6",
+       "upf_teid": 15911,
+       "gnb_teid": 5,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.7",
+       "upf_teid": 6438,
+       "gnb_teid": 6,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.6"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.7"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7"
+    ],
+    "t0": 1795597554.725587,
+    "t1": 1795597556.0014322,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22503424\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n36646912\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27561984\n"
+    }
+   },
+   "fault_at": 1795597556.087477,
+   "registered": {
+    "1": 0.03897285461425781,
+    "2": 0.3850879669189453
+   },
+   "new_sessions": {
+    "1": [
+     12.079922914505005,
+     "10.45.0.8"
+    ],
+    "2": [
+     2.1304523944854736,
+     "10.45.0.9"
+    ]
+   },
+   "new_at": 1795597580.974806,
+   "after": {
+    "t": 1795597587.253664,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00006A4",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 9
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC0000264",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 10
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.8",
+       "upf_teid": 52794,
+       "gnb_teid": 7,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.9",
+       "upf_teid": 48632,
+       "gnb_teid": 8,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.8"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.9"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9"
+    ],
+    "t0": 1795597585.974924,
+    "t1": 1795597587.253736,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22118400\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n36982784\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27717632\n"
+    }
+   },
+   "elapsed_s": 32.6342031955719
+  },
+  {
+   "cycle": 4,
+   "start": 1795597587.362849,
+   "before": {
+    "t": 1795597588.665283,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00006A4",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 9
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC0000264",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 10
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.8",
+       "upf_teid": 52794,
+       "gnb_teid": 7,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.9",
+       "upf_teid": 48632,
+       "gnb_teid": 8,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.8"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.9"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9"
+    ],
+    "t0": 1795597587.362849,
+    "t1": 1795597588.665316,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22413312\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n36995072\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27828224\n"
+    }
+   },
+   "fault_at": 1795597588.742205,
+   "registered": {
+    "1": 0.03579378128051758,
+    "2": 0.3822140693664551
+   },
+   "new_sessions": {
+    "1": [
+     12.148675918579102,
+     "10.45.0.10"
+    ],
+    "2": [
+     2.0952980518341064,
+     "10.45.0.11"
+    ]
+   },
+   "new_at": 1795597613.922952,
+   "after": {
+    "t": 1795597620.210052,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC000012D",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 11
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC0000563",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 12
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.10",
+       "upf_teid": 8925,
+       "gnb_teid": 9,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.11",
+       "upf_teid": 33919,
+       "gnb_teid": 10,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.10"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.11"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9",
+     "10.45.0.10",
+     "10.45.0.11"
+    ],
+    "t0": 1795597618.9280372,
+    "t1": 1795597620.2100852,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22540288\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n36913152\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27717632\n"
+    }
+   },
+   "elapsed_s": 32.9316291809082
+  },
+  {
+   "cycle": 5,
+   "start": 1795597620.294872,
+   "before": {
+    "t": 1795597621.56938,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC000012D",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 11
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC0000563",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 12
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.10",
+       "upf_teid": 8925,
+       "gnb_teid": 9,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.11",
+       "upf_teid": 33919,
+       "gnb_teid": 10,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.10"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.11"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9",
+     "10.45.0.10",
+     "10.45.0.11"
+    ],
+    "t0": 1795597620.294873,
+    "t1": 1795597621.569414,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22044672\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n36896768\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27353088\n"
+    }
+   },
+   "fault_at": 1795597621.654918,
+   "registered": {
+    "1": 0.03980898857116699,
+    "2": 0.3886532783508301
+   },
+   "new_sessions": {
+    "1": [
+     12.039641857147217,
+     "10.45.0.12"
+    ],
+    "2": [
+     2.096161127090454,
+     "10.45.0.13"
+    ]
+   },
+   "new_at": 1795597646.477192,
+   "after": {
+    "t": 1795597652.7359722,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC0000514",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 13
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC000007A",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 14
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.12",
+       "upf_teid": 10968,
+       "gnb_teid": 11,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.13",
+       "upf_teid": 30071,
+       "gnb_teid": 12,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.12"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.13"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9",
+     "10.45.0.10",
+     "10.45.0.11",
+     "10.45.0.12",
+     "10.45.0.13"
+    ],
+    "t0": 1795597651.482055,
+    "t1": 1795597652.736002,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22261760\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n37109760\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27824128\n"
+    }
+   },
+   "elapsed_s": 32.52937388420105
+  },
+  {
+   "cycle": 6,
+   "start": 1795597652.8247192,
+   "before": {
+    "t": 1795597654.090498,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC0000514",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 13
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC000007A",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 14
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.12",
+       "upf_teid": 10968,
+       "gnb_teid": 11,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.13",
+       "upf_teid": 30071,
+       "gnb_teid": 12,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.12"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.13"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9",
+     "10.45.0.10",
+     "10.45.0.11",
+     "10.45.0.12",
+     "10.45.0.13"
+    ],
+    "t0": 1795597652.8247192,
+    "t1": 1795597654.090534,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22257664\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n36790272\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27480064\n"
+    }
+   },
+   "fault_at": 1795597654.176149,
+   "registered": {
+    "1": 0.04165291786193848,
+    "2": 0.3844640254974365
+   },
+   "new_sessions": {
+    "1": [
+     12.20545506477356,
+     "10.45.0.14"
+    ],
+    "2": [
+     2.1715657711029053,
+     "10.45.0.15"
+    ]
+   },
+   "new_at": 1795597679.23767,
+   "after": {
+    "t": 1795597685.5145621,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC000047B",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 15
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00007BD",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 16
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.14",
+       "upf_teid": 31731,
+       "gnb_teid": 13,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.15",
+       "upf_teid": 64121,
+       "gnb_teid": 14,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.14"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.15"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9",
+     "10.45.0.10",
+     "10.45.0.11",
+     "10.45.0.12",
+     "10.45.0.13",
+     "10.45.0.14",
+     "10.45.0.15"
+    ],
+    "t0": 1795597684.2391539,
+    "t1": 1795597685.5145931,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22261760\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n37175296\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27934720\n"
+    }
+   },
+   "elapsed_s": 32.78073596954346
+  },
+  {
+   "cycle": 7,
+   "start": 1795597685.60598,
+   "before": {
+    "t": 1795597686.88238,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC000047B",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 15
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00007BD",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 16
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.14",
+       "upf_teid": 31731,
+       "gnb_teid": 13,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.15",
+       "upf_teid": 64121,
+       "gnb_teid": 14,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.14"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.15"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9",
+     "10.45.0.10",
+     "10.45.0.11",
+     "10.45.0.12",
+     "10.45.0.13",
+     "10.45.0.14",
+     "10.45.0.15"
+    ],
+    "t0": 1795597685.60598,
+    "t1": 1795597686.882415,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22355968\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n37138432\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27529216\n"
+    }
+   },
+   "fault_at": 1795597686.9740002,
+   "registered": {
+    "1": 0.0394740104675293,
+    "2": 0.3793010711669922
+   },
+   "new_sessions": {
+    "1": [
+     12.227530002593994,
+     "10.45.0.16"
+    ],
+    "2": [
+     2.11547589302063,
+     "10.45.0.17"
+    ]
+   },
+   "new_at": 1795597712.018547,
+   "after": {
+    "t": 1795597718.2821062,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00004BE",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 17
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00002C0",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 18
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.16",
+       "upf_teid": 37348,
+       "gnb_teid": 15,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.17",
+       "upf_teid": 37428,
+       "gnb_teid": 16,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.16"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.17"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9",
+     "10.45.0.10",
+     "10.45.0.11",
+     "10.45.0.12",
+     "10.45.0.13",
+     "10.45.0.14",
+     "10.45.0.15",
+     "10.45.0.16",
+     "10.45.0.17"
+    ],
+    "t0": 1795597717.02278,
+    "t1": 1795597718.282151,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22327296\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n37244928\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27557888\n"
+    }
+   },
+   "elapsed_s": 32.763344049453735
+  },
+  {
+   "cycle": 8,
+   "start": 1795597718.369899,
+   "before": {
+    "t": 1795597719.626074,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00004BE",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 17
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00002C0",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 18
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.16",
+       "upf_teid": 37348,
+       "gnb_teid": 15,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.17",
+       "upf_teid": 37428,
+       "gnb_teid": 16,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.16"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.17"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9",
+     "10.45.0.10",
+     "10.45.0.11",
+     "10.45.0.12",
+     "10.45.0.13",
+     "10.45.0.14",
+     "10.45.0.15",
+     "10.45.0.16",
+     "10.45.0.17"
+    ],
+    "t0": 1795597718.369899,
+    "t1": 1795597719.626112,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22335488\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n37507072\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27619328\n"
+    }
+   },
+   "fault_at": 1795597719.7200031,
+   "registered": {
+    "1": 0.041825056076049805,
+    "2": 0.3806581497192383
+   },
+   "new_sessions": {
+    "1": [
+     12.139784336090088,
+     "10.45.0.18"
+    ],
+    "2": [
+     2.1314010620117188,
+     "10.45.0.19"
+    ]
+   },
+   "new_at": 1795597744.714335,
+   "after": {
+    "t": 1795597750.982912,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC000009A",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 19
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC0000187",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 20
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.18",
+       "upf_teid": 1434,
+       "gnb_teid": 17,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.19",
+       "upf_teid": 3677,
+       "gnb_teid": 18,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.18"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.19"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9",
+     "10.45.0.10",
+     "10.45.0.11",
+     "10.45.0.12",
+     "10.45.0.13",
+     "10.45.0.14",
+     "10.45.0.15",
+     "10.45.0.16",
+     "10.45.0.17",
+     "10.45.0.18",
+     "10.45.0.19"
+    ],
+    "t0": 1795597749.7177322,
+    "t1": 1795597750.983049,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     568 kB\nThreads:\t1\n22396928\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n37199872\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27840512\n"
+    }
+   },
+   "elapsed_s": 32.72242093086243
+  },
+  {
+   "cycle": 9,
+   "start": 1795597751.092927,
+   "before": {
+    "t": 1795597752.354235,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC000009A",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 19
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC0000187",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 20
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.18",
+       "upf_teid": 1434,
+       "gnb_teid": 17,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.19",
+       "upf_teid": 3677,
+       "gnb_teid": 18,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.18"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.19"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9",
+     "10.45.0.10",
+     "10.45.0.11",
+     "10.45.0.12",
+     "10.45.0.13",
+     "10.45.0.14",
+     "10.45.0.15",
+     "10.45.0.16",
+     "10.45.0.17",
+     "10.45.0.18",
+     "10.45.0.19"
+    ],
+    "t0": 1795597751.092927,
+    "t1": 1795597752.354273,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     568 kB\nThreads:\t1\n22474752\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n37244928\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27840512\n"
+    }
+   },
+   "fault_at": 1795597752.4376938,
+   "registered": {
+    "1": 0.0371251106262207,
+    "2": 0.3827788829803467
+   },
+   "new_sessions": {
+    "1": [
+     12.086525201797485,
+     "10.45.0.20"
+    ],
+    "2": [
+     2.110046863555908,
+     "10.45.0.21"
+    ]
+   },
+   "new_at": 1795597777.304559,
+   "after": {
+    "t": 1795597783.573981,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00001D6",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 21
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00005D4",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 22
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.20",
+       "upf_teid": 31659,
+       "gnb_teid": 19,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.21",
+       "upf_teid": 44653,
+       "gnb_teid": 20,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.20"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.21"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9",
+     "10.45.0.10",
+     "10.45.0.11",
+     "10.45.0.12",
+     "10.45.0.13",
+     "10.45.0.14",
+     "10.45.0.15",
+     "10.45.0.16",
+     "10.45.0.17",
+     "10.45.0.18",
+     "10.45.0.19",
+     "10.45.0.20",
+     "10.45.0.21"
+    ],
+    "t0": 1795597782.307254,
+    "t1": 1795597783.574056,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     568 kB\nThreads:\t1\n22904832\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n37502976\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27873280\n"
+    }
+   },
+   "elapsed_s": 32.578811168670654
+  },
+  {
+   "cycle": 10,
+   "start": 1795597783.672291,
+   "before": {
+    "t": 1795597784.939073,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00001D6",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 21
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00005D4",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 22
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.20",
+       "upf_teid": 31659,
+       "gnb_teid": 19,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.21",
+       "upf_teid": 44653,
+       "gnb_teid": 20,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.20"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.21"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9",
+     "10.45.0.10",
+     "10.45.0.11",
+     "10.45.0.12",
+     "10.45.0.13",
+     "10.45.0.14",
+     "10.45.0.15",
+     "10.45.0.16",
+     "10.45.0.17",
+     "10.45.0.18",
+     "10.45.0.19",
+     "10.45.0.20",
+     "10.45.0.21"
+    ],
+    "t0": 1795597783.672291,
+    "t1": 1795597784.939102,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     568 kB\nThreads:\t1\n22085632\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n37502976\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27627520\n"
+    }
+   },
+   "fault_at": 1795597785.030553,
+   "registered": {
+    "1": 0.04135012626647949,
+    "2": 0.37518310546875
+   },
+   "new_sessions": {
+    "1": [
+     12.106781959533691,
+     "10.45.0.22"
+    ],
+    "2": [
+     2.1694328784942627,
+     "10.45.0.23"
+    ]
+   },
+   "new_at": 1795597809.952974,
+   "after": {
+    "t": 1795597816.263514,
+    "viol": [],
+    "vid": [],
+    "amf_id": {
+     "imsi-999700000000001": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00007ED",
+      "cm": "connected",
+      "amf_ue_ngap_id": 1,
+      "ran_ue_ngap_id": 24
+     },
+     "imsi-999700000000002": {
+      "psis": {
+       "1": "internet"
+      },
+      "guti": "99970-020040-CC00003FB",
+      "cm": "connected",
+      "amf_ue_ngap_id": 2,
+      "ran_ue_ngap_id": 25
+     }
+    },
+    "smf_id": {
+     "imsi-999700000000001": {
+      "1": {
+       "ip": "10.45.0.22",
+       "upf_teid": 12788,
+       "gnb_teid": 21,
+       "state": "active"
+      }
+     },
+     "imsi-999700000000002": {
+      "1": {
+       "ip": "10.45.0.23",
+       "upf_teid": 61617,
+       "gnb_teid": 22,
+       "state": "active"
+      }
+     }
+    },
+    "ues": {
+     "1": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.22"
+      }
+     },
+     "2": {
+      "rm": "RM-REGISTERED",
+      "cm": "CM-CONNECTED",
+      "mm": "MM-REGISTERED/NORMAL-SERVICE",
+      "sessions": {
+       "1": "10.45.0.23"
+      }
+     }
+    },
+    "dl_ok": {
+     "1": true,
+     "2": true
+    },
+    "ul_ok": {
+     "1": true,
+     "2": true
+    },
+    "counts": {
+     "amf_ue": 2,
+     "amf_sess": 2,
+     "ran_ue": 2,
+     "gnb": 1,
+     "smf_ue": 2,
+     "smf_sess": 2,
+     "pfcp_sess": 2,
+     "pfcp_peers": 1,
+     "upf_sess": 2
+    },
+    "upf_log_ips": [
+     "10.45.0.2",
+     "10.45.0.3",
+     "10.45.0.4",
+     "10.45.0.5",
+     "10.45.0.6",
+     "10.45.0.7",
+     "10.45.0.8",
+     "10.45.0.9",
+     "10.45.0.10",
+     "10.45.0.11",
+     "10.45.0.12",
+     "10.45.0.13",
+     "10.45.0.14",
+     "10.45.0.15",
+     "10.45.0.16",
+     "10.45.0.17",
+     "10.45.0.18",
+     "10.45.0.19",
+     "10.45.0.20",
+     "10.45.0.21",
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "t0": 1795597814.9559438,
+    "t1": 1795597816.263572,
+    "resources": {
+     "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22224896\n",
+     "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n37416960\n",
+     "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n28041216\n"
+    }
+   },
+   "elapsed_s": 32.701239824295044
+  }
+ ],
+ "image": "r5g/open5gs:e85748e-f12repair",
+ "image_id": "sha256:e7a7cc385b19e0f2c4804917c2585577fb0b01068ba7620641511bf4b176a56f",
+ "ueransim_id": "sha256:f68c1a74b7bd27128635a9356f46b3039ac9544363b9c759fa8c410e72546557",
+ "clock_offset_s": 0.033681392669677734,
+ "initial": {
+  "t": 1795597489.10919,
+  "viol": [],
+  "vid": [],
+  "amf_id": {
+   "imsi-999700000000001": {
+    "psis": {
+     "1": "internet"
+    },
+    "guti": "99970-020040-CC000041D",
+    "cm": "connected",
+    "amf_ue_ngap_id": 1,
+    "ran_ue_ngap_id": 1
+   },
+   "imsi-999700000000002": {
+    "psis": {
+     "1": "internet"
+    },
+    "guti": "99970-020040-CC0000535",
+    "cm": "connected",
+    "amf_ue_ngap_id": 2,
+    "ran_ue_ngap_id": 2
+   }
+  },
+  "smf_id": {
+   "imsi-999700000000001": {
+    "1": {
+     "ip": "10.45.0.2",
+     "upf_teid": 18560,
+     "gnb_teid": 1,
+     "state": "active"
+    }
+   },
+   "imsi-999700000000002": {
+    "1": {
+     "ip": "10.45.0.3",
+     "upf_teid": 11094,
+     "gnb_teid": 2,
+     "state": "active"
+    }
+   }
+  },
+  "ues": {
+   "1": {
+    "rm": "RM-REGISTERED",
+    "cm": "CM-CONNECTED",
+    "mm": "MM-REGISTERED/NORMAL-SERVICE",
+    "sessions": {
+     "1": "10.45.0.2"
+    }
+   },
+   "2": {
+    "rm": "RM-REGISTERED",
+    "cm": "CM-CONNECTED",
+    "mm": "MM-REGISTERED/NORMAL-SERVICE",
+    "sessions": {
+     "1": "10.45.0.3"
+    }
+   }
+  },
+  "dl_ok": {
+   "1": true,
+   "2": true
+  },
+  "ul_ok": {
+   "1": true,
+   "2": true
+  },
+  "counts": {
+   "amf_ue": 2,
+   "amf_sess": 2,
+   "ran_ue": 2,
+   "gnb": 1,
+   "smf_ue": 2,
+   "smf_sess": 2,
+   "pfcp_sess": 2,
+   "pfcp_peers": 1,
+   "upf_sess": 2
+  },
+  "upf_log_ips": [
+   "10.45.0.2",
+   "10.45.0.3"
+  ],
+  "t0": 1795597487.82577,
+  "t1": 1795597489.109254,
+  "resources": {
+   "amf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n22396928\n",
+   "smf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n36626432\n",
+   "upf": "VmSize:\t     872 kB\nVmRSS:\t     564 kB\nThreads:\t1\n27820032\n"
+  }
+ }
+}

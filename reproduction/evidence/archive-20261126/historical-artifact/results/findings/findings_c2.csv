@@ -1,0 +1,14 @@
+id,group,core,commit,fault,conjuncts,repro,liveness,upstream
+\#4877,control,Open5GS,d915126,SMF crash-stop 60 s,"R3, O3",repro:i4877:pre4877,n/e,known; fixed at HEAD
+\#4892,control,Open5GS,48c0cc0,"UPF stop 30 s, UEs unreachable",R4,repro:i4892:48c0cc0,yes,known; fixed by \#4963
+F7,rediscovered,Open5GS,e85748e,SMF crash after PFCP session installation,R1: T3580 retries hit the dead ref,rep:F7,yes,= PR \#4485; the PR removes it
+O-1,rediscovered,OAI,"v2.2.2, pinned","SMF crash, immediate restart",R3/O4: UPF keeps old sessions,rep:O1,yes,= UPF \#41; PR \#43 removes it
+OAI \#33,rediscovered,OAI,"v2.2.2, pinned",SMF restart; UE-B establishes; UE-A deregisters,R$_g$: UE-A's stale ref deletes UE-B's session,rep:I33,yes,known; fix PR \#34 unmerged
+F4,new,Open5GS,e85748e,"UEs unreachable, UPF down past give-up","R3, R4; SMF drops 5GSM msg 209",rep:F4,yes,near \#4892/\#4895/\#4540/\#4528; none removes it
+F11,new,Open5GS,e85748e,SMF restart; UE2 establishes; UE1 releases or deregisters,R$_g$: UE1's stale ref 1 deletes UE2's session,rep:F11,n/e,no match; \#4485 does not fix it
+F12,new,Open5GS,e85748e,"AMF crash, UEs re-register","R3, R6: orphan UPF sessions, leaked IPs",rep:F12,no,no match (related: \#4528)
+F5a,other,Open5GS,e85748e,SMF restart at steady state,"R1, R4",rep:F5a,yes,overlaps \#4485 (repairs on next use only)
+F5b,other,Open5GS,e85748e,"AMF restart, non-aborting gNB","R2, R5 (UE class)",rep:F5b,n/e,re-registration repairs; residue is F12
+O-2,other,OAI,v2.2.2,"UPF crash, immediate restart","R3, R4",rep:O2,yes,no match (GitHub)
+O-3,other,OAI,v2.2.2,SMF down 45 s,R3/O3: no UPF heartbeat to FQDN,rep:O3,yes,no match; cf.\ GitLab SMF \#2
+F5G-1,other,free5GC,v4.0.1,"SMF crash, immediate restart","R1, R4 (RC1 class)",rep:FG1,yes,class of F5a; $n{=}1$

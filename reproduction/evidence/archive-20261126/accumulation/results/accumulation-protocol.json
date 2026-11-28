@@ -1,0 +1,20 @@
+{
+  "frozen_at": "2026-11-25T08:35:28.356551+00:00",
+  "script_sha256": "16a5812b4e46091f2cec59be80613c7ba23c15c6cee24c455e292cf3c6b716f6",
+  "chains_per_arm": 5,
+  "cycles_per_chain": 10,
+  "arms": [
+    "baseline-fault",
+    "repair-fault",
+    "baseline-no-fault"
+  ],
+  "settle_s": 5,
+  "final_offsets_s": [
+    34,
+    68
+  ],
+  "reset_between_chains_only": true,
+  "stack_assignment": "rotating Latin order, shared-host descriptive comparison",
+  "failure_rule": "retain incomplete chain, no replacement or exclusion",
+  "interpretation": "accumulation workload, not rates in production or continuous deadline certification"
+}

@@ -1,0 +1,478 @@
+[
+ {
+  "item": "1",
+  "file": "sections/appendix-cases.tex",
+  "old": "Upstream status is as of 19~November~2026 (\\S\\ref{sec:discussion}).",
+  "new": "Upstream status is as of 25~November~2026 (\\S\\ref{sec:discussion}).",
+  "note": "Tracker records were retrieved on 2026-11-25T08:40Z (experiments/revision-20261125-codex/results/primary-sources/retrieval.json); Table 4, Section 8 and Appendix F.2 already say 25 November."
+ },
+ {
+  "item": "1",
+  "file": "references.bib",
+  "old": "(our report of orphan UPF sessions), opened 2026-11-17; automated pre-review only on 2026-11-17",
+  "new": "(our report of orphan UPF sessions), opened 2026-11-17; labelled type:enhancement and open on 2026-11-25; the comments are automated pre-reviews",
+  "note": "Bibliography note of open5gs5059: bring the status date and label in line with Section 8 (labels read from primary-sources/open5gs-5059.json, retrieved 25 November). R4 noted that references [72]-[77] still say 'automated pre-review only'."
+ },
+ {
+  "item": "1",
+  "file": "references.bib",
+  "old": "(our report of registration rejection), opened 2026-11-17; automated pre-review only on 2026-11-17",
+  "new": "(our report of registration rejection), opened 2026-11-17; labelled type:bug and open on 2026-11-25; the comments are automated pre-reviews",
+  "note": "Bibliography note of open5gs5061: bring the status date and label in line with Section 8 (labels read from primary-sources/open5gs-5061.json, retrieved 25 November). R4 noted that references [72]-[77] still say 'automated pre-review only'."
+ },
+ {
+  "item": "1",
+  "file": "references.bib",
+  "old": "(our report of the reject-teardown race), opened 2026-11-18; automated pre-review only on 2026-11-18",
+  "new": "(our report of the reject-teardown race), opened 2026-11-18; labelled type:bug and open on 2026-11-25; the comments are automated pre-reviews",
+  "note": "Bibliography note of open5gs5064: bring the status date and label in line with Section 8 (labels read from primary-sources/open5gs-5064.json, retrieved 25 November). R4 noted that references [72]-[77] still say 'automated pre-review only'."
+ },
+ {
+  "item": "1",
+  "file": "references.bib",
+  "old": "(our report of the stuck policy context), opened 2026-11-18; automated pre-review only on 2026-11-18",
+  "new": "(our report of the stuck policy context), opened 2026-11-18; labelled type:enhancement and open on 2026-11-25; the comments are automated pre-reviews",
+  "note": "Bibliography note of open5gs5065: bring the status date and label in line with Section 8 (labels read from primary-sources/open5gs-5065.json, retrieved 25 November). R4 noted that references [72]-[77] still say 'automated pre-review only'."
+ },
+ {
+  "item": "1",
+  "file": "references.bib",
+  "old": "(our report of the stalled release at the SMF), opened 2026-11-17; automated pre-review only on 2026-11-17",
+  "new": "(our report of the stalled release at the SMF), opened 2026-11-17; labelled not-an-open5gs-bug and open on 2026-11-25; the comments are automated pre-reviews",
+  "note": "Bibliography note of open5gs5063: bring the status date and label in line with Section 8 (labels read from primary-sources/open5gs-5063.json, retrieved 25 November). R4 noted that references [72]-[77] still say 'automated pre-review only'."
+ },
+ {
+  "item": "1",
+  "file": "references.bib",
+  "old": "labelled not-an-open5gs-bug on 2026-11-09; open on 2026-11-17",
+  "new": "labelled not-an-open5gs-bug on 2026-11-09; open on 2026-11-25",
+  "note": "Bibliography note of open5gs4988: bring the status date and label in line with Section 8 (labels read from primary-sources/open5gs-4988.json, retrieved 25 November). R4 noted that references [72]-[77] still say 'automated pre-review only'."
+ },
+ {
+  "item": "2",
+  "file": "sections/observable-map.tex",
+  "old": "On the retained held-out samples it agrees with the legacy checks on 1,462 stable observations and preserves 27 changing observations.",
+  "new": "On the \\Rx{v25-ho-snap-stable} stable polls of the accepted held-out runs (\\S\\ref{sec:rq3}) it agrees with the legacy checks, and it keeps their \\Rx{v25-ho-snap-changing} changing polls apart. Appendix~\\ref{sec:app-followup} audits the set before the host-sleep exclusion.",
+  "note": "Main text now describes the accepted inventory (67 runs, 1372 stable, 26 changing), the same one as Section 7.2. Checked: the audit's evidence-snapshots.json restricted to the 67 accepted runs gives 1372 stable polls, all agreeing with the legacy flag, and 26 changing."
+ },
+ {
+  "item": "2",
+  "file": "sections/appendix-audit.tex",
+  "old": "Applying the interface to the 1,489 retained held-out snapshots yields 1,043 clean, 419 violated and 27 changing outcomes, with no disagreement on stable samples.",
+  "new": "Applying the interface to the 1,489 snapshots of all \\Rx{v25-ho-scheduled} retained held-out runs, before the host-sleep exclusion, yields 1,043 clean, 419 violated and 27 changing outcomes, with no disagreement on stable samples. The \\Rx{v25-ho-slept} runs that Appendix~\\ref{sec:app-rev-env} excludes contribute 91 of these snapshots (75 clean, 15 violated, 1 changing). The other \\Rx{v25-ho-snap} are the polls of Appendix~\\ref{sec:app-rev-heldout}, \\Rx{v25-ho-snap-changing} of them changing.",
+  "note": "Appendix F.1 keeps the unfiltered audit inventory (as the Codex coordination note asks) and names it. 91 / 75 / 15 / 1 have no macro: computed from revision-20261125-codex/results/evidence-snapshots.json minus the run ids of revision-20261125-claude/results/raw/heldout/heldout_snapshots.csv (HO-kill-03, -09, -53, HO-nofault-03, -08). Drop that sentence if no hard-coded number is wanted; the rest uses macros only."
+ },
+ {
+  "item": "2",
+  "file": "sections/appendix-replication.tex",
+  "old": "Each run is polled every 3\\,s for 72\\,s.",
+  "new": "Each run is polled for 72\\,s with a 3\\,s pause after each collection, so it yields fewer polls than the 24 of an exact 3\\,s period.",
+  "note": "Answers R2 (67 runs at an exact 3 s period would give at least 1608 polls). testbed/r5g/runner.py lines 219-239: the loop sleeps poll=3.0 s after each snapshot, and a collection lasts 0.4 to 2.9 s; accepted runs have 13 to 22 polls (mean 20.9)."
+ },
+ {
+  "item": "3",
+  "file": "sections/appendix-eval.tex",
+  "old": "the crash-only miss share is stable across passes (\\Rx{iss-crash-p1}, \\Rx{iss-crash-p2}, and \\Rx{iss-crash-agree} on the issues both passes include).",
+  "new": "the crash-only miss share is stable across passes (\\Rx{iss-crash-p1}, \\Rx{iss-crash-p2}, and \\Rx{iss-crash-agree} on the issues both passes include). Table~\\ref{tab:validity} shows \\PtwoCrashMiss/\\PtwoN{} for pass~2 because it applies the symptom rule: one issue with a leak symptom was judged crash-visible directly.",
+  "note": "Both numbers are right. 36/44 = \\PtwoCrashMiss (artifact/scripts/render.py line 119, pass 2, symptom rule: 44 minus 8 crash symptoms); 35/44 = iss-crash-p2 (pass 2 direct judgement: crash_only_detects = yes for 9). Recomputed from upstream/artifact/results/issues/relabel/relabel_pass2.csv; the one differing issue is open5gs #4207 (symptom leak-exhaustion, crash_only_detects yes). The macro is from pass 2, not from the withdrawn third pass as R3 supposed."
+ },
+ {
+  "item": "3",
+  "file": "presentation/tab_validity.tex",
+  "old": "Oracle misses\\lob & Pass 1 & Pass 2 \\\\",
+  "new": "Misses, symptom rule\\lob & Pass 1 & Pass 2 \\\\",
+  "note": "Optional: says in the table itself which rule the bottom rows use."
+ },
+ {
+  "item": "4",
+  "file": "sections/appendix-replication.tex",
+  "old": "reference-persistent runs (95\\% interval \\Rx{v25-ho-r-px-fn-lo}--\\Rx{v25-ho-r-px-fn-hi}\\%)",
+  "new": "reference-persistent runs (95\\% Wilson score interval \\Rx{v25-ho-r-px-fn-lo}--\\Rx{v25-ho-r-px-fn-hi}\\%)",
+  "note": "Names the method; numbers stay macros. To switch to Clopper-Pearson (16.8% and 7.5%), change wilson() in testbed/exp/heldout_eval.py (line 49, used at line 143) and rerun paper/finalize.sh: the macros v25-ho-r-px-fn-hi and v25-ho-r-px-fp-hi would change, with the same family for cn, lv and cr (v25-ho-r-{px,cn,lv,cr}-{fn,fp}-{lo,hi})."
+ },
+ {
+  "item": "4",
+  "file": "sections/appendix-replication.tex",
+  "old": "These intervals quantify disagreement with a shared-input reference for this fault mix, not independently established accuracy.",
+  "new": "These are Wilson intervals, whereas Table~\\ref{tab:ci-rerun} uses exact Clopper--Pearson intervals. They quantify disagreement with a shared-input reference for this fault mix, not independently established accuracy.",
+  "note": "States the difference from Table 19 once."
+ },
+ {
+  "item": "5",
+  "file": "sections/07-evaluation.tex",
+  "old": "Of these schedules, \\Rx{v25-tm-g0-g150-only-g150} are persistent only with the global delay.",
+  "new": "Of the \\Rx{v25-tm-g0-g150-n} schedules that fired under both settings, \\Rx{v25-tm-g0-g150-both} are persistent under both, \\Rx{v25-tm-g0-g150-only-g150} only with the global delay and \\Rx{v25-tm-g0-g150-only-g0} only without it.",
+  "note": "Macro names are those of Appendix E.5 (sections/appendix-replication.tex line 99). Current values 31 / 13 / 3 / 4; they will follow the rerun of the sleep-excluded delay slots."
+ },
+ {
+  "item": "6",
+  "file": "presentation/tab_delta.tex",
+  "old": "\\tnote{$^{\\dagger}$free5GC: shipped cfg.}",
+  "new": "\\tnote{$^{\\dagger}$With the 10\\,s SMF heartbeat of \\texttt{free5gc/free5gc}. \\texttt{free5gc-compose}, which we ran, sets none: UPF rows $\\infty$.}",
+  "note": "Report confirmed. Two different 'shipped' configurations: free5gc/free5gc config/smfcfg.yaml has heartbeatInterval 10 s (fact F2b, give-up 22 s, bounds 27 / 37 / T_b+37), free5gc-compose omits the key (fact F2c, bound inf; delta_matrix.csv row 'stop (compose cfg)'). The testbed runs the compose configuration (testbed/free5gc/compose/config/smfcfg.yaml has no heartbeatInterval)."
+ },
+ {
+  "item": "6",
+  "file": "sections/appendix-eval.tex",
+  "old": "because the shipped configuration enables no PFCP heartbeat (Table~\\ref{tab:delta}).",
+  "new": "because the \\texttt{free5gc-compose} configuration we ran sets no SMF heartbeat interval. Table~\\ref{tab:delta} gives the bounds for the 10\\,s heartbeat of the \\texttt{free5gc/free5gc} configuration.",
+  "note": "Appendix C.16: says which configuration ran and which one Table 2 assumes."
+ },
+ {
+  "item": "6",
+  "file": "sections/appendix-reductions.tex",
+  "old": "and its SMF heartbeat is disabled unless configured, with the key absent from free5gc-compose.",
+  "new": "and its SMF heartbeat is disabled unless configured. The \\texttt{free5gc/free5gc} configuration sets a 10\\,s interval, which Table~\\ref{tab:delta} assumes, and \\texttt{free5gc-compose}, which our testbed runs, omits the key.",
+  "note": "Appendix A.3: same distinction at the place where the facts are introduced."
+ },
+ {
+  "item": "7",
+  "file": "presentation/tab_oracles_rerun.tex",
+  "old": "Persistent / all runs & 90/270 & 50 & \\\\",
+  "new": "Persistent / all runs & 90/270 & 48/50 & \\\\",
+  "note": "No numeric error: the Live. cells of the persistent rows sum to 48 and the footer 50 (= \\RrBtLiveFail) counts all 270 runs, including the 2 (= \\RrBtLiveFP) flags on runs where the proxy is clean. R1 and R3 describe the same numbers. The footer now shows both, in the same persistent / all form as the Runs cell. 48 has no macro (90 - \\RrBtLiveSilent = 48)."
+ },
+ {
+  "item": "7",
+  "file": "sections/appendix-eval.tex",
+  "old": "the liveness oracle flags 2 runs in which $\\Robs$ holds.",
+  "new": "the liveness oracle flags 2 runs in which $\\Robs$ holds, so the last row gives 48 flags on persistent runs and 50 over all runs.",
+  "note": "Table 13 note: explains the footer."
+ },
+ {
+  "item": "8",
+  "file": "sections/appendix-eval.tex",
+  "old": "The slower ``convergence'' at \\RrConvUpfMax\\,s in Fig.~\\ref{fig:conv} (Appendix) is the rejected re-registration of registration rejection (converged state with a failed procedure).",
+  "new": "Fig.~\\ref{fig:conv} plots $n{=}84$ UPF runs: these \\Rx{conv-upf-nonpers-n} and five runs that are violated at both checkpoints and converge later in the 180\\,s window, at 83.6 to \\RrConvUpfMax\\,s. That late ``convergence'' is the rejected re-registration of registration rejection (converged state with a failed procedure). The SMF curve ($n{=}52$) includes five such runs in the same way.",
+  "note": "Report confirmed as an unstated difference, not an error. From the coordinates in presentation/fig_conv_rerun.tex: UPF curve 84 points, 79 at or below 32.5 s and 5 at 83.56 to 86.67 s; SMF curve 52 = 47 non-persistent (90 - \\RrBtPersistSmf) + 5 at 86.55 to 86.73 s. 'five' and 83.6 are read from the figure data and have no macro."
+ },
+ {
+  "item": "9",
+  "file": "sections/appendix-eval.tex",
+  "old": "(AMF, surviving gNB: the main campaign's 54 runs; the later arms, such as SCP and graceful stop, are not included)",
+  "new": "(AMF, surviving gNB: the main campaign's 54 runs, that is 54 of the 90 runs of Table~\\ref{tab:oracles-p2}; the 36 runs of its two added seeds and the later arms, such as SCP and graceful stop, are not audited)",
+  "note": "Report confirmed. The audit rows sum to \\RrCpN = 381 = 270 + 54 + 16 + 14 + 18 + 9, so 36 of the 90 surviving-gNB AMF runs are outside it. 'two added seeds' is inferred from 18 schedules x 3 seeds = 54, from Appendix C.15 ('its runs from the first three seeds') and from the campaign list in generated-rerun/provenance.json (main-20261110, extra-20261111, amfp2x-20261112); the raw crash_points.csv is not retained."
+ },
+ {
+  "item": "10",
+  "file": "sections/07-evaluation.tex",
+  "old": "The original gNB aborts in \\Rx{int-amf-conf} AMF runs. Excluding confounded runs leaves \\Rx{int-unconf} endpoint-persistent observations (Table~\\ref{tab:oracles-rerun}).",
+  "new": "The original gNB aborts in \\Rx{int-amf-conf} AMF runs, \\Rx{int-amf-pers-conf} of the persistent ones among them. Excluding every run with an abort leaves \\Rx{int-unconf} endpoint-persistent observations. This is wider than the gNB-confounded label of Table~\\ref{tab:oracles-rerun}, which marks the \\Rx{tri-amfp1-gnb-k} runs with no other explanation, and it removes most of the \\Rx{silent-f12} orphan-session runs, which the surviving-gNB arm repeats (Table~\\ref{tab:oracles-p2}).",
+  "note": "Report confirmed: two scopes. int-amf-pers-conf = 34/36 persistent AMF runs had a gNB abort (run-level exclusion behind 56/183 = 90 - 34 over 270 - 87); tri-amfp1-gnb = 11/11 are the two former candidate rows (9 + 2) whose only explanation is the abort. Since int-unconf-amf = 2/3, at most 2 of the 5 orphan-session runs of this arm are without an abort."
+ },
+ {
+  "item": "10",
+  "file": "sections/appendix-eval.tex",
+  "old": "\\quad without gNB-confounded runs & \\Rx{s-bd-persistentunconfounded} & & \\Rx{s-ch-persistentunconfounded} & \\\\",
+  "new": "\\quad in runs without a gNB abort & \\Rx{s-bd-persistentunconfounded} & & \\Rx{s-ch-persistentunconfounded} & \\\\",
+  "note": "Table 22: the row is the run-level exclusion (macro rule: 'runs without gNB tool crash'), so it should not reuse the triage label."
+ },
+ {
+  "item": "10",
+  "file": "sections/appendix-eval.tex",
+  "old": "The AMF rows of the aborting-gNB arm are confounded in \\Rx{tri-amfp1-gnb} runs.",
+  "new": "The two AMF candidate rows of the aborting-gNB arm are confounded in \\Rx{tri-amfp1-gnb} runs: the gNB abort is their only explanation, and only they carry the gNB-confounded label of Table~\\ref{tab:oracles-rerun}. The gNB also aborted in other persistent AMF runs (\\Rx{int-amf-pers-conf} in all), which keep the triage of their mechanism. \\S\\ref{sec:rq3} excludes every run with an abort when it reports \\Rx{int-unconf}.",
+  "note": "Appendix C.15: defines both uses of 'confounded' where the 11 runs are introduced."
+ },
+ {
+  "item": "11",
+  "file": "sections/02-background.tex",
+  "old": "It also aborts when the AMF's Stream Control Transmission Protocol (SCTP) association drops. We patch the abort (\\S\\ref{sec:impl}), but make no claims about the RAN or physical layer.",
+  "new": "It can also abort when the AMF's Stream Control Transmission Protocol (SCTP) association drops during a procedure, though not at steady state (Appendix~\\ref{sec:app-rev-orphan}). We patch the abort (\\S\\ref{sec:impl}), but make no claims about the RAN or physical layer.",
+  "note": "Report confirmed: Section 2 is unconditional, while Section 6 ('can abort ... during a procedure'), Table 16 (87/90, not 90/90) and Appendix E.2 (no abort at steady state) are conditional."
+ },
+ {
+  "item": "12",
+  "file": "sections/07-evaluation.tex",
+  "old": "All \\Rx{ps-n} cut/interleaving schedules ran with \\Rx{ps-err} harness errors.",
+  "new": "All \\Rx{ps-n} cut/interleaving schedules, a third each with the SMF, AMF and UPF as victim, ran with \\Rx{ps-err} harness errors.",
+  "note": "228 = 3 x 76 (ps-smf-t1 = 9/76)."
+ },
+ {
+  "item": "12",
+  "file": "sections/07-evaluation.tex",
+  "old": "PCF faults also delete another UE's policy in \\Rx{pv-pol} schedules, without deleting its session (\\Rx{pv-sess}).",
+  "new": "A separate arm of \\Rx{pv-sched} schedules with the PCF as victim, outside the \\Rx{ps-n} above, deletes another UE's policy in \\Rx{pv-pol} of them and its session in none (\\Rx{pv-sess}).",
+  "note": "Report confirmed. The denominator exists as an unused macro: pv-sched = 76 (complete-eval-20261117/pcf_victim/pcf_chain.json), pv-pol = 10, pv-sess = 0."
+ },
+ {
+  "item": "13",
+  "file": "sections/07-evaluation.tex",
+  "old": "Replays use at least five runs except the steady-state restart with \\#4485 and minimised forms (three).",
+  "new": "Case replays use at least five runs. The steady-state restart with \\#4485, minimised forms, cross-UE ablations, determinism audits, downtime arms and the rebuilt-source and free5GC arms use three or four, as their denominators show.",
+  "note": "Report confirmed. Arms below five in the generated values: find-f5apr 3/3 and main-lazy-pr4485repaired 0/3 (listed); s-min-reps = 3 (listed); s-f11-abl-norestart-ue2loss and s-f11-abl-nonewsess-ue2loss 0/3; s-f11-chain3-head 3/3; s-a4-* three seeds per position; s-dt{5,15,30}-* 3/3; f7cp-nonetem-before 0/4; s-x-f5g-upf-valid = 4; v25-rb-base-res 3/3 and v25-rb-fix-res 0/4; v25-f5-{smf,upf,amf}-n = 3."
+ },
+ {
+  "item": "14",
+  "file": "sections/03-study.tex",
+  "old": "Using the retained first-pass labels, these checks would miss \\IssCrashMissPct\\% and \\IssKairosMissPct\\% of the sampled bugs, respectively (Table~\\ref{tab:taxonomy}).",
+  "new": "Using the retained first-pass labels, a crash-only check would miss \\IssCrashMissPct\\% of the sampled bugs (Table~\\ref{tab:taxonomy}). A service-failure check would miss \\Rx{iss-pers-agree-pct} to \\Rx{iss-pers-p1-pct}\\%, depending on the labels: \\Rx{iss-pers-p1-pct}\\% from first-pass symptoms, \\Rx{iss-pers-p2-pct}\\% by the second pass's direct judgement and \\Rx{iss-pers-agree-pct}\\% on the issues both passes include (Appendix~\\ref{sec:app-study}).",
+  "note": "Uses the macros of Appendix C.13 (58, 39, 32). \\IssKairosMissPct and iss-pers-p1-pct are the same value."
+ },
+ {
+  "item": "15",
+  "file": "sections/07-evaluation.tex",
+  "old": "Conjuncts without a numeric bound use fixed 33.8 and 67.6\\,s windows.",
+  "new": "Conjuncts without a numeric bound are sampled at two fixed times: \\DeltaUpfRestart\\,s, the UPF-restart bound $T_b{+}23.5$\\,s of Table~\\ref{tab:delta} at the largest measured UPF restart time (\\TbUpf\\,s), and twice that, 67.6\\,s.",
+  "note": "Derivation found: \\DeltaUpfRestart = 33.8 is computed in artifact/scripts/render.py lines 584-589 as 23.5 (delta_matrix.csv, Open5GS UPF restart, session correspondence and downlink consistency) + max T_b of the UPF (results/real/restart_times.csv: 10.29 and 10.214 s, macro \\TbUpf = 10.2--10.3); testbed/r5g/runner.py lines 14-16 hard-code SNAP_T = [5.5, 11.0, 26.0, 33.8, 36.0, 67.6]. The 33.5 of Table 2 is another bound (UPF crash-stop, reference validity: 23.5 + 10 s SBI timeout). 67.6 has no macro."
+ },
+ {
+  "item": "16",
+  "file": "sections/00-abstract.tex",
+  "old": "\\sys reproduces four known bugs, rediscovers a fifth and identifies four unconfirmed Open5GS candidates, all reported upstream.",
+  "new": "\\sys reproduces four known bugs, rediscovers a fifth and reports four Open5GS candidates upstream. The upstream tracker labels two of them bugs, the orphan-session report an enhancement and one not a bug. None is confirmed by an upstream reproduction or fix.",
+  "note": "Labels of the four core-campaign candidates as retrieved on 25 November: #5061 and #5064 type:bug, #5059 type:enhancement, #5063 not-an-open5gs-bug. All are open; their comments are automated pre-reviews by code reading."
+ },
+ {
+  "item": "16",
+  "file": "sections/01-introduction.tex",
+  "old": "We reproduce four known bugs, rediscover a fifth and report four unconfirmed Open5GS candidates (\\S\\ref{sec:rq2}).",
+  "new": "We reproduce four known bugs, rediscover a fifth and report four Open5GS candidates upstream (\\S\\ref{sec:rq2}). The upstream tracker labels two of them bugs, the orphan-session report an enhancement and one not a bug, and none is confirmed by an upstream reproduction or fix (\\S\\ref{sec:discussion}).",
+  "note": "Same statement as the abstract."
+ },
+ {
+  "item": "16",
+  "file": "sections/07-evaluation.tex",
+  "old": "Four core-campaign mechanisms remain unconfirmed candidates.",
+  "new": "Four core-campaign mechanisms are candidates that we reported upstream, with the labels listed under Table~\\ref{tab:case-ledger}. None is confirmed by an upstream reproduction or fix.",
+  "note": "Section 7.1, first paragraph."
+ },
+ {
+  "item": "16",
+  "file": "sections/07-evaluation.tex",
+  "old": "Four Open5GS candidates remain unconfirmed.",
+  "new": "Four Open5GS candidates are reported upstream, and none is confirmed there by a reproduction or fix.",
+  "note": "Answer to RQ1."
+ },
+ {
+  "item": "16",
+  "file": "sections/10-conclusion.tex",
+  "old": "Four Open5GS candidates remain unconfirmed.",
+  "new": "Of the four Open5GS candidates, upstream labels two bugs, the orphan sessions an enhancement and one not a bug, and none is confirmed by a reproduction or fix.",
+  "note": "Conclusion."
+ },
+ {
+  "item": "16",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "\\bottomrule\n\\end{tabular}\n\\end{table*}",
+  "new": "\\bottomrule\n\\end{tabular}\n\\tnote{Labels: bug \\#5061, \\#5064; enhancement \\#5059, \\#5065; \\texttt{not-an-open5gs-bug} \\#5063, \\#4988. None is confirmed upstream.}\n\\end{table*}",
+  "note": "Table 4 note. If the per-candidate standards table is placed in the main text, this note can instead point to it."
+ },
+ {
+  "item": "C",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "\\caption{Case inventory, evidence and obligation type. Status snapshot: 25 November 2026.}",
+  "new": "\\caption{Cases, evidence and the text each departs from (Table~\\ref{tab:standards}). Status snapshot: 25 November 2026.}",
+  "note": "Needs the new table (standards_table.tex, label tab:standards). Without it, keep the old caption."
+ },
+ {
+  "item": "C",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "Mechanism & Status & Strongest control or trace & Obligation type \\\\",
+  "new": "Mechanism & Status & Strongest control or trace & Departs from \\\\",
+  "note": "Column now uses the same three values as the standards table."
+ },
+ {
+  "item": "C",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "UPF retains failed SMF's sessions & Known \\#4877 & Pre/post-fix heartbeat cleanup & Conditional N4 cleanup \\\\",
+  "new": "UPF retains failed SMF's sessions & Known \\#4877 & Pre/post-fix heartbeat cleanup & Shall, conditional \\\\",
+  "note": "Table 4 row. TS 23.527 4.4.3.1 (shall; SMF unreachable for a preconfigured time, no MPAS/SSET)."
+ },
+ {
+  "item": "C",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "Restores releasing sessions & Known \\#4892 & Pre/post-fix restoration behavior & Recovery-state handling \\\\",
+  "new": "Restores releasing sessions & Known \\#4892 & Pre/post-fix restoration behavior & Author criterion \\\\",
+  "note": "Table 4 row. TS 23.527 4.3.2: restoration is a 'may'; no text says which sessions to restore."
+ },
+ {
+  "item": "C",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "OAI retains old SMF sessions & Known \\#41 & Same-base UPF fix \\#43 & Conditional N4 cleanup \\\\",
+  "new": "OAI retains old SMF sessions & Known \\#41 & Same-base UPF fix \\#43 & Shall, conditional \\\\",
+  "note": "Table 4 row. TS 29.244 6.2.6.2.2 (shall delete unless the retention IE is received)."
+ },
+ {
+  "item": "C",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "OAI reference-reuse deletion & Known \\#33 & Wire chain, SMF fix \\#34 & Resource identity \\\\",
+  "new": "OAI reference-reuse deletion & Known \\#33 & Wire chain, SMF fix \\#34 & Author criterion \\\\",
+  "note": "Table 4 row. No mandatory text forbids reuse; recoveryTime (TS 23.527 6.2.3) is optional. Agrees with Table 29."
+ },
+ {
+  "item": "C",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "Dangling establishment references & Rediscovered \\#4485 & SMF-loss trace, patch removes it & Author consistency rule \\\\",
+  "new": "Dangling establishment references & Rediscovered \\#4485 & SMF-loss trace, patch removes it & Shall, on repeated request \\\\",
+  "note": "Table 4 row. TS 24.501 5.4.5.2.5 a) 12): for an initial request on a PSI the AMF still holds, 'the AMF shall perform a local release of the PDU session'. Applicability to the T3580 retransmissions follows from the paper's own description but was not checked on captures; use 'Author criterion' here if that claim is not wanted in the main text."
+ },
+ {
+  "item": "C",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "Open5GS cross-UE deletion & Known \\#4988 & Wire chain, two ablations, patch & Resource identity \\\\",
+  "new": "Open5GS cross-UE deletion & Known report \\#4988 & Wire chain, two ablations, patch & Author criterion \\\\",
+  "note": "Table 4 row. Status 'Known report' follows the triage rule of Section 5 and separates it from the four reproduced known bugs (R3: five Known rows against 'four known bugs')."
+ },
+ {
+  "item": "C",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "Stalled release & Candidate \\#5063 & Missing T3592, release-state trace & NAS timer conditions \\\\",
+  "new": "Stalled release & Candidate \\#5063 & Missing T3592, release-state trace & Shall (T3592) \\\\",
+  "note": "Table 4 row. TS 24.501 6.3.3.2 and 6.3.3.5 a)."
+ },
+ {
+  "item": "C",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "Orphan UPF sessions & Candidate \\#5059 & Missing deletion, targeted repair & Author consistency rule \\\\",
+  "new": "Orphan UPF sessions & Candidate \\#5059 & Missing deletion, targeted repair & Should (TS 29.502) \\\\",
+  "note": "Table 4 row. TS 29.502 V18.12.0 5.2.2.2.1: 'the SMF should delete the existing SM context locally and any associated resources in the UPF, PCF, CHF, and UDM'. Verified against the ETSI text."
+ },
+ {
+  "item": "C",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "Reject-teardown race & Candidate \\#5064 & Same-UE signature, needs delay & Implementation teardown \\\\",
+  "new": "Reject-teardown race & Candidate \\#5064 & Same-UE signature, needs delay & Shall, if no Reject is sent \\\\",
+  "note": "Table 4 row. TS 24.501 6.4.1.4.1: 'The SMF shall send the PDU SESSION ESTABLISHMENT REJECT message.' Conditional because the signature is unreproduced (Table 31)."
+ },
+ {
+  "item": "C",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "Registration rejection & Candidate \\#5061 & Plain NAS cause 7 after 404 & Conditional NAS effect \\\\",
+  "new": "Registration rejection & Candidate \\#5061 & Plain NAS cause 7 after 404 & Author criterion \\\\",
+  "note": "Table 4 row. No mandatory text forbids the reject; the UE effect stays conditional (TS 24.501 5.3.20.2)."
+ },
+ {
+  "item": "C",
+  "file": "presentation/tab_case_ledger.tex",
+  "old": "Stuck policy context (extension) & Candidate \\#5065 & Timeout trace, control confounded & Author convergence rule \\\\",
+  "new": "Stuck policy context (extension) & Candidate \\#5065 & Timeout trace, control confounded & Author criterion \\\\",
+  "note": "Table 4 row. No clause found."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-eval.tex",
+  "old": "\\caption{Candidates, violated conjuncts, and the specification text each departs from.}",
+  "new": "\\caption{Candidates, violated conjuncts, and the closest specification text with its modal verb.}",
+  "note": "Table 24 caption: not every row departs from mandatory text."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-eval.tex",
+  "old": "TS~24.501 \\S6.3.3.5~\\cite{ts24501}: the SMF retransmits its PDU Session Release Command on T3592 and releases locally on the fifth expiry; the pinned SMF has no T3592.",
+  "new": "TS~24.501 \\S6.3.3.2 and \\S6.3.3.5~\\cite{ts24501}: the SMF shall start T3592 with its PDU Session Release Command, retransmit the command on expiry and abort the procedure on the fifth expiry; the pinned SMF has no T3592. The clause does not say that the abort releases the session.",
+  "note": "Correction the reviewers missed: V18.14.0 6.3.3.5 a) reads 'on the fifth expiry of timer T3592, the SMF shall abort the procedure', not 'release locally'. Table 29 already says 'abort'."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-eval.tex",
+  "old": "TS~29.501 \\S4.4.1~\\cite{ts29501}: a URI uniquely identifies a resource; the reused smContextRef names another UE's context, which the request then deletes.",
+  "new": "No mandatory text. TS~29.501 \\S4.4.1~\\cite{ts29501} states that a URI uniquely identifies a resource and does not forbid reuse after a restart. For lost contexts TS~23.527 \\S6.2.3~\\cite{ts23527} offers the optional \\texttt{recoveryTime} (``may''), which no pinned SMF sets. The reused smContextRef names another UE's context, which the request then deletes.",
+  "note": "R1 is right: 29.501 4.4.1 has no modal verb on reuse ('A URI uniquely identifies a resource.'); 23.527 6.2.1 calls the NRF procedures 'optional procedures that may be supported' and 6.2.3 says the profile 'may include the recoveryTime attribute'."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-eval.tex",
+  "old": "TS~24.501 \\S6.4.1.7~\\cite{ts24501}: for an initial request with a PSI already in use, the SMF ``shall locally release the existing PDU session''. Local release means no 5GSM signalling to the UE; it does not waive the N4 Session Release that releasing a session includes (TS~23.502 \\S4.3.4.2, step~2a~\\cite{ts23502}), and the pinned SMF sends none.",
+  "new": "TS~29.502 \\S5.2.2.2.1~\\cite{ts29502}: before it creates a context that collides with one of the same SUPI and PSI, the SMF ``should delete the existing SM context locally and any associated resources in the UPF, PCF, CHF, and UDM''; the pinned SMF sends no PFCP deletion, so it departs from this ``should''. TS~24.501 \\S6.4.1.7~\\cite{ts24501} adds that the SMF ``shall locally release the existing PDU session''. A local release omits signalling to the UE and ``can include communication among network entities''; the release procedure of TS~23.502 \\S4.3.4.2~\\cite{ts23502} includes the N4 Session Release (step~2a), but that text describes another procedure.",
+  "note": "The clause R1 suggested is verified against ETSI TS 129 502 V18.12.0 and its verb is 'should'. The 24.501 quote is verbatim (6.4.1.7 c)); the definition 'Local release' and its NOTE 6 are in 24.501 clause 3.1. So the behaviour departs from a 'should'; reading the 24.501 'shall' as requiring N4 deletion is an interpretation."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-eval.tex",
+  "old": "No clause names the race; the AMF keeps a PSI whose SM context the SMF cleared without the Reject.",
+  "new": "No clause names the race. If the SMF clears the session without the Reject, as the log signature indicates, it departs from TS~24.501 \\S6.4.1.4.1~\\cite{ts24501} (``The SMF shall send the PDU SESSION ESTABLISHMENT REJECT message''), and the AMF keeps a PSI whose SM context is gone. The reconstruction did not reproduce the signature (Table~\\ref{tab:reject-reconstruction}).",
+  "note": "Correction the reviewers missed: a 'shall' exists for sending the Reject. It is stated conditionally because the original traces are not retained and the reconstruction found 0/15."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-eval.tex",
+  "old": "It distinguishes explicit protocol obligations from the reject-teardown race, for which no clause names the behaviour and the claim rests on $\\Robs$ alone.",
+  "new": "Only the stalled release departs from a ``shall'' whose precondition our records establish. The orphan sessions depart from a ``should''. The reject-teardown race departs from a ``shall'' only if its unreproduced signature holds. Cross-UE deletion and the registration reject depart from no mandatory text and rest on our criteria (Table~\\ref{tab:standards}).",
+  "note": "Closing paragraph of Appendix C.24; needs label tab:standards."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-audit.tex",
+  "old": "We checked TS~23.527 V18.6.0 and TS~24.501 V18.14.0 directly~\\cite{ts23527,ts24501}.",
+  "new": "We checked TS~23.527 V18.6.0, TS~24.501 V18.14.0, TS~29.502 V18.12.0, TS~29.244 V18.10.0, TS~29.501 V18.7.0 and TS~23.502 V18.14.0 directly~\\cite{ts23527,ts24501,ts29502,ts29244,ts29501,ts23502}. Table~\\ref{tab:standards} gives the closest clause per case with its modal verb. Two of its rows are conditional. TS~24.501 \\S5.4.5.2.5 has the AMF release a PDU session locally when the UE sends an initial request for a PSI that the AMF still holds, which covers the dangling references if the T3580 retransmissions are such requests. TS~24.501 \\S6.4.1.4.1 has the SMF send the Establishment Reject, which covers the reject-teardown race if no Reject follows the signature. We did not check either condition on captures.",
+  "note": "The four added specifications were read from the ETSI PDFs on 25 November 2026 (hashes in standards_quotes.json)."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-audit.tex",
+  "old": "OAI old-SMF sessions, \\#41 & TS 23.527 \\S4.4.2.1, \\S4.4.2.2 &",
+  "new": "OAI old-SMF sessions, \\#41 & TS 29.244 \\S6.2.6.2.2; TS 23.527 \\S4.4.2.1, \\S4.4.2.2 &",
+  "note": "The direct clause for a repeated association setup is 29.244 6.2.6.2.2 ('otherwise, delete the PFCP sessions that were established with the existing PFCP association'). 23.527 4.2 tells a PFCP function to ignore the Recovery Timestamp in association messages, so 4.4.2.1 alone does not cover this path."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-audit.tex",
+  "old": "TS 23.527 \\S6.1 leaves SBI restoration unspecified. OAI's fix and Open5GS's rejection label are distinct facts.",
+  "new": "TS 23.527 \\S6.1 leaves SBI restoration unspecified, and the \\texttt{recoveryTime} of \\S6.2.3 is optional. TS 29.501 \\S4.4.1 does not forbid reuse after a restart. OAI's fix and Open5GS's rejection label are distinct facts.",
+  "note": "Table 29, reference-reuse row."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-audit.tex",
+  "old": "Orphan sessions, \\#5059 & Author session-correspondence criterion &",
+  "new": "Orphan sessions, \\#5059 & TS 29.502 \\S5.2.2.2.1 (should); TS 24.501 \\S6.4.1.7 &",
+  "note": "Table 29, orphan row: the governing provision is a 'should', not only an author criterion."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-audit.tex",
+  "old": "Reject teardown, \\#5064 & Author completion criterion &",
+  "new": "Reject teardown, \\#5064 & TS 24.501 \\S6.4.1.4.1 if no Reject is sent &",
+  "note": "Table 29, reject-teardown row."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-audit.tex",
+  "old": "Restoring releasing sessions, \\#4892 & TS 23.527 \\S4.3.2 &",
+  "new": "Restoring releasing sessions, \\#4892 & TS 23.527 \\S4.3.2 (may) &",
+  "note": "Table 29: 4.3.2 says the SMF 'may start restoring PFCP sessions'; nothing says which sessions to restore."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-audit.tex",
+  "old": "Dangling references, \\#4485 & Author consistency criterion &",
+  "new": "Dangling references, \\#4485 & TS 24.501 \\S5.4.5.2.5 on a repeated request &",
+  "note": "Table 29, to agree with Table 4 and the standards table. Keep 'Author consistency criterion' if the conditional clause is not wanted."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-audit.tex",
+  "old": "Registration reject, \\#5061 & TS 24.501 \\S5.3.20.2, \\S5.5.1.2.5 &",
+  "new": "Registration reject, \\#5061 & Author criterion for the AMF; UE effect in TS 24.501 \\S5.3.20.2, \\S5.5.1.2.5 &",
+  "note": "Table 29: the two clauses govern the UE's reaction to the reject. No mandatory text forbids the AMF's reject; 5.5.1.2.5 only requires 'an appropriate 5GMM cause value'."
+ },
+ {
+  "item": "C",
+  "file": "sections/appendix-cases.tex",
+  "old": "then has the SMF retransmit its Release Command on T3592 and release locally on the fifth expiry~\\cite{ts24501}.",
+  "new": "then has the SMF retransmit its Release Command on T3592 and abort the procedure on the fifth expiry~\\cite{ts24501}.",
+  "note": "Same T3592 correction as in Table 24."
+ },
+ {
+  "item": "extra",
+  "file": "sections/02-background.tex",
+  "old": "After a UPF restart, the UPF shall not immediately reuse F-TEIDs or UE IPs and shall not send GTP-U Error Indications for a configurable period.",
+  "new": "After a UPF restart, a UPF that allocates F-TEIDs or UE IPs shall not immediately reuse them, and the UPF shall not send GTP-U Error Indications for a configurable period.",
+  "note": "TS 23.527 4.3.2 starts with 'If F-TEID and/or UE IP address allocation is performed in the UPF'. Not raised by the reviewers."
+ },
+ {
+  "item": "D",
+  "file": "sections/09-related-work.tex",
+  "old": "Hatami et al.\\ classify OAI pod-kill faults from logs~\\cite{hatami2025chaos}.",
+  "new": "Hatami et al.\\ classify OAI pod-kill faults from logs~\\cite{hatami2025chaos}. Bonev maps 22 injected faults on Open5GS under Kubernetes, pod kills among them, to the telemetry signals that reveal them, without examining cross-NF bindings~\\cite{bonev2026faultatlas}.",
+  "note": "Verified against the thesis PDF (TU Delft repository, bachelor thesis, June 2026): Open5GS 2.7.5 on Kubernetes, UERANSIM, Chaos Mesh, 22 faults in eight classes, 40 signals; Section 4 states that crash faults 'recovered their orchestration and trace signals quickly but session-state gauges often did not'."
+ },
+ {
+  "item": "D",
+  "file": "references.bib",
+  "old": "@misc{open5gs4988,",
+  "new": "@mastersthesis{bonev2026faultatlas,\n  author       = {Boyan Bonev},\n  title        = {A Cross-Layer Fault Atlas for Cloud-Native {5G} Core Networks: Mapping Fault Classes to Observability Signals across Infrastructure, Orchestration, and Application Layers},\n  school       = {Delft University of Technology},\n  type         = {Bachelor's thesis},\n  address      = {Delft, The Netherlands},\n  month        = jun,\n  year         = {2026},\n  url          = {https://resolver.tudelft.nl/uuid:c5f4b0eb-2e6b-4636-8498-e26411274e5a}\n}\n\n@misc{open5gs4988,",
+  "note": "Inserts the entry before an existing one. Metadata from the repository record and the PDF title page (supervisors Nitinder Mohan and Sehan Samarakoon; CSE3000 Research Project; thesis dated 17 June 2026)."
+ }
+]

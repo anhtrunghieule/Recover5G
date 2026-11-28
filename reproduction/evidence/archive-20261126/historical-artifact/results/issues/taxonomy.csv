@@ -1,0 +1,14 @@
+root_cause,symptom,count
+lost-allocation-state,black-hole,1
+lost-allocation-state,crash,1
+identifier-reuse-aliasing,alias,1
+missing-cleanup-on-peer-failure,orphan,5
+missing-cleanup-on-peer-failure,dangling,7
+missing-cleanup-on-peer-failure,leak-exhaustion,5
+missing-cleanup-on-peer-failure,non-convergence,2
+stale-restoration,black-hole,1
+association-handling,orphan,1
+association-handling,non-convergence,2
+other,black-hole,1
+other,non-convergence,5
+other,crash,6

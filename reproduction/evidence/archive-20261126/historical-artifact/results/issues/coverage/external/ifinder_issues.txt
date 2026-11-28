@@ -1,0 +1,45 @@
+iFinder (Lin et al., "Understanding Implicit Trust Errors in Core Carrier Networks through
+Multi-Agent Flaw Discovery and Analysis", USENIX Security 2026; arXiv 2607.10315v2)
+-- 22 ground-truth GitHub security issues
+=======================================================================================
+SOURCE NOTE: The paper does NOT list the 22 issues; it only says (Sec. 3) "we gathered 22 security
+issues from two widely used open-source CN implementations, Open5GS and free5GC" and evaluates
+recall on them (Table 1: iFinder TP 15 / FN 7; EA built valid PoCs for 19/22).
+The list below is from the paper's official artifact (Open Science section):
+https://zenodo.org/records/20534406  -> iFinder_artifact-v4.tar.gz -> dataset/README.md
+(downloaded 2026-11-06). Titles/state/date from the GitHub API, 2026-11-06.
+
+All 22 are PFCP (N4) bugs; 20 in the UPF, 2 in the SMF; 17 open5gs + 5 free5gc entries.
+They map to 19 distinct GitHub URLs: open5gs#3207 ("Some assertions can be triggered") backs
+4 entries (005, 010, 011, 013); open5gs#3040 is a pull request (fix), not an issue.
+Oracle: crash (EA "only checks whether a PoC produces the expected runtime effect, which in the
+case of an FP, is always a crash").
+Patterns: PA = syntactic validation missing, PB = semantic invariant missing, PC = resource
+availability not checked.
+
+id | repo/issue | NF | CWE | pattern | GitHub title | state | opened
+OPEN5GS-PFCP-001 | open5gs/open5gs#3840 | UPF | CWE-121 | PA1 | [Bug]: Stack buffer overflow in ogs_ipfw_compile_rule() | closed | 2025-04-09
+OPEN5GS-PFCP-002 | open5gs/open5gs#2127 | UPF | CWE-617 | PA1 | [Bug]: pfcp crashed due to `ogs_pkbuf_pull` assertion failure | closed | 2023-03-03
+OPEN5GS-PFCP-003 | open5gs/open5gs#2523 | UPF | CWE-617 | PA1 | [Bug]: PFCP crashed du to `ogs_tlv_parse_msg: Assertion 'desc->child_descs[0]' failed.` | closed | 2023-08-17
+OPEN5GS-PFCP-005 | open5gs/open5gs#3207 | SMF | CWE-617 | PA1 | [Bug]: Some assertions can be triggered | closed | 2024-05-13
+OPEN5GS-PFCP-006 | open5gs/open5gs#3839 | UPF | CWE-121 | PA1 | [Bug]: Stack buffer overflow in ogs_pfcp_extract_node_id() | closed | 2025-04-09
+FREE5GC-PFCP-007 | free5gc/free5gc#496 | UPF | CWE-120 | PA1 | [Bugs] UPF crash caused by malformed PFCP messages whose Sequence Number is mutated to overflow bytes | closed | 2023-10-24
+OPEN5GS-PFCP-008 | open5gs/open5gs#3841 | UPF | CWE-476 | PA1 | [Bug]: Integer Overflow in ogs_pfcp_parse_sdf_filter() | closed | 2025-04-09
+OPEN5GS-PFCP-009 | open5gs/open5gs#3847 | UPF | CWE-125 | PA1 | [Bug]: Stack buffer overflow in ogs_pfcp_node_id_to_string_static() | closed | 2025-04-09
+OPEN5GS-PFCP-010 | open5gs/open5gs#3207 | UPF | CWE-617 | PA1 | [Bug]: Some assertions can be triggered | closed | 2024-05-13
+OPEN5GS-PFCP-011 | open5gs/open5gs#3207 | UPF | CWE-617 | PA1 | [Bug]: Some assertions can be triggered | closed | 2024-05-13
+FREE5GC-PFCP-012 | free5gc/free5gc#746 | UPF | CWE-120 | PA1 | [Bugs] Heap Buffer Overflow in UPF via Malformed PFCP Session Modification Request Causes UPF Crash | closed | 2025-11-28
+FREE5GC-PFCP-004 | free5gc/free5gc#483 | UPF | CWE-120 | PA2 | [Bugs] UPF crash caused by malformed PFCP messages whose 1st IE length is mutated to zero | closed | 2023-09-22
+OPEN5GS-PFCP-013 | open5gs/open5gs#3207 | UPF | CWE-617 | PB1 | [Bug]: Some assertions can be triggered | closed | 2024-05-13
+FREE5GC-PFCP-016 | free5gc/free5gc#482 | UPF | CWE-120 | PB1 | [Bugs] UPF crash caused by PFCP messages whose 2rd IE type larger than 0x7fff | closed | 2023-09-22
+OPEN5GS-PFCP-017 | open5gs/open5gs#3727 | UPF | CWE-617 | PB1 | [Bug]: UPF Crash: Setting pdn_type to 0 in PFCP Session Establishment Request causes UPF to crash | closed | 2025-02-15
+OPEN5GS-PFCP-018 | open5gs/open5gs#3747 | UPF | CWE-617 | PB1 | UPF crashes with crafted PFCP packet | closed | 2025-02-28
+OPEN5GS-PFCP-019 | open5gs/open5gs#3574 | UPF | CWE-617 | PB1 | [Bug]: UPF crashed due to Assertion Failure. | closed | 2024-11-14
+OPEN5GS-PFCP-020 | open5gs/open5gs#3642 | UPF | CWE-787 | PB1 | [Bug]: After multiple phone calls, upf will crash | closed | 2024-12-24
+OPEN5GS-PFCP-014 | open5gs/open5gs#2128 | UPF | CWE-617 | PB2 | [Bug]: PFCP crashed due to `ogs_pfcp_xact_find_by_xid` should not be reached assertion | closed | 2023-03-03
+OPEN5GS-PFCP-015 | open5gs/open5gs#3040 | SMF | CWE-416 | PB3 | [SMF,UPF] Avoid crash on sess. removal while waiting for PFCP reply | closed | 2024-03-06
+OPEN5GS-PFCP-021 | open5gs/open5gs#3964 | UPF | CWE-617 | PC1 | [Bug]: UPF Crash Due to Exceeding PFCP Session Limit | closed | 2025-07-01
+FREE5GC-PFCP-022 | free5gc/free5gc#17 | UPF | CWE-770 | PC1 | UPF crashing with `bufPool64 is empty` error. | closed | 2020-04-21
+
+Distinct URLs: open5gs#2127, #2128, #2523, #3040(PR), #3207, #3574, #3642, #3727, #3747, #3839, #3840, #3841, #3847, #3964; free5gc#17, #482, #483, #496, #746
+Note (judged from titles only): none of the 22 is an NF-restart / PFCP-association-recovery bug; all are crafted/malformed-input or resource-exhaustion crashes.

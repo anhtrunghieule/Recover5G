@@ -1,0 +1,1305 @@
+{
+"url": "https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-udr/issues?state=all",
+"fetched": "2026-11-05T18:24:44Z",
+"items": [
+{
+"id": 5006,
+"iid": 14,
+"project_id": 3305,
+"title": "UDR: shift in parsing of AM request",
+"description": "UDR: wrong parsing of AM request.\n- UDM \n```\n[2025-06-30 06:46:57.396] [udm_server] [debug] QueryString: plmn-id={\"mcc\":\"001\",\"mnc\":\"01\"}\n[2025-06-30 06:46:57.396] [udm_sdm] [debug] Handle Slice Selection Subscription Data Retrieval request\n[2025-06-30 06:46:57.396] [udm_sdm] [debug] Remote URI: http://oai-udr:8080/nudr-dr/v1/subscription-data/001010000000001/00101/provisioned-data/am-data\n[2025-06-30 06:46:57.396] [udm_client] [debug] Send a simple HTTP request\n[2025-06-30 06:46:57.396] [udm_sdm] [debug] HTTP response code 500\n[2025-06-30 06:46:57.396] [udm_sdm] [debug] Response from UDR: null\n[\n```\n- UDR\n```\n[2025-06-30 06:12:17.653] [udr_app] [info] [UE Id 001010000000001] Store the Authentication Status data of an UE\n[2025-06-30 06:12:17.653] [udr_db] [info] [UE Id 001010000000001] MySQL query: SELECT * FROM AuthenticationStatus WHERE ueid='001010000000001'\n[2025-06-30 06:12:17.653] [udr_db] [info] [UE Id 001010000000001] MySQL query: UPDATE AuthenticationStatus SET nfInstanceId='400346f4-087e-40b1-a4cd-00566953999d',success=1,timeStamp                 ='2025-06-30T04:12:17Z',authType='5G_AKA',servingNetworkName='5G:mnc001.mcc001.3gppnetwork.org',authRemovalInd=0 WHERE ueid='001010000000001'\n[2025-06-30 06:12:17.654] [udr_db] [info] [UE Id 001010000000001] AuthenticationStatus PUT: {\"authRemovalInd\":false,\"authType\":\"5G_AKA\",\"nfInstanceId\":\"400346f4-087e-40b1-a4cd-005669                 53999d\",\"servingNetworkName\":\"5G:mnc001.mcc001.3gppnetwork.org\",\"success\":true,\"timeStamp\":\"2025-06-30T04:12:17Z\"}\n[2025-06-30 06:12:17.654] [udr_app] [info] [UE Id 001010000000001] Successful stored the Authentication Status data\n[2025-06-30 06:12:17.654] [udr_server] [debug] HTTP Response code 204 (HTTP Version 2).\n\n[2025-06-30 06:12:17.669] [udr_server] [debug] QueryString:\n[2025-06-30 06:12:17.669] [udr_app] [info] [UE Id 00101] Retrieve the access and mobility subscription data of an UE (ID 00101)\n[2025-06-30 06:12:17.669] [udr_db] [debug] [UE Id 00101] Handle Query AM Data\n[2025-06-30 06:12:17.669] [udr_db] [debug] [UE Id 00101] SQL Query: SELECT * from AccessAndMobilitySubscriptionData WHERE ueid='00101' AND servingPlmnid=''\n[2025-06-30 06:12:17.669] [udr_db] [error] [UE Id 00101] No data available for AccessAndMobilitySubscriptionData!\n[2025-06-30 06:12:17.669] [udr_server] [debug] HTTP Response code 500 (HTTP Version 2).\n\n```\nBelow might be a fix:\n```\ndiff --git a/src/api_server/udr-http2-server.cpp b/src/api_server/udr-http2-server.cpp\nindex a6e1cd6..940fd2c 100644\n--- a/src/api_server/udr-http2-server.cpp\n+++ b/src/api_server/udr-http2-server.cpp\n@@ -122,11 +122,13 @@ void udr_http2_server::start() {\n             }\n             if (split_q[split_q.size() - 1].compare(NUDR_DR_AM_DATA) == 0) {\n               if (request.method().compare(\"GET\") == 0 && len == 0) {\n-                std::string ueId = split_q[split_q.size() - 3].c_str();\n+                std::string ueId = split_q[split_q.size() - 4].c_str();\n+                std::string servingPlmnId = split_q[split_q.size() - 3].c_str();\n                 std::string qs   = request.uri().raw_query;\n                 Logger::udr_server().debug(\"QueryString: %s\", qs.c_str());\n-                std::string servingPlmnId =\n-                    oai::utils::get_query_param(qs, \"servingPlmnId\");\n                 this->query_am_data_handler(ueId, servingPlmnId, response);\n               }\n             }\n\n```",
+"state": "opened",
+"created_at": "2025-06-30T12:42:52.850Z",
+"updated_at": "2025-06-30T12:42:52.850Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [
+"Bug",
+"v2.1"
+],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 11081,
+"username": "asergeev",
+"public_email": "",
+"name": "Andrew Sergeev",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/d284e8cf6435057e72b00357ce8b74145d8e0999dfc385e39029940c3986ad94?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/asergeev"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/14",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/14",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/14/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/14/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#14",
+"relative": "#14",
+"full": "oai/cn5g/oai-cn5g-udr#14"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4783,
+"iid": 13,
+"project_id": 3305,
+"title": "[Proposal] Support multiple NSSAIs for SessionManagementSubscriptionData",
+"description": "",
+"state": "opened",
+"created_at": "2024-11-04T12:37:01.863Z",
+"updated_at": "2024-11-04T12:37:10.713Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/13",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/13",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/13/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/13/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#13",
+"relative": "#13",
+"full": "oai/cn5g/oai-cn5g-udr#13"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4635,
+"iid": 12,
+"project_id": 3305,
+"title": "[Refactor] Move sbi model to common src",
+"description": "",
+"state": "closed",
+"created_at": "2024-06-05T21:07:42.401Z",
+"updated_at": "2024-06-17T08:24:14.689Z",
+"closed_at": "2024-06-17T08:24:14.674Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": {
+"id": 203,
+"iid": 3,
+"group_id": 9696,
+"title": "v2.1.0 Release",
+"description": "# Roadmap\r\n* Support of Location Service\r\n* Support of stateless NF for UDM/AUSF\r\n* Release of UDSF\r\n* QoS Support Control plane",
+"state": "closed",
+"created_at": "2023-09-15T12:00:47.574Z",
+"updated_at": "2026-05-06T09:03:03.088Z",
+"due_date": "2024-03-29",
+"start_date": "2023-12-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/3"
+},
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/12",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/12",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/12/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/12/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#12",
+"relative": "#12",
+"full": "oai/cn5g/oai-cn5g-udr#12"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4555,
+"iid": 11,
+"project_id": 3305,
+"title": "[Refactor] Sync with Common src for SBI helper",
+"description": "",
+"state": "closed",
+"created_at": "2024-03-19T13:32:51.954Z",
+"updated_at": "2024-06-10T11:35:27.749Z",
+"closed_at": "2024-06-10T11:35:27.744Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/11",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/11",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/11/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/11/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#11",
+"relative": "#11",
+"full": "oai/cn5g/oai-cn5g-udr#11"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4522,
+"iid": 10,
+"project_id": 3305,
+"title": "WEB GUI API Integration",
+"description": "think about how to integrate a web GUI for provisioning, either via UDR or PCF policy authorization\n\n@phine_stefan have a look at existing UDR provisioning API",
+"state": "closed",
+"created_at": "2024-03-07T10:21:54.628Z",
+"updated_at": "2026-03-17T11:13:25.977Z",
+"closed_at": "2026-03-17T11:13:25.830Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"5QOAI"
+],
+"milestone": {
+"id": 219,
+"iid": 4,
+"group_id": 9696,
+"title": "v2.2.0 Release",
+"description": "# Roadmap\r\n* Support of Branching Point\r\n* QoS Support for Control and Data Plane (e2e validation)\r\n* New NAS library for SMF\r\n* Support of LAN-type services (Ethernet PDU Session)\r\n\r\n# New proposals \r\n* Stefan 16.01.: Policy provisioning in UDR - Part of QoS, but not that time-critical",
+"state": "closed",
+"created_at": "2024-01-16T18:14:51.006Z",
+"updated_at": "2026-05-06T09:03:11.190Z",
+"due_date": "2025-03-31",
+"start_date": "2024-04-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/4"
+},
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "TASK",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": "2024-04-12",
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "task",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/10",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/10",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/10/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/10/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#10",
+"relative": "#10",
+"full": "oai/cn5g/oai-cn5g-udr#10"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4458,
+"iid": 9,
+"project_id": 3305,
+"title": "5QOAI - 5.3 PCF Policy Interface",
+"description": "* Implement interface and API endpoint for PCF policy provisioning",
+"state": "opened",
+"created_at": "2024-01-16T18:22:24.907Z",
+"updated_at": "2024-03-07T10:21:54.734Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [
+"5QOAI",
+"Feature"
+],
+"milestone": {
+"id": 219,
+"iid": 4,
+"group_id": 9696,
+"title": "v2.2.0 Release",
+"description": "# Roadmap\r\n* Support of Branching Point\r\n* QoS Support for Control and Data Plane (e2e validation)\r\n* New NAS library for SMF\r\n* Support of LAN-type services (Ethernet PDU Session)\r\n\r\n# New proposals \r\n* Stefan 16.01.: Policy provisioning in UDR - Part of QoS, but not that time-critical",
+"state": "closed",
+"created_at": "2024-01-16T18:14:51.006Z",
+"updated_at": "2026-05-06T09:03:11.190Z",
+"due_date": "2025-03-31",
+"start_date": "2024-04-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/4"
+},
+"assignees": [
+{
+"id": 11197,
+"username": "phine_lukas",
+"public_email": null,
+"name": "Lukas Rotheneder",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/2c9d8fa1dbd21ede6df11e312d4b47853462ea25666b713050a41ee0dd49425a?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_lukas"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 11197,
+"username": "phine_lukas",
+"public_email": null,
+"name": "Lukas Rotheneder",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/2c9d8fa1dbd21ede6df11e312d4b47853462ea25666b713050a41ee0dd49425a?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_lukas"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": "2024-04-19",
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/9",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/9",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/9/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/9/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#9",
+"relative": "#9",
+"full": "oai/cn5g/oai-cn5g-udr#9"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4457,
+"iid": 8,
+"project_id": 3305,
+"title": "5QOAI - 5.2 Policy Provisioning",
+"description": "* MySQL and MongoDB database schema and DB layer for storing policy information",
+"state": "opened",
+"created_at": "2024-01-16T18:21:28.900Z",
+"updated_at": "2024-03-21T10:54:14.190Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [
+"5QOAI",
+"Feature"
+],
+"milestone": {
+"id": 219,
+"iid": 4,
+"group_id": 9696,
+"title": "v2.2.0 Release",
+"description": "# Roadmap\r\n* Support of Branching Point\r\n* QoS Support for Control and Data Plane (e2e validation)\r\n* New NAS library for SMF\r\n* Support of LAN-type services (Ethernet PDU Session)\r\n\r\n# New proposals \r\n* Stefan 16.01.: Policy provisioning in UDR - Part of QoS, but not that time-critical",
+"state": "closed",
+"created_at": "2024-01-16T18:14:51.006Z",
+"updated_at": "2026-05-06T09:03:11.190Z",
+"due_date": "2025-03-31",
+"start_date": "2024-04-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/4"
+},
+"assignees": [
+{
+"id": 11197,
+"username": "phine_lukas",
+"public_email": null,
+"name": "Lukas Rotheneder",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/2c9d8fa1dbd21ede6df11e312d4b47853462ea25666b713050a41ee0dd49425a?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_lukas"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 11197,
+"username": "phine_lukas",
+"public_email": null,
+"name": "Lukas Rotheneder",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/2c9d8fa1dbd21ede6df11e312d4b47853462ea25666b713050a41ee0dd49425a?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_lukas"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": "2024-04-12",
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/8",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/8",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/8/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/8/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#8",
+"relative": "#8",
+"full": "oai/cn5g/oai-cn5g-udr#8"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4240,
+"iid": 7,
+"project_id": 3305,
+"title": "AuthenticationSubscription API returns \"null\" if user data is not found",
+"description": "# Issue\n* When querying an authentication subscription that does not exist, UDR returns \"null\" instead of `ProblemDetails`.\n\n# How to reproduce\n```\ncurl --location --request DELETE 'http://192.168.70.186:80/nudr-dr/v1/subscription-data/208950000000031/authentication-data/authentication-subscription'\n\n\ncurl --location --request GET 'http://192.168.70.186:80/nudr-dr/v1/subscription-data/208950000000031/authentication-data/authentication-subscription'\n\n```",
+"state": "opened",
+"created_at": "2023-09-26T08:13:21.073Z",
+"updated_at": "2023-09-26T08:13:21.073Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [
+"Bug"
+],
+"milestone": {
+"id": 203,
+"iid": 3,
+"group_id": 9696,
+"title": "v2.1.0 Release",
+"description": "# Roadmap\r\n* Support of Location Service\r\n* Support of stateless NF for UDM/AUSF\r\n* Release of UDSF\r\n* QoS Support Control plane",
+"state": "closed",
+"created_at": "2023-09-15T12:00:47.574Z",
+"updated_at": "2026-05-06T09:03:03.088Z",
+"due_date": "2024-03-29",
+"start_date": "2023-12-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/3"
+},
+"assignees": [],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/7",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/7",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/7/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/7/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#7",
+"relative": "#7",
+"full": "oai/cn5g/oai-cn5g-udr#7"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4197,
+"iid": 6,
+"project_id": 3305,
+"title": "Update UE info with update_authentication_subscription: only work with Sequence Number!",
+"description": "- Should be able to PATCH any field in UE info",
+"state": "opened",
+"created_at": "2023-08-29T13:29:24.418Z",
+"updated_at": "2023-08-29T13:29:24.418Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [
+"v2.0"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/6",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/6",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/6/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/6/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#6",
+"relative": "#6",
+"full": "oai/cn5g/oai-cn5g-udr#6"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4162,
+"iid": 5,
+"project_id": 3305,
+"title": "UDR configuration APIs: support HTTP/2",
+"description": "- Only support HTTP/1.1 for now",
+"state": "closed",
+"created_at": "2023-08-14T12:02:25.376Z",
+"updated_at": "2023-09-11T13:08:03.268Z",
+"closed_at": "2023-09-11T13:08:03.264Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/5",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/5",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/5/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/5/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#5",
+"relative": "#5",
+"full": "oai/cn5g/oai-cn5g-udr#5"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3992,
+"iid": 4,
+"project_id": 3305,
+"title": "Should use SUPI as the primary key for AuthenticationSubscription (or should update UEID with the same value as SUPI)",
+"description": "",
+"state": "closed",
+"created_at": "2023-01-25T08:28:25.751Z",
+"updated_at": "2025-07-15T13:12:04.079Z",
+"closed_at": "2025-07-15T13:12:04.076Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 2,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/4",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/4",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/4/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/4/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#4",
+"relative": "#4",
+"full": "oai/cn5g/oai-cn5g-udr#4"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3943,
+"iid": 3,
+"project_id": 3305,
+"title": "Bug in mysql or UDR when using test plmn 00101 PLMN does not work for static ip-address",
+"description": "",
+"state": "closed",
+"created_at": "2022-11-29T11:01:02.391Z",
+"updated_at": "2023-01-10T11:31:49.357Z",
+"closed_at": "2023-01-10T11:31:49.311Z",
+"closed_by": {
+"id": 1723,
+"username": "arora",
+"public_email": "sagar.arora@openairinterface.org",
+"name": "Sagar Arora",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/1723/avatar.png?v=1793891772",
+"web_url": "https://gitlab.eurecom.fr/arora"
+},
+"labels": [
+"Fix",
+"v1.5"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 1723,
+"username": "arora",
+"public_email": "sagar.arora@openairinterface.org",
+"name": "Sagar Arora",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/1723/avatar.png?v=1793891772",
+"web_url": "https://gitlab.eurecom.fr/arora"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/3",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/3",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/3/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/3/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#3",
+"relative": "#3",
+"full": "oai/cn5g/oai-cn5g-udr#3"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3864,
+"iid": 2,
+"project_id": 3305,
+"title": "Issue with SessionManagementSubscription table in the MySQL DB",
+"description": "SessionManagementSubscription table in the MySQL need to be updated to store multiple lines for a subscription",
+"state": "closed",
+"created_at": "2022-10-03T09:17:50.218Z",
+"updated_at": "2023-01-25T08:26:02.411Z",
+"closed_at": "2023-01-25T08:26:02.365Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/2",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/2",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/2/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/2/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#2",
+"relative": "#2",
+"full": "oai/cn5g/oai-cn5g-udr#2"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3572,
+"iid": 1,
+"project_id": 3305,
+"title": "HTTP response with \"Content Type: Application/Json\"",
+"description": "",
+"state": "closed",
+"created_at": "2022-01-03T17:04:20.656Z",
+"updated_at": "2023-01-25T08:26:17.641Z",
+"closed_at": "2023-01-25T08:26:17.592Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/work_items/1",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/1",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/1/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3305/issues/1/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3305",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#1",
+"relative": "#1",
+"full": "oai/cn5g/oai-cn5g-udr#1"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+}
+]
+}

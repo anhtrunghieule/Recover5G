@@ -1,0 +1,60 @@
+{
+ "n": 38,
+ "trigger": {
+  "immediate-restart": 9,
+  "crash-stop-downtime": 8,
+  "network-partition/unreachability-without-crash": 6,
+  "gnb-restart/NG-reset/SCTP-loss": 6,
+  "other": 6,
+  "nrf-restart": 2,
+  "association-resetup": 1
+ },
+ "failed_entity": {
+  "UPF": 11,
+  "SMF": 7,
+  "gNB": 6,
+  "other": 6,
+  "AMF": 4,
+  "NRF": 2,
+  "UDR": 1,
+  "UDM": 1
+ },
+ "n_faults_needed": {
+  "1": 35,
+  ">1": 3
+ },
+ "n_ues_needed": {
+  "1": 30,
+  ">2/pool-pressure": 6,
+  "2": 2
+ },
+ "in_original_fault_model": {
+  "no": 31,
+  "yes": 7
+ },
+ "in_extended_fault_model": {
+  "yes": 25,
+  "no": 13
+ },
+ "needs_timer_phase": {
+  "no": 29,
+  "yes": 9
+ },
+ "extended_only(yes_ext & no_orig)": 18,
+ "extended_via_judged_equivalence(trigger not itself in model)": [
+  "free5gc/free5gc#1162",
+  "free5gc/free5gc#1179",
+  "open5gs/open5gs#4833"
+ ],
+ "extended_strict(excluding judged-equivalence cases)": 22,
+ "outside_both": 13,
+ "outside_both_reasons(trigger)": {
+  "network-partition/unreachability-without-crash": 3,
+  "other": 6,
+  "immediate-restart": 2,
+  "association-resetup": 1,
+  "crash-stop-downtime": 1
+ },
+ "in_original_and_single_ue": 6,
+ "in_extended_and_single_ue": 21
+}

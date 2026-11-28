@@ -1,0 +1,440 @@
+# Recover5G artifact
+
+This folder is the reproducibility artifact for the MobiSys 2027 paper **Recover5G: Understanding Residual State after 5G Core Restarts**.
+
+It holds the measurement harness, the experiment recipes, the per-run records with their captures and logs, the evaluators, the scripts that turn records into every number of the paper, and the container images of the systems under test. It does not hold the manuscript.
+
+There are two ways to use it.
+
+1. **Quick check.** It runs offline on any machine with Python 3.9 or newer. It regenerates the paper's numbers, figure data and generated tables from the included records and compares them with the paper. It takes about 2 seconds, or about 2 minutes with `--from-raw`.
+2. **Full reproduction.** It reruns the experiments on an arm64 Linux Docker engine. Each experiment takes between 20 minutes and 10 hours of wall time.
+
+Contents:
+
+1. [What the artifact contains](#1-what-the-artifact-contains)
+2. [Claims and experiments](#2-claims-and-experiments)
+3. [Requirements](#3-requirements)
+4. [Quick check](#4-quick-check)
+5. [Setup for full reproduction](#5-setup-for-full-reproduction)
+6. [Full reproduction, one experiment at a time](#6-full-reproduction-one-experiment-at-a-time)
+7. [Directory layout](#7-directory-layout)
+8. [Data provenance](#8-data-provenance)
+9. [Known limitations and deviations](#9-known-limitations-and-deviations)
+10. [Known traps](#10-known-traps)
+11. [Licenses](#11-licenses)
+
+## 1. What the artifact contains
+
+| Part | Folder | Content |
+|---|---|---|
+| Quick check | `check_values.py`, `expected/` | The checker script. `expected/paper_values.json` and `.csv` list every number the paper typesets from a generated macro (2,139 `\Rx` keys and 69 named macros), plus figure data and generated table rows. |
+| Revision workspace | `workspace/` | The experiments of 25 to 27 November 2026 that the paper reports: harness, recipes, records, captures, logs, evaluators, analyses and macro generators. Its layout is the one the scripts expect, so they run in place. |
+| Earlier package | `reproduction/` | The reproduction package of 26 November 2026. It holds the arm64 image archive, image and package manifests, the frozen 26 November evidence (main-campaign replay, reject-teardown reconstruction, accumulation chains, historical artifact with the issue study and timer facts), the fresh-validation cohort and its blank assessment packet. It has its own `README.md` and `RELEASE-MAP.md`. |
+| Environment | `environment/` | `pins.json` with every commit, image tag and image ID. `f12-repair.diff` is the orphan-session repair. |
+| Tools | `tools/extract_expected.py` | The script that produced `expected/` from the manuscript sources. Reviewers do not need it. |
+| Provenance | `MANIFEST.sha256` | SHA-256 of every file in this folder. |
+
+Two terms recur below. A **recipe** is a controlled fault sequence repeated a few times, such as the orphan-session recipe. A **cohort** is a set of runs fixed by a design file written before its first run, such as the clean rerun. Every cohort folder under `workspace/results/raw/` holds one JSON record per run (`*.jsonl`), the capture of each run (`pcap/*.pcap.gz`), the NF logs (`logs/`) and, for the cohorts of 26 and 27 November, a `DESIGN.md` with the hypotheses, run counts and exclusion rules fixed in advance and the outcomes recorded afterwards.
+
+## 2. Claims and experiments
+
+Paths in this section are relative to `workspace/` unless they start with `reproduction/`. The **recipe** column names the script under `testbed/exp/` and the job file that ran it. The **analysis** column names the evaluator that turns records into a summary and the generator that turns the summary into `\Rx` macros. Macro prefixes identify the keys in `expected/paper_values.csv`. All generators are run by `check_values.py`.
+
+### Main paper
+
+| Paper item | Recipe and job | Data | Analysis (evaluator, then generator) | Expected outcome (paper) |
+|---|---|---|---|---|
+| Figure 1 (overview) and Figure 2 (architecture) | Illustrations. Figure 1 depicts the mechanism measured in Table 4. Figure 2 depicts `testbed/r5g/`. | none | none | none |
+| Table 1, what each check reads | `testbed/r5g/observe.py`, `oracle.py` | none | none | Descriptive |
+| RQ3, replacement repair and cleanup; **Table 4**, rows `e85748e`, repair, no fault | `orphan_repl.py`, `orphan_oai.py`; `job_orphan.sh`, `job_orphan_oai2.sh` | `results/raw/orphan`, `orphan-oai` | `orphan_eval.py`, `wire_truth.py`, `orphan_ref_eval.py`, then `paper/gen_macros.py` (`v25-or-*`) | Residue 15/15 on `e85748e`, 0/15 with the repair, new sessions work 15/15 in both, old sessions deleted on the wire 0/15 and 15/15, no fault 12/12 clean |
+| Table 4, upstream pre-fix and fix rows | `orphan_repl.py` inside `job_upfix.sh` | `results/raw/upfix/orphan` | `orphan_eval.py`, then `paper/gen_macros_rev27.py` (`uo-*`) | `ce6444f` residue 5/5, `097162c` residue 0/5, old deleted 0/5 and 5/5 |
+| RQ1, UE-driven recovery reaches the mechanism (74 of 96 UE-cycles, 8 to 10 UPF sessions after six restarts, 5 to 6 without SMF context, fixed build matches in every cycle) | `organic.py`; `job_organic.sh`, `job_organic2.sh` | `results/raw/organic`, `organic2` | `organic_eval.py`, then `paper/gen_macros_rev28b.py` (`og-*`); packet analysis `analysis-r3/scripts/item45_*.py` on `analysis-r3/decode/`, then `paper/gen_macros_rev29.py` (`a3-st4-*`, `a3-pr-*`) | As in the text; Appendix tables "Organic recovery chains", "PDU session status", "Failed new-session probes" |
+| RQ1, free5GC index loss (10 of 10 deletions, 16 UPF sessions in 3 chains, 4 to 5 without fault, 4 with SMF v4.3.0, UDR 24 to 25 subscriptions) | `f5g_orphan.py`; `job_f5g_orphan.sh`, `job_f5g_orphan_fix.sh` | `results/raw/f5g-orphan` | `f5g_orphan_eval.py` (needs the tshark image), then `paper/gen_macros_f5g.py` (`f5-*`) | Appendix table "free5GC v4.0.1 after AMF restarts" |
+| RQ1, interpreting a flag (liveness passes 43 of 111 persistent clean-rerun runs, 18 keep disagreement after next use) | `clean3.py`; `job_clean3.sh` | `results/raw/clean3` | `analysis-r1/scripts/clean3_eval.py`, then `paper/gen_macros_rev28.py` and `gen_macros_rev28b.py` (`c3-*`) | Appendix table "Clean rerun" |
+| RQ2, **Figure 3a** and appendix table "Exhaustion of a UPF sized for four UEs" (fails at cycle 4 in 5 of 5 chains, 0 of 10 with repair or no fault) | `impact_exhaust.py`; `job_impact.sh` | `results/raw/impact` | `impact_eval.py`, then `paper/gen_macros_rev26.py` (`im-a-*`, `fig_exhaust_data.tex`) | Series 4, 8, 12, 16, 16 before the fix; 4 throughout with repair |
+| RQ2, UE-driven chains with a small UPF (rejects at cycle 10 or 11 in 3 of 3, none on the fixed build) | `organic.py`; `job_organic2.sh` | `results/raw/organic2` | as for the organic chains | As in the text |
+| RQ2, 1,000 UEs at default limits (918 to 943 orphans, UDM full at restart 2 in 6 of 6, 793 to 887 rejected), appendix table "Thousand-UE chains", **Figure 3c** | `scale.py`; `job_scale.sh` | `results/raw/scale` | `scale_eval.py`, then `paper/gen_macros_rev28b.py` (`sc-*`, `fig_scale_data.tex`, `tab_scale_chains.tex`) | As in the text |
+| RQ2, UDM limit raised (UPF reaches 4,096 at restart 4, no rejection in six restarts), appendix table "UDM limit raised" | `scale.py --udm-max-ue 8192`; `job_scale_udm.sh` | `results/raw/scale` | as above (`sc-udm8192-*`, `tab_scale_udm_chains.tex`) | 4 of 4 valid pinned chains, including the capture chain of follow-up C; 2 fixed-build chains |
+| RQ2, PFCP capture of one UDM-raised chain (follow-up C in `results/raw/scale/DESIGN.md`) | `scale.py --udm-max-ue 8192 --pcap` | `results/raw/scale/pcap/`, `tmp/est.tsv` | `scale_pcap_seid.py` | 6,773 establishments, all accepted; first 4,096 distinct CP F-SEIDs; all 2,677 later ones reuse a never-deleted F-SEID. Cited in the main text and the required appendix (`sc-pcap-accepted`, `sc-pcap-requests`, `sc-pcap-before-sat-requests`, `sc-pcap-after-sat-requests`, generated by `gen_macros_rev28b.py` from `pcap_seid_summary.json`). |
+| RQ2, **Figure 3b** (free5GC 16 sessions with SMF v4.0.1, 4 with v4.3.0) | as for free5GC | `results/raw/f5g-orphan` | coordinates are typed in the figure and equal `f5-q3-*` and `f5-q3fix-*` | 16 and 4 |
+| RQ2, stale tunnels (200 of 200 packets into an orphan tunnel, 400 of 400 to another UE), appendix tables "Downlink to a reissued address" and "to a freed address" | `impact_reuse.py`; `job_impact.sh` | `results/raw/impact` | `impact_eval.py`, then `gen_macros_rev26.py` (`im-b-*`) | As in the text |
+| RQ3, upstream fixes before and after, appendix table "Open5GS before and after the upstream fixes" (persistent 67 and 66 of 162, cause-7 rejects 6 and 0) | `upfix.py`, `orphan_repl.py`; `job_upfix.sh` | `results/raw/upfix` | `upfix_eval.py`, then `gen_macros_rev27.py` (`uf-*`, `uo-*`) | As in the table |
+| RQ3, reject-teardown race not reproduced (0 of 15), appendix table "Reject-teardown reconstruction" | `reproduction/evidence/archive-20261126/accumulation/audit/testbed/exp/reject_reconstruction.py` | `reproduction/evidence/archive-20261126/accumulation/results/reject-worker*` | `accumulation/scripts/score_reject.py` | Fired 5/5, signature 0/5, persistent 0/5 in each of three delay arms |
+| Table 5, case ledger | Rows marked with a dagger come from the earlier campaign | `reproduction/evidence/archive-20261126/historical-artifact/results/real/` | Descriptive | Not regenerated |
+| Threats, cohort tables ("Cohorts", "Cohorts of section 7") | all cohorts | all of `results/raw` | keys from every generator (`a1-i1-*`, `c3-runs-*`, `mn-p-*`, `og-chains-*`, `sc-chains-*`, `t2-runs-*`, `uf-runs-*`, `v25-ho-*`) | As in the tables |
+
+### Required appendix
+
+| Paper item | Recipe and job | Data | Analysis | Notes |
+|---|---|---|---|---|
+| "Check against the reference, per cohort", "Parts of the check", "Persistent main-campaign runs by signature" | `main_rerun.py` (`job_main_rerun.sh`), `heldout.py`, `timing.py`, `timing2.py`, `clean3.py` | `results/raw/{main,heldout,timing,timing2,clean3,idref}` | `idref_eval.py`, `analysis-r1/scripts/build_runs.py`, `item1_checkers.py`, `item2_reference.py`, `item345.py`, then `gen_macros_rev28.py` (`a1-*`) and `gen_macros_rev29.py` (`a3-*`) | Identity reference rules: `results/raw/idref/IDREF.md` |
+| "Clean rerun: three arms, no delay" | `clean3.py` | `results/raw/clean3` | `clean3_eval.py`, `gen_macros_rev28b.py` | Boundary 59 of 162, random 52 of 162, control 0 of 24 |
+| "Conditional per-conjunct recovery budgets" (Table delta), "References per procedure" (Table reduction) | historical artifact | `reproduction/evidence/archive-20261126/historical-artifact/results/{timers,reduction}` | `historical-artifact/scripts/render.py` | 133 source facts with permalinks in `results/timers/`. Data rows are compared by the quick check. |
+| "Design files: hash, last change and first run" | none | every `DESIGN.md` | `analysis-r3/scripts/item8_provenance.py`, `gen_macros_rev29.py` (`a3-pv-*`) | Uses file modification times. Copy the artifact with a tool that keeps them. |
+| Organic, thousand-UE and free5GC tables | see main paper rows | | | |
+| "Orphan sessions on the documented host", "Held-out runs against the trace reference" | `orphan_repl.py`, `orphan_oai.py`, `heldout.py` | `results/raw/{orphan,orphan-oai,orphan-rebuild,heldout}` | `orphan_eval.py`, `wire_truth.py`, `heldout_eval.py`, `gen_macros.py` (`v25-*`) | The held-out convergence maximum (33.05 s) comes from `generated-audit/corrections.tex`, which the quick check recomputes. |
+| Identity reference tables and rules | `idref_*.py` | `results/raw/idref` | `idref_eval.py`, `gen_macros_rev26.py` (`id-*`) | Mutation and self-check reports beside the data |
+| Impact tables | `impact_exhaust.py`, `impact_reuse.py` | `results/raw/impact` | `impact_eval.py`, `gen_macros_rev26.py` | |
+| "Limits on misses and false alarms by unit", "Count rule without dump access" | | analysis records | `analysis-r3/scripts/item23.py`, `gen_macros_rev29.py` (`a3-cl-*`, `a3-cnt-*`) | |
+| Adjudication sample | `analysis-r1/scripts/item8_sample.py` | none | | No independent labels exist. The filled sample and its key are not distributed. |
+| "Four delay settings, three seeds each" | `timing2.py`; `job_timing2.sh` | `results/raw/timing2` | `timing2_eval.py`, `gen_macros_rev27.py` (`t2-*`), `gen_macros_rev29.py` (`a3-delay3-*`) | Persistent 91, 58, 67, 78 of 162 |
+| "Open5GS before and after the upstream fixes" | `upfix.py` | `results/raw/upfix` | `upfix_eval.py`, `gen_macros_rev27.py` | |
+| "Closest 3GPP text for each case" (Table standards) | none | `consistency/standards_quotes.json` | none | Manual reading of TS 23.527, 24.501, 29.502 and others. Not regenerated. |
+| Clock evidence and units of analysis (fresh cohort) | `reproduction/testbed/exp/validation_campaign.py` | `reproduction/evidence/validation-20261126/` | `reproduction/render_validation.py` | Table rows compared by the quick check |
+| Issue-study screening audit (`v25-is-*`) | `issues-audit/scripts/01_flow.py` to `10_selfcheck.sh` | `issues-audit/data`, `issues-audit/labels` | `gen_macros.py` | Labels were assigned by an AI assistant under `scripts/labelling_protocol.txt`. No human verified them. |
+
+### Supplementary appendix (`extra.pdf`)
+
+Most supplementary numbers come from the same generators. Three groups cannot be regenerated here. They are listed in section 9.
+
+### Experiment in the artifact that the current manuscript does not cite
+
+* **Kill timing** (`killtime.py`, `job_killtime.sh`, `results/raw/killtime`, `killtime_eval.py`). It varies only the delay between the trigger line and the kill (0, 5, 20 ms; 60 runs). Persistent 4, 9 and 18 of 20; 31 of 31 runs killed after the AMF sent the accept are persistent and 0 of 29 before. `gen_macros_rev28b.py` emits these as `kt-*`, but no `\Rx{kt-...}` appears in the manuscript. The paper's account of kill timing (`a3-st-*`) is read from the delay and clean-rerun records instead.
+
+## 3. Requirements
+
+### Quick check
+
+* Python 3.9 or newer, standard library only (tested with 3.9.6, 3.10 and 3.15). Any operating system with a POSIX shell.
+* 3 GB free disk for the working copy with `--from-raw`, 100 MB without.
+* No Docker, no network.
+
+### Full reproduction
+
+* **Host.** Apple Silicon Mac with Colima, or an arm64 Linux host with Docker Engine and the Compose plugin. The paper's runs used an Apple M5 Max with 64 GiB, Colima 0.10.3 with Apple Virtualization, and Ubuntu 24.04 guests with kernel 6.8.0-117. An x86-64 host would need every image rebuilt for amd64. That path is untested.
+* **Kernel features in the Docker VM.** SCTP (`modprobe sctp`) for NGAP. `/dev/net/tun` for UERANSIM and OAI UEs. The `gtp5g` 0.9.14 kernel module for free5GC's UPF (tarball in `workspace/free5gc/`). Root in the VM for the kill placer (`testbed/r5g/placer.py` runs through `colima ssh ... sudo`).
+* **Shared path.** The harness mounts configuration files from the host into containers and runs the placer from the host path inside the VM. Keep the artifact under your home folder, which Colima mounts at the same path.
+* **Network** for pulling free5GC and OAI images and for building the images that are not in the archive (section 5, step 4).
+* **Python 3.9 or newer** on the host, standard library only. `caffeinate` (macOS) only to keep the host awake.
+
+| VM (Colima profile used in the job files) | vCPU, RAM | Disk | Experiments |
+|---|---|---|---|
+| `r5g-claude` | 6, 12 GiB | 100 GiB | main rerun, held-out, delay (one and three seeds), clean rerun, kill timing, orphan and cross-UE recipes |
+| `r5g-claude-ran` | 4, 8 GiB | 100 GiB | OAI RAN, free5GC control and orphan chains (gtp5g), from-source rebuild, before and after fixes, organic chains, impact |
+| `r5g-claude-big` | 8, 16 GiB | 100 GiB | thousand-UE chains |
+| `r5g-reproduction` | 4, 4 to 8 GiB | 35 GiB | earlier package: orphan smoke test, fresh-validation cohort, replays |
+
+The disk sizes allow for VM image growth (section 10). The artifact itself is about 2 GB.
+
+## 4. Quick check
+
+```sh
+cd artifact
+python3 check_values.py                 # about 2 s
+python3 check_values.py --from-raw      # about 2 min
+```
+
+The quick mode copies `workspace/` to `out/work/` and runs every macro generator on the included summary files. It also recomputes the convergence correction, reruns the historical artifact's `render.py`, rescores the reject-teardown reconstruction and re-renders the fresh-validation table. `--from-raw` first reruns 47 offline evaluators and analyses on the per-run records: orphan, cross-UE, held-out and delay evaluators, the trace reference (`wire_truth.py`), the identity reference on cached decodes (`idref_eval.py --no-decode`), the main, impact, delay, before-and-after, organic, thousand-UE, PFCP and kill-timing evaluators, the clean-rerun scoring, and the analyses in `analysis-r1/` and `analysis-r3/` (including the parse of the decoded organic captures, about 60 s).
+
+Every step runs on the copy. `docker`, `pmset`, `colima`, `tshark` and `caffeinate` are replaced by stubs that fail, so no step can reach a container runtime or the host's power log. Outputs:
+
+* `out/quickcheck_summary.txt`: counts and every difference.
+* `out/quickcheck_report.json`: one entry per paper value with expected and obtained values, plus the steps with their logs.
+* `out/generated/<generator>/`: the regenerated macro files.
+
+The exit status is 0 when every regenerable value matches. Expected outputs from the authors' runs are in `expected/sample-output/`.
+
+### Expected result
+
+Quick mode, as run on 28 November 2026:
+
+```
+Regenerable paper values: 1706 of 1706 match
+Figure data and generated tables: 43 of 43 match
+Not regenerated: 485 values of the earlier rerun campaign, 17 values of the machine-reader experiment
+```
+
+With `--from-raw`, 1690 of 1706 values match and 43 of 43 figure and table checks match. The 16 differences are explained in section 9. Of the 884 values in the main paper (877 `\Rx` keys and 7 named macros), 880 are regenerable and all 880 match in quick mode.
+
+## 5. Setup for full reproduction
+
+Commands run from the artifact folder unless noted. Never change the global Docker context; every script passes `DOCKER_CONTEXT` or `--context` itself.
+
+**Step 1. Create the VMs.** With Colima, use separate profiles and `--activate=false`:
+
+```sh
+colima start r5g-claude     --arch aarch64 --vm-type vz --cpu 6 --memory 12 --disk 100 --activate=false
+colima start r5g-claude-ran --arch aarch64 --vm-type vz --cpu 4 --memory 8  --disk 100 --activate=false
+colima start r5g-claude-big --arch aarch64 --vm-type vz --cpu 8 --memory 16 --disk 100 --activate=false
+for p in r5g-claude r5g-claude-ran r5g-claude-big; do colima ssh -p $p -- sudo modprobe sctp; done
+```
+
+On arm64 Linux without Colima, create Docker contexts with the same names (`colima-r5g-claude` and so on) or edit `DOCKER_CONTEXT` in the job files. The kill placer calls `colima ssh -p <profile>`. Without Colima, replace that call in `testbed/r5g/place.py` with a root shell on the Docker host.
+
+**Step 2. Verify the package and load the archived images** into each context that needs them:
+
+```sh
+python3 reproduction/reproduce.py verify
+python3 reproduction/reproduce.py load --context colima-r5g-claude
+python3 reproduction/reproduce.py load --context colima-r5g-claude-ran
+python3 reproduction/reproduce.py load --context colima-r5g-claude-big
+```
+
+`load` imports `r5g/open5gs:e85748e`, `r5g/open5gs:e85748e-f12repair`, `r5g/open5gs-build:base`, `r5g/ueransim:4f45e18-p2`, `r5g/tshark:1` and `mongo:7.0`, then checks each image ID against `reproduction/manifests/images.json`.
+
+**Step 3. Generate the stack configurations.** Each stack (instance 1 to 8) has its own compose file and addresses:
+
+```sh
+cd workspace/testbed && for i in 1 2 3 4 5 6 7 8; do python3 inst.py gen $i; done
+```
+
+The generated files for the runs reported in the paper are already in `testbed/inst/`.
+
+**Step 4. Build or obtain the images that are not in the archive.**
+
+```sh
+D=workspace/testbed/docker
+# Toolchain image for upstream builds. The runs used a from-source rebuild (workspace/build/rebuild/job_rebuild.sh).
+# Retagging the archived build image is a documented shortcut: same commit and toolchain, different build date.
+docker --context colima-r5g-claude-ran tag r5g/open5gs-build:base r5g-rebuild/open5gs-build:e85748e
+for c in ce6444f1b0a776843e78320b13a41fb39bf5ed9c 097162c4225bdb3d86ab17eb5119a0aae15c5490; do
+  docker --context colima-r5g-claude-ran build -f $D/open5gs/Dockerfile.upstream --build-arg OPEN5GS_COMMIT=$c \
+    -t r5g/open5gs:${c:0:7} $D/open5gs
+done
+# UERANSIM with the gNB that redoes NG Setup, under the tag used by the organic, scale, impact and free5GC runs.
+docker --context colima-r5g-claude-ran tag r5g/ueransim:4f45e18-p2 r5g-rebuild/ueransim:4f45e18-p2
+# Stock UERANSIM gNB (main rerun, stock-gNB arms): build from source.
+docker --context colima-r5g-claude build -f $D/ueransim/Dockerfile -t r5g/ueransim:4f45e18 $D/ueransim
+docker --context colima-r5g-claude tag r5g/ueransim:4f45e18 r5g/ueransim:4f45e18-p1
+# free5GC and OAI
+for nf in nrf amf ausf nssf pcf smf udm udr chf webui upf; do docker --context colima-r5g-claude-ran pull free5gc/$nf:v4.0.1; done
+docker --context colima-r5g-claude-ran pull free5gc/smf:v4.3.0
+docker --context colima-r5g-claude-ran pull oaisoftwarealliance/oai-gnb:2025.w40
+docker --context colima-r5g-claude-ran pull oaisoftwarealliance/oai-nr-ue:2025.w40
+```
+
+Copy or load the images into every context whose job files use them (`docker save | docker --context ... load`). The build logs of the images used in the paper are in `workspace/results/raw/upfix/build-logs/`. Their short IDs are in `environment/pins.json`. A rebuild gets a different image ID. `/COMMIT` inside each image names its source commit and patches.
+
+**Step 5. Build and load gtp5g in the free5GC VM** (again after every VM restart):
+
+```sh
+cp workspace/free5gc/gtp5g-v0.9.14.tar.gz ~/ && colima ssh -p r5g-claude-ran -- sh -c '
+  sudo apt-get install -y build-essential linux-headers-$(uname -r) &&
+  tar xzf ~/gtp5g-v0.9.14.tar.gz -C /tmp && cd /tmp/gtp5g-0.9.14 && make && sudo make install && sudo modprobe gtp5g'
+```
+
+**Step 6. Environment.** Job files compute the workspace path from their own location. You can override it with `R5G_WORKSPACE`. `workspace/env.sh` sets `DOCKER_CONTEXT` (default `colima-r5g-claude`), `UERANSIM_IMAGE` and `R5G_OUT` for the jobs that source it. Other variables: `R5G_INST` (stack 1 to 8), `R5G_UE_SEP=1` (one container per UE), `R5G_CAP_FILTER` (capture filter).
+
+**Step 7. Write new results to a new folder.** The job files write into `workspace/results/raw/<cohort>/` and append to its records. To keep the shipped records intact, copy `workspace/` first, or set `R5G_OUT` to an empty folder and adjust the job file's `R5G_OUT` line. Then run the evaluator on that folder (section 6).
+
+## 6. Full reproduction, one experiment at a time
+
+Wall times are from the documented host. Machine hours are summed run durations. Each job prints the start and end time. Run `pmset -g log | grep -E ' Sleep  | Wake  | DarkWake  '` afterwards on a Mac, add the intervals to `workspace/results/host_sleep_intervals.json` with `testbed/exp/hostsleep_refresh.py`, and let the evaluators exclude runs that overlap a sleep. The evaluators read the records in the cohort folder and write their summaries beside them. Then rerun `python3 check_values.py` on the modified workspace (copy it into `artifact/workspace` of a scratch copy of the artifact) to regenerate the macros.
+
+Outcomes are judged by the rules in each `DESIGN.md`. A rerun on another host should reproduce the qualitative outcomes (residue or not, which pool fills, which arm differs). Exact counts can differ, because kill placement races with the NFs.
+
+### 6.1 Orphan sessions and the repair (Table 4)
+
+```sh
+bash workspace/testbed/exp/job_orphan.sh 1 r5g/open5gs:e85748e base          # VM r5g-claude, stack 1
+bash workspace/testbed/exp/job_orphan.sh 2 r5g/open5gs:e85748e-f12repair repair
+bash workspace/testbed/exp/job_orphan_oai2.sh                                 # OAI gNB and UE, VM r5g-claude-ran
+cd workspace/testbed && python3 exp/orphan_eval.py ../results/raw/orphan ../results/raw/orphan-oai \
+  && python3 exp/wire_truth.py ../results/raw/orphan --kind orphan && python3 exp/orphan_ref_eval.py ../results/raw/orphan
+```
+
+Runs: 5 faulted runs per build and gNB behaviour, 3 no-fault runs per build. About 1.5 machine hours, under 1 hour wall per batch. Expected: residue at both checkpoints in every faulted baseline run and in no repaired or no-fault run; working new sessions in all; accepted PFCP deletions of the old sessions only with the repair. The OAI batch must use the capture filter `not port 27017 and not port 9090 and not tcp port 4043` (section 10).
+
+The earlier package runs the same recipe as a self-checking four-arm smoke test: `python3 reproduction/reproduce.py reproduce --context colima-r5g-reproduction --runs 5 --instance 7` (see `reproduction/README.md`).
+
+### 6.2 Organic recovery chains (RQ1, RQ2)
+
+```sh
+bash workspace/testbed/exp/job_organic.sh      # 15 chains on stacks 5 and 6 of r5g-claude-ran
+bash workspace/testbed/exp/job_organic2.sh     # 6 small-UPF chains, 12 cycles
+cd workspace/testbed && python3 exp/organic_eval.py
+bash ../analysis-r3/scripts/decode_organic.sh  # tshark decode of the organic captures (needs r5g/tshark:1)
+cd .. && for s in item45_parse item45_bound item45_cases item45_status item45_summary; do python3 analysis-r3/scripts/$s.py; done
+```
+
+Runs: 21 chains (8 faulted and 4 fault-free with 6 cycles; 3 pinned small-UPF chains up to 14 cycles; then 3 pinned and 3 fixed small-UPF chains with 12 cycles). About 3.5 machine hours, about 2 hours wall. Expected: the pinned UPF count grows with every faulted cycle and not without faults; the fixed build keeps UPF and SMF counts equal; small-UPF pinned chains fail at cycle 10 or 11. `decode_organic.sh` still names the VM `r5g-claude-ran` and writes into `analysis-r3/decode/`.
+
+### 6.3 Clean three-arm rerun (clean3)
+
+```sh
+bash workspace/testbed/exp/job_clean3.sh       # 348 runs on stacks 1 to 3 of r5g-claude
+python3 workspace/testbed/exp/hostsleep_refresh.py && python3 workspace/analysis-r1/scripts/clean3_eval.py
+```
+
+Runs: 162 boundary, 162 random, 24 control, one shuffled order (seed 2026112711). About 12 machine hours, about 9 hours wall. The kill placer (`testbed/r5g/placer.py`) runs as root inside the VM. Expected: boundary persistent near 36%, random near 32%, control 0; the boundary minus random difference has a bootstrap interval that includes zero.
+
+### 6.4 Kill timing
+
+```sh
+bash workspace/testbed/exp/job_killtime.sh     # 60 runs on stacks 1 to 3 of r5g-claude
+python3 workspace/testbed/exp/killtime_eval.py
+```
+
+About 2 machine hours, under 1 hour wall. Expected: the persistent share rises with the offset (0, 5, 20 ms), and persistence follows whether the AMF had sent the accept before the kill.
+
+### 6.5 Thousand-UE chains and the PFCP capture
+
+```sh
+bash workspace/testbed/exp/job_scale.sh        # default limits, VM r5g-claude-big, stack 8
+bash workspace/testbed/exp/job_scale_udm.sh    # UDM max.ue raised to 8,192
+cd workspace/testbed && R5G_INST=8 R5G_UE_SEP=1 DOCKER_CONTEXT=colima-r5g-claude-big \
+  UERANSIM_IMAGE=r5g-rebuild/ueransim:4f45e18-p2 R5G_OUT=$PWD/../results/raw/scale \
+  python3 exp/scale.py --image r5g/open5gs:e85748e --arm fault --tag udm8192pcap-pre --first 1 \
+  --ues 1000 --cycles 6 --tempo 60 --stop-after-failure --udm-max-ue 8192 --pcap
+python3 exp/scale_eval.py && python3 exp/scale_pcap_seid.py --pcap ../results/raw/scale/pcap/scale-udm8192pcap-pre-fault-n1000-c1.pcap.gz
+```
+
+Runs: 11 default-limit chains (1 invalid, 1 stopped by the first criterion), 6 UDM-raised chains (1 invalid), 1 capture chain. Each chain takes about 11 minutes: about 2 hours wall for the default-limit job and about 1 hour for the UDM job. The capture command is reconstructed from the chain identifier and `DESIGN.md`; the original invocation was not kept in a job file. `scale_pcap_seid.py --pcap` needs `tshark` on the host PATH; without it, use the included extraction `results/raw/scale/tmp/est.tsv`. Expected: at default limits the UDM's 4,096 SDM subscriptions fill at the second AMF restart on both builds and registration rejects most UEs with cause 7; with the UDM limit raised, the pinned UPF reaches 4,096 sessions at restart 4 and no cycle fails; in the capture every establishment after saturation reuses a never-deleted CP F-SEID and is accepted.
+
+### 6.6 free5GC orphan sessions and the upstream SMF fix
+
+```sh
+bash workspace/testbed/exp/job_f5g_orphan.sh       # recipe 5+5, chains 3+2, organic 3+2, VM r5g-claude-ran
+bash workspace/testbed/exp/job_f5g_orphan_fix.sh   # SMF v4.3.0: pilot, 2 fault chains, 1 no-fault chain
+DOCKER_CONTEXT=colima-r5g-claude-ran python3 workspace/testbed/exp/f5g_orphan_eval.py
+```
+
+About 1.5 machine hours, about 2 hours wall. `f5g_orphan_eval.py` decodes every capture with `r5g/tshark:1` through Docker and reads `pmset -g log` for host sleeps; on Linux, replace `sleep_intervals()` with a read of `results/host_sleep_intervals.json`. Expected: after one AMF restart the SMF deletes the old PFCP session; in chains, the UPF ends with 16 sessions for 4 UEs on v4.0.1 and 4 with the v4.3.0 SMF; the UDR keeps the subscriptions of every dead AMF instance. The earlier next-use control is `job_f5g.sh` (`results/raw/free5gc`, `f5g_eval.py`).
+
+### 6.7 Impact of orphans (Figure 3a, stale tunnels)
+
+```sh
+bash workspace/testbed/exp/job_impact.sh           # VM r5g-claude-ran, stack 6
+DOCKER_CONTEXT=colima-r5g-claude-ran R5G_OUT=$PWD/workspace/results/raw/impact python3 workspace/testbed/exp/impact_eval.py
+```
+
+About 2.7 machine hours. Expected: with a UPF table of 16 sessions and 4 UEs, the baseline fails at cycle 4 in 5 of 5 chains; repair and no-fault chains never fail.
+
+### 6.8 Upstream fixes before and after
+
+```sh
+bash workspace/testbed/exp/job_upfix.sh            # VM r5g-claude-ran, stacks 1 to 4 (see section 10 on caffeinate)
+python3 workspace/testbed/exp/upfix_eval.py workspace/results/raw/upfix
+python3 workspace/testbed/exp/orphan_eval.py workspace/results/raw/upfix/orphan
+```
+
+Runs: 324 boundary runs (54 schedules, 3 seeds, 2 builds) and 26 orphan-recipe runs. About 16 machine hours, about 5 hours wall. Expected: orphan residue 5/5 on `ce6444f` and 0/5 on `097162c`; cause-7 rejects only before the fix.
+
+### 6.9 Delay studies, held-out cohort, main rerun
+
+| Cohort | Job | Evaluator | Size and time |
+|---|---|---|---|
+| Delay, three seeds | `job_timing2.sh` (5 stacks) | `timing2_eval.py results/raw/timing2` | 648 runs, 25 machine hours, 5 hours wall |
+| Delay, one seed | `timing.py` via `job_timing_resleep.sh` and `job_resleep.sh` | `timing_eval.py`, `wire_truth.py`, `heldout_eval.py` (loop in `paper/finalize.sh`) | 216 runs kept |
+| Held-out | `heldout.py` | `wire_truth.py --kind heldout`, `heldout_eval.py` | 72 planned, 67 retained after sleep filtering, 2.7 machine hours |
+| Main rerun | `job_main_rerun.sh` (5 stacks) | `main_eval.py`, `idref_eval.py --tag main`, `main_yield.py` | 630 runs, 47 machine hours, about 10 hours wall |
+| Cross-UE deletion | `crossue_repl.py` | `crossue_eval.py` | 15 runs |
+
+`job_main_rerun.sh` first waits for a marker line of the delay reruns; remove that `until` loop when running it alone.
+
+### 6.10 Earlier campaign replay and the fresh-validation cohort
+
+The earlier package replays the frozen 26 November evidence in a new folder:
+
+```sh
+python3 reproduction/replay_release.py --context colima-r5g-reproduction --out /absolute/new/replay
+python3 reproduction/replay_validation.py --out /absolute/new/validation-replay      # offline
+python3 reproduction/render_validation.py --input reproduction/evidence/validation-20261126/results --out /absolute/new/table
+python3 reproduction/check_reduction.py --input reproduction/evidence/validation-20261126/results --context colima-r5g-reproduction --out /absolute/new/reduction
+```
+
+New fresh-validation trials and the blank assessment packet: `reproduce.py build-clock`, `validation-run`, `validate-cohort`, `compare-checkers`, `export-expert`. `reproduction/README.md` and `RELEASE-MAP.md` describe every command. The private blinding keys and frozen predictions of the shipped packet are withheld (section 9), so `score-expert` works only on a packet you export yourself.
+
+## 7. Directory layout
+
+```
+artifact/
+  README.md                this file
+  MANIFEST.sha256          SHA-256 of every file
+  check_values.py          quick check
+  expected/
+    paper_values.json      every paper value: key, value, defining macro file, generator, source, main or supplementary
+    paper_values.csv       the same values as a table
+    sample-output/         quickcheck_summary.txt and quickcheck_report.json from the authors' runs (quick, from-raw)
+  environment/
+    pins.json              commits, image tags and IDs, VM sizes
+    f12-repair.diff        orphan-session repair (published in open5gs issue #5059)
+  tools/extract_expected.py
+  workspace/               revision experiments, 25 to 27 November 2026
+    env.sh
+    testbed/               harness r5g/ (runner, observe, oracle, inject, place, placer, workload, capture, dock),
+                           exp/ (recipes, job files, evaluators), c2/ (earlier campaign modules, pcap_ids decoder),
+                           docker/ (Dockerfiles, UERANSIM and Open5GS patches), config/, inst/ (stack configs),
+                           free5gc/, oai/
+    results/raw/<cohort>/  records (*.jsonl), captures (pcap/), logs, DESIGN.md, evaluator outputs
+    results/               host_sleep_intervals.json, pmset logs, cost.json
+    analysis-r1/           analysis plan, scripts and outputs (checker versions, reference, ablation, clean3 scoring)
+    analysis-r3/           analysis plan, scripts, outputs and decoded organic captures (decode/)
+    issues-audit/          issue-study cohort reconstruction and audit (data, labels, scripts)
+    model/                 reduction model, its tests and results
+    build/                 repair Dockerfile and from-source rebuild jobs
+    consistency/           3GPP clause quotations behind the standards table
+    free5gc/, oai-ran/     gtp5g tarball, OAI RAN compose and configuration
+    paper/                 macro generators (gen_macros*.py), model_macros.py, cost.py, finalize.sh
+  reproduction/            earlier package, 26 November 2026 (own README.md and RELEASE-MAP.md)
+    images/                arm64-runtime-and-build.tar.gz (817 MB)
+    manifests/             files.json, images.json, image-archive.json, package lists, files-removed-for-artifact.json
+    evidence/archive-20261126/      frozen inputs: results, accumulation and reject reconstruction, historical artifact
+    evidence/release-outputs-20261126/  canonical replay outputs
+    evidence/validation-20261126/   fresh cohort, protocol, frozen analysis, blank expert packet
+    testbed/, validation/, build/ (repair, clock, maintenance), retained/
+```
+
+## 8. Data provenance
+
+* `MANIFEST.sha256` lists the SHA-256 of every file. Check it with `shasum -a 256 -c MANIFEST.sha256` (macOS) or `sha256sum -c MANIFEST.sha256` (Linux) from this folder.
+* `reproduction/reproduce.py verify` checks the earlier package against `reproduction/manifests/files.json`. The image archive's hash is in `reproduction/manifests/image-archive.json`.
+* Every generated macro file records its source file per key: the `source` column of `expected/paper_values.csv`.
+* Every cohort's `DESIGN.md` states when the design was fixed and records the outcome afterwards, with amendments dated in place. `analysis-r3/out/item8_provenance.csv` lists the hash, modification time and first run of each design file.
+* `expected/paper_values.json` was extracted on 28 November 2026 from the manuscript's generated macro folders. Their SHA-256 values are in its `macro_files_sha256` field.
+* Records excluded from a result (harness errors, host-sleep overlaps, pilots, invalid chains) are kept on disk. Each evaluator lists them in its summary.
+
+Changes made while assembling this artifact, all on copies:
+
+* Absolute paths of the authors' home folder were replaced by relative paths or by `$R5G_WORKSPACE` in 71 code files and in the error tracebacks of `results/raw/timing/timing_{g10,g150,v150}.jsonl` (shown as `<WORKSPACE>`).
+* `analysis-r1/scripts/a1_lib.py` now finds `reproduction/` beside `workspace/`. `analysis-r3/scripts/item1_delaystate.py` passes `__file__` to the code it executes.
+* `testbed/exp/scale_pcap_seid.py` is new. It recomputes the PFCP summary that was first computed by hand and that the paper cites (`sc-pcap-*`); its output equals the shipped `pcap_seid_summary.json`.
+* In `reproduction/`, the manuscript, the private blinding keys and frozen predictions, and three review and status notes were removed, and 23 job scripts had their home paths replaced. `manifests/files.json` was updated to match, and `manifests/files-removed-for-artifact.json` lists every change.
+* 118 frozen evidence files under `reproduction/evidence/` (archived code copies, execution logs, error tracebacks, replay command logs) still contain the authors' original absolute paths. They were left unchanged because the earlier package's provenance records pin their hashes. The paths name only local folders. No script in this artifact depends on them.
+
+## 9. Known limitations and deviations
+
+* **Values this artifact cannot regenerate.** 485 values come from the earlier rerun campaign of 10 to 19 November 2026 (`generated-rerun/` in the manuscript, synced from repository commit 9c9d721): 4 in the main paper (`ps-n` = 228, `s-ps3-n` = 120, `s-ps3-space` = 1626, `\RrBtSeeds` = 5; the first three also appear in the supplementary appendix) and 481 more in the supplementary appendix only. Their records and generators were produced on another host and are not here. 17 supplementary values (`ar-*`) come from the machine-reader experiment, which is not distributed. Typed tables without a generator (standards, case ledger, closest tools, built parts) are not regenerated.
+* **Differences that appear only with `--from-raw`.**
+  * 13 supplementary values `v25-tr-*` (trace reference on the one-seed delay cohort). The shipped `timingref_*` outputs were computed at 18:06 on 25 November, before 61 sleep-affected delay runs were repeated (20:14). Rerunning on the final records gives, for example, 216 instead of 155 runs. The other delay values (`v25-tm-*`) were recomputed after the repeats and match.
+  * `a3-cost-scale-hours` (1.9, obtained 3.1) and `a3-cost-total-hours` (133.9, obtained 135.2): the analysis ran before the UDM-raised and capture chains were added.
+  * `a3-pv-scale-sha`: `results/raw/scale/DESIGN.md` was amended with follow-up C after the analysis recorded its hash.
+  * `paper/cost.py` is not rerun. It sums every record file and does not parse the record formats of the later cohorts. `results/cost.json` is kept as computed on 25 November.
+* **Convergence correction.** The paper's held-out convergence maximum (33.05 s) applies the stricter convergence rule of the earlier package (`r5g/verdict.py`, `first_stably_clean`) on top of the workspace's held-out evaluator with host-sleep exclusion. The workspace evaluator alone gives 32.61 s. `check_values.py` applies the rule to a copy and reproduces 33.05 s.
+* **Host sleep.** The host entered maintenance sleep while idle, which freezes the VMs and advances the host clock. Evaluators exclude every run whose duration overlaps an interval in `results/host_sleep_intervals.json` (from `pmset -g log`), keep it on disk, and use a clean repeat when one exists. Sleep intervals after 27 November are not recorded.
+* **Single host.** Every cohort of the evaluation ran on one Apple M5 Max in aarch64 VMs that also ran other VMs. The earlier campaign's host is unresolved (the paper discusses this). No physical RAN or UE was used.
+* **Automated verdicts.** The checker, the identity reference and the trace reference are automated. The reference shares some readouts with the checker and uses source-derived rules. No person independent of this work has labelled a run. The blank assessment packet is in `reproduction/evidence/validation-20261126/expert-packet/`. Its private keys and frozen predictions, and the 36-case adjudication sample of `analysis-r1/` with its key, are withheld so that the packet can still be used blind.
+* **Issue-study labels.** The audit labels in `issues-audit/labels/` were assigned by an AI assistant and were not checked by a person. The first-pass and second-pass labels of the historical study are tool-assisted.
+* **Images.** The archive holds the images of the pinned build, the repair, the toolchain, the patched UERANSIM gNB, tshark and MongoDB. The before-fix and fixed Open5GS builds, the stock UERANSIM gNB and the rebuild tags must be built (section 5), and free5GC and OAI images are pulled from Docker Hub. Their image IDs will differ from the build logs. Old Dockerfiles use Ubuntu package mirrors that change over time.
+* **Literal values.** A few figure coordinates are typed in the figure source (Figure 3b: 16 and 4). They equal generated keys (`f5-q3-*`, `f5-q3fix-*`).
+
+## 10. Known traps
+
+* **VM disk growth.** Container churn grows a Colima VM's disk image by about 50 GB per hour of campaign. Run `colima ssh -p <profile> -- sudo fstrim -a` between batches, and check free host disk before long jobs.
+* **caffeinate and `wait` deadlock.** `job_upfix.sh`, `job_timing2.sh` and `job_main_rerun.sh` start `caffeinate -i -s -w $$ &` and later call a bare `wait`. The `wait` also waits for `caffeinate`, which waits for the script, so the job never exits after its runs finish. Replace the line with `caffeinate -i -s -t <seconds> &`, or `wait` on the worker PIDs only, and check the row count of the record file rather than the exit of the job.
+* **OAI capture filter.** An OAI RF-simulator run streams radio samples over TCP port 4043. A capture without `not tcp port 4043` in its filter drops control packets. The first OAI batch (`results/raw/orphan-oai-batch1-capture-unusable/`) has this fault and is not used.
+* **gtp5g after restart.** The gtp5g module is gone after a VM restart; free5GC's UPF then fails to start. Reload it (section 5, step 5).
+* **Host sleep.** Keep a Mac awake during campaigns (`caffeinate -i -s -t <seconds>`), record `pmset -g log` afterwards and let the evaluators exclude overlapping runs. `time.monotonic()` stops during sleep and `time.time()` does not.
+* **Ubuntu mirrors.** `ports.ubuntu.com` and some mirrors time out intermittently during image builds. The Dockerfiles take `--build-arg UBUNTU_MIRROR=...`.
+* **Shared Docker context.** Never switch the global Docker context. Start Colima profiles with `--activate=false`. `reproduction/reproduce.py` refuses the contexts of the original campaign.
+* **Stock gNB.** The stock UERANSIM gNB aborts when the AMF dies. Recipes that use it restart the gNB from the harness.
+
+## 11. Licenses
+
+Upstream components keep their own licenses:
+
+| Component | License |
+|---|---|
+| Open5GS (source, patches, images) | GNU AGPL v3.0 |
+| UERANSIM | GNU GPL v3.0 |
+| free5GC and free5gc-compose (including its bundled test certificates and keys) | Apache License 2.0 |
+| gtp5g kernel module | GNU GPL v2.0 |
+| OpenAirInterface RAN and CN5G | OAI Public License v1.1 |
+| Wireshark / tshark (in `r5g/tshark:1`) | GNU GPL v2.0 or later |
+| MongoDB 7.0 image | Server Side Public License v1 |
+| Ubuntu base images | per package, see `reproduction/manifests/*-packages.tsv` |
+
+Subscriber keys in the configurations are the published UERANSIM and free5GC test values. The issue threads and tracker data in the historical artifact are public GitHub and GitLab content, kept as retrieved.
+
+**License of the artifact's own code and data: TODO for the authors.** No license has been chosen yet for the harness, recipes, evaluators, analyses, records and documentation written for this project.
+

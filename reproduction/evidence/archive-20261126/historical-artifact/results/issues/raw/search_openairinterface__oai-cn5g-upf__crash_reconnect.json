@@ -1,0 +1,6 @@
+{
+ "query": "repo:openairinterface/oai-cn5g-upf is:issue crash reconnect OR crash re-register",
+ "date": "2026-11-05",
+ "total_count": 0,
+ "items": []
+}

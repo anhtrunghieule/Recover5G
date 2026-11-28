@@ -1,0 +1,1411 @@
+{
+"url": "https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-pcf/issues?state=all",
+"fetched": "2026-11-05T18:24:35Z",
+"items": [
+{
+"id": 4833,
+"iid": 15,
+"project_id": 4572,
+"title": "[SBI Documentation] Missing SBI API documentation",
+"description": "Hi team,\n\nI cannot find any documentation for the PCF SBI endpoint API. \n\nPlease advise :smile:",
+"state": "closed",
+"created_at": "2025-01-28T11:54:13.051Z",
+"updated_at": "2025-02-13T00:06:45.589Z",
+"closed_at": "2025-02-13T00:06:45.471Z",
+"closed_by": {
+"id": 11866,
+"username": "yuntang",
+"public_email": null,
+"name": "yun tang",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/51bbdc9fde09a5c07affd989346df5af95ca0da96a590022a5b5b64d7fe331e4?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/yuntang"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 11866,
+"username": "yuntang",
+"public_email": null,
+"name": "yun tang",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/51bbdc9fde09a5c07affd989346df5af95ca0da96a590022a5b5b64d7fe331e4?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/yuntang"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 4,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/15",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/15",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/15/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/15/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#15",
+"relative": "#15",
+"full": "oai/cn5g/oai-cn5g-pcf#15"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4761,
+"iid": 14,
+"project_id": 4572,
+"title": "Provisioning API with MongoDB",
+"description": "* Current provisioning API only works with MySQL\n* We should also allow MongoDB as database backend",
+"state": "opened",
+"created_at": "2024-10-09T16:07:24.025Z",
+"updated_at": "2025-02-13T13:07:54.366Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 2,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/14",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/14",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/14/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/14/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#14",
+"relative": "#14",
+"full": "oai/cn5g/oai-cn5g-pcf#14"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4456,
+"iid": 13,
+"project_id": 4572,
+"title": "5QOAI - 2.3 UDR Storage",
+"description": "* Use UDR storage to store PCC rules\n* For QoS and possibly others",
+"state": "opened",
+"created_at": "2024-01-16T18:18:26.526Z",
+"updated_at": "2024-01-16T18:18:26.526Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [
+"5QOAI",
+"Feature"
+],
+"milestone": {
+"id": 219,
+"iid": 4,
+"group_id": 9696,
+"title": "v2.2.0 Release",
+"description": "# Roadmap\r\n* Support of Branching Point\r\n* QoS Support for Control and Data Plane (e2e validation)\r\n* New NAS library for SMF\r\n* Support of LAN-type services (Ethernet PDU Session)\r\n\r\n# New proposals \r\n* Stefan 16.01.: Policy provisioning in UDR - Part of QoS, but not that time-critical",
+"state": "closed",
+"created_at": "2024-01-16T18:14:51.006Z",
+"updated_at": "2026-05-06T09:03:11.190Z",
+"due_date": "2025-03-31",
+"start_date": "2024-04-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/4"
+},
+"assignees": [
+{
+"id": 11197,
+"username": "phine_lukas",
+"public_email": null,
+"name": "Lukas Rotheneder",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/2c9d8fa1dbd21ede6df11e312d4b47853462ea25666b713050a41ee0dd49425a?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_lukas"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 11197,
+"username": "phine_lukas",
+"public_email": null,
+"name": "Lukas Rotheneder",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/2c9d8fa1dbd21ede6df11e312d4b47853462ea25666b713050a41ee0dd49425a?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_lukas"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": "2024-04-19",
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/13",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/13",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/13/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/13/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#13",
+"relative": "#13",
+"full": "oai/cn5g/oai-cn5g-pcf#13"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4220,
+"iid": 12,
+"project_id": 4572,
+"title": "2.2 QoS Policy N7 - Authorized Default QoS",
+"description": "# Feature\n* We should have a mechanism on PCF to \"authorize\" the QoS flow sent by SMF and then send it back in the SessionRule",
+"state": "opened",
+"created_at": "2023-09-15T16:59:21.412Z",
+"updated_at": "2024-03-21T10:54:06.280Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [
+"5QOAI",
+"Feature"
+],
+"milestone": {
+"id": 203,
+"iid": 3,
+"group_id": 9696,
+"title": "v2.1.0 Release",
+"description": "# Roadmap\r\n* Support of Location Service\r\n* Support of stateless NF for UDM/AUSF\r\n* Release of UDSF\r\n* QoS Support Control plane",
+"state": "closed",
+"created_at": "2023-09-15T12:00:47.574Z",
+"updated_at": "2026-05-06T09:03:03.088Z",
+"due_date": "2024-03-29",
+"start_date": "2023-12-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/3"
+},
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": "2024-04-12",
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/12",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/12",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/12/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/12/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#12",
+"relative": "#12",
+"full": "oai/cn5g/oai-cn5g-pcf#12"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4219,
+"iid": 11,
+"project_id": 4572,
+"title": "2.2 QoS Policy N7 - Additional QoS flows",
+"description": "# Feature\n* Implement N7 QoS policy additional QoS flows",
+"state": "closed",
+"created_at": "2023-09-15T16:41:43.955Z",
+"updated_at": "2024-01-16T17:58:41.414Z",
+"closed_at": "2024-01-16T17:58:41.398Z",
+"closed_by": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"labels": [
+"5QOAI",
+"Feature"
+],
+"milestone": {
+"id": 203,
+"iid": 3,
+"group_id": 9696,
+"title": "v2.1.0 Release",
+"description": "# Roadmap\r\n* Support of Location Service\r\n* Support of stateless NF for UDM/AUSF\r\n* Release of UDSF\r\n* QoS Support Control plane",
+"state": "closed",
+"created_at": "2023-09-15T12:00:47.574Z",
+"updated_at": "2026-05-06T09:03:03.088Z",
+"due_date": "2024-03-29",
+"start_date": "2023-12-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/3"
+},
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/11",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/11",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/11/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/11/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#11",
+"relative": "#11",
+"full": "oai/cn5g/oai-cn5g-pcf#11"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4188,
+"iid": 10,
+"project_id": 4572,
+"title": "compile warnings (unused functions / parameters)",
+"description": "we have some compile time warnings due to newest changes in common-src.",
+"state": "opened",
+"created_at": "2023-08-23T11:53:19.050Z",
+"updated_at": "2023-09-15T16:40:10.833Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/10",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/10",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/10/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/10/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#10",
+"relative": "#10",
+"full": "oai/cn5g/oai-cn5g-pcf#10"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4068,
+"iid": 9,
+"project_id": 4572,
+"title": "HTTP2 support",
+"description": "# Issue\nCurrently, PCF does not support HTTP2.  \nThe server is spawned, but the routes are not set up",
+"state": "closed",
+"created_at": "2023-04-27T08:31:15.051Z",
+"updated_at": "2023-05-17T13:31:54.318Z",
+"closed_at": "2023-05-17T13:31:54.309Z",
+"closed_by": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"labels": [
+"Feature"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": "2023-05-05",
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/9",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/9",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/9/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/9/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#9",
+"relative": "#9",
+"full": "oai/cn5g/oai-cn5g-pcf#9"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3962,
+"iid": 8,
+"project_id": 4572,
+"title": "PCF does not log that SM policy association was rejected",
+"description": "# Issue\nMinor issue: When no policy matches, there is no INFO level log that it was rejected:\n```\n[2022-12-07 14:05:47.344] [pcf_app] [debug] SM Policy request from SUPI: imsi-208950000000035 - Did not find SUPI policy\n[2022-12-07 14:05:47.344] [pcf_app] [debug] SM Policy request from SUPI: imsi-208950000000035 - Did not find DNN policy\n[2022-12-07 14:05:47.344] [pcf_app] [debug] SM Policy request from SUPI: imsi-208950000000035 - Did not find slice policy\n[2022-12-07 14:05:47.344] [pcf_app] [debug] SM Policy request from SUPI: imsi-208950000000035 - Did not find default policy\n```",
+"state": "closed",
+"created_at": "2022-12-07T14:08:15.839Z",
+"updated_at": "2026-11-03T01:25:24.705Z",
+"closed_at": "2026-11-03T01:25:24.631Z",
+"closed_by": {
+"id": 10607,
+"username": "jenkinsbot",
+"public_email": "",
+"name": "OAI CI JenkinsBot",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/10607/avatar.png?v=1793841916",
+"web_url": "https://gitlab.eurecom.fr/jenkinsbot"
+},
+"labels": [
+"v2.0"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+}
+],
+"author": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/8",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/8",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/8/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/8/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#8",
+"relative": "#8",
+"full": "oai/cn5g/oai-cn5g-pcf#8"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3960,
+"iid": 7,
+"project_id": 4572,
+"title": "User friendly output",
+"description": "# Issue\nCurrently, the output of the NFs is not very user-friendly:\n* Command line parameters \n* Configuration from configuration file\n\n# Solution\n* Refactor options to give a better output\n* Make stdout log default\n* Refactor configuration file class (see #6)\n* Give indication when config file is wrongly configured",
+"state": "opened",
+"created_at": "2022-12-06T15:02:22.442Z",
+"updated_at": "2022-12-06T15:02:22.442Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+}
+],
+"author": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/7",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/7",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/7/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/7/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#7",
+"relative": "#7",
+"full": "oai/cn5g/oai-cn5g-pcf#7"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3959,
+"iid": 6,
+"project_id": 4572,
+"title": "improve config file",
+"description": "# Issue\n* Current configuration file is not well documented\n* The config class is not portable and not optimized\n* The default values documented in the wiki could/should be put in the config file\n* The location of the config file should follow convention : /etc/pcf.conf and/or ~/.pcf.conf, it should be found without the command-line parameter which should be optional\n\n# Solution\n* Define a new configuration file format (e.g. YAML)\n* Implement DRY pattern to not have a big config file per NF",
+"state": "closed",
+"created_at": "2022-12-06T14:58:19.119Z",
+"updated_at": "2023-09-15T14:02:32.897Z",
+"closed_at": "2023-09-15T14:02:32.892Z",
+"closed_by": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+}
+],
+"author": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/6",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/6",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/6/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/6/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#6",
+"relative": "#6",
+"full": "oai/cn5g/oai-cn5g-pcf#6"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3939,
+"iid": 5,
+"project_id": 4572,
+"title": "NRF heartbeat does not work",
+"description": "# Issue\n* The NRF heartbeat procedure is not triggered from PCF to NRF\n* Branch of testing: refactor_main",
+"state": "opened",
+"created_at": "2022-11-28T10:07:12.179Z",
+"updated_at": "2022-11-28T11:37:12.981Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [
+"Fix",
+"v2.0"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+}
+],
+"author": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/5",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/5",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/5/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/5/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#5",
+"relative": "#5",
+"full": "oai/cn5g/oai-cn5g-pcf#5"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3723,
+"iid": 4,
+"project_id": 4572,
+"title": "feat(pcf): Support for feature negotation",
+"description": "* Use the \"suppFeat\" field in the corresponding responses to indicate which features are supported\n* Indicate the TSC feature according to 29.512 and 29.500",
+"state": "opened",
+"created_at": "2022-05-05T14:57:37.005Z",
+"updated_at": "2022-05-05T14:57:37.005Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [
+"Feature"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+}
+],
+"author": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/4",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/4",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/4/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/4/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#4",
+"relative": "#4",
+"full": "oai/cn5g/oai-cn5g-pcf#4"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3722,
+"iid": 3,
+"project_id": 4572,
+"title": "feat(pcf): SM Policy Create: Detect duplicates",
+"description": "* Duplicate SM policy association create requests shall be identified and rejected accordingly\n* as defined in 4.2.7 of TS 29.512\n* based on DNN, SUPI, SLICE combination and 3gpp-Sbi-Origination-Timestamp Header",
+"state": "closed",
+"created_at": "2022-05-04T13:02:27.827Z",
+"updated_at": "2026-08-04T17:34:11.168Z",
+"closed_at": "2026-08-04T17:34:09.561Z",
+"closed_by": {
+"id": 11885,
+"username": "shubhika.garg",
+"public_email": "shubhika.garg@openairinterface.org",
+"name": "Shubhika Garg",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/11885/avatar.png?v=1793891949",
+"web_url": "https://gitlab.eurecom.fr/shubhika.garg"
+},
+"labels": [
+"Feature"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+}
+],
+"author": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/3",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/3",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/3/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/3/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#3",
+"relative": "#3",
+"full": "oai/cn5g/oai-cn5g-pcf#3"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3721,
+"iid": 2,
+"project_id": 4572,
+"title": "feat(pcf): Implement individual sm policy API",
+"description": "* Implement get, update and delete of a previously created SM policy association",
+"state": "closed",
+"created_at": "2022-05-04T09:03:32.337Z",
+"updated_at": "2022-11-28T10:05:35.123Z",
+"closed_at": "2022-11-28T10:05:35.061Z",
+"closed_by": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"labels": [
+"Feature"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+}
+],
+"author": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": "2022-05-12",
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/2",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/2",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/2/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/2/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#2",
+"relative": "#2",
+"full": "oai/cn5g/oai-cn5g-pcf#2"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3720,
+"iid": 1,
+"project_id": 4572,
+"title": "feat(pcf): Allow the provisioning of PCC rules and policy decisions based on files",
+"description": "* Store PCC rules in json format in a directory (which should be configurable)\n* Read contents of this directory and include the contents in the decision making process, either on startup or periodically\n* Define format to map supi, dnn, slice info and default rule to pcc rule",
+"state": "closed",
+"created_at": "2022-05-04T09:00:38.144Z",
+"updated_at": "2022-11-28T10:05:45.540Z",
+"closed_at": "2022-11-28T10:05:45.497Z",
+"closed_by": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"labels": [
+"Feature"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+}
+],
+"author": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10313,
+"username": "spettel",
+"public_email": "stefan.spettel@eurecom.fr",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/5777f1b5821ddf9745e913100d7694aef04954cf6d7df3b070e051d8889741bb?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/spettel"
+},
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": "2022-05-20",
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/work_items/1",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/1",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/1/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4572/issues/1/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4572",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#1",
+"relative": "#1",
+"full": "oai/cn5g/oai-cn5g-pcf#1"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+}
+]
+}

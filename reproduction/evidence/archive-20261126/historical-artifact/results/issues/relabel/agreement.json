@@ -1,0 +1,334 @@
+{
+ "note": "Pass 2 = blind self-re-label (same author team/tooling, full-thread reading, pass-1 labels unseen until pass 2 complete); not an independent labeller. Pass-1 silent/crash_only are derived from symptom; pass-2 values judged directly (derived variants also reported).",
+ "include_3way": {
+  "n": 146,
+  "raw_agreement": 0.7808,
+  "cohen_kappa": 0.5956,
+  "pass1_dist": {
+   "no": 92,
+   "yes": 38,
+   "maybe": 16
+  },
+  "pass2_dist": {
+   "no": 85,
+   "yes": 44,
+   "maybe": 17
+  },
+  "confusion": {
+   "rows_pass1_cols_pass2": {
+    "maybe": {
+     "maybe": 6,
+     "no": 4,
+     "yes": 6
+    },
+    "no": {
+     "maybe": 8,
+     "no": 77,
+     "yes": 7
+    },
+    "yes": {
+     "maybe": 3,
+     "no": 4,
+     "yes": 31
+    }
+   }
+  }
+ },
+ "include_binary_yes_vs_not": {
+  "n": 146,
+  "raw_agreement": 0.863,
+  "cohen_kappa": 0.6616,
+  "pass1_dist": {
+   "not-yes": 108,
+   "yes": 38
+  },
+  "pass2_dist": {
+   "not-yes": 102,
+   "yes": 44
+  },
+  "confusion": {
+   "rows_pass1_cols_pass2": {
+    "not-yes": {
+     "not-yes": 95,
+     "yes": 13
+    },
+    "yes": {
+     "not-yes": 7,
+     "yes": 31
+    }
+   }
+  }
+ },
+ "n_pass1_yes": 38,
+ "n_pass2_yes": 44,
+ "n_both_yes": 31,
+ "n_yes_or_maybe_both": 46,
+ "root_cause": {
+  "n": 31,
+  "raw_agreement": 0.6129,
+  "cohen_kappa": 0.4114,
+  "pass1_dist": {
+   "other": 7,
+   "association-handling": 3,
+   "missing-cleanup-on-peer-failure": 17,
+   "lost-allocation-state": 2,
+   "stale-restoration": 1,
+   "identifier-reuse-aliasing": 1
+  },
+  "pass2_dist": {
+   "lost-allocation-state": 2,
+   "association-handling": 3,
+   "missing-cleanup-on-peer-failure": 17,
+   "stale-restoration": 5,
+   "other": 3,
+   "identifier-reuse-aliasing": 1
+  },
+  "confusion": {
+   "rows_pass1_cols_pass2": {
+    "association-handling": {
+     "association-handling": 2,
+     "identifier-reuse-aliasing": 0,
+     "lost-allocation-state": 0,
+     "missing-cleanup-on-peer-failure": 0,
+     "other": 0,
+     "stale-restoration": 1
+    },
+    "identifier-reuse-aliasing": {
+     "association-handling": 0,
+     "identifier-reuse-aliasing": 1,
+     "lost-allocation-state": 0,
+     "missing-cleanup-on-peer-failure": 0,
+     "other": 0,
+     "stale-restoration": 0
+    },
+    "lost-allocation-state": {
+     "association-handling": 0,
+     "identifier-reuse-aliasing": 0,
+     "lost-allocation-state": 0,
+     "missing-cleanup-on-peer-failure": 0,
+     "other": 2,
+     "stale-restoration": 0
+    },
+    "missing-cleanup-on-peer-failure": {
+     "association-handling": 0,
+     "identifier-reuse-aliasing": 0,
+     "lost-allocation-state": 0,
+     "missing-cleanup-on-peer-failure": 14,
+     "other": 0,
+     "stale-restoration": 3
+    },
+    "other": {
+     "association-handling": 1,
+     "identifier-reuse-aliasing": 0,
+     "lost-allocation-state": 2,
+     "missing-cleanup-on-peer-failure": 3,
+     "other": 1,
+     "stale-restoration": 0
+    },
+    "stale-restoration": {
+     "association-handling": 0,
+     "identifier-reuse-aliasing": 0,
+     "lost-allocation-state": 0,
+     "missing-cleanup-on-peer-failure": 0,
+     "other": 0,
+     "stale-restoration": 1
+    }
+   }
+  }
+ },
+ "symptom": {
+  "n": 31,
+  "raw_agreement": 0.8065,
+  "cohen_kappa": 0.7681,
+  "pass1_dist": {
+   "non-convergence": 6,
+   "leak-exhaustion": 5,
+   "orphan": 5,
+   "black-hole": 2,
+   "dangling": 7,
+   "crash": 5,
+   "alias": 1
+  },
+  "pass2_dist": {
+   "non-convergence": 9,
+   "leak-exhaustion": 3,
+   "orphan": 6,
+   "black-hole": 3,
+   "crash": 5,
+   "dangling": 4,
+   "alias": 1
+  },
+  "confusion": {
+   "rows_pass1_cols_pass2": {
+    "alias": {
+     "alias": 1,
+     "black-hole": 0,
+     "crash": 0,
+     "dangling": 0,
+     "leak-exhaustion": 0,
+     "non-convergence": 0,
+     "orphan": 0
+    },
+    "black-hole": {
+     "alias": 0,
+     "black-hole": 2,
+     "crash": 0,
+     "dangling": 0,
+     "leak-exhaustion": 0,
+     "non-convergence": 0,
+     "orphan": 0
+    },
+    "crash": {
+     "alias": 0,
+     "black-hole": 0,
+     "crash": 5,
+     "dangling": 0,
+     "leak-exhaustion": 0,
+     "non-convergence": 0,
+     "orphan": 0
+    },
+    "dangling": {
+     "alias": 0,
+     "black-hole": 1,
+     "crash": 0,
+     "dangling": 4,
+     "leak-exhaustion": 0,
+     "non-convergence": 2,
+     "orphan": 0
+    },
+    "leak-exhaustion": {
+     "alias": 0,
+     "black-hole": 0,
+     "crash": 0,
+     "dangling": 0,
+     "leak-exhaustion": 3,
+     "non-convergence": 0,
+     "orphan": 2
+    },
+    "non-convergence": {
+     "alias": 0,
+     "black-hole": 0,
+     "crash": 0,
+     "dangling": 0,
+     "leak-exhaustion": 0,
+     "non-convergence": 6,
+     "orphan": 0
+    },
+    "orphan": {
+     "alias": 0,
+     "black-hole": 0,
+     "crash": 0,
+     "dangling": 0,
+     "leak-exhaustion": 0,
+     "non-convergence": 1,
+     "orphan": 4
+    }
+   }
+  }
+ },
+ "silent": {
+  "n": 31,
+  "raw_agreement": 0.7097,
+  "cohen_kappa": 0.4645,
+  "pass1_dist": {
+   "no": 11,
+   "yes": 20
+  },
+  "pass2_dist": {
+   "no": 20,
+   "yes": 11
+  },
+  "confusion": {
+   "rows_pass1_cols_pass2": {
+    "no": {
+     "no": 11,
+     "yes": 0
+    },
+    "yes": {
+     "no": 9,
+     "yes": 11
+    }
+   }
+  }
+ },
+ "crash_only_detects": {
+  "n": 31,
+  "raw_agreement": 1.0,
+  "cohen_kappa": 1.0,
+  "pass1_dist": {
+   "no": 26,
+   "yes": 5
+  },
+  "pass2_dist": {
+   "no": 26,
+   "yes": 5
+  },
+  "confusion": {
+   "rows_pass1_cols_pass2": {
+    "no": {
+     "no": 26,
+     "yes": 0
+    },
+    "yes": {
+     "no": 0,
+     "yes": 5
+    }
+   }
+  }
+ },
+ "silent_vs_pass2_derived_from_symptom": {
+  "n": 31,
+  "raw_agreement": 0.9032,
+  "cohen_kappa": 0.8009,
+  "pass1_dist": {
+   "no": 11,
+   "yes": 20
+  },
+  "pass2_dist": {
+   "no": 14,
+   "yes": 17
+  },
+  "confusion": {
+   "rows_pass1_cols_pass2": {
+    "no": {
+     "no": 11,
+     "yes": 0
+    },
+    "yes": {
+     "no": 3,
+     "yes": 17
+    }
+   }
+  }
+ },
+ "crash_only_vs_pass2_derived_from_symptom": {
+  "n": 31,
+  "raw_agreement": 1.0,
+  "cohen_kappa": 1.0,
+  "pass1_dist": {
+   "no": 26,
+   "yes": 5
+  },
+  "pass2_dist": {
+   "no": 26,
+   "yes": 5
+  },
+  "confusion": {
+   "rows_pass1_cols_pass2": {
+    "no": {
+     "no": 26,
+     "yes": 0
+    },
+    "yes": {
+     "no": 0,
+     "yes": 5
+    }
+   }
+  }
+ },
+ "pass2_internal": {
+  "n": 44,
+  "silent_direct_vs_derived_agree": 33,
+  "crash_only_direct_vs_derived_agree": 43
+ }
+}

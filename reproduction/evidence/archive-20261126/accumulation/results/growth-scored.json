@@ -1,0 +1,1132 @@
+[
+ {
+  "id": "growth-baseline-r1",
+  "arm": "baseline",
+  "chain": 1,
+  "stack": 1,
+  "error": null,
+  "elapsed_s": 428.78170228004456,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 0,
+  "per_cycle_extra_upf": [
+   2,
+   4,
+   6,
+   8,
+   10,
+   12,
+   14,
+   16,
+   18,
+   20
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 22,
+    "upf_log_count": 22,
+    "metric_sessions": 22,
+    "extra_identities": 20,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000066": "10.45.0.2",
+     "0x0000000000000a31": "10.45.0.3",
+     "0x0000000000000760": "10.45.0.4",
+     "0x0000000000000938": "10.45.0.5",
+     "0x000000000000001a": "10.45.0.6",
+     "0x0000000000000081": "10.45.0.7",
+     "0x00000000000009fb": "10.45.0.8",
+     "0x0000000000000e75": "10.45.0.9",
+     "0x0000000000000ce6": "10.45.0.10",
+     "0x0000000000000714": "10.45.0.11",
+     "0x00000000000006c0": "10.45.0.12",
+     "0x00000000000005fb": "10.45.0.13",
+     "0x0000000000000604": "10.45.0.14",
+     "0x0000000000000fb3": "10.45.0.15",
+     "0x000000000000068f": "10.45.0.16",
+     "0x0000000000000383": "10.45.0.17",
+     "0x0000000000000ec4": "10.45.0.18",
+     "0x00000000000000cd": "10.45.0.19",
+     "0x000000000000075d": "10.45.0.20",
+     "0x00000000000008a0": "10.45.0.21",
+     "0x00000000000000ce": "10.45.0.22",
+     "0x0000000000000241": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 22,
+    "upf_log_count": 22,
+    "metric_sessions": 22,
+    "extra_identities": 20,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000066": "10.45.0.2",
+     "0x0000000000000a31": "10.45.0.3",
+     "0x0000000000000760": "10.45.0.4",
+     "0x0000000000000938": "10.45.0.5",
+     "0x000000000000001a": "10.45.0.6",
+     "0x0000000000000081": "10.45.0.7",
+     "0x00000000000009fb": "10.45.0.8",
+     "0x0000000000000e75": "10.45.0.9",
+     "0x0000000000000ce6": "10.45.0.10",
+     "0x0000000000000714": "10.45.0.11",
+     "0x00000000000006c0": "10.45.0.12",
+     "0x00000000000005fb": "10.45.0.13",
+     "0x0000000000000604": "10.45.0.14",
+     "0x0000000000000fb3": "10.45.0.15",
+     "0x000000000000068f": "10.45.0.16",
+     "0x0000000000000383": "10.45.0.17",
+     "0x0000000000000ec4": "10.45.0.18",
+     "0x00000000000000cd": "10.45.0.19",
+     "0x000000000000075d": "10.45.0.20",
+     "0x00000000000008a0": "10.45.0.21",
+     "0x00000000000000ce": "10.45.0.22",
+     "0x0000000000000241": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27561984,
+  "upf_cgroup_bytes_final": 27652096
+ },
+ {
+  "id": "growth-repair-r2",
+  "arm": "repair",
+  "chain": 2,
+  "stack": 1,
+  "error": null,
+  "elapsed_s": 427.7840209007263,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 20,
+  "per_cycle_extra_upf": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000f88": "10.45.0.22",
+     "0x000000000000032c": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000f88": "10.45.0.22",
+     "0x000000000000032c": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27262976,
+  "upf_cgroup_bytes_final": 27832320
+ },
+ {
+  "id": "growth-control-r3",
+  "arm": "control",
+  "chain": 3,
+  "stack": 1,
+  "error": null,
+  "elapsed_s": 418.2935721874237,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 20,
+  "per_cycle_extra_upf": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000a19": "10.45.0.22",
+     "0x00000000000007bc": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000a19": "10.45.0.22",
+     "0x00000000000007bc": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27557888,
+  "upf_cgroup_bytes_final": 27643904
+ },
+ {
+  "id": "growth-baseline-r4",
+  "arm": "baseline",
+  "chain": 4,
+  "stack": 1,
+  "error": null,
+  "elapsed_s": 435.78296661376953,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 0,
+  "per_cycle_extra_upf": [
+   2,
+   4,
+   6,
+   8,
+   10,
+   12,
+   14,
+   16,
+   18,
+   20
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 22,
+    "upf_log_count": 22,
+    "metric_sessions": 22,
+    "extra_identities": 20,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000912": "10.45.0.2",
+     "0x00000000000003ae": "10.45.0.3",
+     "0x0000000000000b4b": "10.45.0.4",
+     "0x0000000000000713": "10.45.0.5",
+     "0x0000000000000a5d": "10.45.0.6",
+     "0x0000000000000aee": "10.45.0.7",
+     "0x0000000000000e6d": "10.45.0.8",
+     "0x0000000000000d9d": "10.45.0.9",
+     "0x0000000000000861": "10.45.0.10",
+     "0x0000000000000cd9": "10.45.0.11",
+     "0x00000000000009d3": "10.45.0.12",
+     "0x00000000000005ce": "10.45.0.13",
+     "0x0000000000000c1c": "10.45.0.14",
+     "0x0000000000000568": "10.45.0.15",
+     "0x0000000000000b74": "10.45.0.16",
+     "0x0000000000000035": "10.45.0.17",
+     "0x0000000000000282": "10.45.0.18",
+     "0x0000000000000c50": "10.45.0.19",
+     "0x000000000000084b": "10.45.0.20",
+     "0x0000000000000220": "10.45.0.21",
+     "0x00000000000000ea": "10.45.0.22",
+     "0x0000000000000138": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 22,
+    "upf_log_count": 22,
+    "metric_sessions": 22,
+    "extra_identities": 20,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000912": "10.45.0.2",
+     "0x00000000000003ae": "10.45.0.3",
+     "0x0000000000000b4b": "10.45.0.4",
+     "0x0000000000000713": "10.45.0.5",
+     "0x0000000000000a5d": "10.45.0.6",
+     "0x0000000000000aee": "10.45.0.7",
+     "0x0000000000000e6d": "10.45.0.8",
+     "0x0000000000000d9d": "10.45.0.9",
+     "0x0000000000000861": "10.45.0.10",
+     "0x0000000000000cd9": "10.45.0.11",
+     "0x00000000000009d3": "10.45.0.12",
+     "0x00000000000005ce": "10.45.0.13",
+     "0x0000000000000c1c": "10.45.0.14",
+     "0x0000000000000568": "10.45.0.15",
+     "0x0000000000000b74": "10.45.0.16",
+     "0x0000000000000035": "10.45.0.17",
+     "0x0000000000000282": "10.45.0.18",
+     "0x0000000000000c50": "10.45.0.19",
+     "0x000000000000084b": "10.45.0.20",
+     "0x0000000000000220": "10.45.0.21",
+     "0x00000000000000ea": "10.45.0.22",
+     "0x0000000000000138": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27471872,
+  "upf_cgroup_bytes_final": 27869184
+ },
+ {
+  "id": "growth-repair-r5",
+  "arm": "repair",
+  "chain": 5,
+  "stack": 1,
+  "error": null,
+  "elapsed_s": 427.60487699508667,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 20,
+  "per_cycle_extra_upf": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000c1f": "10.45.0.22",
+     "0x0000000000000da4": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000c1f": "10.45.0.22",
+     "0x0000000000000da4": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27820032,
+  "upf_cgroup_bytes_final": 27439104
+ },
+ {
+  "id": "growth-repair-r1",
+  "arm": "repair",
+  "chain": 1,
+  "stack": 2,
+  "error": null,
+  "elapsed_s": 431.289359331131,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 20,
+  "per_cycle_extra_upf": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x000000000000030f": "10.45.0.22",
+     "0x0000000000000ac4": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x000000000000030f": "10.45.0.22",
+     "0x0000000000000ac4": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27410432,
+  "upf_cgroup_bytes_final": 27533312
+ },
+ {
+  "id": "growth-control-r2",
+  "arm": "control",
+  "chain": 2,
+  "stack": 2,
+  "error": null,
+  "elapsed_s": 426.02183079719543,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 20,
+  "per_cycle_extra_upf": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x000000000000070d": "10.45.0.22",
+     "0x0000000000000364": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x000000000000070d": "10.45.0.22",
+     "0x0000000000000364": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27512832,
+  "upf_cgroup_bytes_final": 27541504
+ },
+ {
+  "id": "growth-baseline-r3",
+  "arm": "baseline",
+  "chain": 3,
+  "stack": 2,
+  "error": null,
+  "elapsed_s": 428.3388440608978,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 0,
+  "per_cycle_extra_upf": [
+   2,
+   4,
+   6,
+   8,
+   10,
+   12,
+   14,
+   16,
+   18,
+   20
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 22,
+    "upf_log_count": 22,
+    "metric_sessions": 22,
+    "extra_identities": 20,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000e94": "10.45.0.2",
+     "0x0000000000000e95": "10.45.0.3",
+     "0x000000000000032d": "10.45.0.4",
+     "0x0000000000000391": "10.45.0.5",
+     "0x000000000000064d": "10.45.0.6",
+     "0x0000000000000dd1": "10.45.0.7",
+     "0x0000000000000bd3": "10.45.0.8",
+     "0x00000000000009d0": "10.45.0.9",
+     "0x0000000000000682": "10.45.0.10",
+     "0x0000000000000d5d": "10.45.0.11",
+     "0x0000000000000399": "10.45.0.12",
+     "0x0000000000000a02": "10.45.0.13",
+     "0x0000000000000b5c": "10.45.0.14",
+     "0x0000000000000b07": "10.45.0.15",
+     "0x00000000000008c6": "10.45.0.16",
+     "0x00000000000005d5": "10.45.0.17",
+     "0x000000000000062c": "10.45.0.18",
+     "0x0000000000000076": "10.45.0.19",
+     "0x0000000000000131": "10.45.0.20",
+     "0x0000000000000b32": "10.45.0.21",
+     "0x0000000000000ba0": "10.45.0.22",
+     "0x0000000000000e31": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 22,
+    "upf_log_count": 22,
+    "metric_sessions": 22,
+    "extra_identities": 20,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000e94": "10.45.0.2",
+     "0x0000000000000e95": "10.45.0.3",
+     "0x000000000000032d": "10.45.0.4",
+     "0x0000000000000391": "10.45.0.5",
+     "0x000000000000064d": "10.45.0.6",
+     "0x0000000000000dd1": "10.45.0.7",
+     "0x0000000000000bd3": "10.45.0.8",
+     "0x00000000000009d0": "10.45.0.9",
+     "0x0000000000000682": "10.45.0.10",
+     "0x0000000000000d5d": "10.45.0.11",
+     "0x0000000000000399": "10.45.0.12",
+     "0x0000000000000a02": "10.45.0.13",
+     "0x0000000000000b5c": "10.45.0.14",
+     "0x0000000000000b07": "10.45.0.15",
+     "0x00000000000008c6": "10.45.0.16",
+     "0x00000000000005d5": "10.45.0.17",
+     "0x000000000000062c": "10.45.0.18",
+     "0x0000000000000076": "10.45.0.19",
+     "0x0000000000000131": "10.45.0.20",
+     "0x0000000000000b32": "10.45.0.21",
+     "0x0000000000000ba0": "10.45.0.22",
+     "0x0000000000000e31": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27262976,
+  "upf_cgroup_bytes_final": 27869184
+ },
+ {
+  "id": "growth-repair-r4",
+  "arm": "repair",
+  "chain": 4,
+  "stack": 2,
+  "error": null,
+  "elapsed_s": 424.98267102241516,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 20,
+  "per_cycle_extra_upf": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x000000000000040b": "10.45.0.22",
+     "0x0000000000000e20": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x000000000000040b": "10.45.0.22",
+     "0x0000000000000e20": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27848704,
+  "upf_cgroup_bytes_final": 28020736
+ },
+ {
+  "id": "growth-control-r5",
+  "arm": "control",
+  "chain": 5,
+  "stack": 2,
+  "error": null,
+  "elapsed_s": 413.50666522979736,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 20,
+  "per_cycle_extra_upf": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000e27": "10.45.0.22",
+     "0x0000000000000723": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000e27": "10.45.0.22",
+     "0x0000000000000723": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27676672,
+  "upf_cgroup_bytes_final": 28000256
+ },
+ {
+  "id": "growth-control-r1",
+  "arm": "control",
+  "chain": 1,
+  "stack": 3,
+  "error": null,
+  "elapsed_s": 418.3625729084015,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 20,
+  "per_cycle_extra_upf": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x00000000000005d0": "10.45.0.22",
+     "0x0000000000000657": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x00000000000005d0": "10.45.0.22",
+     "0x0000000000000657": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27254784,
+  "upf_cgroup_bytes_final": 27488256
+ },
+ {
+  "id": "growth-baseline-r2",
+  "arm": "baseline",
+  "chain": 2,
+  "stack": 3,
+  "error": null,
+  "elapsed_s": 435.90703892707825,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 0,
+  "per_cycle_extra_upf": [
+   2,
+   4,
+   6,
+   8,
+   10,
+   12,
+   14,
+   16,
+   18,
+   20
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 22,
+    "upf_log_count": 22,
+    "metric_sessions": 22,
+    "extra_identities": 20,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000d90": "10.45.0.2",
+     "0x00000000000001a0": "10.45.0.3",
+     "0x00000000000001f4": "10.45.0.4",
+     "0x00000000000005a5": "10.45.0.5",
+     "0x0000000000000e71": "10.45.0.6",
+     "0x000000000000039e": "10.45.0.7",
+     "0x0000000000000817": "10.45.0.8",
+     "0x0000000000000b9b": "10.45.0.9",
+     "0x0000000000000878": "10.45.0.10",
+     "0x0000000000000f74": "10.45.0.11",
+     "0x00000000000009e0": "10.45.0.12",
+     "0x00000000000004e6": "10.45.0.13",
+     "0x00000000000000ff": "10.45.0.14",
+     "0x000000000000037e": "10.45.0.15",
+     "0x00000000000006e5": "10.45.0.16",
+     "0x00000000000002f5": "10.45.0.17",
+     "0x0000000000000e29": "10.45.0.18",
+     "0x000000000000099d": "10.45.0.19",
+     "0x00000000000001b8": "10.45.0.20",
+     "0x00000000000006d7": "10.45.0.21",
+     "0x0000000000000e7b": "10.45.0.22",
+     "0x000000000000044e": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 22,
+    "upf_log_count": 22,
+    "metric_sessions": 22,
+    "extra_identities": 20,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000d90": "10.45.0.2",
+     "0x00000000000001a0": "10.45.0.3",
+     "0x00000000000001f4": "10.45.0.4",
+     "0x00000000000005a5": "10.45.0.5",
+     "0x0000000000000e71": "10.45.0.6",
+     "0x000000000000039e": "10.45.0.7",
+     "0x0000000000000817": "10.45.0.8",
+     "0x0000000000000b9b": "10.45.0.9",
+     "0x0000000000000878": "10.45.0.10",
+     "0x0000000000000f74": "10.45.0.11",
+     "0x00000000000009e0": "10.45.0.12",
+     "0x00000000000004e6": "10.45.0.13",
+     "0x00000000000000ff": "10.45.0.14",
+     "0x000000000000037e": "10.45.0.15",
+     "0x00000000000006e5": "10.45.0.16",
+     "0x00000000000002f5": "10.45.0.17",
+     "0x0000000000000e29": "10.45.0.18",
+     "0x000000000000099d": "10.45.0.19",
+     "0x00000000000001b8": "10.45.0.20",
+     "0x00000000000006d7": "10.45.0.21",
+     "0x0000000000000e7b": "10.45.0.22",
+     "0x000000000000044e": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27504640,
+  "upf_cgroup_bytes_final": 27987968
+ },
+ {
+  "id": "growth-repair-r3",
+  "arm": "repair",
+  "chain": 3,
+  "stack": 3,
+  "error": null,
+  "elapsed_s": 436.4836962223053,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 20,
+  "per_cycle_extra_upf": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000093": "10.45.0.22",
+     "0x00000000000008fb": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000093": "10.45.0.22",
+     "0x00000000000008fb": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27701248,
+  "upf_cgroup_bytes_final": 27926528
+ },
+ {
+  "id": "growth-control-r4",
+  "arm": "control",
+  "chain": 4,
+  "stack": 3,
+  "error": null,
+  "elapsed_s": 416.6677870750427,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 20,
+  "per_cycle_extra_upf": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000fd2": "10.45.0.22",
+     "0x00000000000005b5": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 2,
+    "upf_log_count": 2,
+    "metric_sessions": 2,
+    "extra_identities": 0,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000fd2": "10.45.0.22",
+     "0x00000000000005b5": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27471872,
+  "upf_cgroup_bytes_final": 28069888
+ },
+ {
+  "id": "growth-baseline-r5",
+  "arm": "baseline",
+  "chain": 5,
+  "stack": 3,
+  "error": null,
+  "elapsed_s": 426.2099440097809,
+  "cycles": 10,
+  "service_cycles": 10,
+  "wire_establishments": 22,
+  "wire_deletions": 0,
+  "per_cycle_extra_upf": [
+   2,
+   4,
+   6,
+   8,
+   10,
+   12,
+   14,
+   16,
+   18,
+   20
+  ],
+  "final": [
+   {
+    "offset_s": 34,
+    "known": true,
+    "wire_live_sessions": 22,
+    "upf_log_count": 22,
+    "metric_sessions": 22,
+    "extra_identities": 20,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000e6e": "10.45.0.2",
+     "0x0000000000000e87": "10.45.0.3",
+     "0x0000000000000a2b": "10.45.0.4",
+     "0x0000000000000690": "10.45.0.5",
+     "0x0000000000000113": "10.45.0.6",
+     "0x00000000000001fd": "10.45.0.7",
+     "0x0000000000000057": "10.45.0.8",
+     "0x0000000000000af5": "10.45.0.9",
+     "0x00000000000009e4": "10.45.0.10",
+     "0x00000000000009b2": "10.45.0.11",
+     "0x00000000000009ae": "10.45.0.12",
+     "0x0000000000000e94": "10.45.0.13",
+     "0x0000000000000d82": "10.45.0.14",
+     "0x0000000000000574": "10.45.0.15",
+     "0x0000000000000e8d": "10.45.0.16",
+     "0x0000000000000fe5": "10.45.0.17",
+     "0x0000000000000c22": "10.45.0.18",
+     "0x000000000000032a": "10.45.0.19",
+     "0x00000000000004bc": "10.45.0.20",
+     "0x0000000000000dee": "10.45.0.21",
+     "0x0000000000000e86": "10.45.0.22",
+     "0x00000000000004b4": "10.45.0.23"
+    },
+    "service": true
+   },
+   {
+    "offset_s": 68,
+    "known": true,
+    "wire_live_sessions": 22,
+    "upf_log_count": 22,
+    "metric_sessions": 22,
+    "extra_identities": 20,
+    "active_ips": [
+     "10.45.0.22",
+     "10.45.0.23"
+    ],
+    "live_identity_map": {
+     "0x0000000000000e6e": "10.45.0.2",
+     "0x0000000000000e87": "10.45.0.3",
+     "0x0000000000000a2b": "10.45.0.4",
+     "0x0000000000000690": "10.45.0.5",
+     "0x0000000000000113": "10.45.0.6",
+     "0x00000000000001fd": "10.45.0.7",
+     "0x0000000000000057": "10.45.0.8",
+     "0x0000000000000af5": "10.45.0.9",
+     "0x00000000000009e4": "10.45.0.10",
+     "0x00000000000009b2": "10.45.0.11",
+     "0x00000000000009ae": "10.45.0.12",
+     "0x0000000000000e94": "10.45.0.13",
+     "0x0000000000000d82": "10.45.0.14",
+     "0x0000000000000574": "10.45.0.15",
+     "0x0000000000000e8d": "10.45.0.16",
+     "0x0000000000000fe5": "10.45.0.17",
+     "0x0000000000000c22": "10.45.0.18",
+     "0x000000000000032a": "10.45.0.19",
+     "0x00000000000004bc": "10.45.0.20",
+     "0x0000000000000dee": "10.45.0.21",
+     "0x0000000000000e86": "10.45.0.22",
+     "0x00000000000004b4": "10.45.0.23"
+    },
+    "service": true
+   }
+  ],
+  "upf_cgroup_bytes_initial": 27848704,
+  "upf_cgroup_bytes_final": 27656192
+ }
+]

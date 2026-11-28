@@ -1,0 +1,101 @@
+{
+"url": "https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-common-src/issues?state=all&search=already%20in%20use",
+"fetched": "2026-11-05T18:23:29Z",
+"items": [
+{
+"id": 4105,
+"iid": 1,
+"project_id": 5030,
+"title": "Reference to 'PDU_SESSION_TYPE_E_IPV4' in pdu_session_type.hpp is ambiguous",
+"description": "When integrating this common src within UDM, i got this error `error: reference to 'PDU_SESSION_TYPE_E_IPV4' is ambiguous`. The issue comes from the fact that the enum PDU_SESSION_TYPE_E_IPV4 is already existed in a API model which is generated automatically by OpenAPItools in UDM.\n(src/api_server/model/PduSessionTypes.h).\nIn this case, could you please e.g., use scoped/class enum in this common src in stead of unscoped enum to avoid this issue.",
+"state": "closed",
+"created_at": "2023-06-08T19:32:28.956Z",
+"updated_at": "2024-09-10T12:57:33.764Z",
+"closed_at": "2024-09-10T12:57:33.757Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 10799,
+"username": "phine_stefan",
+"public_email": "",
+"name": "Stefan Spettel",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/89d2da3be0c1181afb734b95d267f028d5165b8adebd5f29429de9337e4b6564?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/phine_stefan"
+},
+"user_notes_count": 3,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/work_items/1",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/1",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/1/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/5030/issues/1/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/5030",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#1",
+"relative": "#1",
+"full": "oai/cn5g/oai-cn5g-common-src#1"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+}
+]
+}

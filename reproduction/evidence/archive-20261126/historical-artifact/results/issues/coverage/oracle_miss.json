@@ -1,0 +1,41 @@
+{
+ "definitions": "crash-only oracle detects iff primary symptom == crash. Kairos-style oracle (crash OR persistent service failure) detects iff primary symptom in {crash, non-convergence}; misses = symptoms {orphan, dangling, alias, leak-exhaustion, black-hole} (the pass-1 'silent' set). Pass 2 additionally has a direct per-issue judgement (persistent_failure_detects), which can differ from the symptom rule, e.g. a black-hole the UE observes persistently counts as detected, a crash after hours of cycling does not.",
+ "pass1": {
+  "n_included": 38,
+  "crash_only_detects": 7,
+  "crash_only_misses": 31,
+  "kairos_rule_detects(symptom in {crash,non-convergence})": 16,
+  "kairos_rule_misses(=silent-symptom count)": 22,
+  "silent_field_yes": 22
+ },
+ "pass2": {
+  "n_included": 44,
+  "crash_only_detects": 8,
+  "crash_only_misses": 36,
+  "kairos_rule_detects(symptom in {crash,non-convergence})": 19,
+  "kairos_rule_misses(=silent-symptom count)": 25,
+  "silent_field_yes": 14,
+  "kairos_direct_judgement_detects(persistent_failure_detects=yes)": 27,
+  "kairos_direct_judgement_misses": 17,
+  "crash_only_direct_judgement_detects(crash_only_detects=yes)": 9
+ },
+ "pass2_labels_on_issues_both_passes_include": {
+  "n_included": 31,
+  "crash_only_detects": 5,
+  "crash_only_misses": 26,
+  "kairos_rule_detects(symptom in {crash,non-convergence})": 14,
+  "kairos_rule_misses(=silent-symptom count)": 17,
+  "silent_field_yes": 11,
+  "kairos_direct_judgement_detects(persistent_failure_detects=yes)": 21,
+  "kairos_direct_judgement_misses": 10,
+  "crash_only_direct_judgement_detects(crash_only_detects=yes)": 5
+ },
+ "pass1_labels_on_issues_both_passes_include": {
+  "n_included": 31,
+  "crash_only_detects": 5,
+  "crash_only_misses": 26,
+  "kairos_rule_detects(symptom in {crash,non-convergence})": 11,
+  "kairos_rule_misses(=silent-symptom count)": 20,
+  "silent_field_yes": 20
+ }
+}

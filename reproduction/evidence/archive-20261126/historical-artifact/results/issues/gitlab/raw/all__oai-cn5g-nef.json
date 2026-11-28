@@ -1,0 +1,81 @@
+{
+"url": "https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-nef/issues?state=all",
+"fetched": "2026-11-05T18:24:37Z",
+"items": [
+{
+"id": 4846,
+"iid": 1,
+"project_id": 4324,
+"title": "[MAINTAIN] Just like to check if this repo is still maintained or abandoned.",
+"description": "see title.",
+"state": "closed",
+"created_at": "2025-02-12T22:31:09.742Z",
+"updated_at": "2025-03-25T12:58:12.513Z",
+"closed_at": "2025-03-25T12:58:12.431Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 11866,
+"username": "yuntang",
+"public_email": null,
+"name": "yun tang",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/51bbdc9fde09a5c07affd989346df5af95ca0da96a590022a5b5b64d7fe331e4?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/yuntang"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 1,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nef/-/work_items/1",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/4324/issues/1",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/4324/issues/1/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/4324/issues/1/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/4324",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#1",
+"relative": "#1",
+"full": "oai/cn5g/oai-cn5g-nef#1"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+}
+]
+}

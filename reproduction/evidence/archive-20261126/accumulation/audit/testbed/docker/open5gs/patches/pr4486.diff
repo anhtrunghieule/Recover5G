@@ -1,0 +1,1764 @@
+diff --git a/src/amf/admin-handler.c b/src/amf/admin-handler.c
+new file mode 100644
+index 0000000000..40c9e07cd2
+--- /dev/null
++++ b/src/amf/admin-handler.c
+@@ -0,0 +1,208 @@
++/*
++ * Copyright (C) 2026 by Daniel Brune <daniel.brune.so@outlook.com>
++ *
++ * This file is part of Open5GS.
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU Affero General Public License as published by
++ * the Free Software Foundation, either version 3 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ */
++
++#include "admin-handler.h"
++#include "amf-sm.h"
++#include "event.h"
++#include "nas-path.h"
++
++/*
++ * Post a deferred-purge event so the heavy amf_ue_remove() cleanup
++ * runs from the main loop on a clean stack frame — never from inside
++ * the SBI handler. The pool id is opaque to ogs_app()->queue;
++ * amf_state_operational() re-resolves it via amf_ue_find_by_id() and
++ * silently no-ops if the context has already been removed by another
++ * code path between the POST and dispatch.
++ */
++void amf_admin_post_purge(ogs_pool_id_t amf_ue_id)
++{
++    amf_event_t *e;
++    int rv;
++
++    e = amf_event_new(AMF_EVENT_ADMIN_UE_PURGE);
++    ogs_assert(e);
++    e->amf_ue_id = amf_ue_id;
++
++    rv = ogs_queue_push(ogs_app()->queue, e);
++    if (rv != OGS_OK) {
++        ogs_error("ogs_queue_push() failed [%d] — admin purge dropped "
++                "for amf_ue_id=%d", rv, (int)amf_ue_id);
++        ogs_event_free(e);
++    }
++}
++
++void amf_admin_handle_delete_ue_context(
++        ogs_sbi_stream_t *stream, ogs_sbi_message_t *message,
++        ogs_sbi_request_t *request)
++{
++    amf_ue_t *amf_ue = NULL;
++    ogs_sbi_message_t sendmsg;
++    ogs_sbi_response_t *response = NULL;
++    char *id_str = NULL;
++    ogs_pool_id_t amf_ue_id;
++    int r;
++
++    ogs_assert(stream);
++    ogs_assert(message);
++
++    id_str = message->h.resource.component[1];
++    if (!id_str || !*id_str) {
++        ogs_error("Admin release: missing amf_ue_id in path");
++        ogs_assert(true ==
++            ogs_sbi_server_send_error(stream,
++                OGS_SBI_HTTP_STATUS_BAD_REQUEST, message,
++                "Missing amf_ue_id", NULL, NULL));
++        return;
++    }
++
++    amf_ue_id = (ogs_pool_id_t)atoll(id_str);
++    amf_ue = amf_ue_find_by_id(amf_ue_id);
++    if (!amf_ue) {
++        ogs_info("Admin release: amf_ue_id [%s] not found "
++                "(context already gone)", id_str);
++        ogs_assert(true ==
++            ogs_sbi_server_send_error(stream,
++                OGS_SBI_HTTP_STATUS_NOT_FOUND, message,
++                "amf_ue_id not found", id_str, NULL));
++        return;
++    }
++
++    /*
++     * Force-purge opt-in (?purge=true): skip all NAS signalling and
++     * tear the AMF-side context down locally. Mirrors the MME admin
++     * endpoint's purge semantics on the 5GC side.
++     *
++     * Motivating cases:
++     *   - UE left 5G coverage (e.g. gNB radio off). The default
++     *     Deregistration path fails with "NG context has already been
++     *     removed" (OGS_NOTFOUND in src/amf/nas-path.c), which the V1
++     *     admin handler swallows — but without removing the local
++     *     amf_ue. Purge closes that gap.
++     *   - NB-IoT / LTE-M 5GC-capable UEs in PSM / eDRX that may sleep
++     *     for up to ~14 days. Paging + NAS Deregistration would time
++     *     out on T3513; operators need deterministic cleanup within
++     *     shorter windows.
++     *   - Cross-RAT artefacts: UE moved 5G → 4G without clean
++     *     Deregistration; AMF holds stale 5GMM-REGISTERED context
++     *     until T3512 (~58 min) implicit-deregister fires.
++     *
++     * UE-side recovery:
++     *   - Local context removed, 5G-GUTI no longer indexed.
++     *   - On next 5G contact with the old 5G-GUTI, AMF replies with
++     *     Identity Request (TS 24.501 §5.4.3). UE supplies its SUCI;
++     *     standard Registration procedure follows — spec-compliant.
++     *
++     * Safety: opt-in via explicit query parameter. Without
++     * ?purge=true the existing default flow (Deregistration Request)
++     * runs unchanged. Audit log emitted at WARNING level so purge
++     * actions are retrievable via `journalctl -u open5gs-amfd`.
++     */
++    if (request && request->http.params) {
++        const char *purge_str = ogs_sbi_header_get(
++                request->http.params, "purge");
++        if (purge_str && strcasecmp(purge_str, "true") == 0) {
++            ogs_warn("[%s] Admin force-purge: amf_ue_id=%s — removing "
++                    "local context without NAS signalling. UE will "
++                    "SUCI-register on next 5G contact "
++                    "(TS 24.501 §5.4.3 Identity Request)",
++                    amf_ue->supi ? amf_ue->supi : "unknown", id_str);
++
++            memset(&sendmsg, 0, sizeof(sendmsg));
++            response = ogs_sbi_build_response(
++                    &sendmsg, OGS_SBI_HTTP_STATUS_NO_CONTENT);
++            ogs_assert(response);
++            ogs_assert(true ==
++                ogs_sbi_server_send_response(stream, response));
++
++            /*
++             * Defer amf_ue_remove() to the next main-loop tick via an
++             * AMF_EVENT_ADMIN_UE_PURGE event. Calling amf_ue_remove()
++             * synchronously from the SBI handler would tear down the
++             * context from inside the FSM dispatch frame that brought
++             * us here; running the heavy cleanup from a clean stack
++             * frame (after the 204 has already been put on the wire)
++             * eliminates re-entrancy concerns and matches the
++             * teardown convention for every other state-removing
++             * trigger in the AMF (timer expiry, UDM Cancel, etc.).
++             *
++             * The event carries the amf_ue's pool id (not a raw
++             * pointer); the FSM handler re-resolves it via
++             * amf_ue_find_by_id() and bails out gracefully if the
++             * context disappeared in the meantime.
++             */
++            amf_admin_post_purge((ogs_pool_id_t)amf_ue->id);
++            return;
++        }
++    }
++
++    /*
++     * Guard against concurrent DELETE or against a deregistration that
++     * is already in flight (e.g. UE-initiated detach crossing our
++     * request). Only 5GMM-REGISTERED contexts can accept a fresh
++     * network-initiated Deregistration Request; any other state
++     * means a teardown is already under way.
++     */
++    if (!OGS_FSM_CHECK(&amf_ue->sm, gmm_state_registered)) {
++        ogs_info("[%s] Admin release: amf_ue_id=%s already in teardown "
++                "or not yet registered — responding 204 idempotent",
++                amf_ue->supi ? amf_ue->supi : "unknown", id_str);
++        memset(&sendmsg, 0, sizeof(sendmsg));
++        response = ogs_sbi_build_response(
++                &sendmsg, OGS_SBI_HTTP_STATUS_NO_CONTENT);
++        ogs_assert(response);
++        ogs_assert(true == ogs_sbi_server_send_response(stream, response));
++        return;
++    }
++
++    ogs_warn("[%s] Admin-initiated deregistration: amf_ue_id=%s cm=%s",
++            amf_ue->supi ? amf_ue->supi : "unknown", id_str,
++            CM_CONNECTED(amf_ue) ? "CONNECTED" : "IDLE");
++
++    /*
++     * Respond 204 immediately — the deregistration is asynchronous.
++     * The caller must not infer completion from this response;
++     * verification happens via a subsequent /ue-info poll or by
++     * observing the UE re-register.
++     */
++    memset(&sendmsg, 0, sizeof(sendmsg));
++    response = ogs_sbi_build_response(
++            &sendmsg, OGS_SBI_HTTP_STATUS_NO_CONTENT);
++    ogs_assert(response);
++    ogs_assert(true == ogs_sbi_server_send_response(stream, response));
++
++    /*
++     * Drive the AMF-initiated Deregistration Request path per
++     * 3GPP TS 24.501 §5.5.2.3. With reason = REREGISTRATION_REQUIRED
++     * and cause = IMPLICITLY_DE_REGISTERED the UE is instructed to
++     * clear its 5GMM state and re-register. The standard AMF FSM
++     * starts T3522 and follows up with NGAP UEContextReleaseCommand
++     * once the UE's Deregistration Accept arrives or the timer
++     * expires.
++     *
++     * When the UE is CM-IDLE there is no NG UE to deliver the NAS
++     * message to; nas_5gs_send_de_registration_request() returns
++     * OGS_NOTFOUND in that case and logs it. The local AMF context
++     * will still be cleaned up once downstream state (UDM dereg,
++     * SMF release) finishes via the usual FSM paths.
++     */
++    r = nas_5gs_send_de_registration_request(amf_ue,
++            OpenAPI_deregistration_reason_REREGISTRATION_REQUIRED,
++            OGS_5GMM_CAUSE_IMPLICITLY_DE_REGISTERED);
++    ogs_expect(r == OGS_OK || r == OGS_NOTFOUND);
++}
+diff --git a/src/amf/admin-handler.h b/src/amf/admin-handler.h
+new file mode 100644
+index 0000000000..149407a8ef
+--- /dev/null
++++ b/src/amf/admin-handler.h
+@@ -0,0 +1,59 @@
++/*
++ * Copyright (C) 2026 by Daniel Brune <daniel.brune.so@outlook.com>
++ *
++ * This file is part of Open5GS.
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU Affero General Public License as published by
++ * the Free Software Foundation, either version 3 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ */
++
++#ifndef AMF_ADMIN_HANDLER_H
++#define AMF_ADMIN_HANDLER_H
++
++#include "context.h"
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++/*
++ * DELETE /admin/v1/ue-contexts/{amf_ue_id}
++ *
++ * Force-detach a 5GMM UE context that has been left out of sync after an
++ * upstream NF restart (typically SMF, where the PDU session context was
++ * lost but the UE's 5GMM-REGISTERED state persists). Issues a spec-
++ * compliant AMF-initiated Deregistration Request with
++ * RE_REGISTRATION_REQUIRED so the UE rebuilds its NAS state and re-
++ * registers from scratch instead of keeping stale EPS bearer context.
++ *
++ * Response: 204 No Content on accepted; deregistration runs asynchronously.
++ * Behaviour when the UE is CM-IDLE: handler triggers a local teardown of
++ * the AMF-side context without attempting a DL-NAS transport that would
++ * have nowhere to go.
++ */
++void amf_admin_handle_delete_ue_context(
++        ogs_sbi_stream_t *stream, ogs_sbi_message_t *message,
++        ogs_sbi_request_t *request);
++
++/*
++ * Internal helper: post a deferred amf_ue_remove() onto the main app
++ * event queue (AMF_EVENT_ADMIN_UE_PURGE). Used by the ?purge=true
++ * path to keep state teardown out of the SBI handler's stack frame.
++ */
++void amf_admin_post_purge(ogs_pool_id_t amf_ue_id);
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif /* AMF_ADMIN_HANDLER_H */
+diff --git a/src/amf/amf-sm.c b/src/amf/amf-sm.c
+index e3487f8967..e5e9a318ef 100644
+--- a/src/amf/amf-sm.c
++++ b/src/amf/amf-sm.c
+@@ -27,6 +27,7 @@
+ #include "nsmf-handler.h"
+ #include "nnssf-handler.h"
+ #include "nas-security.h"
++#include "admin-handler.h"
+ 
+ void amf_state_initial(ogs_fsm_t *s, amf_event_t *e)
+ {
+@@ -306,6 +307,61 @@ void amf_state_operational(ogs_fsm_t *s, amf_event_t *e)
+             END
+             break;
+ 
++        /*
++         * Non-3GPP admin service: force-deregister a single UE context
++         * identified by its amf_ue_id (pool index). Used by operator OAM
++         * tooling to clean up stranded UE contexts after upstream NF
++         * restarts — AMF still holds the 5GMM-REGISTERED state while the
++         * SMF has lost the PDU session, and the UE is data-plane-stuck
++         * until something forces fresh Registration.
++         * See src/amf/admin-handler.c.
++         *
++         * URL layout: DELETE /admin/v1/ue-contexts/{amf_ue_id}
++         *
++         * Opt-in via amf.yaml `admin.enabled: true`. When disabled we
++         * answer 404 rather than 403 so a probe cannot distinguish
++         * "endpoint forbidden" from "endpoint not present".
++         */
++        CASE("admin")
++            if (!amf_self()->admin_config.enabled) {
++                ogs_info("admin endpoint disabled (admin.enabled not "
++                        "set in amf.yaml) — responding 404");
++                ogs_assert(true ==
++                    ogs_sbi_server_send_error(stream,
++                        OGS_SBI_HTTP_STATUS_NOT_FOUND, &sbi_message,
++                        "Not Found", NULL, NULL));
++                break;
++            }
++
++            SWITCH(sbi_message.h.resource.component[0])
++            CASE("ue-contexts")
++                SWITCH(sbi_message.h.method)
++                CASE(OGS_SBI_HTTP_METHOD_DELETE)
++                    amf_admin_handle_delete_ue_context(
++                            stream, &sbi_message, sbi_request);
++                    break;
++                DEFAULT
++                    ogs_error("Invalid HTTP method [%s]",
++                            sbi_message.h.method);
++                    ogs_assert(true ==
++                        ogs_sbi_server_send_error(stream,
++                            OGS_SBI_HTTP_STATUS_METHOD_NOT_ALLOWED,
++                            &sbi_message,
++                            "Invalid HTTP method",
++                            sbi_message.h.method, NULL));
++                END
++                break;
++            DEFAULT
++                ogs_error("Invalid resource name [%s]",
++                        sbi_message.h.resource.component[0]);
++                ogs_assert(true ==
++                    ogs_sbi_server_send_error(stream,
++                        OGS_SBI_HTTP_STATUS_BAD_REQUEST, &sbi_message,
++                        "Invalid resource name",
++                        sbi_message.h.resource.component[0], NULL));
++            END
++            break;
++
+         DEFAULT
+             ogs_error("Invalid API name [%s]", sbi_message.h.service.name);
+             ogs_assert(true ==
+@@ -1021,6 +1077,28 @@ void amf_state_operational(ogs_fsm_t *s, amf_event_t *e)
+         ogs_free(addr);
+ 
+         break;
++    case AMF_EVENT_ADMIN_UE_PURGE:
++        /*
++         * Deferred purge from DELETE /admin/v1/ue-contexts/{id}?purge=true.
++         * Re-resolve the pool id from a clean stack frame so state
++         * teardown never runs from inside the SBI handler. Silently
++         * no-op if the context disappeared in the meantime — another
++         * code path (UDM Cancel, T3512 expiry, ordinary deregistration)
++         * may have raced us to the cleanup.
++         */
++        amf_ue = amf_ue_find_by_id(e->amf_ue_id);
++        if (!amf_ue) {
++            ogs_info("Admin purge: amf_ue_id=%d already gone — no-op",
++                    (int)e->amf_ue_id);
++            break;
++        }
++        ogs_warn("[%s] Admin purge: removing local context for "
++                "amf_ue_id=%d (deferred from SBI handler)",
++                amf_ue->supi ? amf_ue->supi : "unknown",
++                (int)e->amf_ue_id);
++        amf_ue_remove(amf_ue);
++        break;
++
+     case AMF_EVENT_NGAP_MESSAGE:
+         sock = e->ngap.sock;
+         ogs_assert(sock);
+diff --git a/src/amf/context.c b/src/amf/context.c
+index 84b1f9fc9a..e0871d16f3 100644
+--- a/src/amf/context.c
++++ b/src/amf/context.c
+@@ -1065,6 +1065,25 @@ int amf_context_parse_config(void)
+                         } else
+                             ogs_warn("unknown key `%s`", time_key);
+                     }
++                } else if (!strcmp(amf_key, "admin")) {
++                    ogs_yaml_iter_t admin_iter;
++                    ogs_yaml_iter_recurse(&amf_iter, &admin_iter);
++                    while (ogs_yaml_iter_next(&admin_iter)) {
++                        const char *admin_key =
++                            ogs_yaml_iter_key(&admin_iter);
++                        ogs_assert(admin_key);
++                        if (!strcmp(admin_key, "enabled")) {
++                            const char *v =
++                                ogs_yaml_iter_value(&admin_iter);
++                            if (v && (!strcmp(v, "true") ||
++                                        !strcmp(v, "yes") ||
++                                        !strcmp(v, "1")))
++                                self.admin_config.enabled = true;
++                            else
++                                self.admin_config.enabled = false;
++                        } else
++                            ogs_warn("unknown key `%s`", admin_key);
++                    }
+                 } else if (!strcmp(amf_key, "default")) {
+                     /* handle config in sbi library */
+                 } else if (!strcmp(amf_key, "sbi")) {
+diff --git a/src/amf/context.h b/src/amf/context.h
+index e0a574ac26..8b6782fcd3 100644
+--- a/src/amf/context.h
++++ b/src/amf/context.h
+@@ -53,7 +53,18 @@ typedef enum {
+     REGISTRATION_STATUS_UPDATE_NEW_AMF_STATE,
+ } amf_ue_context_transfer_state_t;
+ 
++/*
++ * Opt-in toggle for the non-3GPP /admin/v1/ue-contexts/{amf_ue_id}
++ * endpoint. Defaults to off. When disabled, requests are answered with
++ * 404 so the endpoint's existence remains invisible to probes.
++ */
++typedef struct amf_admin_config_s {
++    bool enabled;
++} amf_admin_config_t;
++
+ typedef struct amf_context_s {
++    amf_admin_config_t admin_config;
++
+     /* Served GUAMI */
+     int num_of_served_guami;
+     ogs_guami_t served_guami[OGS_MAX_NUM_OF_SERVED_GUAMI];
+diff --git a/src/amf/event.h b/src/amf/event.h
+index 3300d1b1e2..980a3fd18e 100644
+--- a/src/amf/event.h
++++ b/src/amf/event.h
+@@ -50,6 +50,8 @@ typedef enum {
+     AMF_EVENT_5GSM_MESSAGE,
+     AMF_EVENT_5GSM_TIMER,
+ 
++    AMF_EVENT_ADMIN_UE_PURGE,
++
+     MAX_NUM_OF_AMF_EVENT,
+ 
+ } amf_event_e;
+diff --git a/src/amf/meson.build b/src/amf/meson.build
+index e626fb929e..c22f9aece8 100644
+--- a/src/amf/meson.build
++++ b/src/amf/meson.build
+@@ -60,6 +60,8 @@ libamf_sources = files('''
+ 
+     amf-sm.c
+ 
++    admin-handler.c
++
+     init.c
+     metrics.c
+     gnb-info.c
+diff --git a/src/amf/ue-info.c b/src/amf/ue-info.c
+index 64c4a819f2..0cdbcc1c4e 100644
+--- a/src/amf/ue-info.c
++++ b/src/amf/ue-info.c
+@@ -167,6 +167,17 @@ static int add_snssai_sd_string(cJSON *obj, const char *key, const ogs_uint24_t
+ 
+ static int add_basic_identity(cJSON *o, const amf_ue_t *ue)
+ {
++    /*
++     * Expose the amf_ue_t pool index as a stable, privacy-neutral
++     * operator handle. It is the same identifier expected by
++     * DELETE /admin/v1/ue-contexts/{id}, so OAM tooling can correlate
++     * a /ue-info entry with the admin URL without touching SUPI/GUTI.
++     */
++    {
++        cJSON *v = cJSON_CreateNumber((double)ue->id); if (!v) return -1;
++        cJSON_AddItemToObjectCS(o, "id", v);
++    }
++
+     if (ue->supi && ue->supi[0]) {
+         cJSON *v = cJSON_CreateString(ue->supi); if (!v) return -1;
+         cJSON_AddItemToObjectCS(o, "supi", v);
+diff --git a/src/mme/admin-handler.c b/src/mme/admin-handler.c
+new file mode 100644
+index 0000000000..bc90765263
+--- /dev/null
++++ b/src/mme/admin-handler.c
+@@ -0,0 +1,384 @@
++/*
++ * Copyright (C) 2026 by Daniel Brune <daniel.brune.so@outlook.com>
++ *
++ * This file is part of Open5GS.
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU Affero General Public License as published by
++ * the Free Software Foundation, either version 3 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ */
++
++#include "admin-handler.h"
++#include "mme-sm.h"
++#include "mme-event.h"
++#include "nas-path.h"
++#include "s1ap-path.h"
++
++#include "S1AP_CNDomain.h"
++
++/*
++ * The ogs_sbi server library calls our handler (ogs_sbi_server_handler,
++ * from lib/sbi/path.c) which pushes a generic ogs_event_t of type
++ * OGS_EVENT_SBI_SERVER onto ogs_app()->queue. mme-init.c intercepts
++ * that event type in the main loop and delegates here.
++ */
++
++static void handle_admin_route(
++        ogs_sbi_stream_t *stream, ogs_sbi_message_t *message,
++        ogs_sbi_request_t *request);
++
++/*
++ * Post a deferred-purge event so the heavy mme_ue_remove() cleanup
++ * runs from the main loop on a clean stack frame — never from inside
++ * the SBI handler. The pool id is opaque to ogs_app()->queue;
++ * mme_state_operational() re-resolves it via mme_ue_find_by_id() and
++ * silently no-ops if the context has already been removed by another
++ * code path between the POST and dispatch.
++ */
++void mme_admin_post_purge(ogs_pool_id_t mme_ue_id)
++{
++    mme_event_t *e;
++    int rv;
++
++    e = mme_event_new(MME_EVENT_ADMIN_UE_PURGE);
++    ogs_assert(e);
++    e->mme_ue_id = mme_ue_id;
++
++    rv = ogs_queue_push(ogs_app()->queue, e);
++    if (rv != OGS_OK) {
++        ogs_error("ogs_queue_push() failed [%d] — admin purge dropped "
++                "for mme_ue_id=%d", rv, (int)mme_ue_id);
++        mme_event_free(e);
++    }
++}
++
++int mme_admin_server_open(void)
++{
++    if (!mme_self()->admin_config.enabled) {
++        ogs_debug("admin endpoint disabled — skipping listener start");
++        return OGS_OK;
++    }
++
++    if (ogs_sbi_server_first_by_interface("admin") == NULL) {
++        ogs_warn("admin.enabled is set but no admin.server was parsed "
++                "from mme.yaml — endpoint will not accept requests");
++        return OGS_OK;
++    }
++
++    if (ogs_sbi_server_start_all(ogs_sbi_server_handler) != OGS_OK) {
++        ogs_error("ogs_sbi_server_start_all() failed");
++        return OGS_ERROR;
++    }
++
++    return OGS_OK;
++}
++
++void mme_admin_server_close(void)
++{
++    if (!mme_self()->admin_config.enabled)
++        return;
++
++    ogs_sbi_server_stop_all();
++}
++
++void mme_admin_process_sbi_server_event(ogs_event_t *e)
++{
++    int rv;
++    ogs_sbi_stream_t *stream = NULL;
++    ogs_sbi_request_t *sbi_request = NULL;
++    ogs_sbi_message_t sbi_message;
++
++    ogs_assert(e);
++    ogs_assert(e->sbi.request);
++    ogs_assert(e->sbi.data);
++
++    sbi_request = e->sbi.request;
++    stream = (ogs_sbi_stream_t *)ogs_sbi_stream_find_by_id(
++            OGS_POINTER_TO_UINT(e->sbi.data));
++    if (!stream) {
++        ogs_error("STREAM has already been removed");
++        ogs_sbi_request_free(sbi_request);
++        return;
++    }
++
++    rv = ogs_sbi_parse_request(&sbi_message, sbi_request);
++    if (rv != OGS_OK) {
++        ogs_error("cannot parse HTTP sbi_message");
++        ogs_assert(true ==
++            ogs_sbi_server_send_error(
++                stream, OGS_SBI_HTTP_STATUS_BAD_REQUEST,
++                NULL, "cannot parse HTTP sbi_message", NULL,
++                NULL));
++        return;
++    }
++
++    /*
++     * Cross-NF-convention guard: the ogs_sbi server library is used
++     * here strictly for the admin namespace. Anything outside it is
++     * out of scope for MME.
++     */
++    SWITCH(sbi_message.h.service.name)
++    CASE("admin")
++        if (!mme_self()->admin_config.enabled) {
++            ogs_info("admin endpoint disabled (admin.enabled not set "
++                    "in mme.yaml) — responding 404");
++            ogs_assert(true ==
++                ogs_sbi_server_send_error(stream,
++                    OGS_SBI_HTTP_STATUS_NOT_FOUND, &sbi_message,
++                    "Not Found", NULL, NULL));
++            break;
++        }
++        handle_admin_route(stream, &sbi_message, sbi_request);
++        break;
++
++    DEFAULT
++        ogs_error("Invalid API name [%s]", sbi_message.h.service.name);
++        ogs_assert(true ==
++            ogs_sbi_server_send_error(stream,
++                OGS_SBI_HTTP_STATUS_BAD_REQUEST, &sbi_message,
++                "Invalid API name", sbi_message.h.service.name, NULL));
++    END
++
++    ogs_sbi_message_free(&sbi_message);
++}
++
++static void handle_admin_route(
++        ogs_sbi_stream_t *stream, ogs_sbi_message_t *message,
++        ogs_sbi_request_t *request)
++{
++    SWITCH(message->h.resource.component[0])
++    CASE("ue-contexts")
++        SWITCH(message->h.method)
++        CASE(OGS_SBI_HTTP_METHOD_DELETE)
++            mme_admin_handle_delete_ue_context(stream, message, request);
++            break;
++        DEFAULT
++            ogs_error("Invalid HTTP method [%s]", message->h.method);
++            ogs_assert(true ==
++                ogs_sbi_server_send_error(stream,
++                    OGS_SBI_HTTP_STATUS_METHOD_NOT_ALLOWED, message,
++                    "Invalid HTTP method", message->h.method, NULL));
++        END
++        break;
++    DEFAULT
++        ogs_error("Invalid resource name [%s]",
++                message->h.resource.component[0]);
++        ogs_assert(true ==
++            ogs_sbi_server_send_error(stream,
++                OGS_SBI_HTTP_STATUS_BAD_REQUEST, message,
++                "Invalid resource name",
++                message->h.resource.component[0], NULL));
++    END
++}
++
++void mme_admin_handle_delete_ue_context(
++        ogs_sbi_stream_t *stream, ogs_sbi_message_t *message,
++        ogs_sbi_request_t *request)
++{
++    mme_ue_t *mme_ue = NULL;
++    ogs_sbi_message_t sendmsg;
++    ogs_sbi_response_t *response = NULL;
++    char *id_str = NULL;
++    ogs_pool_id_t mme_ue_id;
++    int r;
++
++    ogs_assert(stream);
++    ogs_assert(message);
++
++    id_str = message->h.resource.component[1];
++    if (!id_str || !*id_str) {
++        ogs_error("Admin release: missing mme_ue_id in path");
++        ogs_assert(true ==
++            ogs_sbi_server_send_error(stream,
++                OGS_SBI_HTTP_STATUS_BAD_REQUEST, message,
++                "Missing mme_ue_id", NULL, NULL));
++        return;
++    }
++
++    mme_ue_id = (ogs_pool_id_t)atoll(id_str);
++    mme_ue = mme_ue_find_by_id(mme_ue_id);
++    if (!mme_ue) {
++        ogs_info("Admin release: mme_ue_id [%s] not found "
++                "(context already gone)", id_str);
++        ogs_assert(true ==
++            ogs_sbi_server_send_error(stream,
++                OGS_SBI_HTTP_STATUS_NOT_FOUND, message,
++                "mme_ue_id not found", id_str, NULL));
++        return;
++    }
++
++    /*
++     * Force-purge opt-in (?purge=true): skip all NAS signalling and
++     * tear the MME-side context down locally. Intended for operator
++     * cleanup of stale contexts left behind by UEs that cannot or
++     * will not respond to the standard detach flow:
++     *   - NB-IoT / LTE-M UEs in Power Saving Mode (PSM) or extended
++     *     DRX (eDRX) that may sleep for up to ~14 days — a Paging
++     *     or Detach Request would time out and the operator wants
++     *     deterministic cleanup within a shorter window.
++     *   - UEs that have physically left coverage without ever sending
++     *     a Detach Request (implicit leave).
++     *
++     * Semantics on the UE side:
++     *   - Local context removed, GUTI no longer indexed in MME.
++     *   - On next UE contact with the old GUTI, MME replies with an
++     *     Identity Request (TS 24.301 §5.4.4). UE supplies its IMSI;
++     *     a fresh attach procedure ensues — spec-compliant.
++     *
++     * Safety: the explicit query parameter is opt-in only. Without
++     * ?purge=true the default flow (paged-detach / immediate Detach
++     * Request) runs as before. Audit log emitted at WARNING level so
++     * purge actions are retrievable via `journalctl -u open5gs-mmed`.
++     */
++    if (request && request->http.params) {
++        const char *purge_str = ogs_sbi_header_get(
++                request->http.params, "purge");
++        if (purge_str && strcasecmp(purge_str, "true") == 0) {
++            ogs_warn("[%s] Admin force-purge: mme_ue_id=%s — removing "
++                    "local context without NAS signalling. UE will "
++                    "IMSI-attach on next contact "
++                    "(TS 24.301 §5.4.4 Identity Request)",
++                    mme_ue->imsi_bcd[0] ? mme_ue->imsi_bcd : "unknown",
++                    id_str);
++
++            memset(&sendmsg, 0, sizeof(sendmsg));
++            response = ogs_sbi_build_response(
++                    &sendmsg, OGS_SBI_HTTP_STATUS_NO_CONTENT);
++            ogs_assert(response);
++            ogs_assert(true ==
++                ogs_sbi_server_send_response(stream, response));
++
++            /*
++             * Defer mme_ue_remove() to the next main-loop tick via a
++             * MME_EVENT_ADMIN_UE_PURGE event. Calling mme_ue_remove()
++             * synchronously from the SBI handler would tear down a
++             * context that the same call frame still holds a pointer
++             * to, and Open5GS dispatches admin SBI events from
++             * mme_main() before any other queued events for this UE
++             * have been drained — running the heavy cleanup from a
++             * clean stack frame, after the 204 has already been put on
++             * the wire, eliminates re-entrancy concerns and matches
++             * the pattern used by every other state-teardown trigger
++             * in the MME (timer expiry, S6a peer Cancel, etc.).
++             *
++             * The event carries the mme_ue's pool id (not a raw
++             * pointer); the FSM handler re-resolves it via
++             * mme_ue_find_by_id() and bails out gracefully if the
++             * context disappeared in the meantime.
++             */
++            mme_admin_post_purge((ogs_pool_id_t)mme_ue->id);
++            return;
++        }
++    }
++
++    /*
++     * Guard against concurrent DELETE or against a detach that is
++     * already in flight. Only EMM-REGISTERED contexts can accept a
++     * fresh network-initiated Detach Request; any other state means
++     * a teardown is already under way.
++     */
++    if (!OGS_FSM_CHECK(&mme_ue->sm, emm_state_registered)) {
++        ogs_info("[%s] Admin release: mme_ue_id=%s not in "
++                "emm_state_registered — responding 204 idempotent",
++                mme_ue->imsi_bcd[0] ? mme_ue->imsi_bcd : "unknown",
++                id_str);
++        memset(&sendmsg, 0, sizeof(sendmsg));
++        response = ogs_sbi_build_response(
++                &sendmsg, OGS_SBI_HTTP_STATUS_NO_CONTENT);
++        ogs_assert(response);
++        ogs_assert(true == ogs_sbi_server_send_response(stream, response));
++        return;
++    }
++
++    /*
++     * ECM-IDLE path: the UE is not reachable for an immediate NAS
++     * Detach Request. Trigger S1AP Paging; the standard MME paging
++     * machinery (T3413 retry, paging-response handling in emm-sm.c)
++     * takes over. When the UE responds with a Service Request, the
++     * `admin_detach_pending` flag set here tells the EMM state machine
++     * to send the Detach Request right after the Service Request's
++     * Initial Context Setup completes — completing the paged-detach
++     * flow.
++     *
++     * If the UE never responds, T3413 expires and the MME performs
++     * Implicit Detach (existing behaviour) which tears the context
++     * down locally. No extra timer needed in this handler.
++     *
++     * HTTP 202 Accepted signals async completion — the caller can
++     * poll /ue-info to observe the UE disappear when the flow
++     * finishes (order of seconds to T3413-bounded). 204 would be
++     * misleading because the detach has only been initiated, not
++     * confirmed.
++     */
++    if (!ECM_CONNECTED(mme_ue)) {
++        int pr;
++        ogs_warn("[%s] Admin-paged detach: mme_ue_id=%s is ECM-IDLE, "
++                "triggering S1AP Paging — Detach Request will follow "
++                "on Service Request response (or Implicit Detach on "
++                "T3413 expiry)",
++                mme_ue->imsi_bcd, id_str);
++
++        mme_ue->admin_detach_pending = true;
++        pr = s1ap_send_paging(mme_ue, S1AP_CNDomain_ps);
++        if (pr != OGS_OK) {
++            mme_ue->admin_detach_pending = false;
++            ogs_error("[%s] s1ap_send_paging() failed [%d] — aborting "
++                    "paged-detach", mme_ue->imsi_bcd, pr);
++            ogs_assert(true ==
++                ogs_sbi_server_send_error(stream,
++                    OGS_SBI_HTTP_STATUS_INTERNAL_SERVER_ERROR, message,
++                    "Paging failed", id_str, NULL));
++            return;
++        }
++
++        memset(&sendmsg, 0, sizeof(sendmsg));
++        response = ogs_sbi_build_response(
++                &sendmsg, OGS_SBI_HTTP_STATUS_ACCEPTED);
++        ogs_assert(response);
++        ogs_assert(true == ogs_sbi_server_send_response(stream, response));
++        return;
++    }
++
++    ogs_warn("[%s] Admin-initiated detach: mme_ue_id=%s detach_type="
++            "re-attach-required", mme_ue->imsi_bcd, id_str);
++
++    /*
++     * Respond 204 immediately — the detach is asynchronous. UE will
++     * reply with Detach Accept or T3422 will fire; either way the
++     * existing EMM state machine follows up with
++     * s1ap_send_ue_context_release_command(). From the caller's
++     * perspective completion is observable via /ue-info polling.
++     */
++    memset(&sendmsg, 0, sizeof(sendmsg));
++    response = ogs_sbi_build_response(
++            &sendmsg, OGS_SBI_HTTP_STATUS_NO_CONTENT);
++    ogs_assert(response);
++    ogs_assert(true == ogs_sbi_server_send_response(stream, response));
++
++    /*
++     * Build the MME-initiated Detach Request per 3GPP TS 24.301
++     * §5.5.2.3 with detach-type = "re-attach required". This clears
++     * both NAS context on the UE and ensures the UE performs a fresh
++     * Attach procedure, re-creating the ESM/EPS bearer context the
++     * upstream SMF has forgotten. The standard EMM FSM handles the
++     * rest (T3422, Detach Accept, UEContextReleaseCommand).
++     */
++    memset(&mme_ue->nas_eps.detach, 0, sizeof(ogs_nas_detach_type_t));
++    mme_ue->nas_eps.detach.value =
++        OGS_NAS_DETACH_TYPE_TO_UE_RE_ATTACH_REQUIRED;
++    mme_ue->nas_eps.type = MME_EPS_TYPE_DETACH_REQUEST_TO_UE;
++
++    r = nas_eps_send_detach_request(mme_ue);
++    if (r != OGS_OK)
++        ogs_error("[%s] nas_eps_send_detach_request() failed [%d]",
++                mme_ue->imsi_bcd, r);
++}
+diff --git a/src/mme/admin-handler.h b/src/mme/admin-handler.h
+new file mode 100644
+index 0000000000..f475792f94
+--- /dev/null
++++ b/src/mme/admin-handler.h
+@@ -0,0 +1,75 @@
++/*
++ * Copyright (C) 2026 by Daniel Brune <daniel.brune.so@outlook.com>
++ *
++ * This file is part of Open5GS.
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU Affero General Public License as published by
++ * the Free Software Foundation, either version 3 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ */
++
++#ifndef MME_ADMIN_HANDLER_H
++#define MME_ADMIN_HANDLER_H
++
++#include "ogs-sbi.h"
++#include "mme-context.h"
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++/*
++ * Lifecycle hooks called from mme-init.c. Open binds the admin HTTP/2
++ * listener(s) configured under `mme.admin.server` in mme.yaml; close
++ * stops them during termination. Both are no-ops when admin.enabled is
++ * false.
++ */
++int mme_admin_server_open(void);
++void mme_admin_server_close(void);
++
++/*
++ * Main-thread hook: consumes one OGS_EVENT_SBI_SERVER event pushed onto
++ * the app queue by the shared ogs_sbi_server_handler callback. Performs
++ * synchronous dispatch on the request's service/resource/method and
++ * emits the HTTP response before returning. The event itself is freed
++ * by the caller.
++ */
++void mme_admin_process_sbi_server_event(ogs_event_t *e);
++
++/*
++ * DELETE /admin/v1/ue-contexts/{mme_ue_id}
++ *
++ * Force-detach an EMM UE context that has been left out of sync after
++ * an upstream NF restart (typically SMF, where EPS bearer context was
++ * lost but the UE's EMM-REGISTERED state persists). Issues a spec-
++ * compliant MME-initiated Detach Request with detach-type "re-attach
++ * required" (3GPP TS 24.301 §5.5.2.3) so the UE rebuilds its NAS state
++ * and re-attaches from scratch instead of keeping stale bearer context.
++ *
++ * Response: 204 No Content on accepted; detach runs asynchronously.
++ */
++void mme_admin_handle_delete_ue_context(
++        ogs_sbi_stream_t *stream, ogs_sbi_message_t *message,
++        ogs_sbi_request_t *request);
++
++/*
++ * Internal helper: post a deferred mme_ue_remove() onto the main app
++ * event queue (MME_EVENT_ADMIN_UE_PURGE). Used by the ?purge=true
++ * path to keep state teardown out of the SBI handler's stack frame.
++ */
++void mme_admin_post_purge(ogs_pool_id_t mme_ue_id);
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif /* MME_ADMIN_HANDLER_H */
+diff --git a/src/mme/emm-sm.c b/src/mme/emm-sm.c
+index 4854d86f39..83b2cb8407 100644
+--- a/src/mme/emm-sm.c
++++ b/src/mme/emm-sm.c
+@@ -440,6 +440,33 @@ static void common_register_state(ogs_fsm_t *s, mme_event_t *e,
+             ogs_expect(r == OGS_OK);
+             ogs_assert(r != OGS_ERROR);
+             OGS_FSM_TRAN(s, &emm_state_registered);
++
++            /*
++             * Paged-detach completion: the admin endpoint
++             * (DELETE /admin/v1/ue-contexts/{id}) paged this UE while
++             * it was ECM-IDLE and set admin_detach_pending. Now that
++             * the UE has responded with a Service Request and the
++             * NAS/S1 signalling connection is being re-established,
++             * send the Detach Request to complete the admin action.
++             * TS 24.301 §5.5.2.3 — MME-initiated detach, re-attach
++             * required, the Initial Context Setup just fired provides
++             * the carrier for the Detach Request NAS message.
++             */
++            if (mme_ue->admin_detach_pending) {
++                mme_ue->admin_detach_pending = false;
++                ogs_warn("[%s] Admin-paged detach: UE responded to "
++                        "paging, sending Detach Request now",
++                        mme_ue->imsi_bcd);
++                memset(&mme_ue->nas_eps.detach, 0,
++                        sizeof(ogs_nas_detach_type_t));
++                mme_ue->nas_eps.detach.value =
++                    OGS_NAS_DETACH_TYPE_TO_UE_RE_ATTACH_REQUIRED;
++                mme_ue->nas_eps.type = MME_EPS_TYPE_DETACH_REQUEST_TO_UE;
++                r = nas_eps_send_detach_request(mme_ue);
++                if (r != OGS_OK)
++                    ogs_error("[%s] nas_eps_send_detach_request() "
++                            "failed [%d]", mme_ue->imsi_bcd, r);
++            }
+             break;
+         }
+ 
+@@ -756,6 +783,31 @@ static void common_register_state(ogs_fsm_t *s, mme_event_t *e,
+                 }
+             }
+ 
++            /*
++             * Paged-detach completion on TAU-wakeup path:
++             * per 3GPP TS 24.301 §5.6.2.2.1, a UE in ECM-IDLE that has
++             * moved to a TAI not in its TAI-List responds to paging
++             * with a TAU Request instead of a Service Request. Mirror
++             * the Service-Request-branch completion so the admin-paged
++             * detach works regardless of which NAS message the UE
++             * wakes up with.
++             */
++            if (mme_ue->admin_detach_pending) {
++                mme_ue->admin_detach_pending = false;
++                ogs_warn("[%s] Admin-paged detach: UE responded to "
++                        "paging with TAU Request, sending Detach "
++                        "Request now", mme_ue->imsi_bcd);
++                memset(&mme_ue->nas_eps.detach, 0,
++                        sizeof(ogs_nas_detach_type_t));
++                mme_ue->nas_eps.detach.value =
++                    OGS_NAS_DETACH_TYPE_TO_UE_RE_ATTACH_REQUIRED;
++                mme_ue->nas_eps.type = MME_EPS_TYPE_DETACH_REQUEST_TO_UE;
++                r = nas_eps_send_detach_request(mme_ue);
++                if (r != OGS_OK)
++                    ogs_error("[%s] nas_eps_send_detach_request() "
++                            "failed [%d]", mme_ue->imsi_bcd, r);
++            }
++
+             if (MME_NEXT_GUTI_IS_AVAILABLE(mme_ue)) {
+                 ogs_fatal("MME does not create new GUTI");
+                 ogs_assert_if_reached();
+diff --git a/src/mme/meson.build b/src/mme/meson.build
+index bdec057b08..8beefd2bea 100644
+--- a/src/mme/meson.build
++++ b/src/mme/meson.build
+@@ -44,6 +44,7 @@ libmme_sources = files('''
+     mme-sm.h
+     mme-path.h
+     metrics.h
++    admin-handler.h
+ 
+     mme-init.c
+     mme-event.c
+@@ -81,6 +82,7 @@ libmme_sources = files('''
+     metrics.c
+     enb-info.c
+     ue-info.c
++    admin-handler.c
+     ../../lib/metrics/prometheus/json_pager.c
+ '''.split())
+ 
+diff --git a/src/mme/mme-context.c b/src/mme/mme-context.c
+index 72e0705b4a..d475c305f9 100644
+--- a/src/mme/mme-context.c
++++ b/src/mme/mme-context.c
+@@ -18,6 +18,7 @@
+  */
+ 
+ #include "ogs-sctp.h"
++#include "ogs-sbi.h"
+ 
+ #include "mme-context.h"
+ #include "mme-event.h"
+@@ -2535,6 +2536,126 @@ int mme_context_parse_config(void)
+                     }
+                 } else if (!strcmp(mme_key, "metrics")) {
+                     /* handle config in metrics library */
++                } else if (!strcmp(mme_key, "admin")) {
++                    ogs_yaml_iter_t admin_iter;
++                    ogs_yaml_iter_recurse(&mme_iter, &admin_iter);
++                    while (ogs_yaml_iter_next(&admin_iter)) {
++                        const char *admin_key =
++                            ogs_yaml_iter_key(&admin_iter);
++                        ogs_assert(admin_key);
++                        if (!strcmp(admin_key, "enabled")) {
++                            const char *v =
++                                ogs_yaml_iter_value(&admin_iter);
++                            if (v && (!strcmp(v, "true") ||
++                                        !strcmp(v, "yes") ||
++                                        !strcmp(v, "1")))
++                                self.admin_config.enabled = true;
++                            else
++                                self.admin_config.enabled = false;
++                        } else if (!strcmp(admin_key, "server")) {
++                            /*
++                             * Delegates parsing of the address/port
++                             * sequence to the shared helper in lib/sbi
++                             * by adding server nodes to the global SBI
++                             * context. MME is not an SBI NF; the lib's
++                             * HTTP/2 server is reused here purely for
++                             * the non-3GPP admin listener.
++                             */
++                            ogs_yaml_iter_t server_array, server_iter;
++                            ogs_yaml_iter_recurse(
++                                    &admin_iter, &server_array);
++                            do {
++                                ogs_sockaddr_t *addr = NULL;
++                                const char *family_v = NULL;
++                                int family = AF_UNSPEC;
++                                int i, num = 0;
++                                const char *hostname[OGS_MAX_NUM_OF_HOSTNAME];
++                                uint16_t port = 0;
++                                int rv;
++
++                                if (ogs_yaml_iter_type(&server_array) ==
++                                        YAML_MAPPING_NODE) {
++                                    memcpy(&server_iter, &server_array,
++                                            sizeof(ogs_yaml_iter_t));
++                                } else if (ogs_yaml_iter_type(
++                                            &server_array) ==
++                                        YAML_SEQUENCE_NODE) {
++                                    if (!ogs_yaml_iter_next(&server_array))
++                                        break;
++                                    ogs_yaml_iter_recurse(
++                                            &server_array, &server_iter);
++                                } else if (ogs_yaml_iter_type(
++                                            &server_array) ==
++                                        YAML_SCALAR_NODE) {
++                                    break;
++                                } else
++                                    ogs_assert_if_reached();
++
++                                while (ogs_yaml_iter_next(&server_iter)) {
++                                    const char *k =
++                                        ogs_yaml_iter_key(&server_iter);
++                                    ogs_assert(k);
++                                    if (!strcmp(k, "family")) {
++                                        family_v = ogs_yaml_iter_value(
++                                                &server_iter);
++                                        if (family_v) family = atoi(family_v);
++                                    } else if (!strcmp(k, "address") ||
++                                               !strcmp(k, "addr")) {
++                                        ogs_yaml_iter_t hostname_iter;
++                                        ogs_yaml_iter_recurse(
++                                                &server_iter, &hostname_iter);
++                                        ogs_assert(ogs_yaml_iter_type(
++                                                    &hostname_iter) !=
++                                                YAML_MAPPING_NODE);
++
++                                        do {
++                                            if (ogs_yaml_iter_type(
++                                                        &hostname_iter) ==
++                                                    YAML_SEQUENCE_NODE) {
++                                                if (!ogs_yaml_iter_next(
++                                                            &hostname_iter))
++                                                    break;
++                                            }
++                                            ogs_assert(num <
++                                                    OGS_MAX_NUM_OF_HOSTNAME);
++                                            hostname[num++] =
++                                                ogs_yaml_iter_value(
++                                                        &hostname_iter);
++                                        } while (
++                                            ogs_yaml_iter_type(
++                                                    &hostname_iter) ==
++                                                YAML_SEQUENCE_NODE);
++                                    } else if (!strcmp(k, "port")) {
++                                        const char *p =
++                                            ogs_yaml_iter_value(&server_iter);
++                                        if (p) port = atoi(p);
++                                    }
++                                }
++
++                                if (!port) port = OGS_SBI_HTTP_PORT;
++
++                                addr = NULL;
++                                for (i = 0; i < num; i++) {
++                                    rv = ogs_addaddrinfo(&addr, family,
++                                            hostname[i], port, 0);
++                                    ogs_assert(rv == OGS_OK);
++                                }
++
++                                if (addr) {
++                                    ogs_sockopt_t option;
++                                    ogs_sockopt_init(&option);
++                                    ogs_sbi_server_add("admin",
++                                            OpenAPI_uri_scheme_http,
++                                            addr, &option);
++                                    ogs_freeaddrinfo(addr);
++                                } else
++                                    ogs_warn("no 'address' in "
++                                            "admin.server[]");
++                            } while (ogs_yaml_iter_type(&server_array) ==
++                                    YAML_SEQUENCE_NODE);
++                        } else
++                            ogs_warn("unknown key `%s`", admin_key);
++                    }
+                 } else if (!strcmp(mme_key, "emergency")) {
+                     ogs_yaml_iter_t emerg_iter;
+                     ogs_yaml_iter_recurse(&mme_iter, &emerg_iter);
+diff --git a/src/mme/mme-context.h b/src/mme/mme-context.h
+index 2a3ddf661f..454a23310e 100644
+--- a/src/mme/mme-context.h
++++ b/src/mme/mme-context.h
+@@ -75,7 +75,20 @@ typedef struct served_gummei_s {
+     uint8_t         mme_code[CODE_PER_MME];
+ } served_gummei_t;
+ 
++/*
++ * Opt-in toggle for the non-3GPP /admin/v1/ue-contexts/{mme_ue_id}
++ * endpoint. Defaults to off. When enabled, MME binds an additional
++ * HTTP/2 listener (via lib/sbi) on the address(es) configured under
++ * mme.admin.server in mme.yaml. When disabled, requests answer 404 so
++ * the endpoint's existence remains invisible to probes.
++ */
++typedef struct mme_admin_config_s {
++    bool enabled;
++} mme_admin_config_t;
++
+ typedef struct mme_context_s {
++    mme_admin_config_t  admin_config;
++
+     const char          *diam_conf_path;  /* MME Diameter conf path */
+     ogs_diam_config_t   *diam_config;     /* MME Diameter config */
+ 
+@@ -842,6 +855,17 @@ struct mme_ue_s {
+ 
+     mme_csmap_t     *csmap;
+     mme_hssmap_t    *hssmap;
++
++    /*
++     * Set by the admin endpoint (DELETE /admin/v1/ue-contexts/{id})
++     * when a UE is in ECM-IDLE and cannot accept an immediate Detach
++     * Request. The admin handler triggers S1AP Paging; when the UE
++     * responds with a Service Request, the EMM state machine checks
++     * this flag and sends a NAS Detach Request (re-attach required)
++     * right after the Initial Context Setup — completing the
++     * paged-detach flow per 3GPP TS 24.301 §5.5.2.3.
++     */
++    bool            admin_detach_pending;
+ };
+ 
+ #define MME_UE_REMOVE_WITH_PAGING_FAIL(__mME) \
+diff --git a/src/mme/mme-event.h b/src/mme/mme-event.h
+index 37670dd812..d86deb57ec 100644
+--- a/src/mme/mme-event.h
++++ b/src/mme/mme-event.h
+@@ -53,6 +53,8 @@ typedef enum {
+     MME_EVENT_GN_MESSAGE,
+     MME_EVENT_GN_TIMER,
+ 
++    MME_EVENT_ADMIN_UE_PURGE,
++
+     MAX_NUM_OF_MME_EVENT,
+ 
+ } mme_event_e;
+@@ -106,6 +108,16 @@ typedef struct mme_event_s {
+ 
+ OGS_STATIC_ASSERT(OGS_EVENT_SIZE >= sizeof(mme_event_t));
+ 
++/*
++ * The admin SBI handler in mme-init.c reads the event id via
++ * ((ogs_event_t *)e)->id before deciding whether to dispatch through
++ * the FSM. That cast is well-defined only as long as the int id field
++ * lives at offset 0 of both layouts. Open5GS keeps ogs_event_t and
++ * mme_event_t in sync by convention; this static assert turns that
++ * convention into a compile-time guarantee.
++ */
++OGS_STATIC_ASSERT(offsetof(mme_event_t, id) == offsetof(ogs_event_t, id));
++
+ void mme_event_term(void);
+ 
+ mme_event_t *mme_event_new(mme_event_e id);
+diff --git a/src/mme/mme-init.c b/src/mme/mme-init.c
+index 8820493f3b..b919da2eb8 100644
+--- a/src/mme/mme-init.c
++++ b/src/mme/mme-init.c
+@@ -19,6 +19,7 @@
+ 
+ #include "ogs-sctp.h"
+ #include "ogs-gtp.h"
++#include "ogs-sbi.h"
+ 
+ #include "mme-context.h"
+ #include "mme-sm.h"
+@@ -33,6 +34,7 @@
+ #include "metrics/prometheus/json_pager.h"
+ #include "enb-info.h"
+ #include "ue-info.h"
++#include "admin-handler.h"
+ 
+ static ogs_thread_t *thread;
+ static void mme_main(void *data);
+@@ -50,6 +52,15 @@ int mme_initialize(void)
+     mme_metrics_init();
+ 
+     ogs_gtp_context_init(OGS_MAX_NUM_OF_GTPU_RESOURCE);
++
++    /*
++     * Init the shared SBI context before mme_context_parse_config so the
++     * mme.yaml `admin.server[]` parser can register listener addresses
++     * via ogs_sbi_server_add(). MME is not a 3GPP NF, but the SBI lib's
++     * HTTP/2 server is reused here for the non-3GPP admin endpoint.
++     */
++    ogs_sbi_context_init(OpenAPI_nf_type_MME);
++
+     mme_context_init();
+ 
+     rv = ogs_gtp_xact_init();
+@@ -86,6 +97,9 @@ int mme_initialize(void)
+     rv = s1ap_open();
+     if (rv != OGS_OK) return OGS_ERROR;
+ 
++    rv = mme_admin_server_open();
++    if (rv != OGS_OK) return OGS_ERROR;
++
+     thread = ogs_thread_create(mme_main, NULL);
+     if (!thread) return OGS_ERROR;
+ 
+@@ -102,10 +116,14 @@ void mme_terminate(void)
+ 
+     ogs_thread_destroy(thread);
+ 
++    mme_admin_server_close();
++
+     mme_gtp_close();
+     sgsap_close();
+     s1ap_close();
+ 
++    ogs_sbi_context_final();
++
+     ogs_metrics_context_close(ogs_metrics_self());
+ 
+     mme_fd_final();
+@@ -156,6 +174,22 @@ static void mme_main(void *data)
+                 break;
+ 
+             ogs_assert(e);
++
++            /*
++             * The shared lib/sbi server callback pushes a generic
++             * ogs_event_t (shorter layout than mme_event_t) with
++             * id=OGS_EVENT_SBI_SERVER onto the app queue. Both event
++             * types share the same `int id` at offset 0, so reading
++             * the id here is well-defined. Admin traffic is diverted
++             * to a synchronous handler before the MME FSM, which has
++             * no case for the SBI event family.
++             */
++            if (((ogs_event_t *)e)->id == OGS_EVENT_SBI_SERVER) {
++                mme_admin_process_sbi_server_event((ogs_event_t *)e);
++                ogs_event_free(e);
++                continue;
++            }
++
+             ogs_fsm_dispatch(&mme_sm, e);
+             mme_event_free(e);
+         }
+diff --git a/src/mme/mme-sm.c b/src/mme/mme-sm.c
+index 6a06fd3e2b..068155f72c 100644
+--- a/src/mme/mme-sm.c
++++ b/src/mme/mme-sm.c
+@@ -520,6 +520,28 @@ void mme_state_operational(ogs_fsm_t *s, mme_event_t *e)
+         ogs_fsm_dispatch(&bearer->sm, e);
+         break;
+ 
++    case MME_EVENT_ADMIN_UE_PURGE:
++        /*
++         * Deferred purge from DELETE /admin/v1/ue-contexts/{id}?purge=true.
++         * Re-resolve the pool id from a clean stack frame so state
++         * teardown never runs from inside the SBI handler. Silently
++         * no-op if the context disappeared in the meantime — another
++         * code path (ordinary detach, T3412 expiry, peer Cancel)
++         * may have raced us to the cleanup.
++         */
++        mme_ue = mme_ue_find_by_id(e->mme_ue_id);
++        if (!mme_ue) {
++            ogs_info("Admin purge: mme_ue_id=%d already gone — no-op",
++                    (int)e->mme_ue_id);
++            break;
++        }
++        ogs_warn("[%s] Admin purge: removing local context for "
++                "mme_ue_id=%d (deferred from SBI handler)",
++                mme_ue->imsi_bcd[0] ? mme_ue->imsi_bcd : "unknown",
++                (int)e->mme_ue_id);
++        mme_ue_remove(mme_ue);
++        break;
++
+     case MME_EVENT_S6A_MESSAGE:
+         s6a_message = e->s6a_message;
+         ogs_assert(s6a_message);
+diff --git a/src/mme/ue-info.c b/src/mme/ue-info.c
+index b5298489ce..4e3fda8ec0 100644
+--- a/src/mme/ue-info.c
++++ b/src/mme/ue-info.c
+@@ -268,6 +268,14 @@ static cJSON *ue_to_json(const mme_ue_t *ue)
+     cJSON *o = cJSON_CreateObject();
+     if (!o) return NULL;
+ 
++    /*
++     * Expose the mme_ue_t pool index as a stable, privacy-neutral
++     * operator handle. It is the same identifier expected by
++     * DELETE /admin/v1/ue-contexts/{id}, so OAM tooling can correlate a
++     * /ue-info entry with the admin URL without touching IMSI/GUTI.
++     */
++    if (!cJSON_AddNumberToObject(o, "id", (double)ue->id)) goto end;
++
+     /* identity */
+     if (ue->imsi_bcd[0]) {
+         if (!cJSON_AddStringToObject(o, "supi", ue->imsi_bcd)) goto end;
+diff --git a/src/smf/admin-handler.c b/src/smf/admin-handler.c
+new file mode 100644
+index 0000000000..0764307006
+--- /dev/null
++++ b/src/smf/admin-handler.c
+@@ -0,0 +1,114 @@
++/*
++ * Copyright (C) 2026 by Daniel Brune <daniel.brune.so@outlook.com>
++ *
++ * This file is part of Open5GS.
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU Affero General Public License as published by
++ * the Free Software Foundation, either version 3 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ */
++
++#include "admin-handler.h"
++#include "smf-sm.h"
++#include "local-path.h"
++
++void smf_admin_handle_delete_sm_context(
++        ogs_sbi_stream_t *stream, ogs_sbi_message_t *message)
++{
++    smf_sess_t *sess = NULL;
++    smf_ue_t *smf_ue = NULL;
++    ogs_sbi_message_t sendmsg;
++    ogs_sbi_response_t *response = NULL;
++    char *ref = NULL;
++
++    ogs_assert(stream);
++    ogs_assert(message);
++
++    ref = message->h.resource.component[1];
++    if (!ref || !*ref) {
++        ogs_error("Admin release: missing smContextRef in path");
++        ogs_assert(true ==
++            ogs_sbi_server_send_error(stream,
++                OGS_SBI_HTTP_STATUS_BAD_REQUEST, message,
++                "Missing smContextRef", NULL, NULL));
++        return;
++    }
++
++    sess = smf_sess_find_by_sm_context_ref(ref);
++    if (!sess) {
++        ogs_info("Admin release: smContextRef [%s] not found "
++                "(session already gone)", ref);
++        ogs_assert(true ==
++            ogs_sbi_server_send_error(stream,
++                OGS_SBI_HTTP_STATUS_NOT_FOUND, message,
++                "smContextRef not found", ref, NULL));
++        return;
++    }
++
++    smf_ue = smf_ue_find_by_id(sess->smf_ue_id);
++    ogs_assert(smf_ue);
++
++    /*
++     * Guard against concurrent DELETE on the same session, or against a
++     * DELETE arriving while a 3GPP-initiated release is already in
++     * flight (e.g. AMF-driven UE detach). Only sessions in the steady
++     * smf_gsm_state_operational accept a fresh local-release trigger;
++     * any other state means a teardown is already in progress and the
++     * SMF_EVT_SESSION_RELEASE handler in that state is not guaranteed
++     * to be a no-op.
++     *
++     * Treat already-terminating as idempotent success (204): from the
++     * caller's perspective the session will be gone momentarily anyway.
++     */
++    if (!OGS_FSM_CHECK(&sess->sm, smf_gsm_state_operational)) {
++        ogs_info("[%s] Admin release: smContextRef=%s already in "
++                "teardown — responding 204 idempotent",
++                smf_ue->supi, ref);
++        memset(&sendmsg, 0, sizeof(sendmsg));
++        response = ogs_sbi_build_response(
++                &sendmsg, OGS_SBI_HTTP_STATUS_NO_CONTENT);
++        ogs_assert(response);
++        ogs_assert(true == ogs_sbi_server_send_response(stream, response));
++        return;
++    }
++
++    ogs_warn("[%s] Admin-initiated release: "
++            "smContextRef=%s psi=%d dnn=%s rat=%s",
++            smf_ue->supi, ref, sess->psi,
++            sess->session.name ? sess->session.name : "",
++            sess->epc ? "EPC" : "5GC");
++
++    /*
++     * Respond 204 immediately — the release is asynchronous. The caller
++     * must not infer completion from this response; verification happens
++     * via a subsequent /pdu-info poll.
++     */
++    memset(&sendmsg, 0, sizeof(sendmsg));
++    response = ogs_sbi_build_response(
++            &sendmsg, OGS_SBI_HTTP_STATUS_NO_CONTENT);
++    ogs_assert(response);
++    ogs_assert(true == ogs_sbi_server_send_response(stream, response));
++
++    /*
++     * Drive the standard local teardown path. Enqueues SMF_EVT_SESSION_
++     * RELEASE with trigger LOCAL_INITIATED, which from smf_gsm_state_
++     * operational transitions into smf_gsm_state_wait_pfcp_deletion.
++     * That state issues PFCP Session Delete to the UPF; on response the
++     * 5G path proceeds to PCF SmPolicy Delete + UDM Dereg, while the
++     * EPC path terminates Gx/Gy/S6b via Diameter CCR-Termination.
++     * Neither path contacts the peer AMF or MME — deliberately so, since
++     * the typical caller (the EP5G reconciler) only invokes this when
++     * those peers have already forgotten the UE.
++     */
++    smf_trigger_session_release(
++            sess, NULL, OGS_PFCP_DELETE_TRIGGER_LOCAL_INITIATED);
++}
+diff --git a/src/smf/admin-handler.h b/src/smf/admin-handler.h
+new file mode 100644
+index 0000000000..7b63e355e9
+--- /dev/null
++++ b/src/smf/admin-handler.h
+@@ -0,0 +1,50 @@
++/*
++ * Copyright (C) 2026 by Daniel Brune <daniel.brune.so@outlook.com>
++ *
++ * This file is part of Open5GS.
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU Affero General Public License as published by
++ * the Free Software Foundation, either version 3 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ */
++
++#ifndef SMF_ADMIN_HANDLER_H
++#define SMF_ADMIN_HANDLER_H
++
++#include "context.h"
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++/*
++ * DELETE /admin/v1/pdu-sessions/{smContextRef}
++ *
++ * Force-release a PDU session without involving the peer AMF or MME. The
++ * release is driven through the standard local-initiated teardown path
++ * (wait_pfcp_deletion), so PCF SmPolicy, UPF PFCP session, UE-IP pool
++ * entry, and SMF context are all cleaned up normally. Intended for OAM
++ * consistency audits that find stranded sessions on the SMF while the
++ * peer NF has already forgotten the UE (e.g. AMF returns HTTP 504 to
++ * N1N2MessageTransfer, breaking the usual lazy-release path that only
++ * fires on 404).
++ *
++ * Response: 204 No Content on accepted; release runs asynchronously.
++ */
++void smf_admin_handle_delete_sm_context(
++        ogs_sbi_stream_t *stream, ogs_sbi_message_t *message);
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif /* SMF_ADMIN_HANDLER_H */
+diff --git a/src/smf/context.c b/src/smf/context.c
+index afd36babf2..e2fb9ea382 100644
+--- a/src/smf/context.c
++++ b/src/smf/context.c
+@@ -503,6 +503,27 @@ int smf_context_parse_config(void)
+                         } else
+                             ogs_warn("unknown key `%s`", ctf_key);
+                     }
++                } else if (!strcmp(smf_key, "admin")) {
++                    ogs_yaml_iter_t admin_iter;
++                    yaml_node_t *node =
++                        yaml_document_get_node(document, smf_iter.pair->value);
++                    ogs_assert(node);
++                    ogs_assert(node->type == YAML_MAPPING_NODE);
++                    ogs_yaml_iter_recurse(&smf_iter, &admin_iter);
++                    while (ogs_yaml_iter_next(&admin_iter)) {
++                        const char *admin_key = ogs_yaml_iter_key(&admin_iter);
++                        ogs_assert(admin_key);
++                        if (!strcmp(admin_key, "enabled")) {
++                            const char *v = ogs_yaml_iter_value(&admin_iter);
++                            if (v && (!strcmp(v, "true") ||
++                                        !strcmp(v, "yes") ||
++                                        !strcmp(v, "1")))
++                                self.admin_config.enabled = true;
++                            else
++                                self.admin_config.enabled = false;
++                        } else
++                            ogs_warn("unknown key `%s`", admin_key);
++                    }
+                 } else if (!strcmp(smf_key, "gtpc")) {
+                     /* handle config in gtp library */
+                 } else if (!strcmp(smf_key, "gtpu")) {
+@@ -1284,6 +1305,18 @@ smf_sess_t *smf_sess_add_by_apn(smf_ue_t *smf_ue, char *apn, uint8_t rat_type)
+     /* Set Charging ID */
+     sess->charging.id = sess->index;
+ 
++    /*
++     * Set SmContextRef also for EPC sessions so the same session handle
++     * is exposed by /pdu-info and accepted by
++     * DELETE /admin/v1/pdu-sessions/{smContextRef}. Format and lifecycle
++     * mirror the 5GC path in smf_sess_add_by_psi() so
++     * smf_sess_find_by_sm_context_ref() (atoll + pool-index lookup)
++     * resolves 4G and 5G sessions uniformly. Freed in the shared
++     * teardown path (smf_sess_remove).
++     */
++    sess->sm_context_ref = ogs_msprintf("%d", sess->index);
++    ogs_assert(sess->sm_context_ref);
++
+     /* Create BAR in PFCP Session */
+     ogs_pfcp_bar_new(&sess->pfcp);
+ 
+diff --git a/src/smf/context.h b/src/smf/context.h
+index 54736a6b03..79cc50bf0f 100644
+--- a/src/smf/context.h
++++ b/src/smf/context.h
+@@ -64,6 +64,15 @@ typedef struct smf_ctf_config_s {
+ 
+ int smf_ctf_config_init(smf_ctf_config_t *ctf_config);
+ 
++/*
++ * Opt-in toggle for the non-3GPP /admin/v1/pdu-sessions/{ref} endpoint.
++ * Defaults to off. When disabled, requests are answered with 404 so the
++ * endpoint's existence remains invisible to probes.
++ */
++typedef struct smf_admin_config_s {
++    bool enabled;
++} smf_admin_config_t;
++
+ typedef struct smf_nsmf_pdusession_param_s {
+     OpenAPI_request_indication_e request_indication;
+ 
+@@ -121,6 +130,7 @@ typedef struct smf_nsmf_pdusession_param_s {
+ 
+ typedef struct smf_context_s {
+     smf_ctf_config_t    ctf_config;
++    smf_admin_config_t  admin_config;
+     const char*         diam_conf_path;   /* SMF Diameter conf path */
+     ogs_diam_config_t   *diam_config;     /* SMF Diameter config */
+ 
+diff --git a/src/smf/meson.build b/src/smf/meson.build
+index b501710e43..ea6aac7549 100644
+--- a/src/smf/meson.build
++++ b/src/smf/meson.build
+@@ -69,6 +69,7 @@ libsmf_sources = files('''
+     ngap-handler.h
+     ngap-path.h
+     local-path.h
++    admin-handler.h
+     metrics.h
+     pdu-info.h
+ 
+@@ -112,6 +113,7 @@ libsmf_sources = files('''
+     ngap-handler.c
+     ngap-path.c
+     local-path.c
++    admin-handler.c
+     metrics.c
+     pdu-info.c
+     ../../lib/metrics/prometheus/json_pager.c
+diff --git a/src/smf/pdu-info.c b/src/smf/pdu-info.c
+index 8a55515587..5acfa9cdb7 100644
+--- a/src/smf/pdu-info.c
++++ b/src/smf/pdu-info.c
+@@ -514,6 +514,17 @@ static cJSON *build_single_pdu_object(const smf_sess_t *sess, int *any_active, i
+     cJSON *pdu = cJSON_CreateObject();
+     if (!pdu) return NULL;
+ 
++    /* Session handle for operator tooling: the same smContextRef the SMF
++     * uses in its SBI resource URLs. Exposed here so OAM scripts can
++     * correlate a /pdu-info entry with
++     * DELETE /admin/v1/pdu-sessions/{smContextRef} when a stranded
++     * session needs to be force-released. */
++    if (sess->sm_context_ref) {
++        cJSON *ref = cJSON_CreateString(sess->sm_context_ref);
++        if (!ref) { cJSON_Delete(pdu); return NULL; }
++        cJSON_AddItemToObjectCS(pdu, "sm_context_ref", ref);
++    }
++
+     /* 5G vs LTE fields */
+     const bool is5g = looks_5g_sess(sess);
+     if (is5g) {
+diff --git a/src/smf/smf-sm.c b/src/smf/smf-sm.c
+index a3558db76f..b857c5fd9d 100644
+--- a/src/smf/smf-sm.c
++++ b/src/smf/smf-sm.c
+@@ -31,6 +31,7 @@
+ #include "nsmf-handler.h"
+ #include "npcf-handler.h"
+ #include "nsmf-handler.h"
++#include "admin-handler.h"
+ #include "binding.h"
+ 
+ void smf_state_initial(ogs_fsm_t *s, smf_event_t *e)
+@@ -794,6 +795,62 @@ void smf_state_operational(ogs_fsm_t *s, smf_event_t *e)
+             END
+             break;
+ 
++        /*
++         * Non-3GPP admin service: force-release of a single PDU session
++         * identified by its smContextRef, used by operator OAM tooling
++         * (EP5G reconciler) to clean up stranded sessions that the peer
++         * AMF or MME no longer knows about. See src/smf/admin-handler.c.
++         *
++         * URL layout: DELETE /admin/v1/pdu-sessions/{smContextRef}
++         *   service.name            = "admin"
++         *   api.version             = "v1"
++         *   resource.component[0]   = "pdu-sessions"
++         *   resource.component[1]   = smContextRef
++         *
++         * Opt-in via smf.yaml `admin.enabled: true`. When disabled we
++         * answer 404 rather than 403 so a probe cannot distinguish
++         * "endpoint forbidden" from "endpoint not present".
++         */
++        CASE("admin")
++            if (!smf_self()->admin_config.enabled) {
++                ogs_info("admin endpoint disabled (admin.enabled not "
++                        "set in smf.yaml) — responding 404");
++                ogs_assert(true ==
++                    ogs_sbi_server_send_error(stream,
++                        OGS_SBI_HTTP_STATUS_NOT_FOUND, &sbi_message,
++                        "Not Found", NULL, NULL));
++                break;
++            }
++
++            SWITCH(sbi_message.h.resource.component[0])
++            CASE("pdu-sessions")
++                SWITCH(sbi_message.h.method)
++                CASE(OGS_SBI_HTTP_METHOD_DELETE)
++                    smf_admin_handle_delete_sm_context(
++                            stream, &sbi_message);
++                    break;
++                DEFAULT
++                    ogs_error("Invalid HTTP method [%s]",
++                            sbi_message.h.method);
++                    ogs_assert(true ==
++                        ogs_sbi_server_send_error(stream,
++                            OGS_SBI_HTTP_STATUS_METHOD_NOT_ALLOWED,
++                            &sbi_message,
++                            "Invalid HTTP method",
++                            sbi_message.h.method, NULL));
++                END
++                break;
++            DEFAULT
++                ogs_error("Invalid resource name [%s]",
++                        sbi_message.h.resource.component[0]);
++                ogs_assert(true ==
++                    ogs_sbi_server_send_error(stream,
++                        OGS_SBI_HTTP_STATUS_BAD_REQUEST, &sbi_message,
++                        "Invalid resource name",
++                        sbi_message.h.resource.component[0], NULL));
++            END
++            break;
++
+         DEFAULT
+             ogs_error("Invalid API name [%s]", sbi_message.h.service.name);
+             ogs_assert(true ==

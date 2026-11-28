@@ -1,0 +1,4 @@
+core,T_hb,N_hb,T1,N1,delta_n4_smf_upf_s,delta_n4_upf_smf_s,delta_n4_s,T_nrf_hb,k_missed,margin_s,T_notify_s,delta_sbi_s,t3512_s,delta_rm_s,eps_s,delta_core_s,delta_full_s,binding_term,notes
+Open5GS,11,1,2.5,2,18.5,18.5,18.5,10,1,1,10,21,540,780,5,26,785,SBI,"HB only after 11 s silence (no_heartbeat timer, min 10 s); NRF removes after HB+1 s; UPF implements 4.4.3.1"
+free5GC,10,1,3,3,22,n/a,22,10,2,5,10,35,3600,3840,5,40,3845,SBI,go-upf never probes SMF: 4.4.3.1 not implemented (UPF->SMF direction absent); SMF HB 10 s in free5gc/free5gc config but disabled in free5gc-compose (key omitted -> 0)
+OAI,10,1,5,2,25,35,35,10,2,0,1,21,3240,3480,5,40,3485,N4 (UPF->SMF),"SMF->UPF 10 s HB, 5 s timeout, 2 re-sends = 25 s; UPF->SMF 5 s HB, 5 s timeout, 5 re-sends = 35 s but only if the SMF PFCP Node ID is IPv4 (oai-cn5g-fed default host oai-smf -> FQDN -> no UPF->SMF HB); NRF tick-based suspension"

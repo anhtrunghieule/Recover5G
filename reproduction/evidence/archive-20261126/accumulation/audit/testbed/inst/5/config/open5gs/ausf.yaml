@@ -1,0 +1,16 @@
+logger:
+  level: info
+
+global:
+  max:
+    ue: 1024  # The number of UE can be increased depending on memory size.
+
+ausf:
+  sbi:
+    server:
+      - address: 172.27.0.11
+        port: 7777
+    client:
+      scp:
+        - uri: http://172.27.0.200:7777
+

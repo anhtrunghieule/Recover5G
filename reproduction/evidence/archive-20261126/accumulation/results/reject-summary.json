@@ -1,0 +1,35 @@
+{
+ "scope": "new reconstruction from public recipe/config/capture, not original runner",
+ "attempts": 15,
+ "expected_attempts": 15,
+ "errors": 0,
+ "arms": {
+  "none": {
+   "attempts": 5,
+   "valid": 5,
+   "fired": 5,
+   "signature_candidates": 0,
+   "release_event_exception": 0,
+   "persistent_proxy": 0,
+   "elapsed_s": 666.841062784195
+  },
+  "targeted": {
+   "attempts": 5,
+   "valid": 5,
+   "fired": 5,
+   "signature_candidates": 0,
+   "release_event_exception": 0,
+   "persistent_proxy": 0,
+   "elapsed_s": 653.4597351551056
+  },
+  "global": {
+   "attempts": 5,
+   "valid": 5,
+   "fired": 5,
+   "signature_candidates": 0,
+   "release_event_exception": 0,
+   "persistent_proxy": 0,
+   "elapsed_s": 908.5016765594482
+  }
+ }
+}

@@ -1,0 +1,7 @@
+procedure,pretty,messages,events,nfs,ref_events,pooled_events,naive_crash_points,por_crash_points,thm1_crash_points,reduction_x,per_nf,alpha_crash_points
+registration,Registration,22,43,4,8,2,176,58,23,7.65,AMF:15;AUSF:3;PCF:2;UDM:3,46
+pdu_establish,PDU sess.\ establish,22,41,5,10,3,210,61,27,7.78,AMF:5;PCF:2;SMF:14;UDM:2;UPF:4,55
+service_request,Service request,9,18,3,3,1,57,26,11,5.18,AMF:4;SMF:5;UPF:2,21
+pdu_release,PDU sess.\ release,19,36,5,7,2,185,53,21,8.81,AMF:5;PCF:2;SMF:9;UDM:2;UPF:3,37
+deregistration,Deregistration,21,39,5,11,4,200,56,31,6.45,AMF:12;PCF:3;SMF:9;UDM:4;UPF:3,53
+workload,UE lifecycle (Reg+Est+Dereg),65,123,6,29,9,744,167,73,10.19,AMF:30;AUSF:3;PCF:5;SMF:22;UDM:7;UPF:6,146

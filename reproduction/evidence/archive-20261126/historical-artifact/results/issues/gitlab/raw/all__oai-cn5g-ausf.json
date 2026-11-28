@@ -1,0 +1,667 @@
+{
+"url": "https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-ausf/issues?state=all",
+"fetched": "2026-11-05T18:24:48Z",
+"items": [
+{
+"id": 5503,
+"iid": 7,
+"project_id": 3303,
+"title": "AUSF Auth Failure",
+"description": "Hi Tien/Sagar @tien-thinh.nguyen @arora \nNot sure if this issue already caught, but somehow for COTs UE test, I see there is Auth synch failure in PCAP but the test is successful. So may be it is minor issue of synch. Will you please check this sometime.\n\nThanks for your kind attention !!\n\n![image](/uploads/088750a367e0f91f2461266e4d71af3d/image.png){width=900 height=548}\n\nhttps://jenkins-oai.eurecom.fr/job/OAI-CN5G-COTS-UE-Test/10386/",
+"state": "closed",
+"created_at": "2026-04-01T08:36:06.565Z",
+"updated_at": "2026-11-04T01:25:29.748Z",
+"closed_at": "2026-11-04T01:25:29.721Z",
+"closed_by": {
+"id": 10607,
+"username": "jenkinsbot",
+"public_email": "",
+"name": "OAI CI JenkinsBot",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/10607/avatar.png?v=1793841916",
+"web_url": "https://gitlab.eurecom.fr/jenkinsbot"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 3210,
+"username": "kharade",
+"public_email": "rohan.kharade@deutschebahn.com",
+"name": "Rohan",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/3210/avatar.png?v=1787862906",
+"web_url": "https://gitlab.eurecom.fr/kharade"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 4,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-ausf/-/work_items/7",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/7",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/7/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/7/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3303",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#7",
+"relative": "#7",
+"full": "oai/cn5g/oai-cn5g-ausf#7"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 5419,
+"iid": 6,
+"project_id": 3303,
+"title": "AUSF V2.2.0 crashes on large authentication response(res*) from AMF (Buffer Overflow)",
+"description": "**Bug Description:**\n\nOpenAirInterface AUSF crashes when AMF sends a large resStar as a authentication response.\n\n**Steps to reproduce:**\n\nUsed this for AMF and AUSF configuration.\n\n[config.yaml](/uploads/74538d04fd7b2f764b4646ba88c4dc05/config.yaml)\n\nSetup Subscriber Information\n\nSetup subscriber information in database\\\nPLMN ID                                         00101\\\nSUPI (IMSI)                                     001010000000001\\\nAuthentication Management Field (AMF) 8000\\\nAuthentication Method                  5G_AKA\\\nK                                                      0C0A34601D4F07677303652C0462535B\\\nOperator Code Type OPc\\\nOperator Code Value                      63bfa50ee6523365ff14c1f45f88737d\\\nSQN                                                  000000000020\n\nSend NGSetup\n\n00 15 00 38 00 00 06 00 1b 00 08 00 00 f1 10 00 00 06 6c 00 52 40 05 01 00 52 41 4e 00 66 00 0d 00 00 00 00 07 00 00 f1 10 00 00 00 08 00 15 40 01 20 00 93 40 01 00 00 cc 40 01 00\n\nSend InitialUEMessage\n\n00 0f 40 45 00 00 05 00 55 00 02 00 00 00 26 00 1b 1a 7e 00 41 79 00 0d 01 00 f1 10 00 00 00 00 00 00 00 00 10 2e 02 80 f0 10 01 00 00 79 00 0f 40 00 f1 10 00 00 00 00 00 00 f1 10 00 00 07 00 5a 40 01 18 00 70 40 01 00\n\nSend the authentication response\n\n00 2e 40 80 90 00 00 04 00 0a 00 02 00 01 00 55 00 02 00 00 00 26 00 6a 69 7e 00 57 2d 64 b1 96 23 4b 4a 9a a1 15 53 61 dd 77 50 f7 1a 1f 34 d1 3b d3 82 8a 4f 50 0c 7a 64 15 93 53 9d e7 a4 2f 19 a6 80 b4 10 7c 67 e2 ff eb c5 b5 c0 21 06 80 3b bf a9 6c 5d 12 11 8f f2 57 5b 7b 50 cd e2 93 20 55 72 fd 0c 60 3d 77 28 63 d9 83 a9 1f b5 57 23 f3 98 e9 b8 84 8f b8 72 ee 59 73 90 2f fa d6 46 74 00 79 40 0f 40 00 f1 10 00 00 00 00 00 00 f1 10 00 00 07\n\n**Expected behavior:**\n\nAMF should have rejected this message earlier as it is malformed and contains response larger than the specification required. Even the message reached AUSF, it should have checked the length and discarded the message and sent the failure message with reason.\n\n**Environment:**\n\n* OpenAirInterface Version: v2.2.0\n* OS: Ubuntu 22.04 Server\n* Deployment: Docker\n\n**PCAP:**\n\n[crash_4.pcap](/uploads/27cd23b893ffeb230f1287889347cabe/crash_4.pcap)\n\n**AMF Log:**\n\n`[2026-01-20 01:30:29.020] [nas] [debug] Decoded AuthenticationResponse message len (105) [2026-01-20 01:30:29.020] [amf_n1] [debug] 5G AKA Confirmation from AUSF [2026-01-20 01:30:29.020] [common] [debug] [amf_n1]resStar b1 96 23 4b 4a 9a a1 15 53 61 dd 77 50 f7 1a 1f 34 d1 3b d3 82 8a 4f 50 0c 7a 64 15 93 53 9d e7 a4 2f 19 a6 80 b4 10 7c 67 e2 ff eb c5 b5 c0 21 06 80 3b bf a9 6c 5d 12 11 8f f2 57 5b 7b 50 cd e2 93 20 55 72 fd 0c 60 3d 77 28 63 d9 83 a9 1f b5 57 23 f3 98 e9 b8 84 8f b8 72 ee 59 73 90 2f fa d6 46 74 [2026-01-20 01:30:29.020] [amf_n1] [info] resStar_s (B196234B4A9AA1155361DD7750F71A1F34D13BD3828A4F500C7A641593539DE7A42F19A680B4107C67E2FFEBC5B5C02106803BBFA96C5D12118FF2575B7B50CDE293205572FD0C603D772863D983A91FB55723F398E9B8848FB872EE5973902FFAD64674) [2026-01-20 01:30:29.020] [amf_n1] [debug] Promise ID generated 2 [2026-01-20 01:30:29.020] [amf_sbi] [info] Receive UE Authentication Confirmation message, handling ... [2026-01-20 01:30:29.020] [amf_sbi] [debug] Send UE Authentication Confirmation to AUSF [2026-01-20 01:30:29.020] [amf_sbi] [info] Send HTTP message to `[`http://192.168.70.138:8080/nausf-auth/v1/ue-authentications/bc7b069838da8000b49b8537e25591b3/5g-aka-confirmation`](http://192.168.70.138:8080/nausf-auth/v1/ue-authentications/bc7b069838da8000b49b8537e25591b3/5g-aka-confirmation)` [2026-01-20 01:30:29.020] [amf_sbi] [info] HTTP message Body: {\"resStar\":\"B196234B4A9AA1155361DD7750F71A1F34D13BD3828A4F500C7A641593539DE7A42F19A680B4107C67E2FFEBC5B5C02106803BBFA96C5D12118FF2575B7B50CDE293205572FD0C603D772863D983A91FB55723F398E9B8848FB872EE5973902FFAD64674\"} [2026-01-20 01:30:29.020] [amf_sbi] [debug] Send a simple HTTP request [2026-01-20 01:30:29.082] [amf_sbi] [info] Cannot get response when calling `[`http://192.168.70.138:8080/nausf-auth/v1/ue-authentications/bc7b069838da8000b49b8537e25591b3/5g-aka-confirmation`](http://192.168.70.138:8080/nausf-auth/v1/ue-authentications/bc7b069838da8000b49b8537e25591b3/5g-aka-confirmation)` [2026-01-20 01:30:29.082] [amf_app] [debug] Trigger process response: Set promise with ID 2 to ready [2026-01-20 01:30:29.083] [amf_n1] [debug] Got result for promise ID 2 [2026-01-20 01:30:29.083] [amf_n1] [debug] Got ConfirmationDataResponse from AUSF: null [2026-01-20 01:30:29.088] [amf_n1] [warning] Could not parse Confirmation Data Response from Json [2026-01-20 01:30:29.088] [amf_n1] [info] Could not get expected response from AUSF [2026-01-20 01:30:29.088] [amf_n1] [error] Authentication failed for UE with amf_ue_ngap_id 1 [2026-01-20 01:30:29.088] [amf_n1] [debug] Create Registration Reject and send to UE [2026-01-20 01:30:29.088] [nas] [debug] Initiating RegistrationReject [2026-01-20 01:30:29.088] [nas_mm] [debug] Size of Registration Reject message 4 [2026-01-20 01:30:29.088] [nas] [debug] Encoding RegistrationReject message [2026-01-20 01:30:29.088] [nas] [debug] Encoding NasMmPlainHeader [2026-01-20 01:30:29.088] [nas] [debug] Encoded NasMmPlainHeader (len 3 octets) [2026-01-20 01:30:29.088] [nas] [debug] Encoding 5GMM Cause [2026-01-20 01:30:29.088] [nas] [debug] Encoded 5GMM Cause, len (1) [2026-01-20 01:30:29.088] [nas] [debug] IE GPRS Timer 2 is not available [2026-01-20 01:30:29.088] [nas] [debug] IE GPRS Timer 2 is not available [2026-01-20 01:30:29.088] [nas] [debug] IE EAP Message is not available [2026-01-20 01:30:29.088] [nas] [debug] IE Rejected NSSAI is not available [2026-01-20 01:30:29.088] [nas] [debug] Encoded RegistrationReject message len (4) [2026-01-20 01:30:29.088] [common] [debug] [amf_n1]Registration-Reject message buffer`\n\n**AUSF Log:**\n\n`[2026-01-20 01:30:15.473] [ausf_app] [info] Handle UE Authentication Request [2026-01-20 01:30:15.473] [ausf_app] [info] ServingNetworkName 5G:mnc001.mcc001.3gppnetwork.org [2026-01-20 01:30:15.473] [ausf_app] [info] supiOrSuci imsi-001010000000001 [2026-01-20 01:30:15.473] [ausf_app] [debug] UDM's URI `[`http://oai-udm:8080/nudm-ueau/v1/imsi-001010000000001/security-information/generate-auth-data`](http://oai-udm:8080/nudm-ueau/v1/imsi-001010000000001/security-information/generate-auth-data)` [2026-01-20 01:30:15.473] [ausf_app] [info] Received authInfo from AMF without ResynchronizationInfo IE [2026-01-20 01:30:15.473] [ausf_client] [debug] Send a simple HTTP request [2026-01-20 01:30:15.509] [ausf_app] [info] Response from UDM: {\"authType\":\"5G_AKA\",\"authenticationVector\":{\"autn\":\"bc7b069838da8000b49b8537e25591b3\",\"avType\":\"5G_HE_AKA\",\"kausf\":\"0453931ce3a571c260dfb6f15aeb49dcab40d4cda2ef127fe3fcbc8103267b95\",\"rand\":\"c6a5a7db32927b689be0d26f429e45d5\",\"xresStar\":\"f7aa3ad0794736b9ec0af3118423d0ac\"}} [2026-01-20 01:30:15.509] [ausf_app] [debug] authType 5G_AKA [2026-01-20 01:30:15.509] [ausf_app] [debug] autn_udm bc7b069838da8000b49b8537e25591b3 [2026-01-20 01:30:15.509] [ausf_app] [debug] av_type_udm 5G_HE_AKA [2026-01-20 01:30:15.509] [ausf_app] [debug] kausf_udm 0453931ce3a571c260dfb6f15aeb49dcab40d4cda2ef127fe3fcbc8103267b95 [2026-01-20 01:30:15.509] [ausf_app] [debug] rand_udm c6a5a7db32927b689be0d26f429e45d5 [2026-01-20 01:30:15.509] [ausf_app] [debug] xres*_udm f7aa3ad0794736b9ec0af3118423d0ac [2026-01-20 01:30:15.509] [ausf_app] [debug] Generating 5G AV [2026-01-20 01:30:15.509] [ausf_app] [debug] HXresStar calculated: 76175996241ffc7c255febcc02019d25 [2026-01-20 01:30:15.509] [ausf_app] [debug] Derive_kseaf ... [2026-01-20 01:30:15.509] [ausf_app] [debug] SNN: 5G:mnc001.mcc001.3gppnetwork.org [2026-01-20 01:30:15.509] [common] [debug] [ausf_app]derive_kseaf Kausf 04 53 93 1c e3 a5 71 c2 60 df b6 f1 5a eb 49 dc ab 40 d4 cd a2 ef 12 7f e3 fc bc 81 03 26 7b 95 [2026-01-20 01:30:15.509] [common] [debug] [ausf_app]derive_kseaf Kseaf 52 14 37 e6 6c 2f 9b 99 fb d8 a2 ab 9c 2d f7 76 e4 4d 5d f4 fb ae 2f 14 da 39 18 30 de 44 fc b2 [2026-01-20 01:30:15.509] [ausf_app] [debug] Kseaf calculated: 521437e66c2f9b99fbd8a2ab9c2df776e44d5df4fbae2f14da391830de44fcb2 [2026-01-20 01:30:15.509] [ausf_app] [debug] Create a new security context with SUPI [2026-01-20 01:30:15.509] [ausf_app] [debug] Auth Response: {\"5gAuthData\":{\"autn\":\"bc7b069838da8000b49b8537e25591b3\",\"hxresStar\":\"76175996241ffc7c255febcc02019d25\",\"rand\":\"c6a5a7db32927b689be0d26f429e45d5\"},\"_links\":{\"5g-aka\":{\"href\":\"`[`http://192.168.70.138:8080/nausf-auth/v1/ue-authentications/bc7b069838da8000b49b8537e25591b3/5g-aka-confirmation\"}},\"authType\":\"5G_AKA`](http://192.168.70.138:8080/nausf-auth/v1/ue-authentications/bc7b069838da8000b49b8537e25591b3/5g-aka-confirmation%22%7D%7D,%22authType%22:%225G_AKA)`\"} [2026-01-20 01:30:15.510] [ausf_server] [debug] Auth response: {\"5gAuthData\":{\"autn\":\"bc7b069838da8000b49b8537e25591b3\",\"hxresStar\":\"76175996241ffc7c255febcc02019d25\",\"rand\":\"c6a5a7db32927b689be0d26f429e45d5\"},\"_links\":{\"5g-aka\":{\"href\":\"`[`http://192.168.70.138:8080/nausf-auth/v1/ue-authentications/bc7b069838da8000b49b8537e25591b3/5g-aka-confirmation\"}},\"authType\":\"5G_AKA`](http://192.168.70.138:8080/nausf-auth/v1/ue-authentications/bc7b069838da8000b49b8537e25591b3/5g-aka-confirmation%22%7D%7D,%22authType%22:%225G_AKA)`\"} [2026-01-20 01:30:15.510] [ausf_server] [info] Send Auth response to SEAF (Code 201) [2026-01-20 01:30:21.315] [ausf_nrf] [info] Sending NF heartbeat request [2026-01-20 01:30:21.315] [ausf_client] [debug] Send a simple HTTP request [2026-01-20 01:30:29.021] [ausf_server] [info] Received 5g_aka_confirmation Request [2026-01-20 01:30:29.021] [ausf_server] [info] 5gaka confirmation received with authctxID bc7b069838da8000b49b8537e25591b3 [2026-01-20 01:30:29.021] [ausf_app] [debug] Handling 5g-aka-confirmation [2026-01-20 01:30:29.021] [ausf_app] [debug] Retrieve security context with authCtxId: [2026-01-20 01:30:29.021] [ausf_app] [info] Received authCtxId bc7b069838da8000b49b8537e25591b3 [2026-01-20 01:30:29.021] [ausf_app] [info] Received res* B196234B4A9AA1155361DD7750F71A1F34D13BD3828A4F500C7A641593539DE7A42F19A680B4107C67E2FFEBC5B5C02106803BBFA96C5D12118FF2575B7B50CDE293205572FD0C603D772863D983A91FB55723F398E9B8848FB872EE5973902FFAD64674 [2026-01-20 01:30:29.021] [ausf_app] [debug] authCtxId in AUSF: bc7b069838da8000b49b8537e25591b3 [2026-01-20 01:30:29.021] [ausf_app] [info] AV is up to date, handling received res*... [2026-01-20 01:30:29.021] [ausf_app] [debug] xres* in AUSF: f7aa3ad0794736b9ec0af3118423d0ac [2026-01-20 01:30:29.021] [ausf_app] [debug] xres in AMF: b196234b4a9aa1155361dd7750f71a1f [2026-01-20 01:30:29.021] [ausf_app] [error] Authentication failure by home network with authCtxId bc7b069838da8000b49b8537e25591b3: res* != xres* [2026-01-20 01:30:29.021] [ausf_app] [error] Serving Network Not Authorized [2026-01-20 01:30:29.021] [ausf_app] [info] Send 403 Forbidden response *** stack smashing detected ***: terminated`",
+"state": "opened",
+"created_at": "2026-01-20T00:57:33.218Z",
+"updated_at": "2026-01-20T00:57:33.218Z",
+"closed_at": null,
+"closed_by": null,
+"labels": [],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 12468,
+"username": "shovon0203",
+"public_email": null,
+"name": "Tasnim Alam",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/7f2ff511a6f620a531edd48db3eb3e368e7fc14bf7a71da2f05a2142ae169963?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/shovon0203"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-ausf/-/work_items/6",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/6",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/6/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/6/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3303",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#6",
+"relative": "#6",
+"full": "oai/cn5g/oai-cn5g-ausf#6"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4940,
+"iid": 5,
+"project_id": 3303,
+"title": "Update ConfirmationDataResponse and related-classes according to 3GPP specs",
+"description": "Related MR: https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-common-src/-/merge_requests/105",
+"state": "closed",
+"created_at": "2025-05-09T13:09:51.859Z",
+"updated_at": "2026-04-10T11:47:30.470Z",
+"closed_at": "2026-04-10T11:47:30.398Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-ausf/-/work_items/5",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/5",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/5/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/5/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3303",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#5",
+"relative": "#5",
+"full": "oai/cn5g/oai-cn5g-ausf#5"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4639,
+"iid": 4,
+"project_id": 3303,
+"title": "[Refactor] cleanup src/common (using common_src)",
+"description": "",
+"state": "closed",
+"created_at": "2024-06-05T21:16:41.951Z",
+"updated_at": "2024-06-11T12:09:10.092Z",
+"closed_at": "2024-06-11T12:09:10.082Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"Refactor"
+],
+"milestone": {
+"id": 203,
+"iid": 3,
+"group_id": 9696,
+"title": "v2.1.0 Release",
+"description": "# Roadmap\r\n* Support of Location Service\r\n* Support of stateless NF for UDM/AUSF\r\n* Release of UDSF\r\n* QoS Support Control plane",
+"state": "closed",
+"created_at": "2023-09-15T12:00:47.574Z",
+"updated_at": "2026-05-06T09:03:03.088Z",
+"due_date": "2024-03-29",
+"start_date": "2023-12-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/3"
+},
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-ausf/-/work_items/4",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/4",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/4/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/4/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3303",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#4",
+"relative": "#4",
+"full": "oai/cn5g/oai-cn5g-ausf#4"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4638,
+"iid": 3,
+"project_id": 3303,
+"title": "[Refactor] use libngap from common src",
+"description": "",
+"state": "closed",
+"created_at": "2024-06-05T21:15:58.289Z",
+"updated_at": "2024-06-10T11:38:06.884Z",
+"closed_at": "2024-06-10T11:38:06.862Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"Refactor"
+],
+"milestone": {
+"id": 203,
+"iid": 3,
+"group_id": 9696,
+"title": "v2.1.0 Release",
+"description": "# Roadmap\r\n* Support of Location Service\r\n* Support of stateless NF for UDM/AUSF\r\n* Release of UDSF\r\n* QoS Support Control plane",
+"state": "closed",
+"created_at": "2023-09-15T12:00:47.574Z",
+"updated_at": "2026-05-06T09:03:03.088Z",
+"due_date": "2024-03-29",
+"start_date": "2023-12-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/3"
+},
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-ausf/-/work_items/3",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/3",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/3/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/3/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3303",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#3",
+"relative": "#3",
+"full": "oai/cn5g/oai-cn5g-ausf#3"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4637,
+"iid": 2,
+"project_id": 3303,
+"title": "[Refactor] use HTTP CPR lib",
+"description": "",
+"state": "closed",
+"created_at": "2024-06-05T21:15:00.986Z",
+"updated_at": "2024-06-11T12:08:48.134Z",
+"closed_at": "2024-06-11T12:08:48.124Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"Refactor"
+],
+"milestone": {
+"id": 203,
+"iid": 3,
+"group_id": 9696,
+"title": "v2.1.0 Release",
+"description": "# Roadmap\r\n* Support of Location Service\r\n* Support of stateless NF for UDM/AUSF\r\n* Release of UDSF\r\n* QoS Support Control plane",
+"state": "closed",
+"created_at": "2023-09-15T12:00:47.574Z",
+"updated_at": "2026-05-06T09:03:03.088Z",
+"due_date": "2024-03-29",
+"start_date": "2023-12-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/3"
+},
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-ausf/-/work_items/2",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/2",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/2/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/2/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3303",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#2",
+"relative": "#2",
+"full": "oai/cn5g/oai-cn5g-ausf#2"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4556,
+"iid": 1,
+"project_id": 3303,
+"title": "[Issue] AUSF can't re-register to NRF if registration/heartbeat lost e.g., when NRF restarts",
+"description": "",
+"state": "closed",
+"created_at": "2024-03-19T13:34:34.844Z",
+"updated_at": "2024-04-27T21:08:02.346Z",
+"closed_at": "2024-04-27T21:08:02.337Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-ausf/-/work_items/1",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/1",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/1/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3303/issues/1/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3303",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#1",
+"relative": "#1",
+"full": "oai/cn5g/oai-cn5g-ausf#1"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+}
+]
+}

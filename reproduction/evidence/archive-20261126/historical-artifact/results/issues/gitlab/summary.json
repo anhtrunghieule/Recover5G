@@ -1,0 +1,69 @@
+{
+ "date": "2026-11-06",
+ "api": "https://gitlab.eurecom.fr/api/v4",
+ "auth": "none (public, unauthenticated API v4)",
+ "projects": [
+  "oai/cn5g/oai-cn5g-amf",
+  "oai/cn5g/oai-cn5g-ausf",
+  "oai/cn5g/oai-cn5g-common-src",
+  "oai/cn5g/oai-cn5g-fed",
+  "oai/cn5g/oai-cn5g-lmf",
+  "oai/cn5g/oai-cn5g-nef",
+  "oai/cn5g/oai-cn5g-nrf",
+  "oai/cn5g/oai-cn5g-nssf",
+  "oai/cn5g/oai-cn5g-nwdaf",
+  "oai/cn5g/oai-cn5g-pcf",
+  "oai/cn5g/oai-cn5g-smf",
+  "oai/cn5g/oai-cn5g-udm",
+  "oai/cn5g/oai-cn5g-udr",
+  "oai/cn5g/oai-cn5g-upf",
+  "oai/cn5g/oai-cn5g-upf-sdfabric",
+  "oai/cn5g/oai-cn5g-upf-vpp"
+ ],
+ "n_term_groups": 14,
+ "n_project_x_termgroup_queries(applied locally)": 224,
+ "method": "All issues (state=all) listed per project via API v4 (unauthenticated); the 14 GitHub term groups (39 terms, OR within group) matched locally, case-insensitive, over title+description. Server-side search= was abandoned after HTTP 429 rate limiting (~60 of ~620 term queries completed, cached in raw/ and their hits unioned into candidates; GitLab's search is fuzzier, see server_vs_local_search.json). API v4 /notes returns 401 without a token; comment threads were read from the public <issue>/discussions.json web endpoint. Merge requests and the oai/openairinterface5g RAN tracker were not mined.",
+ "n_tracker_issues_total": 291,
+ "tracker_issues_per_project": {
+  "oai/cn5g/oai-cn5g-upf": 35,
+  "oai/cn5g/oai-cn5g-common-src": 11,
+  "oai/cn5g/oai-cn5g-lmf": 4,
+  "oai/cn5g/oai-cn5g-upf-sdfabric": 0,
+  "oai/cn5g/oai-cn5g-pcf": 15,
+  "oai/cn5g/oai-cn5g-nef": 1,
+  "oai/cn5g/oai-cn5g-nssf": 3,
+  "oai/cn5g/oai-cn5g-nwdaf": 1,
+  "oai/cn5g/oai-cn5g-udr": 14,
+  "oai/cn5g/oai-cn5g-udm": 5,
+  "oai/cn5g/oai-cn5g-ausf": 7,
+  "oai/cn5g/oai-cn5g-nrf": 14,
+  "oai/cn5g/oai-cn5g-fed": 38,
+  "oai/cn5g/oai-cn5g-upf-vpp": 1,
+  "oai/cn5g/oai-cn5g-smf": 66,
+  "oai/cn5g/oai-cn5g-amf": 76
+ },
+ "n_raw_hits(group-level, with overlap)": 75,
+ "n_candidates(dedup)": 44,
+ "n_read": 44,
+ "include": {
+  "no": 36,
+  "yes": 5,
+  "maybe": 3
+ },
+ "included": [
+  "oai/cn5g/oai-cn5g-udm#4",
+  "oai/cn5g/oai-cn5g-ausf#1",
+  "oai/cn5g/oai-cn5g-nrf#7",
+  "oai/cn5g/oai-cn5g-smf#59",
+  "oai/cn5g/oai-cn5g-smf#9"
+ ],
+ "included_root_cause": {
+  "association-handling": 3,
+  "missing-cleanup-on-peer-failure": 1,
+  "other": 1
+ },
+ "included_symptom": {
+  "non-convergence": 4,
+  "dangling": 1
+ }
+}

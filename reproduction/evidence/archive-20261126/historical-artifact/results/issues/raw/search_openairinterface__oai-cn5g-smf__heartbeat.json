@@ -1,0 +1,83 @@
+{
+ "query": "repo:openairinterface/oai-cn5g-smf is:issue heartbeat",
+ "date": "2026-11-05",
+ "total_count": 1,
+ "items": [
+  {
+   "url": "https://api.github.com/repos/openairinterface/oai-cn5g-smf/issues/35",
+   "repository_url": "https://api.github.com/repos/openairinterface/oai-cn5g-smf",
+   "labels_url": "https://api.github.com/repos/openairinterface/oai-cn5g-smf/issues/35/labels{/name}",
+   "comments_url": "https://api.github.com/repos/openairinterface/oai-cn5g-smf/issues/35/comments",
+   "events_url": "https://api.github.com/repos/openairinterface/oai-cn5g-smf/issues/35/events",
+   "html_url": "https://github.com/openairinterface/oai-cn5g-smf/issues/35",
+   "id": 6110253812,
+   "node_id": "I_kwDOTP-nrs8AAAABbDMS9A",
+   "number": 35,
+   "title": "Data races in the PFCP stack: its maps are used by the N4 receive threads and the N4 task without a lock",
+   "user": {
+    "login": "jihoon-seo",
+    "id": 46767780,
+    "node_id": "MDQ6VXNlcjQ2NzY3Nzgw",
+    "avatar_url": "https://avatars.githubusercontent.com/u/46767780?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/jihoon-seo",
+    "html_url": "https://github.com/jihoon-seo",
+    "followers_url": "https://api.github.com/users/jihoon-seo/followers",
+    "following_url": "https://api.github.com/users/jihoon-seo/following{/other_user}",
+    "gists_url": "https://api.github.com/users/jihoon-seo/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/jihoon-seo/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/jihoon-seo/subscriptions",
+    "organizations_url": "https://api.github.com/users/jihoon-seo/orgs",
+    "repos_url": "https://api.github.com/users/jihoon-seo/repos",
+    "events_url": "https://api.github.com/users/jihoon-seo/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/jihoon-seo/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+   },
+   "labels": [],
+   "state": "closed",
+   "locked": false,
+   "assignees": [],
+   "milestone": null,
+   "comments": 0,
+   "created_at": "2026-10-29T23:26:04Z",
+   "updated_at": "2026-11-03T12:38:55Z",
+   "closed_at": "2026-11-03T12:38:54Z",
+   "assignee": null,
+   "author_association": "MEMBER",
+   "issue_field_values": [],
+   "type": null,
+   "active_lock_reason": null,
+   "sub_issues_summary": {
+    "total": 0,
+    "completed": 0,
+    "percent_completed": 0
+   },
+   "issue_dependencies_summary": {
+    "blocked_by": 0,
+    "total_blocked_by": 0,
+    "blocking": 0,
+    "total_blocking": 0
+   },
+   "body": "### Description\n\nThe SMF PFCP stack is the same code as the UPF one (openairinterface/oai-cn5g-upf#44): `pfcp::pfcp_l4_stack` keeps a sequence number and four `std::map`s (`trxn_id2seq_num`, `proc_cleanup_timers`, `msg_out_retry_timers`, `pending_procedures`) with no lock (`src/pfcp/pfcp.hpp`, develop b2374073).\n\nSeveral SMF threads change them at the same time:\n\n- the receive threads of the two N4 sockets (`udp_s_8805` and `udp_s_allocated`), which call `handle_receive_message_cb()` for every message;\n- the N4 task (`smf_n4_task`), which sends heartbeat requests (`smf_n4::send_heartbeat_request()`), sends the session requests and handles PFCP time-outs (`time_out_event()`).\n\nConcurrent inserts and erases on one `std::map` are undefined behaviour and can corrupt the tree.\n\n`itti_mw::increment_timer_id()` also does `return ++timer_id;` without the `m_timer_id` mutex that `itti_mw` has for it (`src/itti/itti.cpp`), so two threads can get the same timer ID.\n\n### Expected behavior\n\nThe PFCP stack and the ITTI timer IDs are safe to use from these threads.\n\n### Observed behavior\n\n- On an OAI RF simulator testbed (OAI gNB and 4 nrUEs, official v2.2.2 AMF and UPF, `enable_urr: yes` in the UPF, SMF restarted twice and UEs restarted), `oai-smf` v2.2.2 built with `-fsanitize=thread` reported **120** data races in steady state on the `pfcp_l4_stack` state, between the N4 receive threads and `smf_n4_task`, including inserts and erases on the same `std::map`. `src/pfcp` and `src/itti` are the same on v2.2.2 and develop.\n- The official `oai-smf:v2.2.2` image stopped once with SIGSEGV on the same testbed while the SMF was idle (only PFCP heartbeats in both directions and URR usage reports were running). The kernel log gives `segfault at 10 ... in libstdc++.so.6.0.33`; with the image's libstdc++ this address is in `std::_Rb_tree_insert_and_rebalance()`, which a valid tree does not crash in. No core dump was kept, so we cannot say which map was corrupted.\n\n### Steps to reproduce\n\n1. Build `oai-smf` with `CXXFLAGS=\"-fsanitize=thread -g\" LDFLAGS=\"-fsanitize=thread\"` and add `libtsan2` to the image. Run it with `TSAN_OPTIONS=\"halt_on_error=0 log_path=...\"`.\n2. Start the core with a UPF that sends heartbeats and usage reports, and attach UEs.\n3. Read the TSAN log after a few minutes.\n\nA fix follows in a pull request; it is the same change as openairinterface/oai-cn5g-upf#45.\n\nAssisted-by: Claude:claude-opus-5-5\n",
+   "reactions": {
+    "url": "https://api.github.com/repos/openairinterface/oai-cn5g-smf/issues/35/reactions",
+    "total_count": 0,
+    "+1": 0,
+    "-1": 0,
+    "laugh": 0,
+    "hooray": 0,
+    "confused": 0,
+    "heart": 0,
+    "rocket": 0,
+    "eyes": 0
+   },
+   "timeline_url": "https://api.github.com/repos/openairinterface/oai-cn5g-smf/issues/35/timeline",
+   "performed_via_github_app": null,
+   "state_reason": "completed",
+   "pinned_comment": null,
+   "score": 1.0
+  }
+ ]
+}

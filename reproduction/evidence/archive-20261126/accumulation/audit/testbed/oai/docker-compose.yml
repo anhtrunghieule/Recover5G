@@ -1,0 +1,88 @@
+# OAI CN5G (basic NRF deployment) adapted from OPENAIRINTERFACE/oai-cn5g-fed v2.2.1
+# docker-compose/docker-compose-basic-nrf.yaml (images pinned to the v2.2.2 release; ext-dn dropped; UERANSIM added).
+name: r5goai
+x-nf: &nf
+  environment: [TZ=UTC]
+  networks: {public_net: {}}
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    volumes: ["./database/oai_db2.sql:/docker-entrypoint-initdb.d/oai_db.sql:ro"]
+    environment: [TZ=UTC, MYSQL_DATABASE=oai_db, MYSQL_USER=test, MYSQL_PASSWORD=test, MYSQL_ROOT_PASSWORD=linux]
+    healthcheck: {test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-ptest", "-utest"], interval: 5s, timeout: 5s, retries: 60}
+    networks: {public_net: {ipv4_address: 192.168.70.131}}
+  oai-nrf:
+    container_name: oai-nrf
+    image: oaisoftwarealliance/oai-nrf:${OAI_TAG:-v2.2.2}
+    volumes: ["./conf/basic_nrf_config.yaml:/openair-nrf/etc/config.yaml:ro"]
+    environment: [TZ=UTC]
+    networks: {public_net: {ipv4_address: 192.168.70.130}}
+  oai-udr:
+    container_name: oai-udr
+    image: oaisoftwarealliance/oai-udr:${OAI_TAG:-v2.2.2}
+    volumes: ["./conf/basic_nrf_config.yaml:/openair-udr/etc/config.yaml:ro"]
+    environment: [TZ=UTC]
+    depends_on: {mysql: {condition: service_healthy}, oai-nrf: {condition: service_started}}
+    networks: {public_net: {ipv4_address: 192.168.70.136}}
+  oai-udm:
+    container_name: oai-udm
+    image: oaisoftwarealliance/oai-udm:${OAI_TAG:-v2.2.2}
+    volumes: ["./conf/basic_nrf_config.yaml:/openair-udm/etc/config.yaml:ro"]
+    environment: [TZ=UTC]
+    depends_on: [oai-udr]
+    networks: {public_net: {ipv4_address: 192.168.70.137}}
+  oai-ausf:
+    container_name: oai-ausf
+    image: oaisoftwarealliance/oai-ausf:${OAI_TAG:-v2.2.2}
+    volumes: ["./conf/basic_nrf_config.yaml:/openair-ausf/etc/config.yaml:ro"]
+    environment: [TZ=UTC]
+    depends_on: [oai-udm]
+    networks: {public_net: {ipv4_address: 192.168.70.138}}
+  oai-amf:
+    container_name: oai-amf
+    image: oaisoftwarealliance/oai-amf:${OAI_TAG:-v2.2.2}
+    volumes: ["./conf/basic_nrf_config.yaml:/openair-amf/etc/config.yaml:ro"]
+    environment: [TZ=UTC]
+    depends_on: [oai-ausf]
+    networks: {public_net: {ipv4_address: 192.168.70.132}}
+  oai-smf:
+    container_name: oai-smf
+    image: ${OAI_SMF_IMAGE:-oaisoftwarealliance/oai-smf:v2.2.2}
+    volumes: ["./conf/basic_nrf_config.yaml:/openair-smf/etc/config.yaml:ro"]
+    environment: [TZ=UTC]
+    depends_on: [oai-amf]
+    networks: {public_net: {ipv4_address: 192.168.70.133}}
+  oai-upf:
+    container_name: oai-upf
+    image: ${OAI_UPF_IMAGE:-oaisoftwarealliance/oai-upf:v2.2.2}
+    volumes: ["./conf/basic_nrf_config.yaml:/openair-upf/etc/config.yaml:ro"]
+    environment: [TZ=UTC]
+    depends_on: [oai-smf]
+    cap_add: [NET_ADMIN, SYS_ADMIN]
+    privileged: true
+    networks: {public_net: {ipv4_address: 192.168.70.134}}
+  gnb:
+    container_name: oai-gnb
+    image: r5g/ueransim:4f45e18-p1
+    volumes: ["./ueransim:/cfg:ro"]
+    cap_add: [NET_ADMIN]
+    init: true
+    command: ["nr-gnb", "-c", "/cfg/gnb.yaml"]
+    networks: {public_net: {ipv4_address: 192.168.70.140}}
+    profiles: [ran]
+  ue:
+    container_name: oai-ue
+    image: r5g/ueransim:4f45e18-p1
+    volumes: ["./ueransim:/cfg:ro"]
+    cap_add: [NET_ADMIN]
+    devices: ["/dev/net/tun:/dev/net/tun"]
+    init: true
+    command: ["sleep", "infinity"]
+    networks: {public_net: {ipv4_address: 192.168.70.141}}
+    profiles: [ran]
+networks:
+  public_net:
+    driver: bridge
+    name: demo-oai-public-net
+    ipam: {config: [{subnet: 192.168.70.128/26}]}

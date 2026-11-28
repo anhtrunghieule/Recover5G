@@ -1,0 +1,6 @@
+{
+ "query": "repo:omec-project/amf is:issue reboot OR rebooted OR killed",
+ "date": "2026-11-05",
+ "total_count": 0,
+ "items": []
+}

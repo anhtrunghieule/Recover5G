@@ -1,0 +1,412 @@
+{
+ "about": "Item C companion to standards_table.tex: verbatim clause text per case of Table 4. Every 'quote' was matched by script against the specification text (whitespace normalised, page headers removed): 39 of 39 found.",
+ "verified_against_primary_text": true,
+ "not_verified": [
+  "Applicability of TS 24.501 5.4.5.2.5 a) 12), 6.4.1.4.1 and 5.5.1.2.8 f) to the observed runs: it depends on packet-level facts in captures that are not retained (marked 'trace condition').",
+  "Upstream labels are read from the tracker records retrieved on 25 November 2026 (experiments/revision-20261125-codex/results/primary-sources/*.json), not from the live trackers."
+ ],
+ "sources": [
+  {
+   "spec": "TS 23.527",
+   "version": "V18.6.0 (ETSI TS 123 527, 2026-02)",
+   "where": "local: experiments/revision-20261125-codex/results/primary-sources/ts23527.pdf",
+   "sha256": "6ca77901f4c5e43131c212e5f02da67f7ffd139c79524f832ceb973574468ee6"
+  },
+  {
+   "spec": "TS 24.501",
+   "version": "V18.14.0 (ETSI TS 124 501, 2026-09)",
+   "where": "local: review/current-revision/ts24501.pdf",
+   "sha256": "430ebe57bc6aa8c5a4029ef58958f969f576b8303d541de513f2701d3f0e575d"
+  },
+  {
+   "spec": "TS 29.502",
+   "version": "V18.12.0 (ETSI TS 129 502, 2026-10)",
+   "where": "fetched 2026-11-25: https://www.etsi.org/deliver/etsi_ts/129500_129599/129502/18.12.00_60/ts_129502v181200p.pdf",
+   "sha256": "fcec5fbaae3402994b57263c584532dc509693d33e5d2f066f06f250574a0eb2"
+  },
+  {
+   "spec": "TS 23.502",
+   "version": "V18.14.0 (ETSI TS 123 502, 2026-07)",
+   "where": "fetched 2026-11-25: https://www.etsi.org/deliver/etsi_ts/123500_123599/123502/18.14.00_60/ts_123502v181400p.pdf",
+   "sha256": "364c25272697b06d2ae07c98488e456d9198ac284fda8d91982f686d2036701f"
+  },
+  {
+   "spec": "TS 29.501",
+   "version": "V18.7.0 (ETSI TS 129 501, 2025-01)",
+   "where": "fetched 2026-11-25: https://www.etsi.org/deliver/etsi_ts/129500_129599/129501/18.07.00_60/ts_129501v180700p.pdf",
+   "sha256": "faeb4b45930f42ef6a809ce38cb0ccd2e4ecd58f521cdcf2c64669d137d4e17a"
+  },
+  {
+   "spec": "TS 29.244",
+   "version": "V18.10.0 (ETSI TS 129 244, 2025-06)",
+   "where": "fetched 2026-11-25: https://www.etsi.org/deliver/etsi_ts/129200_129299/129244/18.10.00_60/ts_129244v181000p.pdf",
+   "sha256": "7cfa9550783cec1043da2bf35287445747979ce3a6df21693eadd0bb2ccf98a1"
+  },
+  {
+   "spec": "TS 23.501",
+   "version": "V18.12.0 (ETSI TS 123 501, 2026-01)",
+   "where": "fetched 2026-11-25: https://www.etsi.org/deliver/etsi_ts/123500_123599/123501/18.12.00_60/ts_123501v181200p.pdf",
+   "sha256": "2ef71f81a87c86967dc623741b5a3479338844661067a3bb13089fffe6fed2ac"
+  },
+  {
+   "spec": "TS 38.413",
+   "version": "V18.11.0 (ETSI TS 138 413, 2026-09); not cited by the paper",
+   "where": "fetched 2026-11-25: https://www.etsi.org/deliver/etsi_ts/138400_138499/138413/18.11.00_60/ts_138413v181100p.pdf",
+   "sha256": "c883a16ce057363e500fd1709913b6e62bd94c65ad51614cbea6459f287f2ae1"
+  }
+ ],
+ "cases": [
+  {
+   "case": "1. UPF retains a failed SMF's sessions (known, Open5GS #4877)",
+   "clauses": [
+    {
+     "spec": "TS 23.527 V18.6.0",
+     "clause": "4.4.3.1",
+     "modal_verb": "shall",
+     "precondition": "the SMF is unreachable for a preconfigured time, and the SMF-set procedures MPAS and SSET are not used (Open5GS has no SMF set).",
+     "quote": "When a UPF detects that a peer PFCP entity in the SMF is not reachable for a preconfigured time, and the MPAS or SSET procedure specified for SMF set in clause 5.22 of 3GPP TS 29.244 [4]) are not used, the UPF shall delete all the session contexts affected by the peer PFCP entity failure that it may have stored."
+    }
+   ],
+   "departs_from": "a shall. The pre-fix UPF gave up on heartbeats and kept both sessions.",
+   "upstream": "issue #4877, label `type:bug` (and `Housekeeping:ToClose`), open in the record, fixed by commit 9265502 as the paper says.",
+   "paper_tables": "Table 4 \"Conditional N4 cleanup\" and Table 29 (TS 23.527 4.4.2.1, 4.4.3.1) agree with this. For a crash-stop the clause is 4.4.3.1; 4.4.2.1 is the restart case."
+  },
+  {
+   "case": "2. Restoration re-installs releasing sessions (known, Open5GS #4892)",
+   "clauses": [
+    {
+     "spec": "TS 23.527 V18.6.0",
+     "clause": "4.3.2",
+     "modal_verb": "may",
+     "precondition": "a PFCP association has been re-established after a UPF restart.",
+     "quote": "Immediately after the re-establishment of a PFCP association between the SMF and the UPF, the SMF may start restoring PFCP sessions in the UPF."
+    }
+   ],
+   "departs_from": "no normative text: author criterion. Restoration is permitted, and no sentence says which sessions must not be restored.",
+   "upstream": "issue #4892, label `Type:Security` (and `Housekeeping:ToClose`), open in the record; the paper reports a merged fix that skips restoration.",
+   "paper_tables": "Table 4 \"Recovery-state handling\" and Table 29 (\"not an unconditional duty to restore every context\") are consistent with this. Proposed Table 4 value: \"Author criterion\"."
+  },
+  {
+   "case": "3. OAI UPF retains the old SMF's sessions (known, OAI UPF #41)",
+   "clauses": [
+    {
+     "spec": "TS 29.244 V18.10.0",
+     "clause": "6.2.6.2.2",
+     "modal_verb": "shall",
+     "precondition": "the Association Setup Request carries a Node ID that already has an association, and no PFCP Session Retention Information IE is received.",
+     "quote": "If the PFCP Association Setup Request contains a Node ID for which a PFCP association was already established, the UP function shall: - proceed with establishing the new PFCP association (regardless of the Recovery Timestamp received in the request), overwriting the existing association; - retain the PFCP sessions that were established with the existing PFCP association and that are requested to be retained, if the PFCP Session Retention Information IE was received in the request; otherwise, delete the PFCP sessions that were established with the existing PFCP association;"
+    },
+    {
+     "spec": "TS 23.527 V18.6.0",
+     "clause": "4.4.2.1",
+     "modal_verb": "shall",
+     "precondition": "the UPF detects the SMF restart from the Recovery Time Stamp of heartbeats (clause 4.2).",
+     "quote": "When a UPF detects that a peer PFCP entity in the SMF has restarted (as specified in clause 4.2), the UPF shall delete all session contexts affected by the PFCP entity restart that it may have stored."
+    },
+    {
+     "spec": "TS 23.527 V18.6.0",
+     "clause": "4.2",
+     "modal_verb": "shall",
+     "precondition": "always; this is why the association setup alone is not a restart detection under TS 23.527.",
+     "quote": "A PFCP function shall ignore the Recovery Timestamp received in PFCP Association Setup Request and PFCP Association Setup Response messages (see clause 6.2.6 of 3GPP TS 29.244 [4])."
+    }
+   ],
+   "departs_from": "a shall (TS 29.244 6.2.6.2.2: \"otherwise, delete the PFCP sessions that were established with the existing PFCP association\").",
+   "upstream": "issue #41, label `bug`, open; fix PR #43 open (not merged) in the record of 25 November.",
+   "paper_tables": "Table 4 \"Conditional N4 cleanup\" is right. Table 29 cites TS 23.527 4.4.2.1 and 4.4.2.2 only; the direct clause for a repeated association setup is TS 29.244 6.2.6.2.2, which Table 6 already names for the association-reset oracle."
+  },
+  {
+   "case": "4 and 6. Reference reuse deletes another UE's session (known, OAI SMF #33; known report, Open5GS #4988)",
+   "clauses": [
+    {
+     "spec": "TS 29.501 V18.7.0",
+     "clause": "4.4.1",
+     "modal_verb": "none (statement of fact; the \"shall\" in the sentence is about URI structure)",
+     "precondition": "none.",
+     "quote": "A URI uniquely identifies a resource. In the 5GC SBI APIs, when a resource URI is an absolute URI, its structure shall be specified as follows:"
+    },
+    {
+     "spec": "TS 23.527 V18.6.0",
+     "clause": "6.1",
+     "modal_verb": "none",
+     "precondition": "none.",
+     "quote": "The restoration procedures initiated when detecting a failure or a restart are not specified in this release."
+    },
+    {
+     "spec": "TS 23.527 V18.6.0",
+     "clause": "6.2.1",
+     "modal_verb": "may",
+     "precondition": "none.",
+     "quote": "This clause describes optional procedures that may be supported by NFs to detect the failure or restart of a NF or a NF service using the NRF."
+    },
+    {
+     "spec": "TS 23.527 V18.6.0",
+     "clause": "6.2.3, step 1",
+     "modal_verb": "may",
+     "precondition": "a restart of the NF loses contexts.",
+     "quote": "NF B (or OAM) registers NF B Profile to the NRF. The NF B Profile may include the recoveryTime attribute, if a restart of NF B results in losing contexts."
+    },
+    {
+     "spec": "TS 23.527 V18.6.0",
+     "clause": "6.2.3, step 4",
+     "modal_verb": "none (indicative, inside an optional procedure)",
+     "precondition": "contexts are lost during the restart.",
+     "quote": "If contexts are lost during the restart, NF B (or OAM) updates the recoveryTime in its NF Profile in the NRF."
+    },
+    {
+     "spec": "TS 23.527 V18.6.0",
+     "clause": "6.2.3, step 6",
+     "modal_verb": "may",
+     "precondition": "the consumer has received an updated recoveryTime.",
+     "quote": "NF A may consider that all the resources created in the NF B before the NF B recovery time as have been lost. NF A triggers then appropriate restoration or clean-up actions."
+    },
+    {
+     "spec": "TS 29.502 V18.12.0",
+     "clause": "Table 6.1.6.2.3-1, attribute recoveryTime of SmContextCreatedData",
+     "modal_verb": "none (attribute is optional, cardinality 0..1)",
+     "precondition": "none.",
+     "quote": "Timestamp (in UTC) when the SMF service instance serving the PDU session was (re)started (see clause 6.3 of TS 23.527 [24])."
+    }
+   ],
+   "departs_from": "no normative text: author criterion. TS 29.501 4.4.1 says a URI identifies a resource and does not forbid a restarted NF from issuing the same URI again; TS 29.501 is also a guideline for service definitions. The mechanism that the standard offers for lost contexts, `recoveryTime`, is optional at every step. R1's reading is confirmed.",
+   "upstream": "OAI SMF #33: closed as completed on 16 November 2026, fix PR #34 merged the same day. Open5GS #4988: label `not-an-open5gs-bug` (and `Housekeeping:ToClose`), open.",
+   "paper_tables": "Table 29 (\"Author resource-identity criterion\") is the statement the evidence supports. Table 24 lists TS 29.501 4.4.1 under \"the specification text each departs from\", which overstates it. Table 4 \"Resource identity\" does not say which. Proposed: \"Author criterion\" in Table 4, and Table 24 reworded to name the optional recoveryTime."
+  },
+  {
+   "case": "5. Dangling establishment references (rediscovered, Open5GS PR #4485)",
+   "clauses": [
+    {
+     "spec": "TS 24.501 V18.14.0",
+     "clause": "5.4.5.2.5 a) 12)",
+     "modal_verb": "shall",
+     "precondition": "the AMF has a PDU session routing context for the PSI and the UE, and the request type is \"initial request\".",
+     "quote": "12) if the AMF has a PDU session routing context for the PDU session ID and the UE, the Request type IE is set to \"initial request\", then the AMF shall perform a local release of the PDU session identified by the PDU session ID and shall request the SMF to perform a local release of the PDU session, and proceed as specified in clause 5.4.5.2.3;"
+    },
+    {
+     "spec": "TS 29.502 V18.12.0",
+     "clause": "Table 6.1.7.3-1, CONTEXT_NOT_FOUND (404)",
+     "modal_verb": "none",
+     "precondition": "none.",
+     "quote": "It is used when no context corresponding to the request exists in the SMF."
+    }
+   ],
+   "departs_from": "a shall, under a trace condition. The paper states that each T3580 retransmission makes the AMF ask the SMF to release the old reference and that the AMF keeps the reference after the 404 (PR #4485 is titled \"amf: clean up stranded sess on 404 from SMF sm-contexts modify\"). If the retransmission is an initial request for a PSI the AMF still holds, clause 12) requires the AMF to release the session locally and proceed, which it does not do. *Trace condition, not checked:* the request type of the retransmission and the AMF's routing context. For the stale binding at the checkpoints when no request arrives, there is no text (TS 23.527 6.1) and it is an author criterion.",
+   "upstream": "PR #4485, closed unmerged, label `type:wontfix`.",
+   "paper_tables": "Tables 4 and 29 say \"Author consistency rule/criterion\". That is correct for the binding as such and too weak for the repeated-request path. Table 24 has no row for this case. Proposed: \"Shall, on repeated request\" with the condition stated, or keep \"Author criterion\" if the conditional claim is not wanted."
+  },
+  {
+   "case": "7. Stalled release (candidate, Open5GS #5063)",
+   "clauses": [
+    {
+     "spec": "TS 24.501 V18.14.0",
+     "clause": "6.3.3.2",
+     "modal_verb": "shall",
+     "precondition": "the SMF initiates a network-requested PDU session release.",
+     "quote": "towards the AMF, and the SMF shall start timer T3592 (see example in figure 6.3.3.2.1)."
+    },
+    {
+     "spec": "TS 24.501 V18.14.0",
+     "clause": "6.3.3.5 a)",
+     "modal_verb": "shall",
+     "precondition": "T3592 expires.",
+     "quote": "The SMF shall, on the first expiry of the timer T3592, retransmit the PDU SESSION RELEASE COMMAND message and shall reset and start timer T3592. This retransmission is repeated four times, i.e. on the fifth expiry of timer T3592, the SMF shall abort the procedure."
+    }
+   ],
+   "departs_from": "a shall: the pinned SMF has no T3592, so it neither retransmits nor aborts. Limit: on the fifth expiry the SMF \"shall abort the procedure\". The clause does not say that the session is then released, so it does not by itself require the end state the paper's proxy checks.",
+   "upstream": "issue #5063, label `not-an-open5gs-bug` (and `Housekeeping:ToClose`), open.",
+   "paper_tables": "Table 4 \"NAS timer conditions\" and Table 29 (6.3.3.2, 6.3.3.5(a), \"then abort\") are right. Table 24 and Appendix D.2 say the SMF \"releases locally on the fifth expiry\": that is not what V18.14.0 says and should read \"aborts the procedure\"."
+  },
+  {
+   "case": "8. Orphan UPF sessions (candidate, Open5GS #5059)",
+   "clauses": [
+    {
+     "spec": "TS 29.502 V18.12.0",
+     "clause": "5.2.2.2.1, step 2a (collision test)",
+     "modal_verb": "shall",
+     "precondition": "the Create SM Context is a request for a new PDU session (request type INITIAL_REQUEST, or request type and maRequestInd both absent) and carries the same SUPI and PDU Session ID as an existing SM context.",
+     "quote": "The POST request shall be considered as colliding with an existing SM context if: - this is a request to establish a new PDU session, i.e.: - the RequestType IE is present in the request and set to INITIAL_REQUEST or INITIAL_EMERGENCY_REQUEST (e.g. single access PDU session establishment request); - the RequestType IE and the maRequestInd IE are both absent in the request (e.g. EPS to 5GS mobility); or - the maRequestInd IE is present in the request (i.e. MA-PDU session establishment request) and the access type indicated in the request corresponds to the access type of the existing SM context. and either of the following conditions is met: - this is a request to establish a non-emergency PDU session and the request includes the same SUPI and the same PDU Session ID as for an existing SM context; or"
+    },
+    {
+     "spec": "TS 29.502 V18.12.0",
+     "clause": "5.2.2.2.1, step 2a (handling)",
+     "modal_verb": "shall for treating it as a new request; **should** for deleting the old context and its UPF resources",
+     "precondition": "the request collides as defined above.",
+     "quote": "A POST request that collides with an existing SM context shall be treated as a request for a new SM context. Before creating the new SM context, the SMF should delete the existing SM context locally and any associated resources in the UPF, PCF, CHF, and UDM. If the UP connection of the existing PDU session is active, the SMF should also request (R)AN to release associated resources."
+    },
+    {
+     "spec": "TS 24.501 V18.14.0",
+     "clause": "6.4.1.7 c)",
+     "modal_verb": "shall",
+     "precondition": "the SMF receives an establishment request with request type \"initial request\" and the PSI of an existing PDU session.",
+     "quote": "If the SMF receives a PDU SESSION ESTABLISHMENT REQUEST message with a PDU session ID identical to the PDU session ID of an existing PDU session and with request type set to \"initial request\", the SMF shall locally release the existing PDU session and proceed with the PDU session establishment procedure."
+    },
+    {
+     "spec": "TS 24.501 V18.14.0",
+     "clause": "3.1, definition",
+     "modal_verb": "none",
+     "precondition": "none.",
+     "quote": "Local release: Release of a PDU session without peer-to-peer signalling between the network and the UE. NOTE 6: Local release can include communication among network entities."
+    },
+    {
+     "spec": "TS 23.502 V18.14.0",
+     "clause": "4.3.4.1",
+     "modal_verb": "none (stage 2 description)",
+     "precondition": "the PDU Session Release procedure is run.",
+     "quote": "The PDU Session Release procedure is used to release all the resources associated with a PDU Session, including:"
+    },
+    {
+     "spec": "TS 23.502 V18.14.0",
+     "clause": "4.3.4.2, step 2 and 2a",
+     "modal_verb": "none (stage 2 description)",
+     "precondition": "UE or network requested PDU Session Release.",
+     "quote": "The SMF releases the IP address / Prefix(es) that were allocated to the PDU Session and releases the corresponding User Plane resources: 2a. The SMF sends an N4 Session Release Request (N4 Session ID) message to the UPF(s) of the PDU Session."
+    },
+    {
+     "spec": "TS 23.501 V18.12.0",
+     "clause": "5.21.2.3",
+     "modal_verb": "none",
+     "precondition": "an AMF has failed.",
+     "quote": "Peer CP NFs consider this AMF as unavailable while retaining the UE context."
+    }
+   ],
+   "departs_from": "a should (TS 29.502 5.2.2.2.1). This is the clause R1 suggested; the official text confirms it and its verb is \"should\", as the secondary excerpt had it. The pinned SMF removes the old context locally and sends no PFCP deletion. The TS 24.501 \"shall locally release the existing PDU session\" is met in the NAS sense (no signalling to the UE); reading it as a duty to delete the UPF session is an interpretation, because the definition only says that a local release \"can include communication among network entities\", and TS 23.502 4.3.4.2 step 2a describes a different procedure. Until the UE comes back the SMF may keep the old context (TS 23.501 5.21.2.3), so the residue starts at the colliding request, not at the AMF crash.",
+   "upstream": "issue #5059, label `type:enhancement` (and `Housekeeping:ToClose`), open; two comments, both automated pre-reviews by code reading.",
+   "paper_tables": "The three tables disagree. Tables 4 and 29 (\"Author consistency rule\", \"Author session-correspondence criterion\") understate the basis: a 3GPP recommendation names the UPF resources explicitly. Table 24 overstates it by presenting the TS 24.501 \"shall\" plus TS 23.502 step 2a as the text departed from. The evidence supports: **departs from a \"should\" in TS 29.502 5.2.2.2.1**."
+  },
+  {
+   "case": "9. Reject-teardown race (candidate, Open5GS #5064)",
+   "clauses": [
+    {
+     "spec": "TS 24.501 V18.14.0",
+     "clause": "6.4.1.4.1",
+     "modal_verb": "shall",
+     "precondition": "the network rejects the connectivity.",
+     "quote": "If the connectivity with the requested DN is rejected by the network, the SMF shall create a PDU SESSION ESTABLISHMENT REJECT message."
+    },
+    {
+     "spec": "TS 24.501 V18.14.0",
+     "clause": "6.4.1.4.1",
+     "modal_verb": "shall",
+     "precondition": "same.",
+     "quote": "The SMF shall send the PDU SESSION ESTABLISHMENT REJECT message."
+    },
+    {
+     "spec": "TS 29.502 V18.12.0",
+     "clause": "5.2.2.5.1",
+     "modal_verb": "shall (which operation to use)",
+     "precondition": "the SM context is released without a Release SM Context Request.",
+     "quote": "The Notify SM Context Status service operation shall be used by the SMF to notify the NF Service Consumer about the status of an SM context related to a PDU session (e.g. when the SM context is released and the release is not triggered by a Release SM Context Request, ..."
+    },
+    {
+     "spec": "TS 29.502 V18.12.0",
+     "clause": "5.2.2.5.1, list of procedures",
+     "modal_verb": "none",
+     "precondition": "none.",
+     "quote": "UE requested PDU Session Establishment procedure, when the PDU session establishment fails after the Create SM Context response"
+    }
+   ],
+   "departs_from": "a shall, under a trace condition. The paper's log signature says the SMF, already in its reject state, clears the session \"without sending the Reject\" and that the AMF keeps the PSI. If no Establishment Reject is sent, that departs from TS 24.501 6.4.1.4.1, and if no SM context status notification is sent either, from the use TS 29.502 5.2.2.5.1 assigns to that operation. *Trace condition, not checked:* absence of the Reject and of the notification on the wire. The original traces are not retained and the reconstruction found the signature in 0 of 15 trials (Table 31).",
+   "upstream": "issue #5064, label `type:bug` (and `Housekeeping:ToClose`), open; comments are automated pre-reviews.",
+   "paper_tables": "Table 24 says \"No clause names the race\" and Tables 4 and 29 say \"Implementation teardown\" and \"Author completion criterion\". No clause names the race, but a clause does require the Reject. The evidence supports a conditional statement: a \"shall\" if the signature holds, unreproduced so far."
+  },
+  {
+   "case": "10. Registration rejection with cause 7 (candidate, Open5GS #5061)",
+   "clauses": [
+    {
+     "spec": "TS 24.501 V18.14.0",
+     "clause": "5.5.1.2.5 (5.5.1.3.5 has the same sentence for mobility and periodic updates)",
+     "modal_verb": "shall",
+     "precondition": "the registration request cannot be accepted by the network.",
+     "quote": "If the initial registration request cannot be accepted by the network, the AMF shall send a REGISTRATION REJECT message to the UE including an appropriate 5GMM cause value."
+    },
+    {
+     "spec": "TS 24.501 V18.14.0",
+     "clause": "Annex A.2 (informative)",
+     "modal_verb": "none",
+     "precondition": "none.",
+     "quote": "Cause #7 – 5GS services not allowed This 5GMM cause is sent to the UE when it is not allowed to operate 5GS services."
+    },
+    {
+     "spec": "TS 24.501 V18.14.0",
+     "clause": "5.5.1.2.8 f)",
+     "modal_verb": "may, then indicative",
+     "precondition": "an initial registration request arrives while the network holds the UE as registered.",
+     "quote": "If a REGISTRATION REQUEST message with 5GS registration type IE set to \"initial registration\" is received in state 5GMM-REGISTERED the network may initiate the 5GMM common procedures; if it turned out that the REGISTRATION REQUEST message was sent by a genuine UE that has already been registered, the 5GMM context, if any, are deleted and the new REGISTRATION REQUEST is progressed,"
+    },
+    {
+     "spec": "TS 29.502 V18.12.0",
+     "clause": "Table 6.1.7.3-1, CONTEXT_NOT_FOUND (404)",
+     "modal_verb": "none",
+     "precondition": "none.",
+     "quote": "It is used when no context corresponding to the request exists in the SMF."
+    },
+    {
+     "spec": "TS 24.501 V18.14.0",
+     "clause": "5.3.20.2 (UE side)",
+     "modal_verb": "shall",
+     "precondition": "the reject is not integrity protected and arrives before secure NAS exchange; T3247 not already running.",
+     "quote": "If the UE receives a REGISTRATION REJECT or SERVICE REJECT message without integrity protection with 5GMM cause value #3, #6, #7, #11, #12, #13, #15, #27, #31, #62, #72, #73 or #80 before the network has established secure exchange of NAS messages for the N1 NAS signalling connection, the UE shall stop timer T3510 or T3517 if running, and start timer T3247 (see 3GPP TS 24.008 [12]) with a random value uniformly drawn from the range between 30 minutes and 60 minutes, if the timer is not running, and take the following actions:"
+    },
+    {
+     "spec": "TS 24.501 V18.14.0",
+     "clause": "5.5.1.2.5, cause #7 (UE side)",
+     "modal_verb": "shall",
+     "precondition": "the UE accepts the reject (PLMN case).",
+     "quote": "In case of PLMN, the UE shall consider the USIM as invalid for 5GS services until switching off, the UICC containing the USIM is removed or the timer T3245 expires as described in clause 5.3.19A.1;"
+    }
+   ],
+   "departs_from": "no normative text: author criterion for the AMF's decision. No sentence says how the AMF must treat a 404 from the SMF during registration. The only \"shall\" is that a reject carries \"an appropriate 5GMM cause value\"; that cause #7 is inappropriate here follows from an informative annex. Clause 5.5.1.2.8 f) says the new request \"is progressed\" after the old context is deleted, in the indicative, and applies only if the registration is an initial one in registered state (*trace condition, not checked*). The UE-side clauses are mandatory but conditional, as Appendix D.3 already says.",
+   "upstream": "issue #5061, label `type:bug` (and `Housekeeping:ToClose`), open; comments are automated pre-reviews.",
+   "paper_tables": "Table 4 \"Conditional NAS effect\", Table 24 (TS 29.502 Table 6.1.7.3-1 and TS 24.501 5.3.20.2) and Table 29 (5.3.20.2, 5.5.1.2.5) all cite text about the 404 and about the UE's reaction; none of it is an obligation the AMF departs from. Proposed Table 4 value: \"Author criterion\"."
+  },
+  {
+   "case": "11. Stuck policy context (extension candidate, Open5GS #5065)",
+   "clauses": [],
+   "departs_from": "no normative text found: author criterion. I found no sentence in TS 24.501, TS 29.502 or TS 23.527 that bounds how long the SMF may wait for the SM policy response or that tells it what to do when the request is lost. TS 29.502 5.2.2.5.1 would apply once the SMF decides that the establishment has failed, which is the step the SMF never takes.",
+   "upstream": "issue #5065, label `type:enhancement` (and `Housekeeping:ToClose`), open; comments are automated pre-reviews.",
+   "paper_tables": "Tables 4 and 29 (\"Author convergence rule/criterion\") are right; Table 24 has no row."
+  }
+ ],
+ "background_clauses": [
+  {
+   "spec": "TS 23.527 V18.6.0",
+   "clause": "4.3.2",
+   "modal_verb": "shall",
+   "precondition": "F-TEID and/or UE IP address allocation is performed in the UPF",
+   "quote": "If F-TEID and/or UE IP address allocation is performed in the UPF, the UPF shall ensure that previously used F-TEID values and/or UE IP addresses are not immediately reused after a UPF restart",
+   "remark": "Section 2 states the non-reuse duty without this precondition."
+  },
+  {
+   "spec": "TS 29.244 V18.10.0",
+   "clause": "6.2.2.2",
+   "modal_verb": "shall",
+   "precondition": "none",
+   "quote": "A CP function or UP function shall be prepared to receive a Heartbeat Request at any time (even from unknown peers) and it shall reply with a Heartbeat Response.",
+   "remark": "Quoted in Appendix C.15 ('even from unknown peers'): correct."
+  },
+  {
+   "spec": "TS 23.501 V18.12.0",
+   "clause": "5.21.2.3",
+   "modal_verb": "none",
+   "precondition": "an AMF has failed",
+   "quote": "Peer CP NFs consider this AMF as unavailable while retaining the UE context.",
+   "remark": "Answers R1 question 5: peers keep the UE context after an AMF failure, so the orphan residue starts at the colliding request."
+  },
+  {
+   "spec": "TS 38.413 V18.11.0",
+   "clause": "8.7.1.1",
+   "modal_verb": "shall",
+   "precondition": "the TNL association has become operational",
+   "quote": "This procedure shall be the first NGAP procedure triggered after the TNL association has become operational.",
+   "remark": "Grounds the patched gNB's repeated NG Setup (R1 minor comment)."
+  },
+  {
+   "spec": "TS 38.413 V18.11.0",
+   "clause": "8.7.1.1",
+   "modal_verb": "none",
+   "precondition": "the NG-RAN node and AMF do not agree on retaining the UE contexts",
+   "quote": "If the NG-RAN node and AMF do not agree on retaining the UE contexts this procedure also re-initialises the NGAP UE-related contexts (if any) and erases all related signalling connections in the two nodes like an NG Reset procedure would do.",
+   "remark": "Grounds the patched gNB's release of UE contexts."
+  }
+ ]
+}

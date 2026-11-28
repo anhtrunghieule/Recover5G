@@ -1,0 +1,95 @@
+{
+ "query": "repo:omec-project/amf is:issue stale OR orphan OR leak",
+ "date": "2026-11-05",
+ "total_count": 1,
+ "items": [
+  {
+   "url": "https://api.github.com/repos/omec-project/amf/issues/283",
+   "repository_url": "https://api.github.com/repos/omec-project/amf",
+   "labels_url": "https://api.github.com/repos/omec-project/amf/issues/283/labels{/name}",
+   "comments_url": "https://api.github.com/repos/omec-project/amf/issues/283/comments",
+   "events_url": "https://api.github.com/repos/omec-project/amf/issues/283/events",
+   "html_url": "https://github.com/omec-project/amf/issues/283",
+   "id": 2472075581,
+   "node_id": "I_kwDOFPEWQs6TWOE9",
+   "number": 283,
+   "title": "Is this AMF completely fault-tolerant ?",
+   "user": {
+    "login": "dark-astra",
+    "id": 178730441,
+    "node_id": "U_kgDOCqc1yQ",
+    "avatar_url": "https://avatars.githubusercontent.com/u/178730441?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/dark-astra",
+    "html_url": "https://github.com/dark-astra",
+    "followers_url": "https://api.github.com/users/dark-astra/followers",
+    "following_url": "https://api.github.com/users/dark-astra/following{/other_user}",
+    "gists_url": "https://api.github.com/users/dark-astra/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/dark-astra/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/dark-astra/subscriptions",
+    "organizations_url": "https://api.github.com/users/dark-astra/orgs",
+    "repos_url": "https://api.github.com/users/dark-astra/repos",
+    "events_url": "https://api.github.com/users/dark-astra/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/dark-astra/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+   },
+   "labels": [
+    {
+     "id": 7925507824,
+     "node_id": "LA_kwDOFPEWQs8AAAAB2GWm8A",
+     "url": "https://api.github.com/repos/omec-project/amf/labels/stale/issue",
+     "name": "stale/issue",
+     "color": "ededed",
+     "default": false,
+     "description": null,
+     "archived_at": null,
+     "archived_by": null
+    }
+   ],
+   "state": "closed",
+   "locked": false,
+   "assignees": [],
+   "milestone": null,
+   "comments": 6,
+   "created_at": "2024-08-18T17:41:58Z",
+   "updated_at": "2025-05-25T00:24:34Z",
+   "closed_at": "2025-05-25T00:24:34Z",
+   "assignee": null,
+   "author_association": "NONE",
+   "issue_field_values": [],
+   "type": null,
+   "active_lock_reason": null,
+   "sub_issues_summary": {
+    "total": 0,
+    "completed": 0,
+    "percent_completed": 0
+   },
+   "issue_dependencies_summary": {
+    "blocked_by": 0,
+    "total_blocked_by": 0,
+    "blocking": 0,
+    "total_blocking": 0
+   },
+   "body": "The 5G UE Registration call flow consists of multiple exchange of Uplink and Downlink Transport Messages. So if the AMF pod fails at some stage between these message exchanges, will the UE registration fail and restart a new registration request with the new AMF or can the UE resume the registration at the very step where it failed,  with the new AMF ?\r\n\r\nI see you are saving the context in MongoDB, but I wanted to know, is the statelessness procedural, where after the registration procedure, the context is saved or is it saved after each message exchange with RAN all along the the registration procedure, so that the registration, need not be started from the beginning if it fails, somewhere in between ?\r\n\r\nI did a simple experiment to test this:\r\n\r\nI installed the SDCore using Aether OnRamp and configured the gnbsim to run REGISTRATION procedure for 10 UEs.\r\nSo when the gnbsim starts sending request, I delete the AMF pod, and this cause the registrations to fail.\r\n\r\n\r\n```bash\r\nok: [node1] => {\r\n\"gNbsimPod.stdout_lines\": [\r\n\"time=\"2024-08-18T17:50:22Z\" level=info msg=\"Profile Name: profile1 , Profile Type: register\" category=Summary component=GNBSIM\",\r\n\"time=\"2024-08-18T17:50:22Z\" level=info msg=\"Ue's Passed: 6 , Ue's Failed: 4\" category=Summary component=GNBSIM\",\r\n\"time=\"2024-08-18T17:50:22Z\" level=info msg=\"Profile Errors:\" category=Summary component=GNBSIM\",\r\n\"time=\"2024-08-18T17:50:22Z\" level=error msg=\"imsi\r\n, profile timeout\" category=Summary component=GNBSIM\",\r\n\"time=\"2024-08-18T17:50:22Z\" level=error msg=\"imsi\r\n, profile timeout\" category=Summary component=GNBSIM\",\r\n\"time=\"2024-08-18T17:50:22Z\" level=error msg=\"imsi\r\n, profile timeout\" category=Summary component=GNBSIM\",\r\n\"time=\"2024-08-18T17:50:22Z\" level=error msg=\"imsi\r\n, profile timeout\" category=Summary component=GNBSIM\",\r\n\"time=\"2024-08-18T17:50:22Z\" level=info msg=\"Profile Status: FAIL\" category=Summary component=GNBSIM\"\r\n]\r\n}\r\n```\r\n\r\n\r\n\r\n\r\nMy gnbsim-default.yaml looks like the following:\r\n\r\n```yaml\r\nprofiles:\r\n\r\nprofileType: register # UE Registration\r\nprofileName: profile1\r\nenable: true\r\ngnbName: gnb1\r\nexecInParallel: false\r\nstartImsi: 208930100007487\r\nueCount: 10\r\ndefaultAs: \"192.168.250.1\"\r\nperUserTimeout: 10\r\nplmnId:\r\nmcc: 208\r\nmnc: 93\r\nopc: \"981d464c7c52eb6e5036234984ad0bcf\"\r\nkey: \"5122250214c33e723a5dd523fc145fc0\"\r\nsequenceNumber: \"16f3b3f70fc2\"\r\n```",
+   "reactions": {
+    "url": "https://api.github.com/repos/omec-project/amf/issues/283/reactions",
+    "total_count": 0,
+    "+1": 0,
+    "-1": 0,
+    "laugh": 0,
+    "hooray": 0,
+    "confused": 0,
+    "heart": 0,
+    "rocket": 0,
+    "eyes": 0
+   },
+   "timeline_url": "https://api.github.com/repos/omec-project/amf/issues/283/timeline",
+   "performed_via_github_app": null,
+   "state_reason": "not_planned",
+   "pinned_comment": null,
+   "score": 1.0
+  }
+ ]
+}

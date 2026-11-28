@@ -1,0 +1,106 @@
+{
+ "query": "repo:omec-project/upf is:issue \"Error Indication\"",
+ "date": "2026-11-05",
+ "total_count": 1,
+ "items": [
+  {
+   "url": "https://api.github.com/repos/omec-project/upf/issues/6",
+   "repository_url": "https://api.github.com/repos/omec-project/upf",
+   "labels_url": "https://api.github.com/repos/omec-project/upf/issues/6/labels{/name}",
+   "comments_url": "https://api.github.com/repos/omec-project/upf/issues/6/comments",
+   "events_url": "https://api.github.com/repos/omec-project/upf/issues/6/events",
+   "html_url": "https://github.com/omec-project/upf/issues/6",
+   "id": 520728336,
+   "node_id": "MDU6SXNzdWU1MjA3MjgzMzY=",
+   "number": 6,
+   "title": "What is the correct size of sequence number in the GTPv1 header?",
+   "user": {
+    "login": "a-jamshed",
+    "id": 3656722,
+    "node_id": "MDQ6VXNlcjM2NTY3MjI=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/3656722?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/a-jamshed",
+    "html_url": "https://github.com/a-jamshed",
+    "followers_url": "https://api.github.com/users/a-jamshed/followers",
+    "following_url": "https://api.github.com/users/a-jamshed/following{/other_user}",
+    "gists_url": "https://api.github.com/users/a-jamshed/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/a-jamshed/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/a-jamshed/subscriptions",
+    "organizations_url": "https://api.github.com/users/a-jamshed/orgs",
+    "repos_url": "https://api.github.com/users/a-jamshed/repos",
+    "events_url": "https://api.github.com/users/a-jamshed/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/a-jamshed/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+   },
+   "labels": [
+    {
+     "id": 1652410272,
+     "node_id": "MDU6TGFiZWwxNjUyNDEwMjcy",
+     "url": "https://api.github.com/repos/omec-project/upf/labels/bug",
+     "name": "bug",
+     "color": "d73a4a",
+     "default": true,
+     "description": "Something isn't working",
+     "archived_at": null,
+     "archived_by": null
+    },
+    {
+     "id": 1675854992,
+     "node_id": "MDU6TGFiZWwxNjc1ODU0OTky",
+     "url": "https://api.github.com/repos/omec-project/upf/labels/stale/issue",
+     "name": "stale/issue",
+     "color": "fbca04",
+     "default": false,
+     "description": "",
+     "archived_at": null,
+     "archived_by": null
+    }
+   ],
+   "state": "closed",
+   "locked": false,
+   "assignees": [],
+   "milestone": null,
+   "comments": 13,
+   "created_at": "2019-11-11T04:06:22Z",
+   "updated_at": "2020-08-05T00:22:26Z",
+   "closed_at": "2020-08-05T00:22:26Z",
+   "assignee": null,
+   "author_association": "CONTRIBUTOR",
+   "issue_field_values": [],
+   "type": null,
+   "active_lock_reason": null,
+   "sub_issues_summary": {
+    "total": 0,
+    "completed": 0,
+    "percent_completed": 0
+   },
+   "issue_dependencies_summary": {
+    "blocked_by": 0,
+    "total_blocked_by": 0,
+    "blocking": 0,
+    "total_blocking": 0
+   },
+   "body": "**Describe the bug**\r\nDid some tests with Spirent packet generator. The GTP packets (with sequence numbers) are using up 4 B to store sequence numbers (instead of 2 bytes). We need to verify this. A PR (#8) has been submitted to fix this issue. Not sure whether this is a correct patch.\r\n\r\n**To Reproduce**\r\nRun Spirent Landslide gold testcase that was created by the Spirent team for the Intel TSR group.\r\n\r\n**Expected behavior**\r\nSee above.\r\n\r\n**Logs**\r\nPCAP files may be uploaded soon.\r\n\r\n**Additional context**\r\nThe original ngic-rtc code also reserves 4B field to store sequence numbers. Someone needs to verify the field size from the 3GPP specs as well.\r\n",
+   "reactions": {
+    "url": "https://api.github.com/repos/omec-project/upf/issues/6/reactions",
+    "total_count": 0,
+    "+1": 0,
+    "-1": 0,
+    "laugh": 0,
+    "hooray": 0,
+    "confused": 0,
+    "heart": 0,
+    "rocket": 0,
+    "eyes": 0
+   },
+   "timeline_url": "https://api.github.com/repos/omec-project/upf/issues/6/timeline",
+   "performed_via_github_app": null,
+   "state_reason": "completed",
+   "pinned_comment": null,
+   "score": 1.0
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+logger:
+  level: info
+
+global:
+  max:
+    ue: 1024  # The number of UE can be increased depending on memory size.
+
+scp:
+  sbi:
+    server:
+      - address: 172.29.0.200
+        port: 7777
+    client:
+      nrf:
+        - uri: http://172.29.0.10:7777
+

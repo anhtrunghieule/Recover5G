@@ -1,0 +1,6 @@
+{
+ "query": "repo:omec-project/amf is:issue \"goes down\" OR \"went down\" OR \"comes back\" OR \"came back\"",
+ "date": "2026-11-05",
+ "total_count": 0,
+ "items": []
+}

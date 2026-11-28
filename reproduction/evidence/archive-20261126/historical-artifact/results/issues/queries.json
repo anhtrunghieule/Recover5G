@@ -1,0 +1,887 @@
+{
+ "date": "2026-11-05",
+ "queries": [
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "restart",
+   "query": "repo:open5gs/open5gs is:issue restart",
+   "total_count": 240,
+   "retrieved": 240
+  },
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "recovery",
+   "query": "repo:open5gs/open5gs is:issue recovery OR restoration",
+   "total_count": 47,
+   "retrieved": 47
+  },
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "heartbeat",
+   "query": "repo:open5gs/open5gs is:issue heartbeat",
+   "total_count": 131,
+   "retrieved": 131
+  },
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "pfcp_assoc",
+   "query": "repo:open5gs/open5gs is:issue \"PFCP association\" OR \"association setup\"",
+   "total_count": 62,
+   "retrieved": 62
+  },
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "crash_reconnect",
+   "query": "repo:open5gs/open5gs is:issue crash reconnect OR crash re-register",
+   "total_count": 35,
+   "retrieved": 35
+  },
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "pool",
+   "query": "repo:open5gs/open5gs is:issue \"pool exhausted\" OR \"IP is used\" OR \"already in use\"",
+   "total_count": 92,
+   "retrieved": 92
+  },
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "stale",
+   "query": "repo:open5gs/open5gs is:issue stale OR orphan OR leak",
+   "total_count": 140,
+   "retrieved": 140
+  },
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "recovery_ts",
+   "query": "repo:open5gs/open5gs is:issue \"Recovery Time Stamp\" OR recoveryTime",
+   "total_count": 9,
+   "retrieved": 9
+  },
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "nf_restart",
+   "query": "repo:open5gs/open5gs is:issue \"NF restart\" OR \"UPF restart\" OR \"SMF restart\" OR \"AMF restart\" OR \"gNB restart\"",
+   "total_count": 73,
+   "retrieved": 73
+  },
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "supp_reboot",
+   "query": "repo:open5gs/open5gs is:issue reboot OR rebooted OR killed",
+   "total_count": 97,
+   "retrieved": 97
+  },
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "supp_down",
+   "query": "repo:open5gs/open5gs is:issue \"goes down\" OR \"went down\" OR \"comes back\" OR \"came back\"",
+   "total_count": 28,
+   "retrieved": 28
+  },
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "supp_errind",
+   "query": "repo:open5gs/open5gs is:issue \"Error Indication\"",
+   "total_count": 65,
+   "retrieved": 65
+  },
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "supp_ngreset",
+   "query": "repo:open5gs/open5gs is:issue \"NG Reset\" OR \"SCTP reconnect\" OR \"SCTP association\"",
+   "total_count": 30,
+   "retrieved": 30
+  },
+  {
+   "repo": "open5gs/open5gs",
+   "tag": "supp_failover",
+   "query": "repo:open5gs/open5gs is:issue failover OR redundancy OR \"high availability\"",
+   "total_count": 11,
+   "retrieved": 11
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "restart",
+   "query": "repo:free5gc/free5gc is:issue restart",
+   "total_count": 71,
+   "retrieved": 71
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "recovery",
+   "query": "repo:free5gc/free5gc is:issue recovery OR restoration",
+   "total_count": 81,
+   "retrieved": 81
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "heartbeat",
+   "query": "repo:free5gc/free5gc is:issue heartbeat",
+   "total_count": 27,
+   "retrieved": 27
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "pfcp_assoc",
+   "query": "repo:free5gc/free5gc is:issue \"PFCP association\" OR \"association setup\"",
+   "total_count": 69,
+   "retrieved": 69
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "crash_reconnect",
+   "query": "repo:free5gc/free5gc is:issue crash reconnect OR crash re-register",
+   "total_count": 11,
+   "retrieved": 11
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "pool",
+   "query": "repo:free5gc/free5gc is:issue \"pool exhausted\" OR \"IP is used\" OR \"already in use\"",
+   "total_count": 18,
+   "retrieved": 18
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "stale",
+   "query": "repo:free5gc/free5gc is:issue stale OR orphan OR leak",
+   "total_count": 68,
+   "retrieved": 68
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "recovery_ts",
+   "query": "repo:free5gc/free5gc is:issue \"Recovery Time Stamp\" OR recoveryTime",
+   "total_count": 4,
+   "retrieved": 4
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "nf_restart",
+   "query": "repo:free5gc/free5gc is:issue \"NF restart\" OR \"UPF restart\" OR \"SMF restart\" OR \"AMF restart\" OR \"gNB restart\"",
+   "total_count": 34,
+   "retrieved": 34
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "supp_reboot",
+   "query": "repo:free5gc/free5gc is:issue reboot OR rebooted OR killed",
+   "total_count": 20,
+   "retrieved": 20
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "supp_down",
+   "query": "repo:free5gc/free5gc is:issue \"goes down\" OR \"went down\" OR \"comes back\" OR \"came back\"",
+   "total_count": 4,
+   "retrieved": 4
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "supp_errind",
+   "query": "repo:free5gc/free5gc is:issue \"Error Indication\"",
+   "total_count": 3,
+   "retrieved": 3
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "supp_ngreset",
+   "query": "repo:free5gc/free5gc is:issue \"NG Reset\" OR \"SCTP reconnect\" OR \"SCTP association\"",
+   "total_count": 12,
+   "retrieved": 12
+  },
+  {
+   "repo": "free5gc/free5gc",
+   "tag": "supp_failover",
+   "query": "repo:free5gc/free5gc is:issue failover OR redundancy OR \"high availability\"",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "restart",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue restart",
+   "total_count": 6,
+   "retrieved": 6
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "recovery",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue recovery OR restoration",
+   "total_count": 4,
+   "retrieved": 4
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "heartbeat",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue heartbeat",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "pfcp_assoc",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue \"PFCP association\" OR \"association setup\"",
+   "total_count": 2,
+   "retrieved": 2
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "crash_reconnect",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue crash reconnect OR crash re-register",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "pool",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue \"pool exhausted\" OR \"IP is used\" OR \"already in use\"",
+   "total_count": 2,
+   "retrieved": 2
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "stale",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue stale OR orphan OR leak",
+   "total_count": 3,
+   "retrieved": 3
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "recovery_ts",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue \"Recovery Time Stamp\" OR recoveryTime",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "nf_restart",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue \"NF restart\" OR \"UPF restart\" OR \"SMF restart\" OR \"AMF restart\" OR \"gNB restart\"",
+   "total_count": 4,
+   "retrieved": 4
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "supp_reboot",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue reboot OR rebooted OR killed",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "supp_down",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue \"goes down\" OR \"went down\" OR \"comes back\" OR \"came back\"",
+   "total_count": 2,
+   "retrieved": 2
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "supp_errind",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue \"Error Indication\"",
+   "total_count": 3,
+   "retrieved": 3
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "supp_ngreset",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue \"NG Reset\" OR \"SCTP reconnect\" OR \"SCTP association\"",
+   "total_count": 5,
+   "retrieved": 5
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-amf",
+   "tag": "supp_failover",
+   "query": "repo:openairinterface/oai-cn5g-amf is:issue failover OR redundancy OR \"high availability\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "restart",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue restart",
+   "total_count": 2,
+   "retrieved": 2
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "recovery",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue recovery OR restoration",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "heartbeat",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue heartbeat",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "pfcp_assoc",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue \"PFCP association\" OR \"association setup\"",
+   "total_count": 2,
+   "retrieved": 2
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "crash_reconnect",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue crash reconnect OR crash re-register",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "pool",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue \"pool exhausted\" OR \"IP is used\" OR \"already in use\"",
+   "total_count": 2,
+   "retrieved": 2
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "stale",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue stale OR orphan OR leak",
+   "total_count": 5,
+   "retrieved": 5
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "recovery_ts",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue \"Recovery Time Stamp\" OR recoveryTime",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "nf_restart",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue \"NF restart\" OR \"UPF restart\" OR \"SMF restart\" OR \"AMF restart\" OR \"gNB restart\"",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "supp_reboot",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue reboot OR rebooted OR killed",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "supp_down",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue \"goes down\" OR \"went down\" OR \"comes back\" OR \"came back\"",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "supp_errind",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue \"Error Indication\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "supp_ngreset",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue \"NG Reset\" OR \"SCTP reconnect\" OR \"SCTP association\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-smf",
+   "tag": "supp_failover",
+   "query": "repo:openairinterface/oai-cn5g-smf is:issue failover OR redundancy OR \"high availability\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "restart",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue restart",
+   "total_count": 9,
+   "retrieved": 9
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "recovery",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue recovery OR restoration",
+   "total_count": 2,
+   "retrieved": 2
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "heartbeat",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue heartbeat",
+   "total_count": 2,
+   "retrieved": 2
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "pfcp_assoc",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue \"PFCP association\" OR \"association setup\"",
+   "total_count": 3,
+   "retrieved": 3
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "crash_reconnect",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue crash reconnect OR crash re-register",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "pool",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue \"pool exhausted\" OR \"IP is used\" OR \"already in use\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "stale",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue stale OR orphan OR leak",
+   "total_count": 9,
+   "retrieved": 9
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "recovery_ts",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue \"Recovery Time Stamp\" OR recoveryTime",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "nf_restart",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue \"NF restart\" OR \"UPF restart\" OR \"SMF restart\" OR \"AMF restart\" OR \"gNB restart\"",
+   "total_count": 8,
+   "retrieved": 8
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "supp_reboot",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue reboot OR rebooted OR killed",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "supp_down",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue \"goes down\" OR \"went down\" OR \"comes back\" OR \"came back\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "supp_errind",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue \"Error Indication\"",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "supp_ngreset",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue \"NG Reset\" OR \"SCTP reconnect\" OR \"SCTP association\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-upf",
+   "tag": "supp_failover",
+   "query": "repo:openairinterface/oai-cn5g-upf is:issue failover OR redundancy OR \"high availability\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "restart",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue restart",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "recovery",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue recovery OR restoration",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "heartbeat",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue heartbeat",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "pfcp_assoc",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue \"PFCP association\" OR \"association setup\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "crash_reconnect",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue crash reconnect OR crash re-register",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "pool",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue \"pool exhausted\" OR \"IP is used\" OR \"already in use\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "stale",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue stale OR orphan OR leak",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "recovery_ts",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue \"Recovery Time Stamp\" OR recoveryTime",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "nf_restart",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue \"NF restart\" OR \"UPF restart\" OR \"SMF restart\" OR \"AMF restart\" OR \"gNB restart\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "supp_reboot",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue reboot OR rebooted OR killed",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "supp_down",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue \"goes down\" OR \"went down\" OR \"comes back\" OR \"came back\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "supp_errind",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue \"Error Indication\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "supp_ngreset",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue \"NG Reset\" OR \"SCTP reconnect\" OR \"SCTP association\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "openairinterface/oai-cn5g-fed",
+   "tag": "supp_failover",
+   "query": "repo:openairinterface/oai-cn5g-fed is:issue failover OR redundancy OR \"high availability\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "restart",
+   "query": "repo:omec-project/upf is:issue restart",
+   "total_count": 16,
+   "retrieved": 16
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "recovery",
+   "query": "repo:omec-project/upf is:issue recovery OR restoration",
+   "total_count": 11,
+   "retrieved": 11
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "heartbeat",
+   "query": "repo:omec-project/upf is:issue heartbeat",
+   "total_count": 12,
+   "retrieved": 12
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "pfcp_assoc",
+   "query": "repo:omec-project/upf is:issue \"PFCP association\" OR \"association setup\"",
+   "total_count": 15,
+   "retrieved": 15
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "crash_reconnect",
+   "query": "repo:omec-project/upf is:issue crash reconnect OR crash re-register",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "pool",
+   "query": "repo:omec-project/upf is:issue \"pool exhausted\" OR \"IP is used\" OR \"already in use\"",
+   "total_count": 3,
+   "retrieved": 3
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "stale",
+   "query": "repo:omec-project/upf is:issue stale OR orphan OR leak",
+   "total_count": 70,
+   "retrieved": 70
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "recovery_ts",
+   "query": "repo:omec-project/upf is:issue \"Recovery Time Stamp\" OR recoveryTime",
+   "total_count": 2,
+   "retrieved": 2
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "nf_restart",
+   "query": "repo:omec-project/upf is:issue \"NF restart\" OR \"UPF restart\" OR \"SMF restart\" OR \"AMF restart\" OR \"gNB restart\"",
+   "total_count": 6,
+   "retrieved": 6
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "supp_reboot",
+   "query": "repo:omec-project/upf is:issue reboot OR rebooted OR killed",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "supp_down",
+   "query": "repo:omec-project/upf is:issue \"goes down\" OR \"went down\" OR \"comes back\" OR \"came back\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "supp_errind",
+   "query": "repo:omec-project/upf is:issue \"Error Indication\"",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "supp_ngreset",
+   "query": "repo:omec-project/upf is:issue \"NG Reset\" OR \"SCTP reconnect\" OR \"SCTP association\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/upf",
+   "tag": "supp_failover",
+   "query": "repo:omec-project/upf is:issue failover OR redundancy OR \"high availability\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "restart",
+   "query": "repo:omec-project/amf is:issue restart",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "recovery",
+   "query": "repo:omec-project/amf is:issue recovery OR restoration",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "heartbeat",
+   "query": "repo:omec-project/amf is:issue heartbeat",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "pfcp_assoc",
+   "query": "repo:omec-project/amf is:issue \"PFCP association\" OR \"association setup\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "crash_reconnect",
+   "query": "repo:omec-project/amf is:issue crash reconnect OR crash re-register",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "pool",
+   "query": "repo:omec-project/amf is:issue \"pool exhausted\" OR \"IP is used\" OR \"already in use\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "stale",
+   "query": "repo:omec-project/amf is:issue stale OR orphan OR leak",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "recovery_ts",
+   "query": "repo:omec-project/amf is:issue \"Recovery Time Stamp\" OR recoveryTime",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "nf_restart",
+   "query": "repo:omec-project/amf is:issue \"NF restart\" OR \"UPF restart\" OR \"SMF restart\" OR \"AMF restart\" OR \"gNB restart\"",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "supp_reboot",
+   "query": "repo:omec-project/amf is:issue reboot OR rebooted OR killed",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "supp_down",
+   "query": "repo:omec-project/amf is:issue \"goes down\" OR \"went down\" OR \"comes back\" OR \"came back\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "supp_errind",
+   "query": "repo:omec-project/amf is:issue \"Error Indication\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "supp_ngreset",
+   "query": "repo:omec-project/amf is:issue \"NG Reset\" OR \"SCTP reconnect\" OR \"SCTP association\"",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "omec-project/amf",
+   "tag": "supp_failover",
+   "query": "repo:omec-project/amf is:issue failover OR redundancy OR \"high availability\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "restart",
+   "query": "repo:omec-project/smf is:issue restart",
+   "total_count": 2,
+   "retrieved": 2
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "recovery",
+   "query": "repo:omec-project/smf is:issue recovery OR restoration",
+   "total_count": 2,
+   "retrieved": 2
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "heartbeat",
+   "query": "repo:omec-project/smf is:issue heartbeat",
+   "total_count": 1,
+   "retrieved": 1
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "pfcp_assoc",
+   "query": "repo:omec-project/smf is:issue \"PFCP association\" OR \"association setup\"",
+   "total_count": 3,
+   "retrieved": 3
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "crash_reconnect",
+   "query": "repo:omec-project/smf is:issue crash reconnect OR crash re-register",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "pool",
+   "query": "repo:omec-project/smf is:issue \"pool exhausted\" OR \"IP is used\" OR \"already in use\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "stale",
+   "query": "repo:omec-project/smf is:issue stale OR orphan OR leak",
+   "total_count": 5,
+   "retrieved": 5
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "recovery_ts",
+   "query": "repo:omec-project/smf is:issue \"Recovery Time Stamp\" OR recoveryTime",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "nf_restart",
+   "query": "repo:omec-project/smf is:issue \"NF restart\" OR \"UPF restart\" OR \"SMF restart\" OR \"AMF restart\" OR \"gNB restart\"",
+   "total_count": 2,
+   "retrieved": 2
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "supp_reboot",
+   "query": "repo:omec-project/smf is:issue reboot OR rebooted OR killed",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "supp_down",
+   "query": "repo:omec-project/smf is:issue \"goes down\" OR \"went down\" OR \"comes back\" OR \"came back\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "supp_errind",
+   "query": "repo:omec-project/smf is:issue \"Error Indication\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "supp_ngreset",
+   "query": "repo:omec-project/smf is:issue \"NG Reset\" OR \"SCTP reconnect\" OR \"SCTP association\"",
+   "total_count": 0,
+   "retrieved": 0
+  },
+  {
+   "repo": "omec-project/smf",
+   "tag": "supp_failover",
+   "query": "repo:omec-project/smf is:issue failover OR redundancy OR \"high availability\"",
+   "total_count": 0,
+   "retrieved": 0
+  }
+ ]
+}

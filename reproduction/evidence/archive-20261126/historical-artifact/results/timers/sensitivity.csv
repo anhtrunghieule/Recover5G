@@ -1,0 +1,19 @@
+core,T_hb_s,delta_n4_s,delta_sbi_s,delta_core_s,binding_term,note
+Open5GS,1,8.5,21,26,SBI,Open5GS clamps no_heartbeat_duration >= 10 s; value is counterfactual
+Open5GS,2,9.5,21,26,SBI,Open5GS clamps no_heartbeat_duration >= 10 s; value is counterfactual
+Open5GS,5,12.5,21,26,SBI,Open5GS clamps no_heartbeat_duration >= 10 s; value is counterfactual
+Open5GS,10,17.5,21,26,SBI,
+Open5GS,20,27.5,21,32.5,N4,
+Open5GS,30,37.5,21,42.5,N4,
+free5GC,1,13,35,40,SBI,
+free5GC,2,14,35,40,SBI,
+free5GC,5,17,35,40,SBI,
+free5GC,10,22,35,40,SBI,
+free5GC,20,32,35,40,SBI,
+free5GC,30,42,35,47,N4,
+OAI,1,31,21,36,N4,
+OAI,2,32,21,37,N4,
+OAI,5,35,21,40,N4,
+OAI,10,40,21,45,N4,
+OAI,20,50,21,55,N4,
+OAI,30,60,21,65,N4,

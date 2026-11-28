@@ -1,0 +1,21 @@
+diff --git a/src/smf/context.c b/src/smf/context.c
+index b487d6ad..7d4d06dd 100644
+--- a/src/smf/context.c
++++ b/src/smf/context.c
+@@ -1846,6 +1846,16 @@ smf_sess_t *smf_sess_add_by_sm_context(ogs_sbi_message_t *message)
+                 SmContextCreateData->supi, SmContextCreateData->pdu_session_id);
+         smf_metrics_inst_by_slice_add(&sess->serving_plmn_id, &sess->s_nssai,
+                 SMF_METR_GAUGE_SM_SESSIONNBR, -1);
++        /* Recover5G F12 repair (experiment only): delete the old session's
++         * PFCP state at the UPF before the local removal. The response finds
++         * no session and is dropped. */
++        if (sess->pfcp_node && sess->upf_n4_seid &&
++            OGS_FSM_CHECK(&sess->pfcp_node->sm, smf_pfcp_state_associated)) {
++            ogs_warn("F12-repair: PFCP deletion for old SEID[0x%lx]",
++                    (long)sess->upf_n4_seid);
++            ogs_expect(OGS_OK == smf_5gc_pfcp_send_session_deletion_request(
++                    sess, NULL, OGS_PFCP_DELETE_TRIGGER_LOCAL_INITIATED));
++        }
+         smf_sess_remove(sess);
+     }
+ 

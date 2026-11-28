@@ -1,0 +1,550 @@
+[
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "crash re-register",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "crash reconnect",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "heartbeat",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "AMF restart",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "NF restart",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "SMF restart",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "UPF restart",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "gNB restart",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "PFCP association",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "association setup",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "IP is used",
+  "server_hits": 1,
+  "local_hits": 0,
+  "server_not_local": [
+   1
+  ],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "already in use",
+  "server_hits": 1,
+  "local_hits": 0,
+  "server_not_local": [
+   1
+  ],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "pool exhausted",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "recovery",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "restoration",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "Recovery Time Stamp",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "recoveryTime",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "restart",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "leak",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "orphan",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "stale",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "goes down",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "killed",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "reboot",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-common-src",
+  "term": "rebooted",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "crash re-register",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "crash reconnect",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "heartbeat",
+  "server_hits": 9,
+  "local_hits": 9,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "AMF restart",
+  "server_hits": 1,
+  "local_hits": 0,
+  "server_not_local": [
+   31
+  ],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "NF restart",
+  "server_hits": 1,
+  "local_hits": 0,
+  "server_not_local": [
+   31
+  ],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "SMF restart",
+  "server_hits": 1,
+  "local_hits": 0,
+  "server_not_local": [
+   31
+  ],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "UPF restart",
+  "server_hits": 1,
+  "local_hits": 0,
+  "server_not_local": [
+   31
+  ],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "gNB restart",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "PFCP association",
+  "server_hits": 14,
+  "local_hits": 13,
+  "server_not_local": [
+   36
+  ],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "association setup",
+  "server_hits": 11,
+  "local_hits": 10,
+  "server_not_local": [
+   26
+  ],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "IP is used",
+  "server_hits": 18,
+  "local_hits": 0,
+  "server_not_local": [
+   4,
+   7,
+   16,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   36
+  ],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "already in use",
+  "server_hits": 1,
+  "local_hits": 0,
+  "server_not_local": [
+   33
+  ],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "pool exhausted",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "recovery",
+  "server_hits": 0,
+  "local_hits": 10,
+  "server_not_local": [],
+  "local_not_server": [
+   23,
+   24,
+   25,
+   26,
+   27,
+   30,
+   31,
+   32,
+   33,
+   34
+  ]
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "restoration",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "Recovery Time Stamp",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "recoveryTime",
+  "server_hits": 0,
+  "local_hits": 10,
+  "server_not_local": [],
+  "local_not_server": [
+   23,
+   24,
+   25,
+   26,
+   27,
+   30,
+   31,
+   32,
+   33,
+   34
+  ]
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "restart",
+  "server_hits": 1,
+  "local_hits": 1,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "leak",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "orphan",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "stale",
+  "server_hits": 1,
+  "local_hits": 1,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "came back",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "comes back",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "goes down",
+  "server_hits": 1,
+  "local_hits": 0,
+  "server_not_local": [
+   21
+  ],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "went down",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "Error Indication",
+  "server_hits": 5,
+  "local_hits": 1,
+  "server_not_local": [
+   23,
+   24,
+   25,
+   34
+  ],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "failover",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "high availability",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "redundancy",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "NG Reset",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "SCTP association",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "SCTP reconnect",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "killed",
+  "server_hits": 0,
+  "local_hits": 0,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "reboot",
+  "server_hits": 1,
+  "local_hits": 1,
+  "server_not_local": [],
+  "local_not_server": []
+ },
+ {
+  "project": "oai-cn5g-upf",
+  "term": "rebooted",
+  "server_hits": 1,
+  "local_hits": 0,
+  "server_not_local": [
+   14
+  ],
+  "local_not_server": []
+ }
+]

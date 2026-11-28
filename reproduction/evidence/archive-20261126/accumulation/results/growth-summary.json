@@ -1,0 +1,77 @@
+{
+ "complete": true,
+ "expected_chains": 15,
+ "chains": 15,
+ "errors": 0,
+ "arms": {
+  "baseline": {
+   "chains": 5,
+   "valid_chains": 5,
+   "cycles": 50,
+   "working_service_cycles": 50,
+   "final_extra_identities": [
+    20,
+    20,
+    20,
+    20,
+    20
+   ],
+   "wire_verified_final": 5,
+   "working_service_at_both_final": 5,
+   "elapsed_s": 2155.020495891571,
+   "upf_cgroup_change_bytes": [
+    90112,
+    397312,
+    606208,
+    483328,
+    -192512
+   ]
+  },
+  "repair": {
+   "chains": 5,
+   "valid_chains": 5,
+   "cycles": 50,
+   "working_service_cycles": 50,
+   "final_extra_identities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "wire_verified_final": 5,
+   "working_service_at_both_final": 5,
+   "elapsed_s": 2148.1446244716644,
+   "upf_cgroup_change_bytes": [
+    569344,
+    -380928,
+    122880,
+    172032,
+    225280
+   ]
+  },
+  "control": {
+   "chains": 5,
+   "valid_chains": 5,
+   "cycles": 50,
+   "working_service_cycles": 50,
+   "final_extra_identities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "wire_verified_final": 5,
+   "working_service_at_both_final": 5,
+   "elapsed_s": 2092.8524281978607,
+   "upf_cgroup_change_bytes": [
+    86016,
+    28672,
+    323584,
+    233472,
+    598016
+   ]
+  }
+ }
+}

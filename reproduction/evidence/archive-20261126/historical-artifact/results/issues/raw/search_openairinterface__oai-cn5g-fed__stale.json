@@ -1,0 +1,92 @@
+{
+ "query": "repo:openairinterface/oai-cn5g-fed is:issue stale OR orphan OR leak",
+ "date": "2026-11-05",
+ "total_count": 1,
+ "items": [
+  {
+   "url": "https://api.github.com/repos/openairinterface/oai-cn5g-fed/issues/9",
+   "repository_url": "https://api.github.com/repos/openairinterface/oai-cn5g-fed",
+   "labels_url": "https://api.github.com/repos/openairinterface/oai-cn5g-fed/issues/9/labels{/name}",
+   "comments_url": "https://api.github.com/repos/openairinterface/oai-cn5g-fed/issues/9/comments",
+   "events_url": "https://api.github.com/repos/openairinterface/oai-cn5g-fed/issues/9/events",
+   "html_url": "https://github.com/openairinterface/oai-cn5g-fed/issues/9",
+   "id": 5235346077,
+   "node_id": "I_kwDOTRph388AAAABOA0KnQ",
+   "number": 9,
+   "title": "Various CI adjustments",
+   "user": {
+    "login": "sgarg00",
+    "id": 239177960,
+    "node_id": "U_kgDODkGQ6A",
+    "avatar_url": "https://avatars.githubusercontent.com/u/239177960?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/sgarg00",
+    "html_url": "https://github.com/sgarg00",
+    "followers_url": "https://api.github.com/users/sgarg00/followers",
+    "following_url": "https://api.github.com/users/sgarg00/following{/other_user}",
+    "gists_url": "https://api.github.com/users/sgarg00/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/sgarg00/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/sgarg00/subscriptions",
+    "organizations_url": "https://api.github.com/users/sgarg00/orgs",
+    "repos_url": "https://api.github.com/users/sgarg00/repos",
+    "events_url": "https://api.github.com/users/sgarg00/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/sgarg00/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+   },
+   "labels": [],
+   "state": "open",
+   "locked": false,
+   "assignees": [],
+   "milestone": null,
+   "comments": 0,
+   "created_at": "2026-08-24T13:35:27Z",
+   "updated_at": "2026-09-01T10:14:18Z",
+   "closed_at": null,
+   "assignee": null,
+   "author_association": "CONTRIBUTOR",
+   "issue_field_values": [],
+   "type": {
+    "id": 6250817,
+    "node_id": "IT_kwDOAcryAM4AX2FB",
+    "name": "Task",
+    "description": "A specific piece of work",
+    "color": "yellow",
+    "created_at": "2024-01-30T17:18:02Z",
+    "updated_at": "2024-07-26T11:40:35Z",
+    "is_enabled": true
+   },
+   "active_lock_reason": null,
+   "sub_issues_summary": {
+    "total": 0,
+    "completed": 0,
+    "percent_completed": 0
+   },
+   "issue_dependencies_summary": {
+    "blocked_by": 0,
+    "total_blocked_by": 0,
+    "blocking": 0,
+    "total_blocking": 0
+   },
+   "body": "* [ ] Address warnings related to the use of the `def` keyword: Example- `Did you forget the def keyword? WorkflowScript seems to be setting a field named AMF (to a value of type Integer) which could lead to memory leaks or other issues.`\n* [ ] Replace `pullFromSelfix` and other variables/functions containing `Selfix` with more generic names.\n* [ ] Update the `common-ci` submodule to include https://github.com/openairinterface/oai-cn5g-common-ci/pull/3(https://github.com/openairinterface/oai-cn5g-common-ci/pull/3), including the CLA checks.\n* [ ] Fix existing bugs and improve logging and undeployment handling.\n* [ ] Reduce repetitive commands by reusing existing helper functions wherever possible.\n* [ ] Check filters for Ethernet PDU session; Logs are too big: [example](https://jenkins-oai.eurecom.fr/job/OAI-CN5G-Tutorials-Check/4244/)\n* [ ] If possible, split Robot tests into separate Jenkins stages. For example, instead of running all tests in a single stage as shown [here](https://jenkins-oai.eurecom.fr/job/OAI-CN5G-RobotTest/2124/stages/?selected-node=126), use separate stages such as:\n\n  * `Stage 1: Test.All NFs`\n  * `Stage 2: Test.eBPF Tests`\n  * `Stage 3: Test.QoS Tests`\n  * `...`\n\n- [ ] Fix the PR comment error when replaying a pipeline: \n\nBelow error happened when replaying a PR pipeline:\n```\nError when executing success post condition:\nAlso:   org.jenkinsci.plugins.workflow.actions.ErrorAction$ErrorId: fafbd746-b68a-4ada-a292-e413816f9eea\nhudson.AbortException: Can't get cause from run/build\n```\n\nOn script console:\n\n```\nOAI-CN5G-FED #169\n   org.jenkinsci.plugins.github.pullrequest.GitHubPRCause\n      GitHub PR #10: Commit changed\n   GitHubPRCause present : true\n\nOAI-CN5G-FED #170\n   hudson.model.Cause$UserIdCause\n      Started by user Sagar Arora\n   org.jenkinsci.plugins.workflow.cps.replay.ReplayCause\n      Replayed #169\n   GitHubPRCause present : false\n\nResult: [OAI-CN5G-FED #169, OAI-CN5G-FED #170]\n```\n\ngithubPRComment \u2192 GitHubPRCause is for identifying a PR-triggered build. The thing to watch is that a Replay/manual build may not retain that cause, even though the build is still logically associated with a PR.\nMaybe add it in try-catch block or check other workarounds.",
+   "reactions": {
+    "url": "https://api.github.com/repos/openairinterface/oai-cn5g-fed/issues/9/reactions",
+    "total_count": 0,
+    "+1": 0,
+    "-1": 0,
+    "laugh": 0,
+    "hooray": 0,
+    "confused": 0,
+    "heart": 0,
+    "rocket": 0,
+    "eyes": 0
+   },
+   "timeline_url": "https://api.github.com/repos/openairinterface/oai-cn5g-fed/issues/9/timeline",
+   "performed_via_github_app": null,
+   "state_reason": null,
+   "pinned_comment": null,
+   "score": 1.0
+  }
+ ]
+}

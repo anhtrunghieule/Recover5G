@@ -1,0 +1,6 @@
+{
+ "query": "repo:openairinterface/oai-cn5g-fed is:issue \"pool exhausted\" OR \"IP is used\" OR \"already in use\"",
+ "date": "2026-11-05",
+ "total_count": 0,
+ "items": []
+}

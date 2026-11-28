@@ -1,0 +1,169 @@
+diff -ru src.orig/gnb/ngap/interface.cpp src/gnb/ngap/interface.cpp
+--- src.orig/gnb/ngap/interface.cpp	2026-11-06 06:29:52
++++ src/gnb/ngap/interface.cpp	2026-11-06 06:32:21
+@@ -12,6 +12,7 @@
+ #include <algorithm>
+ 
+ #include <gnb/app/task.hpp>
++#include <gnb/gtp/task.hpp>
+ #include <gnb/rrc/task.hpp>
+ #include <gnb/sctp/task.hpp>
+ 
+@@ -121,16 +122,62 @@
+     if (amf == nullptr)
+         return;
+ 
++    if (amf->state == EAmfState::NOT_CONNECTED && m_reconnectPending)
++        return; // duplicate notification for the same loss
++
+     m_logger->err("Association terminated for AMF[%d]", amfId);
+-    m_logger->debug("Removing AMF context[%d]", amfId);
+ 
+     amf->state = EAmfState::NOT_CONNECTED;
+ 
++    // r5g patch: release every UE context served through this AMF locally (as a real gNB does on NG loss)
++    std::vector<int> ues;
++    for (auto &u : m_ueCtx)
++        if (u.second->associatedAmfId == amfId)
++            ues.push_back(u.first);
++    for (int ueId : ues)
++    {
++        auto w1 = std::make_unique<NmGnbNgapToRrc>(NmGnbNgapToRrc::AN_RELEASE);
++        w1->ueId = ueId;
++        m_base->rrcTask->push(std::move(w1));
++        auto w2 = std::make_unique<NmGnbNgapToGtp>(NmGnbNgapToGtp::UE_CONTEXT_RELEASE);
++        w2->ueId = ueId;
++        m_base->gtpTask->push(std::move(w2));
++        deleteUeContext(ueId);
++    }
++    m_logger->warn("r5g: NG association lost; released %d UE context(s) locally; retrying SCTP/NG Setup", (int)ues.size());
++
+     auto w = std::make_unique<NmGnbSctp>(NmGnbSctp::CONNECTION_CLOSE);
+     w->clientId = amfId;
+     m_base->sctpTask->push(std::move(w));
+ 
+-    deleteAmfContext(amfId);
++    m_reconnectPending = true;
++    setTimer(TIMER_ID_R5G_RECONNECT, 2000);
++}
++
++void NgapTask::r5gReconnect()
++{
++    bool any = false;
++    for (auto &amfCtx : m_amfCtx)
++    {
++        if (amfCtx.second->state != EAmfState::NOT_CONNECTED)
++            continue;
++        any = true;
++        auto close = std::make_unique<NmGnbSctp>(NmGnbSctp::CONNECTION_CLOSE);
++        close->clientId = amfCtx.second->ctxId;
++        m_base->sctpTask->push(std::move(close));
++        auto msg = std::make_unique<NmGnbSctp>(NmGnbSctp::CONNECTION_REQUEST);
++        msg->clientId = amfCtx.second->ctxId;
++        msg->localAddress = m_base->config->ngapIp;
++        msg->localPort = 0;
++        msg->remoteAddress = amfCtx.second->address;
++        msg->remotePort = amfCtx.second->port;
++        msg->ppid = sctp::PayloadProtocolId::NGAP;
++        msg->associatedTask = this;
++        m_base->sctpTask->push(std::move(msg));
++    }
++    m_reconnectPending = any;
++    if (any)
++        setTimer(TIMER_ID_R5G_RECONNECT, 2000);
+ }
+ 
+ void NgapTask::sendNgSetupRequest(int amfId)
+diff -ru src.orig/gnb/ngap/task.cpp src/gnb/ngap/task.cpp
+--- src.orig/gnb/ngap/task.cpp	2026-11-06 06:29:52
++++ src/gnb/ngap/task.cpp	2026-11-06 06:29:53
+@@ -88,6 +88,12 @@
+         }
+         break;
+     }
++    case NtsMessageType::TIMER_EXPIRED: {
++        auto &w = dynamic_cast<NmTimerExpired &>(*msg);
++        if (w.timerId == TIMER_ID_R5G_RECONNECT)
++            r5gReconnect();
++        break;
++    }
+     default: {
+         m_logger->unhandledNts(*msg);
+         break;
+diff -ru src.orig/gnb/ngap/task.hpp src/gnb/ngap/task.hpp
+--- src.orig/gnb/ngap/task.hpp	2026-11-06 06:29:52
++++ src/gnb/ngap/task.hpp	2026-11-06 06:29:53
+@@ -82,6 +82,9 @@
+     /* Interface management */
+     void handleAssociationSetup(int amfId, int ascId, int inCount, int outCount);
+     void handleAssociationShutdown(int amfId);
++    void r5gReconnect();
++    bool m_reconnectPending{};
++    static constexpr int TIMER_ID_R5G_RECONNECT = 7701;
+     void sendNgSetupRequest(int amfId);
+     void sendErrorIndication(int amfId, NgapCause cause = NgapCause::Protocol_unspecified, int ueId = 0);
+     void receiveNgSetupResponse(int amfId, ASN_NGAP_NGSetupResponse *msg);
+diff -ru src.orig/gnb/sctp/task.cpp src/gnb/sctp/task.cpp
+--- src.orig/gnb/sctp/task.cpp	2026-11-06 06:29:52
++++ src/gnb/sctp/task.cpp	2026-11-06 06:30:18
+@@ -7,6 +7,7 @@
+ //
+ 
+ #include "task.hpp"
++#include <unistd.h>
+ 
+ #include <cstring>
+ #include <thread>
+@@ -97,15 +98,26 @@
+     }
+ };
+ 
+-[[noreturn]] static void ReceiverThread(std::pair<sctp::SctpClient *, sctp::ISctpHandler *> *args)
++static void ReceiverThread(std::pair<sctp::SctpClient *, sctp::ISctpHandler *> *args)
+ {
+     sctp::SctpClient *client = args->first;
+     sctp::ISctpHandler *handler = args->second;
+ 
+     delete args;
+ 
++    // r5g patch: a socket error after the AMF's association is lost used to escape this thread and terminate the
++    // whole gNB. Report it as an association shutdown once and idle until the SCTP task cancels this thread.
++    try
++    {
++        while (true)
++            client->receive(handler);
++    }
++    catch (const std::exception &e)
++    {
++        handler->onAssociationShutdown();
++    }
+     while (true)
+-        client->receive(handler);
++        sleep(1);
+ }
+ 
+ SctpTask::SctpTask(TaskBase *base) : m_base{base}, m_clients{}
+@@ -308,6 +320,7 @@
+     }
+ 
+     DeleteClientEntry(entry);
++    m_clients.erase(clientId); // r5g patch: do not leave a dangling entry behind
+ }
+ 
+ void SctpTask::receiveSendMessage(int clientId, uint16_t stream, UniqueBuffer &&buffer)
+@@ -328,7 +341,14 @@
+         receiveClientReceive(clientId, 0, copy, data.length());
+     }
+ #else
+-    entry->client->send(stream, buffer.data(), 0, buffer.size());
++    try
++    {
++        entry->client->send(stream, buffer.data(), 0, buffer.size());
++    }
++    catch (const std::exception &e) // r5g patch: AMF gone; the shutdown path handles recovery
++    {
++        m_logger->err("SCTP send failed (association lost?): %s", e.what());
++    }
+ #endif
+ }
+ 

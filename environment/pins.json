@@ -1,0 +1,51 @@
+{
+ "note": "Versions, commits and image identifiers of every system under test and every tool image used by the experiments in the paper. Image IDs marked 'archive' are verified by reproduction/reproduce.py load. IDs marked 'build log' are the short IDs printed by docker build on the documented host; those images are not in the archive and must be rebuilt (see README.md, Setup step 4).",
+ "host": {
+  "machine": "Apple M5 Max, 18 CPUs, 64 GiB, macOS (arm64)",
+  "vm_manager": "Colima 0.10.3, Apple Virtualization (vz), aarch64 guests",
+  "guest": "Ubuntu 24.04, kernel 6.8.0-117-generic, sctp module loaded",
+  "vms": {
+   "r5g-claude": "6 vCPU, 12 GiB: main rerun, held-out, delay one seed, delay three seeds, clean rerun, kill timing, orphan/cross-UE recipes",
+   "r5g-claude-ran": "4 vCPU, 8 GiB: OAI RAN, free5GC (gtp5g built here), from-source rebuild, before/after-fix cohort, organic chains, impact, free5GC orphan",
+   "r5g-claude-big": "8 vCPU, 16 GiB: thousand-UE chains",
+   "r5g-reproduction": "4 vCPU, 4 to 8 GiB: fresh-validation cohort and the earlier package's smoke test"
+  }
+ },
+ "open5gs": {
+  "pinned": {"commit": "e85748ef3d798fa0b4435c80438e81c41bbe5e13", "image": "r5g/open5gs:e85748e", "image_id": "sha256:ec98f67a891bea64d8162fc9590f5df62727d92b2c8b03ed6a9ce5d638febbd4", "id_source": "archive"},
+  "pinned_plus_repair": {"commit": "e85748e + environment/f12-repair.diff", "image": "r5g/open5gs:e85748e-f12repair", "image_id": "sha256:e7a7cc385b19e0f2c4804917c2585577fb0b01068ba7620641511bf4b176a56f", "id_source": "archive", "dockerfile": "workspace/build/f12/Dockerfile"},
+  "build_base": {"image": "r5g/open5gs-build:base", "image_id": "sha256:512b262fee64aa2886740a5338de8f68189338a3889d8af9badace138ba9e085", "id_source": "archive", "content": "Ubuntu 24.04 toolchain with the e85748e source tree built (cached)"},
+  "before_upstream_fix": {"commit": "ce6444f1b0a776843e78320b13a41fb39bf5ed9c", "image": "r5g/open5gs:ce6444f", "image_id": "286d8a3caac0", "id_source": "build log workspace/results/raw/upfix/build-logs/build-ce6444f.log", "dockerfile": "workspace/testbed/docker/open5gs/Dockerfile.upstream"},
+  "upstream_fix": {"commit": "097162c4225bdb3d86ab17eb5119a0aae15c5490", "image": "r5g/open5gs:097162c", "image_id": "ea3edf069924", "id_source": "build log workspace/results/raw/upfix/build-logs/build-097162c.log", "dockerfile": "workspace/testbed/docker/open5gs/Dockerfile.upstream", "upstream_fix_chain": "ce6444f -> 0fab98c (#5059, PR #5096) -> bd01524 (#5061) -> 942d0e1 (#5064) -> 92ebe87 (#5065) -> 2534867 -> 097162c (#5059 follow-up)"},
+  "rebuild_from_source": {"images": {"r5g-rebuild/open5gs-build:e85748e": "83f5ef8c4075", "r5g-rebuild/open5gs:e85748e": "5e6ccdf2f737", "r5g-rebuild/open5gs:e85748e-f12repair": "c5a996198ab7"}, "id_source": "build logs of workspace/build/rebuild/job_rebuild.sh and job_rebuild2.sh", "note": "the rebuilt SMF binary has the same SHA-256 as the archived one"},
+  "prospective_update": {"commit": "5378c0698c604bd16e0287eadab069bc51e7fb5f", "build": "reproduction/build/maintenance/"}
+ },
+ "ueransim": {
+  "commit": "4f45e18f80b0684f7d6e29f1fea0f579e9243d68",
+  "patches": {
+   "uac-wait-2000ms": "UE-side harness patch in every image: the UAC check waits 2000 ms instead of 100 ms (sed in workspace/testbed/docker/ueransim/Dockerfile*)",
+   "gnb-sctp-survive (p2)": "workspace/testbed/docker/ueransim/gnb-sctp-survive.patch: the gNB survives AMF SCTP loss, releases UE contexts locally and redoes NG Setup every 2 s"
+  },
+  "images": {
+   "r5g/ueransim:4f45e18-p2": {"image_id": "sha256:f68c1a74b7bd27128635a9356f46b3039ac9544363b9c759fa8c410e72546557", "id_source": "archive", "dockerfile": "workspace/testbed/docker/ueransim/Dockerfile.p2"},
+   "r5g/ueransim:4f45e18 and :4f45e18-p1": {"id_source": "not archived", "dockerfile": "workspace/testbed/docker/ueransim/Dockerfile", "note": "stock gNB that aborts when the AMF dies (used by the main rerun and the stock-gNB arms)"},
+   "r5g-rebuild/ueransim:4f45e18-p2": {"image_id": "81a89842f10d", "id_source": "build log of workspace/build/rebuild/job_rebuild2.sh", "note": "same commit and patches as r5g/ueransim:4f45e18-p2; used by the organic, thousand-UE, impact and free5GC-orphan runs"}
+  }
+ },
+ "free5gc": {
+  "release": "v4.0.1 (Docker Hub images free5gc/*:v4.0.1, arm64)",
+  "smf_follow_up_arm": "free5gc/smf:v4.3.0 with workspace/testbed/exp/f5g_orphan_smfcfg_v430.yaml",
+  "compose": "workspace/testbed/exp/f5g_orphan_compose.yml (orphan experiment), workspace/testbed/free5gc/ (next-use control; upstream free5gc-compose files with their bundled test certificates)",
+  "gtp5g": {"version": "0.9.14", "tarball": "workspace/free5gc/gtp5g-v0.9.14.tar.gz", "sha256": "b7e0beaf29f70de167c15e2b69443e34df6489166a8ac6c1f416fbbfef96f928", "note": "kernel module built and loaded in the r5g-claude-ran guest (kernel 6.8.0-117); it must be reloaded after every VM restart"}
+ },
+ "oai": {
+  "ran": {"gnb": "oaisoftwarealliance/oai-gnb:2025.w40", "ue": "oaisoftwarealliance/oai-nr-ue:2025.w40", "compose": "workspace/oai-ran/docker-compose.oai-ran.yml", "capture_filter": "not port 27017 and not port 9090 and not tcp port 4043"},
+  "cn5g": {"release": "v2.2.2 (earlier campaign only)", "compose": "workspace/testbed/oai/docker-compose.yml"}
+ },
+ "tools": {
+  "tshark": {"image": "r5g/tshark:1", "image_id": "sha256:ccec04f7d6589418b7ab7eb33c28fd5d6c444bbff366142ec82ecc1a8157f62d", "id_source": "archive"},
+  "mongo": {"image": "mongo:7.0", "image_id": "sha256:8bb4442761a63a8dda452744082cdac9644b429807eb977b42324a63cef59ca4", "id_source": "archive"},
+  "python": "3.9 or newer, standard library only (the runs used CPython 3.15 on the host)"
+ },
+ "package_manifests": "reproduction/manifests/*-packages.tsv list every installed package of the archived images; reproduction/manifests/images.json and image-archive.json hold the image IDs and the archive hash"
+}

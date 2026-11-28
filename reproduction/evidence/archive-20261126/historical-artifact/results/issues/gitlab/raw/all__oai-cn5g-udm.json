@@ -1,0 +1,459 @@
+{
+"url": "https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-udm/issues?state=all",
+"fetched": "2026-11-05T18:24:46Z",
+"items": [
+{
+"id": 4636,
+"iid": 5,
+"project_id": 3304,
+"title": "[Refactor] Remove duplicated files in src/common (src/common_src)",
+"description": "",
+"state": "closed",
+"created_at": "2024-06-05T21:12:29.269Z",
+"updated_at": "2024-06-17T08:25:29.960Z",
+"closed_at": "2024-06-17T08:25:29.946Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"Refactor"
+],
+"milestone": {
+"id": 203,
+"iid": 3,
+"group_id": 9696,
+"title": "v2.1.0 Release",
+"description": "# Roadmap\r\n* Support of Location Service\r\n* Support of stateless NF for UDM/AUSF\r\n* Release of UDSF\r\n* QoS Support Control plane",
+"state": "closed",
+"created_at": "2023-09-15T12:00:47.574Z",
+"updated_at": "2026-05-06T09:03:03.088Z",
+"due_date": "2024-03-29",
+"start_date": "2023-12-01",
+"expired": true,
+"web_url": "https://gitlab.eurecom.fr/groups/oai/cn5g/-/milestones/3"
+},
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udm/-/work_items/5",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/5",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/5/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/5/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3304",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#5",
+"relative": "#5",
+"full": "oai/cn5g/oai-cn5g-udm#5"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4557,
+"iid": 4,
+"project_id": 3304,
+"title": "[Issue] UDM can't re-register to NRF if registration/heartbeat lost e.g., when NRF restarts",
+"description": "",
+"state": "closed",
+"created_at": "2024-03-19T13:36:12.864Z",
+"updated_at": "2024-04-27T21:07:18.525Z",
+"closed_at": "2024-04-27T21:07:18.515Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udm/-/work_items/4",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/4",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/4/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/4/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3304",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#4",
+"relative": "#4",
+"full": "oai/cn5g/oai-cn5g-udm#4"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4385,
+"iid": 3,
+"project_id": 3304,
+"title": "Proposal: Remove Libngap",
+"description": "",
+"state": "closed",
+"created_at": "2023-11-29T22:28:53.498Z",
+"updated_at": "2024-06-07T12:35:35.771Z",
+"closed_at": "2024-06-07T12:35:35.763Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udm/-/work_items/3",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/3",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/3/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/3/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3304",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#3",
+"relative": "#3",
+"full": "oai/cn5g/oai-cn5g-udm#3"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 4108,
+"iid": 2,
+"project_id": 3304,
+"title": "UDM is sending wrongly suci as ueid in get subscription-data message to udr",
+"description": "while testing the OAI AUSF/UDM/UDR using real AMF from Nokia, the AMF is sending auth request to AUSF using null protected suci, the UDM should de-conceal it and send SUPI as ueid to udr, but it is sending the suci as ueid, that causes auth to fail as udr mysql db has supi as ueid\n\non udm logs\n[2023-06-15 03:47:38.842] [udm_ueau] [debug] GET Request:10.1.10.12:8080/nudr-dr/v1/subscription-data/suci-0-206-01-0000-0-0-5500000000/authentication-data/authentication-subscription\n\non udr logs\n[2023-06-15 03:47:28.833] [udr_mysql] [info] [UE Id suci-0-206-01-0000-0-0-5500000000] MySQL Query: SELECT * FROM Authe\nnticationSubscription WHERE ueid='suci-0-206-01-0000-0-0-5500000000'\n[2023-06-15 03:47:28.835] [udr_mysql] [error] [UE Id suci-0-206-01-0000-0-0-5500000000] AuthenticationSubscription no d\nata\uff01 SQL Query: SELECT * FROM AuthenticationSubscription WHERE ueid='suci-0-206-01-0000-0-0-5500000000'\n[2023-06-15 03:47:28.835] [udr_server] [info] HTTP Response code 404 (HTTP Version 2).",
+"state": "closed",
+"created_at": "2023-06-15T09:06:39.369Z",
+"updated_at": "2026-03-17T11:14:31.240Z",
+"closed_at": "2026-03-17T11:14:31.105Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 11031,
+"username": "mohamedaly",
+"public_email": null,
+"name": "Mohamed Aly",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/066428f757ec8143c097473ccd3f22259a314e362e96e7accd78e1f2a70c56b7?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/mohamedaly"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udm/-/work_items/2",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/2",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/2/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/2/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3304",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#2",
+"relative": "#2",
+"full": "oai/cn5g/oai-cn5g-udm#2"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+},
+{
+"id": 3719,
+"iid": 1,
+"project_id": 3304,
+"title": "HTTP2 doesn't work properly with UDM",
+"description": " UDM doesn't send message to UDR to get the authentication information after receiving message from AUSF (auth-events)",
+"state": "closed",
+"created_at": "2022-05-03T07:32:51.274Z",
+"updated_at": "2022-06-03T14:49:11.837Z",
+"closed_at": "2022-06-03T14:49:11.834Z",
+"closed_by": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"labels": [
+"Fix",
+"v1.3"
+],
+"milestone": null,
+"assignees": [
+{
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+}
+],
+"author": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"type": "ISSUE",
+"assignee": {
+"id": 409,
+"username": "tien-thinh.nguyen",
+"public_email": "",
+"name": "Tien-Thinh Nguyen",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/1f9efbf7e23a3e81a269e4c91b27013c0f433e3aecc8eeef454f790c983231b0?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tien-thinh.nguyen"
+},
+"user_notes_count": 1,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udm/-/work_items/1",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/1",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/1/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/3304/issues/1/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/3304",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#1",
+"relative": "#1",
+"full": "oai/cn5g/oai-cn5g-udm#1"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+}
+]
+}

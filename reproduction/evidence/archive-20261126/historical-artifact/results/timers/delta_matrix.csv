@@ -1,0 +1,29 @@
+core,fault,dclass,conjuncts,delta_s,plus_boot,path,facts
+Open5GS,UPF,stop,R3 (SMF side),23.5,0,SMF HB give-up,delta.csv;F3.o5gs.smf_hb_loss_reselect_upf
+Open5GS,UPF,stop,"R1,R2",33.5,0,SMF HB give-up + N1N2 release to AMF (SBI timeout),delta.csv;F3.o5gs.smf_hb_loss_reselect_upf;T_SBI
+Open5GS,UPF,restart,"R3,R4",23.5,1,"SMF HB give-up (a restarted UPF drops the SMF's heartbeats, campaign 2 source facts sec. 5) -> release with reactivation -> re-association, RTS, restoration skipped; T_b (to PFCP association) + give-up + eps is a conservative bound that counts re-association twice",F3.o5gs.restart_detect_rts;F3.o5gs.smf_restoration_on_upf_restart;campaign2/source_facts.md#5
+Open5GS,SMF,stop,"R3 (UPF side), O3",23.5,0,UPF HB give-up -> delete sessions,delta.csv;F11.o5gs.upf_4431_delete_on_smf_hb_loss
+Open5GS,SMF,stop/restart,R1 (AMF side),inf-obs,0,"no AMF learns of an SMF restart; next AMF request gets 404; implicit dereg 1560 s after CM-IDLE; NU refuted on the testbed: the release and T3580-retry paths keep the AMF entry (campaign 2 lazy probe 5/5, F7 5/5); universal NU fails -> no mechanism",F3.o5gs.nf_deregistered_only_drops_cache;F4.o5gs.nf_instance_uuid_at_boot
+Open5GS,SMF,restart,"R3 (UPF side), O4",5,1,re-Association Setup -> UPF deletes old sessions,measured: results/real (UPF removes sessions on re-association)
+Open5GS,SMF,restart (in-flight est.),"R3 (UPF side), O4",85,1,"UE T3580 retransmissions (16 s x 5, TS 24.501 Table 10.3.1) then re-association",TS24.501:T3580
+Open5GS,AMF,restart,"R2,R5",UE,0,next UE registration (periodic T3512=540 s runs only in CM-IDLE); implicit dereg 1560 s,F5.*
+Open5GS,gNB,restart,"R4,R1",meas,0,NG Setup + N2 release; no source-derived bound,
+Open5GS,NRF,restart,profiles,meas,0,NFs re-register on next heartbeat; measured,
+free5GC,UPF,stop,R3 (SMF side),27,0,SMF HB give-up,delta.csv;F2e.smf_hb_loss_releases_all
+free5GC,UPF,stop,"R1,R2",37,0,SMF HB give-up + N1N2 release to AMF (SBI timeout),delta.csv;F2e.smf_hb_loss_releases_all;T_SBI
+free5GC,UPF,stop (compose cfg),"R3,R1,R2",inf,0,SMF HB disabled in free5gc-compose,F2c.compose_smfcfg_heartbeatInterval
+free5GC,UPF,restart,"R3,R1,R2",37,1,RTS on next SMF HB -> release all + N1N2,F2e.smf_hb_loss_releases_all
+free5GC,SMF,stop,"R3 (UPF side), O3",inf,0,go-upf never originates heartbeats,F2d.goupf_never_originates_hb
+free5GC,SMF,stop/restart,R1 (AMF side),NU?,0,no AMF learns of an SMF restart; next AMF request gets 404; unverified: one v4.0.1 run (not pinned) left the UE PS-ACTIVE after a 404 on release,F3.f5gc.amf_no_nrf_status_subscription
+free5GC,SMF,restart,"R3 (UPF side), O4",5,1,re-Association Setup -> UPF deletes old sessions,timers.csv:go-upf deletes old association+sessions on re-Association Setup
+free5GC,AMF,restart,"R2,R5",UE,0,next UE registration (periodic T3512=3600 s runs only in CM-IDLE),F5.*
+free5GC,gNB,restart,"R4,R1",meas,0,NG Setup + N2 release; no source-derived bound,
+free5GC,NRF,restart,profiles,meas,0,NFs re-register on next heartbeat; measured,
+OAI,UPF,stop,"R3,R1,R2",inf,0,"SMF HB give-up 25 s, node-failure handler is a no-op",F1.delta_n4_smf_to_upf;F3.oai.smf_node_failure_noop
+OAI,UPF,restart,"R3,R4",inf,0,SMF ignores Recovery Time Stamp; N4 restore is TODO,F1.smf_ignores_hb_rsp_recovery_ts;F3.oai.smf_restore_n4_sessions_todo
+OAI,SMF,stop,"R3 (UPF side), O3",inf,0,UPF->SMF HB only for IPv4 Node ID; fed default is FQDN (IPv4: 35+eps s),F1.upf_hb_only_if_peer_nodeid_ipv4;F1.fed_default_smf_host
+OAI,SMF,stop/restart,R1 (AMF side),inf-obs,0,no AMF learns of an SMF restart; next AMF request gets 404; implicit dereg 6960 s after CM-IDLE; NU refuted on the testbed (pinned SMF 9d8e866): next use fails after an SMF restart,F3.oai.amf_nf_status_notify_noop
+OAI,SMF,restart,"R3 (UPF side), O4",meas,0,not derivable from source,
+OAI,AMF,restart,"R2,R5",UE,0,next UE registration (periodic T3512=3240 s runs only in CM-IDLE); implicit dereg 6960 s,F5.*
+OAI,gNB,restart,"R4,R1",meas,0,NG Setup + N2 release; no source-derived bound,
+OAI,NRF,restart,profiles,meas,0,NFs re-register on next heartbeat; measured,

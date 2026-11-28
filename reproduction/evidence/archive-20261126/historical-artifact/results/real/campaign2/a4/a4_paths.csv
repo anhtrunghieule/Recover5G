@@ -1,0 +1,10 @@
+id,position,amf_release_status,scp_to_smf_attempts,first_scp_attempt_vs_smf_restart_s,pfcp_deletions_on_wire,amf_log
+A4-flight-k1-r0,flight,404,-0.092s:None;1.088s:404,-0.092,0,
+A4-flight-k1-r1,flight,404,0.002s:None;1.036s:404,0.002,0,
+A4-flight-k1-r2,flight,404,-0.281s:None;0.914s:404,-0.281,0,
+A4-pre-k1-r0,pre,404,1.718s:None;1.718s:404,1.718,0,
+A4-pre-k1-r1,pre,404,1.642s:None;1.642s:404,1.642,0,
+A4-pre-k1-r2,pre,404,1.731s:None;1.732s:404,1.731,0,
+A4-recv-k1-r0,recv,404,-0.393s:None;0.729s:404,-0.393,0,
+A4-recv-k1-r1,recv,404,-0.417s:None;0.707s:404,-0.417,0,
+A4-recv-k1-r2,recv,404,-0.597s:None;0.524s:404,-0.597,0,

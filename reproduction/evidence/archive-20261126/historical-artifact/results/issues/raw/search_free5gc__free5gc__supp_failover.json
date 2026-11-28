@@ -1,0 +1,104 @@
+{
+ "query": "repo:free5gc/free5gc is:issue failover OR redundancy OR \"high availability\"",
+ "date": "2026-11-05",
+ "total_count": 1,
+ "items": [
+  {
+   "url": "https://api.github.com/repos/free5gc/free5gc/issues/1020",
+   "repository_url": "https://api.github.com/repos/free5gc/free5gc",
+   "labels_url": "https://api.github.com/repos/free5gc/free5gc/issues/1020/labels{/name}",
+   "comments_url": "https://api.github.com/repos/free5gc/free5gc/issues/1020/comments",
+   "events_url": "https://api.github.com/repos/free5gc/free5gc/issues/1020/events",
+   "html_url": "https://github.com/free5gc/free5gc/issues/1020",
+   "id": 4293517226,
+   "node_id": "I_kwDODiZOqs7_6d-q",
+   "number": 1020,
+   "title": "[Bugs] UE Security Capability bypass on NGAP PathSwitchRequest",
+   "user": {
+    "login": "SJNA0414",
+    "id": 197385222,
+    "node_id": "U_kgDOC8PcBg",
+    "avatar_url": "https://avatars.githubusercontent.com/u/197385222?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/SJNA0414",
+    "html_url": "https://github.com/SJNA0414",
+    "followers_url": "https://api.github.com/users/SJNA0414/followers",
+    "following_url": "https://api.github.com/users/SJNA0414/following{/other_user}",
+    "gists_url": "https://api.github.com/users/SJNA0414/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/SJNA0414/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/SJNA0414/subscriptions",
+    "organizations_url": "https://api.github.com/users/SJNA0414/orgs",
+    "repos_url": "https://api.github.com/users/SJNA0414/repos",
+    "events_url": "https://api.github.com/users/SJNA0414/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/SJNA0414/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+   },
+   "labels": [
+    {
+     "id": 2016129577,
+     "node_id": "MDU6TGFiZWwyMDE2MTI5NTc3",
+     "url": "https://api.github.com/repos/free5gc/free5gc/labels/AMF",
+     "name": "AMF",
+     "color": "f4b7e2",
+     "default": false,
+     "description": "",
+     "archived_at": null,
+     "archived_by": null
+    }
+   ],
+   "state": "closed",
+   "locked": false,
+   "assignees": [],
+   "milestone": null,
+   "comments": 0,
+   "created_at": "2026-04-20T06:18:28Z",
+   "updated_at": "2026-07-31T07:52:09Z",
+   "closed_at": "2026-07-31T07:52:09Z",
+   "assignee": null,
+   "author_association": "NONE",
+   "issue_field_values": [],
+   "type": {
+    "id": 11880599,
+    "node_id": "IT_kwDOA5s16c4AtUiX",
+    "name": "Bug",
+    "description": "An unexpected problem or behavior",
+    "color": "red",
+    "created_at": "2024-02-04T06:23:35Z",
+    "updated_at": "2024-07-26T13:08:28Z",
+    "is_enabled": true
+   },
+   "active_lock_reason": null,
+   "sub_issues_summary": {
+    "total": 0,
+    "completed": 0,
+    "percent_completed": 0
+   },
+   "issue_dependencies_summary": {
+    "blocked_by": 0,
+    "total_blocked_by": 0,
+    "blocking": 0,
+    "total_blocking": 0
+   },
+   "body": "## Bug Description\n\nThe AMF in free5GC v4.2.1 does not verify the UE Security Capabilities received in NGAP PathSwitchRequest messages against its locally stored values, as mandated by 3GPP TS 33.501 \u00a76.7.3.1. The AMF unconditionally overwrites stored UE security capabilities with values from the PathSwitchRequest without any comparison. Corrupted values are then propagated in PathSwitchRequestAcknowledge and subsequent HandoverRequest messages, leading to persistent handover denial-of-service for affected UEs.\n\n**Vulnerability Type:** CWE-358 (Improperly Implemented Security Check for Standard)\n\n**Affected File:** `internal/ngap/handler.go` \u2014 `handlePathSwitchRequestMain` function\n\n## To Reproduce\n\n1. Start free5GC full stack (AMF, NRF, AUSF, UDM, UDR, NSSF, PCF) and register a UE through a gNB (NG Setup \u2192 Registration \u2192 Authentication \u2192 Security Mode).\n\n2. Send a normal HandoverRequired from the gNB. Capture the resulting HandoverRequest from the AMF and confirm `nRintegrityProtectionAlgorithms = 0xe000` (NIA1, NIA2, NIA3 all supported). This is the baseline.\n\n3. Send a PathSwitchRequest with `nRintegrityProtectionAlgorithms = 0x0000` (all integrity algorithms set to not supported). The AMF responds with PathSwitchRequestAcknowledge.\n\n4. Observe that the PathSwitchRequestAcknowledge contains `nRintegrityProtectionAlgorithms = 0x0000` \u2014 the corrupted values are propagated back.\n\n## Expected Behavior\n\n3GPP TS 33.501 \u00a76.7.3.1 requires three actions, none of which are implemented:\n\n1. **Verification (SHALL):** \"The AMF shall verify that the UE's 5G security capabilities received from the target gNB/ng-eNB are the same as the UE's 5G security capabilities that the AMF has locally stored.\"\n   \u2192 Not implemented. The AMF unconditionally overwrites stored values.\n\n2. **Correction (SHALL):** \"If there is a mismatch, the AMF shall send its locally stored 5G security capabilities of the UE to the target gNB/ng-eNB in the Path-Switch Acknowledge message.\"\n   \u2192 Not implemented. The PathSwitchRequestAcknowledge contains the corrupted values.\n\n3. **Logging (SHALL):** \"The AMF shall support logging capabilities for this event and may take additional measures, such as raising an alarm.\"\n   \u2192 Not implemented. No mismatch detection or logging exists.\n\n## Root Cause\n\nWhen the AMF receives a PathSwitchRequest, it processes the UESecurityCapabilities IE by directly overwriting the stored values:\n\n```go\nif uESecurityCapabilities != nil {\n    amfUe.UESecurityCapability.SetEA1_128_5G(uESecurityCapabilities.NRencryptionAlgorithms.Value.Bytes[0] & 0x80)\n    amfUe.UESecurityCapability.SetEA2_128_5G(uESecurityCapabilities.NRencryptionAlgorithms.Value.Bytes[0] & 0x40)\n    amfUe.UESecurityCapability.SetEA3_128_5G(uESecurityCapabilities.NRencryptionAlgorithms.Value.Bytes[0] & 0x20)\n    amfUe.UESecurityCapability.SetIA1_128_5G(uESecurityCapabilities.NRintegrityProtectionAlgorithms.Value.Bytes[0] & 0x80)\n    amfUe.UESecurityCapability.SetIA2_128_5G(uESecurityCapabilities.NRintegrityProtectionAlgorithms.Value.Bytes[0] & 0x40)\n    amfUe.UESecurityCapability.SetIA3_128_5G(uESecurityCapabilities.NRintegrityProtectionAlgorithms.Value.Bytes[0] & 0x20)\n}\n```\n\nThis overwrite occurs before the PDU session success/failure decision. Even if the PathSwitchRequest ultimately results in a PathSwitchRequestFailure, the UESecurityCapabilities are already overwritten in the AMF's internal state.\n\n## Observed Result (from pcap capture)\n\n| Packet | Message | nRintegrityProtectionAlgorithms |\n|--------|---------|-------------------------------|\n| #20 | HandoverRequest (AMF\u2192gNB) | `0xe000` (NIA1 \u2713 NIA2 \u2713 NIA3 \u2713) \u2014 **baseline** |\n| #30 | PathSwitchRequest (gNB\u2192AMF) | `0x0000` \u2014 **test input** |\n| #47 | PathSwitchRequestAcknowledge (AMF\u2192gNB) | `0x0000` (NIA1 \u2717 NIA2 \u2717 NIA3 \u2717) \u2014 **corrupted** |\n\n## Impact\n\n**Availability (HIGH):** A single PathSwitchRequest can corrupt the AMF's stored UE security capabilities. All subsequent inter-gNB handovers for the affected UE are expected to fail (per TS 38.413 \u00a78.4.2.4, the target gNB must reject when no matching security algorithms exist), resulting in denial-of-service that persists until the UE re-registers.\n\n**Integrity (LOW):** The AMF's internal UE security context is corrupted with test-controlled values. These corrupted values are propagated to other network elements via PathSwitchRequestAcknowledge and HandoverRequest messages.\n\n## Suggested Fix\n\nBefore overwriting, compare the received UESecurityCapabilities with the stored values. On mismatch, send the stored (correct) values in the PathSwitchRequestAcknowledge and log the event:\n\n```go\nif uESecurityCapabilities != nil {\n    storedEA := amfUe.UESecurityCapability.GetEA()\n    storedIA := amfUe.UESecurityCapability.GetIA()\n    receivedEA := uESecurityCapabilities.NRencryptionAlgorithms.Value.Bytes[0]\n    receivedIA := uESecurityCapabilities.NRintegrityProtectionAlgorithms.Value.Bytes[0]\n    if storedEA != receivedEA || storedIA != receivedIA {\n        // TS 33.501 \u00a76.7.3.1: log mismatch, send stored values in Acknowledge\n        logger.Warnf(\"UESecurityCapabilities mismatch detected\")\n        // Do NOT overwrite \u2014 use stored values in PathSwitchRequestAcknowledge\n    }\n}\n```\n\n\n\n## Environment\n\n- free5GC Version: v4.2.1 \n- OS: Ubuntu 22.04 Server\n- Kernel version: 6.8.0-106-generic\n- go version: go1.17.8 linux/amd64\n\n## Trace Files\n\nPCAP file demonstrating the full attack chain are attached.\n[PathSwitch-SecurityCapability-Bypass.zip](https://github.com/user-attachments/files/26885003/PathSwitch-SecurityCapability-Bypass.zip)",
+   "reactions": {
+    "url": "https://api.github.com/repos/free5gc/free5gc/issues/1020/reactions",
+    "total_count": 0,
+    "+1": 0,
+    "-1": 0,
+    "laugh": 0,
+    "hooray": 0,
+    "confused": 0,
+    "heart": 0,
+    "rocket": 0,
+    "eyes": 0
+   },
+   "timeline_url": "https://api.github.com/repos/free5gc/free5gc/issues/1020/timeline",
+   "performed_via_github_app": null,
+   "state_reason": "completed",
+   "pinned_comment": null,
+   "score": 1.0
+  }
+ ]
+}

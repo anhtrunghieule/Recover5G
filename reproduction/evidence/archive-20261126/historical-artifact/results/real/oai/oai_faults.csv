@@ -1,0 +1,4 @@
+tag,nf,downtime_s,k,t_kill_utc,restart_ready_s,window_s,ue_ps_active_min,ue_ps_active_end,dataplane_ok_all_samples,dataplane_ok_any_sample,dataplane_ok_after_next_use,logs
+smf-crash-d0,oai-smf,0.0,2,18:59:36,1.12,48.0,2,2,True,True,True,logs/oai_smf-crash-d0.log.gz
+upf-crash-d0,oai-upf,0.0,2,19:01:40,0.25,47.3,2,2,False,False,False,logs/oai_upf-crash-d0.log.gz
+smf-crash-d45,oai-smf,45.0,2,19:03:30,1.11,47.8,2,2,True,True,True,logs/oai_smf-crash-d45.log.gz

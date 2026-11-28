@@ -1,0 +1,81 @@
+{
+"url": "https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-upf/issues?state=all&search=goes%20down",
+"fetched": "2026-11-05T18:21:40Z",
+"items": [
+{
+"id": 4891,
+"iid": 21,
+"project_id": 5331,
+"title": "Multi-program support for UPF XDP",
+"description": "## Introduction\n\nThis proposal outlines the implementation of multi-program support for the User Plane Function (UPF) data plane using eBPF and XDP. This feature aims to improve flexibility, modularity, and performance for UPF deployments in 5G networks.\n\n## Background\n\nThe UPF data plane handles diverse packet processing tasks, such as IP PDU sessions, ETH PDU sessions, and frame routing. Ideally, these functionalities should be independent and efficient. However, the current implementation suffers from:\n\n* Interdependent code: Feature code relies on each other, making independent development and deployment difficult.\n* Unnecessary processing: Features are deployed together, even if not required by the environment, leading to wasted processsing time.\n* Integration complexity: Adding new features requires understanding existing code and modifying existing logic.\n\n**Proposed Solution: Multi-Program Approach with eBPF**\n\n* Leverage eBPF's XDP program capabilities (available on kernel version 5.10 and x64_86 architecture) to establish separate XDP programs for each feature.\n* These programs can be chained together based on configuration and priority.\n* Each feature will have its own logic encapsulated in a header file (`pfcp_session_<feature>.h`) for reusability.\n* A main BPF file (`pfcp_session_<feature>.c`) defines the XDP entry point function that calls the feature's specific logic.\n\n## Design changes\n\nSeparate XDP programs for each feature.\n\n1. Header files (`pfcp_session_<feature>.h`) for reusable feature logic.\n2. Main BPF files (`pfcp_session_<feature>.c`) with entry point functions.\n3. Default main BPF file (`pfcp_session_main.c`) for ARM architecture and kernel versions below 5.8 (static order chaining based on configuration).\n4. Userspace program to:\n   - Load Default XDP program on ARM architecture and kernel versions below 5.8.\n   - Chain XDP programs based on configurations on x64_86 with kernel versions above 5.8.\n\n1. `pfcp_session_<feature>.h`\n\n```c\n#ifndef __PFCP_SESSION_<FEATURE>_H\n#define __PFCP_SESSION_<FEATURE>_H\n\n// Include files and maps relavant....\n\n// Create an entry point static inline function that implements the feature\nstatic __always_inline int entry_point_uplink__<feature>(struct xdp_md* ctx) {\n    // Quickly establish is packet is for the feature e.g., if inner GTPU packet is IP\n}\n\n#endif /* __PFCP_SESSION_<FEATURE>_H */\n```\n\n2. Define main bpf file for feature `pfcp_session_<feature>.c`.\n\n```c\n\n/**\n *  Define XDP program for feature.\n */\nSEC(\"xdp\")\nint xdp_entry_point_<feature>(struct xdp_md* ctx) {\n    // Call the entry point in the header file\n    return entry_point_uplink__<feature>(ctx)\n}\n```\n\n3. Default `pfcp_session_main.c`. Next feature program/entry point is called if XDP_PASS is returned by previous program, and if configuration is set for the program.\n\n```c\n// Include header files for the features\n#include pfcp_session_<feature>.h\n\nconst volatile struct xdp_config config;\n\nSEC(\"xdp\")\nint xdp_entry_point_uplink(struct xdp_md* ctx) {\n  int action = XDP_PASS;\n  \n  // When eth_handle returns XDP_PASS goto next program\n  if (config.ip_pdu)\n    action = entry_point_uplink__ip_pdu(ctx);\n  \n\n  if (action != XDP_PASS)\n    goto out;\n  if (config.frame_routing)\n    action = entry_point_uplink__frame_routing(ctx);\n\n  if (action != XDP_PASS)\n    goto out;\n  if (config.eth_pdu)\n    action = entry_point_uplink__eth_pdu(ctx);\n  \nout:\n  return action;\n}\n```\n\n4. Userspace program to:\n   - Load XDP programs on ARM architecture and kernel versions below 5.8.\n   - Chain XDP programs based on configurations on x64_86 with kernel versions above 5.8.\n\n## Impact of changes\n\nIf the feature is *not* used, the overhead is a single conditional branch (which is negligible). For more details on the performance impact see [xdp: Support multiple programs on a single interface through chain calls](https://lore.kernel.org/bpf/8736fshk7b.fsf@toke.dk/T/). The snap of the page is below.\n\n**Performance**\n\n1. General performance\n```\n# PERFORMANCE\n\nI performed a simple performance test to get an initial feel for the overhead of\nthe chain call mechanism. This test consists of running only two programs in\nsequence: One that returns XDP_PASS and another that returns XDP_DROP. I then\nmeasure the drop PPS performance and compare it to a baseline of just a single\nprogram that only returns XDP_DROP.\n\nFor comparison, a test case that uses regular eBPF tail calls to sequence two\nprograms together is also included.\n\n| Test case                        | Perf      | Overhead |\n|----------------------------------+-----------+----------|\n| Before patch (XDP DROP program)  | 31.5 Mpps |          |\n| After patch (XDP DROP program)   | 32.0 Mpps |          |\n| XDP chain call (XDP_PASS return) | 28.5 Mpps | 3.8 ns   |\n| XDP chain call (wildcard return) | 28.1 Mpps | 4.3 ns   |\n\nI consider the \"Before patch\" and \"After patch\" to be identical; the .5 Mpps\ndifference is within the regular test variance I see between runs. Likewise,\nthere is probably no significant difference between hooking the XDP_PASS return\ncode and using the wildcard slot.\n```\n2. Potential QoS impact, consider using `XDP_ABORTED` instead of `XDP_PASS` for dropped packets to avoid further processing when not required **(consideration for further discussion)**: The QoS in implemented in TC which requires `XDP_PASS`, in the case the packet will go through other programs. The work around is to use another return chain e.g., `XDP_ABORTED`. Downside of `XDP_ABORTED` is packets for which the action has failed and are being aborted might be processed further e.g., were `XDP_REDIRECT` is not supported (veth pair with GRO not enabled and no XDP program on the pair interface). This can also affected stats. Since this can be a known, and can be documented, using `XDP_ABORTED` may be a better tradeoff for performance improvement. However, for QoS the `XDP_PASS` is called from a tail program, not sure if it still chain the next program after being tail'ed.\n\n**Code structure**\n\nThe current ebpf program for handling IP PDU sessions should not be impact. The program return `XDP_PASS` when an IP PDU session is not found, there the other programs can be chained based on `XDP_PASS`. The changes that need to made are minor:\n1. Change the name of the function to follow the conversion suggested under [Design Changes](#design-changes)\n2. (Recommended) Determine if it's IP PDU session packet early on i.e., one of the first check should be if it's a GTPU packet, and if immediate packet is valid IP packet. Return XDP_PASS immediately if not.\n3. (Recommended) Seperate the Uplink (UL) and Downlink (DL) XDP programs. This will make it easier to implement 2, currently if an UL packet's PDU is not found, it goes through DL logic. This means an UL ETH PDU packet will go through two checks before being passed to the XDP program for ETH PDU sessions.\n\n**Deployment environment**\n\n* Kernel version >= 5.8 required for program selection.\n* Kernel version >= 5.10 required for loading new programs while existing ones are running (optional).\n\n\n## Tasks list\n\n\n1. Develop userspace program to load multiple programs using [libxdp](https://github.com/xdp-project/xdp-tools/tree/master/lib/libxdp).\n2. Create userspace program to determine architecture, kernel version, and load the fallback program.\n3. Implement user configuration for program priority and defaults on the UPF.\n4. Design and implement a dispatcher XDP program to call each feature's program sequentially.\n5. Refactor existing XDP program (if necessary) to adhere to the multi-program approach.\n6. Develop a simple (to confirmation functionality), loadable stats collecting XDP program based on configurations.\n7. Update developer documentation on adding new programs.\n\n**Optional Two-Stage Implementation:**\n\n1. Phase 1 - Default Program Chaining: To be convervative to time/hours implement the default program (i.e., number 3 and respective number 1s, under [Design changes](#design-changes)) and load it in all case deployments.\n2. Phase 2 - Full Multi-Program Support (if time/hours allow) - Implement the full multi-program approach with user configuration and dispatcher.\n\n## Useful resources\n- [Multiple XDP programs per interface: Status and outstanding issues](https://lpc.events/event/7/contributions/671/attachments/561/992/xdp-multiprog.pdf)\n- [libxdp - library for attaching XDP programs and using AF_XDP sockets](https://github.com/xdp-project/xdp-tools/blob/master/lib/libxdp/README.org)\n- [Protocol for atomic loading of multi-prog dispatchers](https://github.com/xdp-project/xdp-tools/blob/master/lib/libxdp/protocol.org)",
+"state": "closed",
+"created_at": "2025-03-18T10:53:49.243Z",
+"updated_at": "2026-10-14T00:25:32.771Z",
+"closed_at": "2026-10-14T00:25:32.733Z",
+"closed_by": {
+"id": 10607,
+"username": "jenkinsbot",
+"public_email": "",
+"name": "OAI CI JenkinsBot",
+"state": "active",
+"locked": false,
+"avatar_url": "https://gitlab.eurecom.fr/uploads/-/system/user/avatar/10607/avatar.png?v=1793841916",
+"web_url": "https://gitlab.eurecom.fr/jenkinsbot"
+},
+"labels": [],
+"milestone": null,
+"assignees": [],
+"author": {
+"id": 11375,
+"username": "tariro",
+"public_email": null,
+"name": "Tariro Mukute",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/4d4c179e770bb10a6e94096c0269475523ce1c5d0a7392a9d3d2d0198af78585?s=80&d=identicon",
+"web_url": "https://gitlab.eurecom.fr/tariro"
+},
+"type": "ISSUE",
+"assignee": null,
+"user_notes_count": 0,
+"merge_requests_count": 0,
+"upvotes": 0,
+"downvotes": 0,
+"start_date": null,
+"due_date": null,
+"confidential": false,
+"discussion_locked": null,
+"issue_type": "issue",
+"web_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf/-/work_items/21",
+"time_stats": {
+"time_estimate": 0,
+"total_time_spent": 0,
+"human_time_estimate": null,
+"human_total_time_spent": null
+},
+"task_completion_status": {
+"count": 0,
+"completed_count": 0
+},
+"has_tasks": true,
+"task_status": "0 of 0 checklist items completed",
+"_links": {
+"self": "https://gitlab.eurecom.fr/api/v4/projects/5331/issues/21",
+"notes": "https://gitlab.eurecom.fr/api/v4/projects/5331/issues/21/notes",
+"award_emoji": "https://gitlab.eurecom.fr/api/v4/projects/5331/issues/21/award_emoji",
+"project": "https://gitlab.eurecom.fr/api/v4/projects/5331",
+"closed_as_duplicate_of": null
+},
+"references": {
+"short": "#21",
+"relative": "#21",
+"full": "oai/cn5g/oai-cn5g-upf#21"
+},
+"severity": "UNKNOWN",
+"moved_to_id": null,
+"imported": false,
+"imported_from": "none",
+"service_desk_reply_to": null
+}
+]
+}

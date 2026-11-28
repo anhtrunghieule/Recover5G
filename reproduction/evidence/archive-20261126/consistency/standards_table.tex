@@ -1,0 +1,30 @@
+% Item C (review R1, concern 4): one row per case of Table 4 (presentation/tab_case_ledger.tex).
+% Full verbatim quotes, versions and file hashes are in standards_quotes.json beside this file.
+% House style: \tabstyle, \tgroup, \tnote (main.tex). One line per entry; every cell is \normalsize.
+% Needs \cite keys ts23527, ts24501, ts29502, ts29244 (all in references.bib) and the labels
+% tab:case-ledger and sec:app-followup (both exist).
+\begin{table*}[t]
+\centering
+\caption{Closest 3GPP text for each case of Table~\ref{tab:case-ledger}. Breaks: the modal verb of the text that the observed behaviour departs from. None: no mandatory text applies and the case rests on an author criterion.}
+\label{tab:standards}\tabstyle\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lllll}
+\toprule
+Case & Closest clause (verb) & Precondition & Breaks & Upstream \\
+\midrule
+\tgroup{5}{Known bugs and reports}
+UPF retains failed SMF's sessions & 23.527 \S4.4.3.1 (shall) & SMF down, no SMF set & shall & \#4877, fixed \\
+Restores releasing sessions & 23.527 \S4.3.2 (may) & PFCP association is back & none & \#4892, fixed \\
+OAI retains old SMF sessions & 29.244 \S6.2.6.2.2 (shall) & no retention requested & shall & \#41, fix \#43 open \\
+OAI reference-reuse deletion & 23.527 \S6.2.3 (may) & contexts lost in restart & none & \#33, fixed by \#34 \\
+Dangling establishment references & 24.501 \S5.4.5.2.5 (shall) & AMF still holds the PSI & shall$^{\dagger}$ & PR \#4485, wontfix \\
+Open5GS cross-UE deletion & 23.527 \S6.2.3 (may) & contexts lost in restart & none & \#4988, not a bug \\
+\tgroup{5}{Candidates}
+Stalled release & 24.501 \S6.3.3.5\,a) (shall) & network-requested release & shall & \#5063, not a bug \\
+Orphan UPF sessions & 29.502 \S5.2.2.2.1 (should) & same SUPI and PSI in use & should & \#5059, enhancement \\
+Reject-teardown race & 24.501 \S6.4.1.4.1 (shall) & SMF rejects the request & shall$^{\dagger}$ & \#5064, bug \\
+Registration rejection & 24.501 \S5.5.1.2.5 (shall) & request not acceptable & none & \#5061, bug \\
+Stuck policy context (extension) & none found & -- & none & \#5065, enhancement \\
+\bottomrule
+\end{tabular}
+\tnote{Clauses: 3GPP TS 23.527 V18.6.0, 24.501 V18.14.0, 29.502 V18.12.0 and 29.244 V18.10.0~\cite{ts23527,ts24501,ts29502,ts29244}. $^{\dagger}$Applies under a trace condition stated in Appendix~\ref{sec:app-followup}, which we did not check on captures. Upstream: tracker state on 25~November~2026; ``not a bug'' is the label \texttt{not-an-open5gs-bug}. No candidate is confirmed by an upstream reproduction or fix.}
+\end{table*}

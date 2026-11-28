@@ -1,0 +1,118 @@
+diff --git a/src/amf/amf-sm.c b/src/amf/amf-sm.c
+index e3487f8967..3c993061a5 100644
+--- a/src/amf/amf-sm.c
++++ b/src/amf/amf-sm.c
+@@ -197,14 +197,33 @@ void amf_state_operational(ogs_fsm_t *s, amf_event_t *e)
+                 CASE(OGS_SBI_RESOURCE_NAME_N1_N2_MESSAGES)
+                     SWITCH(sbi_message.h.method)
+                     CASE(OGS_SBI_HTTP_METHOD_POST)
+-                        rv = amf_namf_comm_handle_n1_n2_message_transfer(
+-                                stream, &sbi_message);
+-                        if (rv != OGS_OK) {
+-                            ogs_assert(true ==
+-                                ogs_sbi_server_send_error(stream,
+-                                    OGS_SBI_HTTP_STATUS_BAD_REQUEST,
+-                                    &sbi_message,
+-                                    "No N1N2MessageTransferReqData", NULL, NULL));
++                        {
++                            /*
++                             * Propagate the real failure cause from the
++                             * handler. Defaults preserve the legacy
++                             * behaviour for any return sites that haven't
++                             * been updated; the UE-not-found and PDU-
++                             * session-not-found paths now return
++                             * 3GPP TS 29.518-compliant 404 Not Found so
++                             * SMF can distinguish "resource gone" from
++                             * "malformed request" and release the
++                             * stranded PDU session instead of leaking it.
++                             */
++                            int http_status =
++                                OGS_SBI_HTTP_STATUS_BAD_REQUEST;
++                            const char *http_reason =
++                                "No N1N2MessageTransferReqData";
++
++                            rv = amf_namf_comm_handle_n1_n2_message_transfer(
++                                    stream, &sbi_message,
++                                    &http_status, &http_reason);
++                            if (rv != OGS_OK) {
++                                ogs_assert(true ==
++                                    ogs_sbi_server_send_error(stream,
++                                        http_status,
++                                        &sbi_message,
++                                        http_reason, NULL, NULL));
++                            }
+                         }
+                         break;
+ 
+diff --git a/src/amf/namf-handler.c b/src/amf/namf-handler.c
+index 2267fc9bcd..1083c9002e 100644
+--- a/src/amf/namf-handler.c
++++ b/src/amf/namf-handler.c
+@@ -25,10 +25,14 @@
+ #include "sbi-path.h"
+ 
+ int amf_namf_comm_handle_n1_n2_message_transfer(
+-        ogs_sbi_stream_t *stream, ogs_sbi_message_t *recvmsg)
++        ogs_sbi_stream_t *stream, ogs_sbi_message_t *recvmsg,
++        int *http_status, const char **http_reason)
+ {
+     int status, r;
+ 
++    ogs_assert(http_status);
++    ogs_assert(http_reason);
++
+     amf_ue_t *amf_ue = NULL;
+     ran_ue_t *ran_ue = NULL;
+     amf_sess_t *sess = NULL;
+@@ -79,7 +83,19 @@ int amf_namf_comm_handle_n1_n2_message_transfer(
+ 
+     amf_ue = amf_ue_find_by_supi(supi);
+     if (!amf_ue) {
++        /*
++         * 3GPP TS 29.518 §5.2.2.3.1 mandates 404 Not Found when the
++         * targeted UE context does not exist. This typically happens
++         * when the RAN releases the UE context (UE inactivity, RRC
++         * idle transition) in the ~ms window between SMF initiating
++         * PDU Session Establishment and the N1N2MessageTransfer
++         * arriving at AMF. Returning a precise 404 lets SMF clean
++         * up the stranded session (see matching SMF fix) instead
++         * of leaking it in pdu_state=inactive forever.
++         */
+         ogs_error("No UE context [%s]", supi);
++        *http_status = OGS_SBI_HTTP_STATUS_NOT_FOUND;
++        *http_reason = "No UE context for SUPI";
+         return OGS_ERROR;
+     }
+ 
+@@ -87,6 +103,8 @@ int amf_namf_comm_handle_n1_n2_message_transfer(
+     if (!sess) {
+         ogs_error("[%s] No PDU Session Context [%d]",
+                 amf_ue->supi, pdu_session_id);
++        *http_status = OGS_SBI_HTTP_STATUS_NOT_FOUND;
++        *http_reason = "No PDU Session Context";
+         return OGS_ERROR;
+     }
+ 
+diff --git a/src/amf/namf-handler.h b/src/amf/namf-handler.h
+index d5fd1c7200..240f463863 100644
+--- a/src/amf/namf-handler.h
++++ b/src/amf/namf-handler.h
+@@ -26,8 +26,17 @@ extern "C" {
+ 
+ #include "context.h"
+ 
++/*
++ * On OGS_ERROR return, *http_status holds the 3GPP-compliant HTTP status
++ * code (404 when UE/PDU-Session context is missing, 400 for malformed
++ * requests) and *http_reason holds a precise human-readable explanation.
++ * Both outputs MUST be initialised by the caller to sensible defaults
++ * (400 / "...") before the call so that return sites which do not set
++ * them remain backwards compatible.
++ */
+ int amf_namf_comm_handle_n1_n2_message_transfer(
+-        ogs_sbi_stream_t *stream, ogs_sbi_message_t *recvmsg);
++        ogs_sbi_stream_t *stream, ogs_sbi_message_t *recvmsg,
++        int *http_status, const char **http_reason);
+ int amf_namf_callback_handle_sm_context_status(
+         ogs_sbi_stream_t *stream, ogs_sbi_message_t *recvmsg);
+ int amf_namf_callback_handle_dereg_notify(

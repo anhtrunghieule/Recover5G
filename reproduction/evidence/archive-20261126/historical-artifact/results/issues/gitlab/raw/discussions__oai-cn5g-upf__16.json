@@ -1,0 +1,83 @@
+{
+"url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf/-/issues/16/discussions.json",
+"fetched": "2026-11-05T18:26:41Z",
+"items": [
+{
+"id": "bf1fc918c1e663bd3b0f617b4237dd7dd4a5b140",
+"reply_id": "bf1fc918c1e663bd3b0f617b4237dd7dd4a5b140",
+"project_id": 5331,
+"commit_id": null,
+"confidential": false,
+"diff_discussion": false,
+"expanded": true,
+"for_commit": false,
+"individual_note": true,
+"resolvable": false,
+"discussion_path": null,
+"resolved": false,
+"resolved_by_push": false,
+"resolved_by": null,
+"resolved_at": null,
+"resolve_path": "/oai/cn5g/oai-cn5g-upf/-/issues/16/discussions/bf1fc918c1e663bd3b0f617b4237dd7dd4a5b140/resolve",
+"notes": [
+{
+"id": "117185",
+"type": null,
+"author": {
+"id": 11375,
+"username": "tariro",
+"public_email": null,
+"name": "Tariro Mukute",
+"state": "active",
+"locked": false,
+"avatar_url": "https://secure.gravatar.com/avatar/4d4c179e770bb10a6e94096c0269475523ce1c5d0a7392a9d3d2d0198af78585?s=80&d=identicon",
+"status_tooltip_html": null,
+"show_status": false,
+"availability": null,
+"path": "/tariro",
+"bot": false,
+"user_type": "human"
+},
+"created_at": "2024-04-07T07:12:50.901Z",
+"updated_at": "2024-04-07T07:12:50.905Z",
+"system": true,
+"noteable_id": 4584,
+"noteable_type": "Issue",
+"project_id": 5331,
+"resolvable": false,
+"confidential": false,
+"internal": false,
+"imported": false,
+"imported_from": "none",
+"noteable_iid": 16,
+"commands_changes": {},
+"external_author": null,
+"note": "assigned to @fmessaoudi",
+"note_html": "<p data-sourcepos=\"1:1-1:23\" dir=\"auto\">assigned to <a href=\"/fmessaoudi\" data-reference-type=\"user\" data-user=\"10562\" data-container=\"body\" data-placement=\"top\" class=\"gfm gfm-project_member js-user-link\" title=\"Franck MESSAOUDI\">@fmessaoudi</a></p>",
+"body_first_line_html": "<p>assigned to <a href=\"/fmessaoudi\" data-reference-type=\"user\" data-user=\"10562\" class=\"gfm gfm-project_member js-user-link\" title=\"Franck MESSAOUDI\">@fmessaoudi</a></p>",
+"current_user": {
+"can_edit": false,
+"can_award_emoji": false,
+"can_resolve": false,
+"can_resolve_discussion": false
+},
+"suggestions": [],
+"resolved": false,
+"resolved_by": null,
+"resolved_by_push": false,
+"system_note_icon_name": "user",
+"is_noteable_author": true,
+"discussion_id": "bf1fc918c1e663bd3b0f617b4237dd7dd4a5b140",
+"emoji_awardable": false,
+"report_abuse_path": "/-/abuse_reports/add_category",
+"noteable_note_url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf/-/work_items/16#note_117185",
+"cached_markdown_version": 2162688,
+"human_access": "Developer",
+"is_contributor": false,
+"project_name": "oai-cn5g-upf",
+"path": "/oai/cn5g/oai-cn5g-upf/notes/117185"
+}
+]
+}
+]
+}

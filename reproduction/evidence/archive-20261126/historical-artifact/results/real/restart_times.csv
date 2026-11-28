@@ -1,0 +1,25 @@
+rep,nf,ready_marker,restart_to_ready_s
+0,nrf,NRF initialize\.\.\.done,0.069
+0,scp,NF registered \[Heartbeat,0.149
+0,ausf,NF registered \[Heartbeat,0.121
+0,udm,NF registered \[Heartbeat,0.121
+0,udr,NF registered \[Heartbeat,0.153
+0,pcf,NF registered \[Heartbeat,0.065
+0,nssf,NF registered \[Heartbeat,0.078
+0,bsf,NF registered \[Heartbeat,0.118
+0,smf,PFCP associated,0.463
+0,amf,\] NF registered \[Heartbeat,0.08
+0,upf,PFCP associated,10.29
+0,gnb,NG Setup procedure is successful,0.113
+1,nrf,NRF initialize\.\.\.done,0.15
+1,scp,NF registered \[Heartbeat,0.126
+1,ausf,NF registered \[Heartbeat,0.076
+1,udm,NF registered \[Heartbeat,0.07
+1,udr,NF registered \[Heartbeat,0.082
+1,pcf,NF registered \[Heartbeat,0.1
+1,nssf,NF registered \[Heartbeat,0.07
+1,bsf,NF registered \[Heartbeat,0.119
+1,smf,PFCP associated,0.173
+1,amf,\] NF registered \[Heartbeat,0.122
+1,upf,PFCP associated,10.214
+1,gnb,NG Setup procedure is successful,0.097
